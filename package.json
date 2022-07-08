@@ -4,7 +4,7 @@
   "license": "Unlicensed",
 
   "scripts": {
-    "start": "npx webpack --watch"
+    "client-dev": "npx webpack --watch"
   },
 
   "dependencies": {
