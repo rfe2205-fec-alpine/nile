@@ -2,5 +2,4 @@ import React from 'react';
 import { render } from 'react-dom';
 import App from './App.jsx';
 
-
-render(<App />, document.getElementId("app"));
+render(<App />, document.getElementId('app'));
