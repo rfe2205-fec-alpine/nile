@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from './img/logo.jpg';
-import SearchBar from './searchbar.jsx';
+import logo from '../img/logo.jpg';
+import SearchBar from '../searchbar.jsx';
 
 function TitleBar() {
   return (

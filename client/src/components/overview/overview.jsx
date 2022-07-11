@@ -1,14 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import TitleBar from './titlebar.jsx';
-import AnnouncementBar from './announcementbar.jsx';
+import TitleSection from './title-section/titlesection.jsx';
 import MainSection from './mainsection.jsx';
 
 function Overview() {
   return (
     <OverviewComponent>
-      <TitleBar />
-      <AnnouncementBar />
+      <TitleSection />
       <MainSection />
     </OverviewComponent>
   );
