@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import TitleSection from './title-section/titlesection.jsx';
-import MainSection from './mainsection.jsx';
+import MainSection from './main-section/mainsection.jsx';
 
 function Overview() {
   return (

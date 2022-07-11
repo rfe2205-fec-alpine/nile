@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProductImage from './productimage.jsx';
-import ProductDescription from './productdescription.jsx';
+import ProductInfo from './productinfo.jsx';
 
 function MainSection() {
   return (
     <Main>
       <ProductImage />
-      <ProductDescription />
+      <ProductInfo />
     </Main>
   )
 }
