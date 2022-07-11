@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProductDescription from './product-description/productdescription.jsx';
+import FeaturesList from './features-list/featureslist.jsx';
 
 function DescriptionSection() {
   return (
     <DescriptionSectionContainer>
       <ProductDescription />
+      <FeaturesList />
     </DescriptionSectionContainer>
   );
 }
