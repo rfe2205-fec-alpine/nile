@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from '../img/logo.jpg';
+import logo from '../../img/logo.jpg';
 
 function ProductImage() {
   return <ProductImageContainer></ProductImageContainer>
