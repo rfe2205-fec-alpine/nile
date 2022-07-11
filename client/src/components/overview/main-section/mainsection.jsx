@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProductImage from './productimage.jsx';
-import ProductInfo from './productinfo.jsx';
+import ProductInfo from './product-info/productinfo.jsx';
 
 function MainSection() {
   return (
