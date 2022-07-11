@@ -13,6 +13,20 @@ module.exports = {
         test: /\.(js|jsx)?/,
         use: 'babel-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              bypassOnDebug: true, // webpack@1.x
+              disable: true, // webpack@2.x and newer
+            },
+          },
+        ],
+        exclude: /node_modules/
       }
     ]
   }
