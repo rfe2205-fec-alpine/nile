@@ -6,7 +6,6 @@ function App() {
   return (
     <PageContainer>
       <AppContainer>
-        <header>NILE</header>
         <Overview />
       </AppContainer>
     </PageContainer>
@@ -16,7 +15,7 @@ function App() {
 
 const PageContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 7.25fr 1fr;
+  grid-template-columns: 1fr 4.1fr 1fr;
 `;
 
 const AppContainer = styled.div`
@@ -27,7 +26,6 @@ const AppContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   background-color: #CCC;
-  border: 2px solid black;
 `;
 
 export default App;

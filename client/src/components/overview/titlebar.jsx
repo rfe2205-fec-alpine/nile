@@ -1,21 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import logo from './img/logo.jpg';
+import SearchBar from './searchbar.jsx';
 
 function TitleBar() {
   return (
-    <Title>
-      <img src={logo}/>
-      Title Bar rendering! Yay!
-    </Title>
+    <TitleContainer>
+      <div></div>
+      <img src={logo} height="75" />
+      <Title>Nile</Title>
+    </TitleContainer>
   );
 }
 
-const Title = styled.div`
+const TitleContainer = styled.div`
   display: grid;
-  grid-template-columns: 2fr 7fr 2fr;
+  grid-template-columns: 25px 5fr 5fr 2fr;
   background-color: #5d6699;
   align-self: stretch;
+`;
+
+const Title = styled.div`
+  color: #fff;
+  font-size: 64px;
 `;
 
 export default TitleBar;
