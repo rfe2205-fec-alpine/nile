@@ -2,9 +2,9 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './client/src', //Place we want webpack to consolidate
+  entry: path.join(__dirname, '/client/src/index.jsx'), //Place we want webpack to consolidate
   output: {
-    path: path.resolve(__dirname, 'client/dist'), //Path that we want the webpack files to be added
+    path: path.join(__dirname, '/client/dist'), //Path that we want the webpack files to be added
     filename: 'bundle.js'
   },
   module: {
