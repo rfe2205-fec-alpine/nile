@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import logo from './img/logo.jpg';
 
 function TitleBar() {
   return (
     <Title>
-      <img src="img/logo.jpg"></img>
+      <img src={logo}/>
       Title Bar rendering! Yay!
     </Title>
   );
