@@ -15,7 +15,7 @@ function TitleBar() {
 
 const TitleContainer = styled.div`
   display: grid;
-  grid-template-columns: 25px 5fr 5fr 2fr;
+  grid-template-columns: 25px 5.6fr 5fr 2fr;
   background-color: #5d6699;
   align-self: stretch;
 `;
