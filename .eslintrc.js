@@ -4,5 +4,4 @@ module.exports = {
     browser: true,
     node: true,
   },
-  ignorePackages: true,
 };

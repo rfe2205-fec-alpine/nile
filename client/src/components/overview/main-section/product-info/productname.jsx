@@ -4,7 +4,7 @@ import styled from 'styled-components';
 function ProductName() {
   return (
     <Name>Expanded Product Name</Name>
-  )
+  );
 }
 
 const Name = styled.div`

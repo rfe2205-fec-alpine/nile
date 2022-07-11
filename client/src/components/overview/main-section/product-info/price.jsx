@@ -4,7 +4,7 @@ import styled from 'styled-components';
 function Price() {
   return (
     <PriceInDollars>$369</PriceInDollars>
-  )
+  );
 }
 
 const PriceInDollars = styled.div`

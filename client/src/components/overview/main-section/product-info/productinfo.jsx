@@ -4,6 +4,7 @@ import ReviewSection from './reviewsection.jsx';
 import Category from './category.jsx';
 import ProductName from './productname.jsx';
 import Price from './price.jsx';
+import SocialMedia from './social-media/socialmedia.jsx';
 
 function ProductInfo() {
   return (
@@ -12,8 +13,9 @@ function ProductInfo() {
       <Category />
       <ProductName />
       <Price />
+      <SocialMedia />
     </Info>
-  )
+  );
 }
 
 const Info = styled.div`
