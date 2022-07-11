@@ -13,7 +13,7 @@ function DescriptionSection() {
 const DescriptionSectionContainer = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;
-  background-color: blue;
+  background-color: #5d6699;
   height: 300px;
 `;
 
