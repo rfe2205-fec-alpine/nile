@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import pinterestLogo from '../../../img/pinterest.jpg';
+import pinterestLogo from '../../../../img/pinterest.jpg';
 
 function Pinterest() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import facebookLogo from '../../../img/facebook.jpg';
+import facebookLogo from '../../../../img/facebook.jpg';
 
 function Facebook() {
   return (
