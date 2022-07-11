@@ -1,12 +1,14 @@
-import React from 'react';
-import { render } from 'react-dom';
-import App from './App.jsx';
+import React from "react";
+import { render } from "react-dom";
+import App from "./app.jsx";
+import QAndA from "./components/q&a/q&a.jsx";
 
 render(
   <div>
     <App />
+    <QAndA />
   </div>,
-  document.getElementById('app'),
+  document.getElementById("app")
 );
 
 // import React from 'react';
