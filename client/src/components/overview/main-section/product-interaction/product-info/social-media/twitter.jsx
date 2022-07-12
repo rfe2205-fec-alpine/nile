@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import twitterLogo from '../../../img/twitter.jpg';
+import twitterLogo from '../../../../img/twitter.jpg';
 
 function Twitter() {
   return (
