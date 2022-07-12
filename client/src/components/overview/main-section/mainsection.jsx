@@ -15,6 +15,7 @@ function MainSection() {
 const Main = styled.div`
   display: grid;
   grid-template-columns: 3.32fr 2fr;
+  background-color: #CCC;
   height: 730px;
 `;
 

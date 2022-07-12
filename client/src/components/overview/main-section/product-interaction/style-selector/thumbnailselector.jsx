@@ -3,17 +3,18 @@ import styled from 'styled-components';
 import Thumbnail from './thumbnail.jsx';
 import SelectedThumbnail from './selectedthumbnail.jsx';
 
-function ThumbnailSelector() {
+function ThumbnailSelector({ thumbnails, setSelection, selectionId }) {
+  let redBaron = thumbnails.map(function(thumbnail) {
+    if (thumbnail.id === selectionId) {
+      return <SelectedThumbnail imgUrl={thumbnail.imgUrl} />
+    } else {
+      return <Thumbnail imgUrl={thumbnail.imgUrl} setSelection={() => setSelection(thumbnail.id)} />
+    }
+  });
+
   return (
     <ThumbnailContainer>
-      <Thumbnail />
-      <Thumbnail />
-      <Thumbnail />
-      <Thumbnail />
-      <SelectedThumbnail />
-      <Thumbnail />
-      <Thumbnail />
-      <Thumbnail />
+      {redBaron}
     </ThumbnailContainer>
   );
 }

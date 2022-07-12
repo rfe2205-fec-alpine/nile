@@ -31,8 +31,8 @@ const SelectedThumbnailContainer = styled.div`
 
 const SelectedThumbnailItem = styled(ThumbnailItemContainer)`
   position: absolute;
-  width: 70px;
-  height: 70px;
+  width: 69px;
+  height: 69px;
 `;
 
 export default SelectedThumbnail;
