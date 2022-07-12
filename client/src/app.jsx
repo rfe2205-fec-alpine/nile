@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Overview from './components/overview/overview.jsx';
 import Reviews from './components/reviews/reviews.jsx';
+import QAndA from "./components/q&a/q&a.jsx";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <AppContainer>
         <Overview />
         <Reviews />
+        <QAndA />
       </AppContainer>
     </PageContainer>
   );
