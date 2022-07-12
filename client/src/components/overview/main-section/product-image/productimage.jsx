@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Carousel from './carousel/carousel.jsx';
 import PreviousImageButton from './previousimagebutton.jsx';
 import NextImageButton from './nextimagebutton.jsx';
 
+const swissAlpsUrl = "https://miro.medium.com/max/1400/1*yweiw7AyafIdk0YKt4G03Q.jpeg";
+
+const thumbnails = [
+  { id: '1', imgUrl: swissAlpsUrl },
+  { id: '2', imgUrl: swissAlpsUrl },
+  { id: '3', imgUrl: swissAlpsUrl },
+  { id: '4', imgUrl: swissAlpsUrl },
+  { id: '5', imgUrl: swissAlpsUrl },
+  { id: '6', imgUrl: swissAlpsUrl },
+  { id: '7', imgUrl: swissAlpsUrl },
+];
+
 function ProductImage() {
+  const [selectionId, setSelection] = useState('1');
   return (
     <ProductImageContainer>
-      <Carousel />
+      <Carousel thumbnails={thumbnails} selectionId={selectionId} setSelection={setSelection} />
       <PreviousImageButton />
       <NextImageButton />
     </ProductImageContainer>

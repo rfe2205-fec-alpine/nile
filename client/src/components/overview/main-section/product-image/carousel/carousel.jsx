@@ -4,17 +4,18 @@ import CarouselThumbnail from './carouselthumbnail.jsx';
 import CarouselSelectedThumbnail from './carouselselectedthumbnail.jsx';
 import NextButton from './nextbutton.jsx';
 
-function Carousel() {
+function Carousel({ thumbnails, selectionId, setSelection}) {
+  const redBaron = thumbnails.map(function(thumbnail) {
+    if (thumbnail.id === selectionId) {
+      return <CarouselSelectedThumbnail imgUrl={thumbnail.imgUrl} />
+    } else {
+      return <CarouselThumbnail imgUrl={thumbnail.imgUrl} setSelection={() => setSelection(thumbnail.id)} />
+    }
+  });
+
   return (
     <CarouselContainer>
-      <CarouselSelectedThumbnail />
-      <CarouselThumbnail />
-      <CarouselThumbnail />
-      <CarouselThumbnail />
-      <CarouselThumbnail />
-      <CarouselThumbnail />
-      <CarouselThumbnail />
-      <NextButton />
+      {redBaron}
     </CarouselContainer>
   );
 }
