@@ -4,7 +4,9 @@
   "license": "Unlicensed",
   "scripts": {
     "client-dev": "npx webpack --watch",
-    "server-dev": "npx nodemon --watch server server/index.js"
+    "server-dev": "npx nodemon --watch server server/index.js",
+    "test": "jest",
+    "coverage": "npx jest --coverage"
   },
   "resolutions": {
     "styled-components": "^5.3.5"
@@ -19,9 +21,11 @@
     "file-loader": "^6.2.0",
     "image-webpack-loader": "^8.1.0",
     "jest": "^28.1.2",
+    "jest-enzyme": "^7.1.2",
     "nodemon": "^2.0.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-test-renderer": "^18.2.0",
     "styled-components": "^5.3.5",
     "webpack": "^5.73.0"
   },

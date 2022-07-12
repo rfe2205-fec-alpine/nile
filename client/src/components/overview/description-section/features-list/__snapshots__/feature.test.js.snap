@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Feature renders to the page 1`] = `
+<div
+  className="sc-bczRLJ iEOhpD"
+>
+  I am one with the force and the force is with me
+</div>
+`;
