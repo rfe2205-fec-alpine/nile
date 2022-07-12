@@ -4,7 +4,7 @@ import styled from 'styled-components';
 function StyleSelected() {
   return (
     <StyleSelectedContainer>
-      <strong>Style Selected {">"} </strong>
+      <strong>Style {">"} </strong>
       Selected Style
     </StyleSelectedContainer>
   );

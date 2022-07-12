@@ -15,7 +15,7 @@ function StyleSelector() {
 const StyleSelectorContainer = styled.div`
   padding-left: 35px;
   display: grid;
-  grid-template-rows: 1fr 9fr;
+  grid-template-rows: 2fr 9fr;
 `;
 
 export default StyleSelector;
