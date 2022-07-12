@@ -2,10 +2,10 @@
 
 exports[`Product Image component renders to the page 1`] = `
 <div
-  className="sc-iqcoie buPdTd"
+  className="sc-jqUVSM iwOuz"
 >
   <div
-    className="sc-iBkjds dZHXve"
+    className="sc-iBkjds pkIku"
   >
     <div
       className="sc-eCYdqJ iYCoDj"
@@ -30,6 +30,12 @@ exports[`Product Image component renders to the page 1`] = `
       className="sc-bczRLJ iHbVwd"
     />
     <div
+      className="sc-bczRLJ iHbVwd"
+    />
+    <div
+      className="sc-bczRLJ iHbVwd"
+    />
+    <div
       className="sc-gKXOVf eJFCRD"
     >
       v
@@ -41,18 +47,9 @@ exports[`Product Image component renders to the page 1`] = `
     &lt;-
   </div>
   <div
-    className="sc-kDDrLX hLpef"
+    className="sc-papXJ ciWMwe"
   >
-    <div
-      className="sc-papXJ cSwewl"
-    >
-      []
-    </div>
-    <div
-      className="sc-jqUVSM dBFLuP"
-    >
-      -&gt;
-    </div>
+    -&gt;
   </div>
 </div>
 `;

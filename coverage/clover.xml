@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1657655177344" clover="3.2.0">
-  <project timestamp="1657655177344" name="All files">
-    <metrics statements="89" coveredstatements="89" conditionals="2" coveredconditionals="2" methods="37" coveredmethods="36" elements="128" coveredelements="127" complexity="0" loc="89" ncloc="89" packages="9" files="34" classes="34"/>
+<coverage generated="1657659111276" clover="3.2.0">
+  <project timestamp="1657659111276" name="All files">
+    <metrics statements="85" coveredstatements="85" conditionals="2" coveredconditionals="2" methods="35" coveredmethods="34" elements="122" coveredelements="121" complexity="0" loc="85" ncloc="85" packages="9" files="32" classes="32"/>
     <package name="description-section">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="descriptionsection.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/description-section/descriptionsection.jsx">
@@ -43,12 +43,7 @@
       </file>
     </package>
     <package name="main-section.product-image">
-      <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
-      <file name="fullscreenbutton.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-image/fullscreenbutton.jsx">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-      </file>
+      <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
       <file name="nextimagebutton.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-image/nextimagebutton.jsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="5" count="1" type="stmt"/>
@@ -65,18 +60,13 @@
         <line num="17" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
       </file>
-      <file name="rightsideofimage.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-image/rightsideofimage.jsx">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-      </file>
     </package>
     <package name="main-section.product-image.carousel">
       <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="carousel.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-image/carousel/carousel.jsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="8" count="1" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
       </file>
       <file name="carouselselectedthumbnail.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-image/carousel/carouselselectedthumbnail.jsx">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -89,7 +79,7 @@
       <file name="carouselthumbnail.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-image/carousel/carouselthumbnail.jsx">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="7" count="4" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
