@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import Carousel from './carousel/carousel.jsx';
-import NextImageButton from './nextimagebutton.jsx';
 import PreviousImageButton from './previousimagebutton.jsx';
+import RightSideOfImage from './rightsideofimage.jsx';
 
 function ProductImage() {
   return (
     <ProductImageContainer>
       <Carousel />
       <PreviousImageButton />
-      <NextImageButton />
+      <RightSideOfImage />
     </ProductImageContainer>
   );
 }
@@ -19,7 +19,7 @@ const imageUrl = "https://media.cntraveler.com/photos/5a009c8e25be133d871c008e/1
 const ProductImageContainer = styled.div`
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 2fr 3fr 1fr;
+  grid-template-columns: 1fr 3fr 4fr 1fr;
   background-color: #5d6699;
   background-image: url(${imageUrl});
   background-size: cover;
