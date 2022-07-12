@@ -17,15 +17,4 @@ const CarouselThumbnailContainer = styled.div`
   background-size: cover;
 `;
 
-const SelectedThumbnailContainer = styled.div`
-  display: grid;
-  grid-template-rows: 65px 5px 5px;
-`;
-
-const IsSelectedBar = styled.div`
-  width: 65px;
-  height: 5px;
-  background-color: grey;
-`;
-
 export default CarouselThumbnail;
