@@ -5,7 +5,7 @@ function AddToBag(props) {
   const AddToBagContainer = props.container;
   return (
     <AddToBagContainer>
-      AddToBag
+      ADD TO BAG
     </AddToBagContainer>
   );
 }

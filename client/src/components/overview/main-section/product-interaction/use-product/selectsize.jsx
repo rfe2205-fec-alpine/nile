@@ -5,7 +5,7 @@ function SelectSize(props) {
   const SelectSizeContainer = props.container;
   return (
     <SelectSizeContainer>
-      SelectSize
+      SELECT SIZE
     </SelectSizeContainer>
   );
 }
