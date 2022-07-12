@@ -1,8 +1,13 @@
 import React from "react";
 import { render } from "react-dom";
 import App from "./app.jsx";
+import ProductContext from './ProductContext.jsx';
 
-render(<App />, document.getElementById("app"));
+render(
+  <ProductContext.Provider value="37314">
+    <App />
+  </ProductContext.Provider>,
+  document.getElementById('app'));
 
 // import React from 'react';
 // import { createRoot } from 'react-dom/client';

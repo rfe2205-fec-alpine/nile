@@ -1,18 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-
-const Title = styled.h1`
-  font-size: 1.5em;
-`;
+import SortReviews from './sortReviews.jsx';
+import ReviewTile from './reviewTile.jsx';
 
 function ReviewsList() {
   return (
-    <>
-      <Title>HELLOOOOOOO WORLD!!!</Title>
-      <div>This is going to be cool</div>
-      <div>This is going to be cooler</div>
-    </>
+    <ReviewsListWrapper>
+      <SortReviews />
+      <ReviewTile />
+    </ReviewsListWrapper>
   );
 }
+
+const ReviewsListWrapper = styled.div`
+  border: 1px solid red;
+  padding 2px;
+  margin 5px;
+`;
 
 export default ReviewsList;
