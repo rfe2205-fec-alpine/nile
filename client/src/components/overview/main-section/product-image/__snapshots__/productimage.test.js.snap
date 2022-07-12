@@ -2,10 +2,33 @@
 
 exports[`Product Image component renders to the page 1`] = `
 <div
-  className="sc-dkzDqf bVilKN"
+  className="sc-iBkjds gEWvFG"
 >
   <div
-    className="sc-gsnTZi dKvdZf"
-  />
+    className="sc-gKXOVf cWzBKo"
+  >
+    <div
+      className="sc-eCYdqJ iYCoDj"
+    >
+      <div
+        className="sc-hKMtZM fkVqZn"
+      />
+      <div
+        className="sc-jSMfEi hRYmjB"
+      />
+    </div>
+    <div
+      className="sc-bczRLJ iHbVwd"
+    />
+    <div
+      className="sc-bczRLJ iHbVwd"
+    />
+    <div
+      className="sc-bczRLJ iHbVwd"
+    />
+    <div
+      className="sc-bczRLJ iHbVwd"
+    />
+  </div>
 </div>
 `;

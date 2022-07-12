@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1657636692644" clover="3.2.0">
-  <project timestamp="1657636692644" name="All files">
-    <metrics statements="65" coveredstatements="64" conditionals="0" coveredconditionals="0" methods="29" coveredmethods="28" elements="94" coveredelements="92" complexity="0" loc="65" ncloc="65" packages="9" files="28" classes="28"/>
+<coverage generated="1657640529414" clover="3.2.0">
+  <project timestamp="1657640529414" name="All files">
+    <metrics statements="72" coveredstatements="72" conditionals="0" coveredconditionals="0" methods="30" coveredmethods="30" elements="102" coveredelements="102" complexity="0" loc="72" ncloc="72" packages="9" files="29" classes="29"/>
     <package name="description-section">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="descriptionsection.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/description-section/descriptionsection.jsx">
@@ -52,17 +52,27 @@
       </file>
     </package>
     <package name="main-section.product-image.carousel">
-      <metrics statements="5" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
       <file name="carousel.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-image/carousel/carousel.jsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+      </file>
+      <file name="carouselselectedthumbnail.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-image/carousel/carouselselectedthumbnail.jsx">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
       </file>
       <file name="carouselthumbnail.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-image/carousel/carouselthumbnail.jsx">
-        <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
       </file>
     </package>
     <package name="main-section.product-interaction.product-info">
