@@ -15,7 +15,7 @@ function MainSection() {
 const Main = styled.div`
   display: grid;
   grid-template-columns: 3.32fr 2fr;
-  height: 730px;
+  height: 700px;
 `;
 
 export default MainSection;
