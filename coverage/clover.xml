@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1657659111276" clover="3.2.0">
-  <project timestamp="1657659111276" name="All files">
-    <metrics statements="85" coveredstatements="85" conditionals="2" coveredconditionals="2" methods="35" coveredmethods="34" elements="122" coveredelements="121" complexity="0" loc="85" ncloc="85" packages="9" files="32" classes="32"/>
+<coverage generated="1657660348578" clover="3.2.0">
+  <project timestamp="1657660348578" name="All files">
+    <metrics statements="85" coveredstatements="83" conditionals="2" coveredconditionals="2" methods="35" coveredmethods="33" elements="122" coveredelements="118" complexity="0" loc="85" ncloc="85" packages="9" files="32" classes="32"/>
     <package name="description-section">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="descriptionsection.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/description-section/descriptionsection.jsx">
@@ -158,7 +158,7 @@
       </file>
     </package>
     <package name="main-section.product-interaction.use-product">
-      <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="7"/>
+      <metrics statements="15" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="6"/>
       <file name="addtobag.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/use-product/addtobag.jsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="5" count="1" type="stmt"/>
@@ -167,12 +167,12 @@
       <file name="addtobagrow.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/use-product/addtobagrow.jsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="7" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
       </file>
       <file name="favorite.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/use-product/favorite.jsx">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
       </file>
       <file name="qty.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/use-product/qty.jsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -191,9 +191,9 @@
       </file>
       <file name="useproduct.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/use-product/useproduct.jsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="24" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
       </file>
     </package>
     <package name="title-section">
