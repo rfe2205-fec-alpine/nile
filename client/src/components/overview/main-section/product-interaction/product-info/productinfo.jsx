@@ -21,8 +21,7 @@ function ProductInfo() {
 const Info = styled.div`
   padding: 35px;
   display: grid;
-  grid-template-rows: 1fr 1fr 2fr 1fr 1fr 3fr 3fr 1fr;
-  background-color: #CCC;
+  grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
 `;
 
 export default ProductInfo;

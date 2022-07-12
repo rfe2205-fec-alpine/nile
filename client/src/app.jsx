@@ -22,12 +22,8 @@ const PageContainer = styled.div`
 `;
 
 const AppContainer = styled.div`
-  display: flex;
   grid-column-start: 2;
   grid-column-end: 3;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 `;
 
 export default App;
