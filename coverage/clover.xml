@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1657635194489" clover="3.2.0">
-  <project timestamp="1657635194489" name="All files">
-    <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6" elements="19" coveredelements="19" complexity="0" loc="13" ncloc="13" packages="3" files="6" classes="6"/>
+<coverage generated="1657636692644" clover="3.2.0">
+  <project timestamp="1657636692644" name="All files">
+    <metrics statements="65" coveredstatements="64" conditionals="0" coveredconditionals="0" methods="29" coveredmethods="28" elements="94" coveredelements="92" complexity="0" loc="65" ncloc="65" packages="9" files="28" classes="28"/>
     <package name="description-section">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="descriptionsection.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/description-section/descriptionsection.jsx">
@@ -40,6 +40,142 @@
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="5" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="main-section.product-image">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="productimage.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-image/productimage.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="main-section.product-image.carousel">
+      <metrics statements="5" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <file name="carousel.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-image/carousel/carousel.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+      </file>
+      <file name="carouselthumbnail.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-image/carousel/carouselthumbnail.jsx">
+        <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="main-section.product-interaction.product-info">
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+      <file name="category.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/product-info/category.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="1" type="stmt"/>
+      </file>
+      <file name="price.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/product-info/price.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+      </file>
+      <file name="productname.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/product-info/productname.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+      </file>
+      <file name="reviewsection.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/product-info/reviewsection.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="main-section.product-interaction.style-selector">
+      <metrics statements="18" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
+      <file name="checkmark.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/style-selector/checkmark.jsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+      </file>
+      <file name="selectedthumbnail.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/style-selector/selectedthumbnail.jsx">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+      </file>
+      <file name="styleselected.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/style-selector/styleselected.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+      </file>
+      <file name="styleselector.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/style-selector/styleselector.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+      </file>
+      <file name="thumbnail.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/style-selector/thumbnail.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+      </file>
+      <file name="thumbnailselector.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/style-selector/thumbnailselector.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="main-section.product-interaction.use-product">
+      <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="7"/>
+      <file name="addtobag.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/use-product/addtobag.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+      </file>
+      <file name="addtobagrow.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/use-product/addtobagrow.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+      </file>
+      <file name="favorite.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/use-product/favorite.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+      </file>
+      <file name="qty.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/use-product/qty.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+      </file>
+      <file name="selectionrow.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/use-product/selectionrow.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+      </file>
+      <file name="selectsize.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/use-product/selectsize.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+      </file>
+      <file name="useproduct.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/use-product/useproduct.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="title-section">
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <file name="announcementbar.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/title-section/announcementbar.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+      </file>
+      <file name="searchbar.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/title-section/searchbar.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
       </file>
     </package>
   </project>
