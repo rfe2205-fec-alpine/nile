@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1657650313372" clover="3.2.0">
-  <project timestamp="1657650313372" name="All files">
-    <metrics statements="82" coveredstatements="82" conditionals="0" coveredconditionals="0" methods="35" coveredmethods="35" elements="117" coveredelements="117" complexity="0" loc="82" ncloc="82" packages="9" files="34" classes="34"/>
+<coverage generated="1657655177344" clover="3.2.0">
+  <project timestamp="1657655177344" name="All files">
+    <metrics statements="89" coveredstatements="89" conditionals="2" coveredconditionals="2" methods="37" coveredmethods="36" elements="128" coveredelements="127" complexity="0" loc="89" ncloc="89" packages="9" files="34" classes="34"/>
     <package name="description-section">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="descriptionsection.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/description-section/descriptionsection.jsx">
@@ -63,7 +63,7 @@
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="8" count="1" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
       </file>
       <file name="rightsideofimage.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-image/rightsideofimage.jsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -122,7 +122,7 @@
       </file>
     </package>
     <package name="main-section.product-interaction.style-selector">
-      <metrics statements="18" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
+      <metrics statements="25" coveredstatements="25" conditionals="2" coveredconditionals="2" methods="8" coveredmethods="7"/>
       <file name="checkmark.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/style-selector/checkmark.jsx">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="5" count="1" type="stmt"/>
@@ -144,9 +144,12 @@
         <line num="13" count="1" type="stmt"/>
       </file>
       <file name="styleselector.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/style-selector/styleselector.jsx">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="6" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
       </file>
       <file name="thumbnail.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/style-selector/thumbnail.jsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -155,9 +158,13 @@
         <line num="12" count="1" type="stmt"/>
       </file>
       <file name="thumbnailselector.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/style-selector/thumbnailselector.jsx">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="2"/>
         <line num="7" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
+        <line num="8" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="11" count="7" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
       </file>
     </package>
     <package name="main-section.product-interaction.use-product">

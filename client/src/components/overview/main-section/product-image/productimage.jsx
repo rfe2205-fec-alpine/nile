@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import Carousel from './carousel/carousel.jsx';
 import PreviousImageButton from './previousimagebutton.jsx';
-import RightSideOfImage from './rightsideofimage.jsx';
+import NextImageButton from './nextimagebutton.jsx';
 
 function ProductImage() {
   return (
     <ProductImageContainer>
       <Carousel />
       <PreviousImageButton />
-      <RightSideOfImage />
+      <NextImageButton />
     </ProductImageContainer>
   );
 }

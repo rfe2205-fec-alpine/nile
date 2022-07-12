@@ -11,8 +11,8 @@ const NextImageButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-column-start: 4;
+  grid-column-end: 5;
   font-size: 32px;
   font-weight: bolder;
 `;

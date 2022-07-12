@@ -19,21 +19,17 @@ exports[`Style Selector component renders to the page 1`] = `
   >
     <div
       className="sc-gsnTZi gFrKuk"
+      onClick={[Function]}
     />
     <div
       className="sc-gsnTZi gFrKuk"
-    />
-    <div
-      className="sc-gsnTZi gFrKuk"
-    />
-    <div
-      className="sc-gsnTZi gFrKuk"
+      onClick={[Function]}
     />
     <div
       className="sc-eCYdqJ fpYimD"
     >
       <div
-        className="sc-hKMtZM sc-jSMfEi joHSMs hDeCYl"
+        className="sc-hKMtZM sc-jSMfEi joHSMs dDeSWZ"
       />
       <div
         className="sc-dkzDqf dOpEzC"
@@ -41,12 +37,23 @@ exports[`Style Selector component renders to the page 1`] = `
     </div>
     <div
       className="sc-gsnTZi gFrKuk"
+      onClick={[Function]}
     />
     <div
       className="sc-gsnTZi gFrKuk"
+      onClick={[Function]}
     />
     <div
       className="sc-gsnTZi gFrKuk"
+      onClick={[Function]}
+    />
+    <div
+      className="sc-gsnTZi gFrKuk"
+      onClick={[Function]}
+    />
+    <div
+      className="sc-gsnTZi gFrKuk"
+      onClick={[Function]}
     />
   </div>
 </div>

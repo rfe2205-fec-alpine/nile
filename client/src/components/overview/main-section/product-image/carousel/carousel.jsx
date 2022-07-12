@@ -12,6 +12,8 @@ function Carousel() {
       <CarouselThumbnail />
       <CarouselThumbnail />
       <CarouselThumbnail />
+      <CarouselThumbnail />
+      <CarouselThumbnail />
       <NextButton />
     </CarouselContainer>
   );
@@ -22,7 +24,7 @@ const CarouselContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   width: 65px;
-  height: 400px;
+  height: 550px;
   margin: 35px;
 `;
 
