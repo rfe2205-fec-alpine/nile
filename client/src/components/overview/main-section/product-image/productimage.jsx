@@ -12,7 +12,7 @@ const ProductImageContainer = styled.div`
   display: flex;
   background-color: #5d6699;
   background-image: url(${imageUrl});
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
 `
 
