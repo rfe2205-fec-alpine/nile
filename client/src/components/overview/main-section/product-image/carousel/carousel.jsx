@@ -11,7 +11,7 @@ function Carousel({ thumbnails, selection, setSelection}) {
     if (thumbnail.thumbnail_url === selection.thumbnail_url) {
       return <CarouselSelectedThumbnail imgUrl={thumbnail.thumbnail_url} />
     } else {
-      return <CarouselThumbnail imgUrl={thumbnail.thumbnail_url} setSelection={() => setSelection([thumbnail, currentIndex])} />
+      return <CarouselThumbnail imgUrl={thumbnail.thumbnail_url} setSelection={() => setSelection([thumbnail, thumbnail.index])} />
     }
   });
 

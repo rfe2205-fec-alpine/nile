@@ -6,24 +6,36 @@ import NextImageButton from './nextimagebutton.jsx';
 
 let firstThumbnailOfCurrentList = '';
 
-function setInitialProductImage(photo, setSelection) {
+function setInitialProductImage(photo, selectionIndex, setSelection) {
   firstThumbnailOfCurrentList = photo.thumbnail_url;
-  setSelection([photo, 0]);
+  setSelection([photo, selectionIndex]);
+}
+
+function addIndexesToPhotos(photos) {
+  // console.log(photos);
+  for (let currentIndex = 0; currentIndex < photos.length; currentIndex++) {
+    if (photos[currentIndex] !== '') {
+      photos[currentIndex].index = currentIndex;
+    }
+  }
 }
 
 function ProductImage({ photos }) {
   const photoList = photos || [];
+  addIndexesToPhotos(photoList);
+  // console.log('indexed photos', photoList);
+
   const firstPhoto = photoList[0] || { thumbnail_url: '' };
   const [[selection, selectionIndex], setSelection] = useState([firstPhoto, 0]);
 
   const hasNoInitialImage = firstPhoto.thumbnail_url !== '' && selection.thumbnail_url === '';
-  const newStyleListHasLoaded = firstPhoto.thumbnail_url !== firstThumbnailOfCurrentList && firstThumbnailOfCurrentList !== '';
+  const newStyleListHasLoaded = photoList[selectionIndex].thumbnail_url !== firstThumbnailOfCurrentList && firstThumbnailOfCurrentList !== '';
 
   const needsInitialProductImage = hasNoInitialImage || newStyleListHasLoaded;
 
   if (needsInitialProductImage) {
-    // console.log('AAAAAARGGGGGGH');
-    setInitialProductImage(photoList[0], setSelection);
+    console.log('Style change imminent: selection index is', selectionIndex);
+    setInitialProductImage(photoList[selectionIndex], selectionIndex, setSelection);
   }
 
   const finalSelection = selection || photos[selectionIndex];
