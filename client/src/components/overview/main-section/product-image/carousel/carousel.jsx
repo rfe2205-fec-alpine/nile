@@ -5,11 +5,13 @@ import CarouselSelectedThumbnail from './carouselselectedthumbnail.jsx';
 import NextButton from './nextbutton.jsx';
 
 function Carousel({ thumbnails, selection, setSelection}) {
+  let currentIndex = -1;
   const redBaron = thumbnails.map(function(thumbnail) {
+    currentIndex++;
     if (thumbnail.thumbnail_url === selection.thumbnail_url) {
       return <CarouselSelectedThumbnail imgUrl={thumbnail.thumbnail_url} />
     } else {
-      return <CarouselThumbnail imgUrl={thumbnail.thumbnail_url} setSelection={() => setSelection(thumbnail)} />
+      return <CarouselThumbnail imgUrl={thumbnail.thumbnail_url} setSelection={() => setSelection([thumbnail, currentIndex])} />
     }
   });
 

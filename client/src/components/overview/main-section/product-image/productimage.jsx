@@ -8,14 +8,14 @@ let firstThumbnailOfCurrentList = '';
 
 function setInitialProductImage(photo, setSelection) {
   firstThumbnailOfCurrentList = photo.thumbnail_url;
-  setSelection(photo);
+  setSelection([photo, 0]);
 }
 
 function ProductImage({ photos }) {
   const photoList = photos || [];
   const firstPhoto = photoList[0] || { thumbnail_url: '' };
-  const [selection, setSelection] = useState(firstPhoto);
-
+  const [[selection, selectionIndex], setSelection] = useState([firstPhoto, 0]);
+  const [index, setIndex] = useState(0);
   // console.log('first photo', firstPhoto);
 
   const hasNoInitialImage = firstPhoto.thumbnail_url !== '' && selection.thumbnail_url === '';
