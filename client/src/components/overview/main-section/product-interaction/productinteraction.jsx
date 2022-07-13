@@ -4,7 +4,7 @@ import ProductInfo from './product-info/productinfo.jsx';
 import StyleSelector from './style-selector/styleselector.jsx';
 import UseProduct from './use-product/useproduct.jsx';
 
-function ProductInteraction({ data }) {
+function ProductInteraction({ data, selectedStyle, setSelection }) {
   // console.log('data inside product interaction is');
   // console.log(data);
 
@@ -19,7 +19,7 @@ function ProductInteraction({ data }) {
   return (
     <ProductInteractionContainer>
       <ProductInfo data={productInfoData} />
-      <StyleSelector styles={data.styles} />
+      <StyleSelector styles={data.styles} selectedStyle={selectedStyle} setSelection={setSelection} />
       <UseProduct />
     </ProductInteractionContainer>
   );

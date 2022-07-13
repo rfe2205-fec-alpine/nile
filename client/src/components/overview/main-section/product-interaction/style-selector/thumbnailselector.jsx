@@ -3,15 +3,17 @@ import styled from 'styled-components';
 import Thumbnail from './thumbnail.jsx';
 import SelectedThumbnail from './selectedthumbnail.jsx';
 
-function ThumbnailSelector({ styles, setSelection, selectionId, height }) {
+function ThumbnailSelector({ styles, selectionId, setSelection, height }) {
   let styleList = styles || [];
+
+  console.log('style list is', styleList);
 
   let redBaron = styleList.map(function(style) {
     let imgUrl = style.photos[0].thumbnail_url;
     if (style.style_id === selectionId) {
       return <SelectedThumbnail imgUrl={imgUrl} />
     } else {
-      return <Thumbnail imgUrl={imgUrl} setSelection={() => setSelection([style, style.style_id, style.name])} />
+      return <Thumbnail imgUrl={imgUrl} setSelection={() => setSelection(style)} />
     }
   });
 

@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import ProductImage from './product-image/productimage.jsx';
 import ProductInteraction from './product-interaction/productinteraction.jsx';
+
+function setInitialStyleSelection(styleList, setSelection) {
+  const initialStyle = styleList[0];
+  setSelection(initialStyle);
+}
 
 function MainSection({ data }) {
   const styles = data.styles || [];
@@ -10,10 +15,26 @@ function MainSection({ data }) {
   const heightOfMain = 286 + 50 + heightOfStyleList;
   // console.log('data in main is');
   // console.log(data);
+
+  const selectedStyle = styles[0] || {
+    name: '',
+    style_id: 0,
+  };
+
+  const [styleSelected, setSelection] = useState(selectedStyle);
+
+  const selectedStyleIsEmpty = selectedStyle.name === '' && selectedStyle.style_id === 0;
+
+  const needsInitialStyleSelection = styles.length !== 0 && selectedStyleIsEmpty;
+
+  if (needsInitialStyleSelection) {
+    setInitialStyleSelection(styles, setSelection);
+  }
+
   return (
     <Main height={heightOfMain}>
       <ProductImage />
-      <ProductInteraction data={data} />
+      <ProductInteraction data={data} selectedStyle={styleSelected} setSelection={setSelection} />
     </Main>
   );
 }
