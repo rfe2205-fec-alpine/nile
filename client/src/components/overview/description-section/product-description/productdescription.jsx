@@ -3,11 +3,14 @@ import styled from 'styled-components';
 import Slogan from './slogan.jsx';
 import Description from './description.jsx';
 
-function ProductDescription() {
+function ProductDescription({ data }) {
+  console.log('data in product description section');
+  console.log(data);
+
   return (
     <ProductDescriptionContainer>
-      <Slogan />
-      <Description />
+      <Slogan catchphrase={data.catchphrase} />
+      <Description description={data.description} />
     </ProductDescriptionContainer>
   );
 }
@@ -18,11 +21,10 @@ const ProductDescriptionContainer = styled.div`
   display: grid;
   grid-template-rows: 1fr 2fr;
   background-color: #CCC;
-  background-image: url("${dudeImage}");
   background-size: contain;
   background-repeat: no-repeat;
   padding-top: 60px;
-  padding-left: 140px;
+  padding-left: 60px;
   padding-right: 50px;
 `;
 
