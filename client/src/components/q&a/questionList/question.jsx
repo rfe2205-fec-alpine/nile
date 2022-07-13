@@ -1,10 +1,17 @@
 import React from "react";
+import Answers from "./answers.jsx";
 
-function Question({ question, answers }) {
+function Question({ question }) {
   return (
     <div>
-      <div>{"Question: " + question.question_body}</div>
-      {<div>'test'</div>}
+      <div>
+        <b>{"Question: " + question.question_body}</b>
+      </div>
+      <div>
+        {Object.entries(question.answers).map(function (entry) {
+          return <Answers answer={entry[1].body} />;
+        })}
+      </div>
     </div>
   );
 }
