@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`price renders to the page 1`] = `
-<div
-  className="sc-bczRLJ iNXLB"
+<span
+  className="sc-bczRLJ dBgitw"
 >
-  $369
-</div>
+  $
+</span>
 `;

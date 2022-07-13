@@ -2,7 +2,8 @@
 
 exports[`Style Selector component renders to the page 1`] = `
 <div
-  className="sc-iBkjds hLGONQ"
+  className="sc-iBkjds hnPkKY"
+  height={95}
 >
   <div
     className="sc-bczRLJ iNXLB"
@@ -12,49 +13,10 @@ exports[`Style Selector component renders to the page 1`] = `
       &gt;
        
     </strong>
-    Selected Style
   </div>
   <div
-    className="sc-gKXOVf dtTTxt"
-  >
-    <div
-      className="sc-gsnTZi gFrKuk"
-      onClick={[Function]}
-    />
-    <div
-      className="sc-gsnTZi gFrKuk"
-      onClick={[Function]}
-    />
-    <div
-      className="sc-eCYdqJ fpYimD"
-    >
-      <div
-        className="sc-hKMtZM sc-jSMfEi joHSMs dDeSWZ"
-      />
-      <div
-        className="sc-dkzDqf dOpEzC"
-      />
-    </div>
-    <div
-      className="sc-gsnTZi gFrKuk"
-      onClick={[Function]}
-    />
-    <div
-      className="sc-gsnTZi gFrKuk"
-      onClick={[Function]}
-    />
-    <div
-      className="sc-gsnTZi gFrKuk"
-      onClick={[Function]}
-    />
-    <div
-      className="sc-gsnTZi gFrKuk"
-      onClick={[Function]}
-    />
-    <div
-      className="sc-gsnTZi gFrKuk"
-      onClick={[Function]}
-    />
-  </div>
+    className="sc-gKXOVf ehZmGF"
+    height={95}
+  />
 </div>
 `;
