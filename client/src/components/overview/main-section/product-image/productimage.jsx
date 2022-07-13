@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Carousel from './carousel/carousel.jsx';
 import PreviousImageButton from './previousimagebutton.jsx';
@@ -15,8 +15,6 @@ function ProductImage({ photos }) {
   const photoList = photos || [];
   const firstPhoto = photoList[0] || { thumbnail_url: '' };
   const [[selection, selectionIndex], setSelection] = useState([firstPhoto, 0]);
-  const [index, setIndex] = useState(0);
-  // console.log('first photo', firstPhoto);
 
   const hasNoInitialImage = firstPhoto.thumbnail_url !== '' && selection.thumbnail_url === '';
   const newStyleListHasLoaded = firstPhoto.thumbnail_url !== firstThumbnailOfCurrentList && firstThumbnailOfCurrentList !== '';
@@ -28,12 +26,17 @@ function ProductImage({ photos }) {
     setInitialProductImage(photoList[0], setSelection);
   }
 
+  const finalSelection = selection || photos[selectionIndex];
+
+  const previousButton = selectionIndex === 0 ? <div /> : <PreviousImageButton currentIndex={selectionIndex} setSelection={setSelection} />;
+  const nextButton = selectionIndex === photoList.length - 1 ? <div /> : <NextImageButton currentIndex={selectionIndex} setSelection={setSelection} />;
+
   return (
     <DivContainer>
-      <ProductImageContainer selectionImageUrl={selection.thumbnail_url}>
-        <Carousel thumbnails={photoList} selection={selection} setSelection={setSelection} />
-        <PreviousImageButton />
-        <NextImageButton />
+      <ProductImageContainer selectionImageUrl={finalSelection.thumbnail_url}>
+        <Carousel thumbnails={photoList} selection={finalSelection} setSelection={setSelection} />
+        {previousButton}
+        {nextButton}
       </ProductImageContainer>
     </DivContainer>
   );

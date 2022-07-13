@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function NextImageButton() {
+function NextImageButton({ currentIndex, setSelection }) {
   return (
-    <NextImageButtonContainer>{'->'}</NextImageButtonContainer>
+    <NextImageButtonContainer onClick={() => setSelection([false, currentIndex + 1])}>{'->'}</NextImageButtonContainer>
   );
 }
 

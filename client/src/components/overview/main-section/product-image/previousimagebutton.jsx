@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function PreviousImageButton() {
+function PreviousImageButton({ currentIndex, setSelection }) {
   return (
-    <PreviousImageButtonContainer>{'<-'}</PreviousImageButtonContainer>
+    <PreviousImageButtonContainer onClick={() => setSelection([false, currentIndex - 1])}>{'<-'}</PreviousImageButtonContainer>
   );
 }
 
