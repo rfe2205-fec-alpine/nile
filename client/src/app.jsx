@@ -1,16 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
-import Overview from './components/overview/overview.jsx';
-import Reviews from './components/reviews/reviews.jsx';
+import React from "react";
+import styled from "styled-components";
+import Overview from "./components/overview/overview.jsx";
+import Reviews from "./components/reviews/reviews.jsx";
 import QAndA from "./components/q&a/q&a.jsx";
-import RelatedItems from './components/related/relatedItems.jsx';
 
 function App() {
   return (
     <PageContainer>
       <AppContainer>
         <Overview />
-        <RelatedItems />
         <Reviews />
         <QAndA />
       </AppContainer>
