@@ -4,7 +4,10 @@ import Carousel from './carousel/carousel.jsx';
 import PreviousImageButton from './previousimagebutton.jsx';
 import NextImageButton from './nextimagebutton.jsx';
 
+let firstThumbnailOfCurrentList = '';
+
 function setInitialProductImage(photo, setSelection) {
+  firstThumbnailOfCurrentList = photo.thumbnail_url;
   setSelection(photo);
 }
 
@@ -15,7 +18,10 @@ function ProductImage({ photos }) {
 
   console.log('first photo', firstPhoto);
 
-  const needsInitialProductImage = firstPhoto.thumbnail_url !== '' && selection.thumbnail_url === '';
+  const hasNoInitialImage = firstPhoto.thumbnail_url !== '' && selection.thumbnail_url === '';
+  const newStyleListHasLoaded = firstPhoto.thumbnail_url !== firstThumbnailOfCurrentList && firstThumbnailOfCurrentList !== '';
+
+  const needsInitialProductImage = hasNoInitialImage || newStyleListHasLoaded;
 
   if (needsInitialProductImage) {
     console.log('AAAAAARGGGGGGH');
