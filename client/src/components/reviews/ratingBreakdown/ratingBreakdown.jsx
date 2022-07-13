@@ -32,9 +32,10 @@ function RatingBreakdown() {
 
   return (
     <RatingBreakdownWrapper>
+      <h3>RATINGS AND REVIEWS</h3>
       <Summary ratings={reviewData.ratings} recommended={reviewData.recommended} />
+      <ProductBreakdown ratings={reviewData.ratings} />
       <Breakdown />
-      <ProductBreakdown />
     </RatingBreakdownWrapper>
   );
 }
