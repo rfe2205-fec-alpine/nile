@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Review Section component renders to the page 1`] = `
+<div>
+  Review
+  <a
+    href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  >
+    Read all reviews
+  </a>
+</div>
+`;

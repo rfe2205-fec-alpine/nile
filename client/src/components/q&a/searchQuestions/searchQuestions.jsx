@@ -8,7 +8,7 @@ function SearchQuestions() {
         id="qAndASearch"
         value="HAVE A QUESTION? SEARCH FOR ANSWERS..."
         width="2000px"
-      ></input>
+      />
     </div>
   );
 }

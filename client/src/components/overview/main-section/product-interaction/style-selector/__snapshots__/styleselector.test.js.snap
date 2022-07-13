@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Style Selector component renders to the page 1`] = `
+<div
+  className="sc-iBkjds hLGONQ"
+>
+  <div
+    className="sc-bczRLJ iNXLB"
+  >
+    <strong>
+      Style 
+      &gt;
+       
+    </strong>
+    Selected Style
+  </div>
+  <div
+    className="sc-gKXOVf dtTTxt"
+  >
+    <div
+      className="sc-gsnTZi gFrKuk"
+    />
+    <div
+      className="sc-gsnTZi gFrKuk"
+    />
+    <div
+      className="sc-gsnTZi gFrKuk"
+    />
+    <div
+      className="sc-gsnTZi gFrKuk"
+    />
+    <div
+      className="sc-eCYdqJ fpYimD"
+    >
+      <div
+        className="sc-hKMtZM sc-jSMfEi joHSMs hDeCYl"
+      />
+      <div
+        className="sc-dkzDqf dOpEzC"
+      />
+    </div>
+    <div
+      className="sc-gsnTZi gFrKuk"
+    />
+    <div
+      className="sc-gsnTZi gFrKuk"
+    />
+    <div
+      className="sc-gsnTZi gFrKuk"
+    />
+  </div>
+</div>
+`;

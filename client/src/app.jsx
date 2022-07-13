@@ -3,12 +3,14 @@ import styled from 'styled-components';
 import Overview from './components/overview/overview.jsx';
 import Reviews from './components/reviews/reviews.jsx';
 import QAndA from "./components/q&a/q&a.jsx";
+import RelatedItems from './components/related/relatedItems.jsx';
 
 function App() {
   return (
     <PageContainer>
       <AppContainer>
         <Overview />
+        <RelatedItems />
         <Reviews />
         <QAndA />
       </AppContainer>
@@ -22,12 +24,8 @@ const PageContainer = styled.div`
 `;
 
 const AppContainer = styled.div`
-  display: flex;
   grid-column-start: 2;
   grid-column-end: 3;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 `;
 
 export default App;
