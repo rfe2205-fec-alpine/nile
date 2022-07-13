@@ -21,7 +21,6 @@ function DescriptionSection({ data }) {
 }
 
 const DescriptionSectionContainer = styled.div`
-  margin-top: 30px;
   display: grid;
   grid-template-columns: 2fr 1fr;
   background-color: #5d6699;

@@ -37,7 +37,7 @@ function MainSection({ data }) {
   return (
     <Main height={heightOfMain}>
       <ProductImage photos={styleSelected.photos} />
-      <ProductInteraction data={data} selectedStyle={styleSelected} setSelection={setSelection} />
+      <ProductInteraction data={data} selectedStyle={styleSelected} setSelection={setSelection} height={heightOfStyleList} />
     </Main>
   );
 }

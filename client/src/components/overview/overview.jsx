@@ -12,12 +12,20 @@ function Overview() {
   const productId = React.useContext(ProductContext);
   const [[mainSectionData, descriptionSectionData], setData] = useState([{}, {}]);
 
+  const styles = mainSectionData.styles || [];
+  const numberOfStyles = styles.length;
+  const heightOfStyleList = (((numberOfStyles / 4) + 2) * (66 + 29));
+
+  const heightOfTitle = 125;
+  const heightOfMain = 286 + 50 + heightOfStyleList;
+  const heightOfDescription = 300;
+
   useEffect(() => {
     getApiDataFromProductId(productId, setData);
   }, []);
 
   return (
-    <OverviewComponent>
+    <OverviewComponent title={heightOfTitle} main={heightOfMain} description={heightOfDescription}>
       <TitleSection />
       <MainSection data={mainSectionData} />
       <DescriptionSection data={descriptionSectionData} />
@@ -26,7 +34,8 @@ function Overview() {
 }
 
 const OverviewComponent = styled.div`
-  align-self: stretch;
+  display: grid;
+  grid-template-rows: ${(props) => props.title}px ${(props) => props.main}px ${(props) => props.description}px;
 `;
 
 export default Overview;

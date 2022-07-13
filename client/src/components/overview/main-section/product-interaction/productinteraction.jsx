@@ -4,7 +4,7 @@ import ProductInfo from './product-info/productinfo.jsx';
 import StyleSelector from './style-selector/styleselector.jsx';
 import UseProduct from './use-product/useproduct.jsx';
 
-function ProductInteraction({ data, selectedStyle, setSelection }) {
+function ProductInteraction({ data, selectedStyle, setSelection, height }) {
   // console.log('data inside product interaction is');
   // console.log(data);
 
@@ -17,7 +17,7 @@ function ProductInteraction({ data, selectedStyle, setSelection }) {
   };
 
   return (
-    <ProductInteractionContainer>
+    <ProductInteractionContainer height={height}>
       <ProductInfo data={productInfoData} salePrice={selectedStyle.sale_price} />
       <StyleSelector styles={data.styles} selectedStyle={selectedStyle} setSelection={setSelection} />
       <UseProduct />
@@ -27,7 +27,7 @@ function ProductInteraction({ data, selectedStyle, setSelection }) {
 
 const ProductInteractionContainer = styled.div`
   display: grid;
-  grid-template-rows: 243px, 243px, 243px;
+  grid-template-rows: 243px, ${(props) => props.height}, 243px;
   background-color: #CCC;
 `;
 
