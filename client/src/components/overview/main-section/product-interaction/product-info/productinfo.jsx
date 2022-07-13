@@ -9,7 +9,7 @@ import SocialMedia from './social-media/socialmedia.jsx';
 function ProductInfo() {
   return (
     <Info>
-      <ReviewSection />
+      <ReviewSection reviewScore={4.5} />
       <Category />
       <ProductName />
       <Price />
