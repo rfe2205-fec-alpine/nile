@@ -8,7 +8,6 @@ function ProductBreakdown({ ratings }) {
   function getPercentRating(amount, total) {
     return ((amount / total) * 100);
   }
-
   return (
     <ProductBrewkdownWrapper>
       <ProgressBar progress={getPercentRating(ratings['5'], ratingsSum)} starRating="Five" />
@@ -23,9 +22,12 @@ function ProductBreakdown({ ratings }) {
 function ProgressBar({ progress, starRating }) {
   const Wrapper = {
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   };
 
   const Parentdiv = {
+    paddingLeft: '5px',
     height: 7,
     width: '100%',
     backgroundColor: 'whitesmoke',
@@ -43,8 +45,7 @@ function ProgressBar({ progress, starRating }) {
     <div style={Wrapper}>
       <p>{starRating}</p>
       <div style={Parentdiv}>
-        <div style={Childdiv}>
-        </div>
+        <div style={Childdiv} />
       </div>
     </div>
   );
