@@ -16,9 +16,12 @@ function MainSection({ data }) {
   // console.log('data in main is');
   // console.log(data);
 
+  console.log('styles list is', styles);
+
   const selectedStyle = styles[0] || {
     name: '',
     style_id: 0,
+    photos: [''],
   };
 
   const [styleSelected, setSelection] = useState(selectedStyle);
@@ -33,7 +36,7 @@ function MainSection({ data }) {
 
   return (
     <Main height={heightOfMain}>
-      <ProductImage />
+      <ProductImage photos={styleSelected.photos} />
       <ProductInteraction data={data} selectedStyle={styleSelected} setSelection={setSelection} />
     </Main>
   );
