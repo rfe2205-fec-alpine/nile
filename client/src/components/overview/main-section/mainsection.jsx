@@ -8,11 +8,10 @@ function setInitialStyleSelection(styleList, setSelection) {
   setSelection(initialStyle);
 }
 
-function MainSection({ data }) {
+function MainSection({ data, height }) {
   const styles = data.styles || [];
   const numberOfStyles = styles.length;
   const heightOfStyleList = (((numberOfStyles / 4) + 2) * (66 + 29));
-  const heightOfMain = 286 + 50 + heightOfStyleList;
   // console.log('data in main is');
   // console.log(data);
 
@@ -35,7 +34,7 @@ function MainSection({ data }) {
   }
 
   return (
-    <Main height={heightOfMain}>
+    <Main height={height}>
       <ProductImage photos={styleSelected.photos} />
       <ProductInteraction data={data} selectedStyle={styleSelected} setSelection={setSelection} height={heightOfStyleList} />
     </Main>

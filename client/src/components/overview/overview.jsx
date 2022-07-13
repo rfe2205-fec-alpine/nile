@@ -17,7 +17,7 @@ function Overview() {
   const heightOfStyleList = (((numberOfStyles / 4) + 2) * (66 + 29));
 
   const heightOfTitle = 125;
-  const heightOfMain = 286 + 50 + heightOfStyleList;
+  const heightOfMain = 400 + 50 + heightOfStyleList;
   const heightOfDescription = 300;
 
   useEffect(() => {
@@ -27,7 +27,7 @@ function Overview() {
   return (
     <OverviewComponent title={heightOfTitle} main={heightOfMain} description={heightOfDescription}>
       <TitleSection />
-      <MainSection data={mainSectionData} />
+      <MainSection data={mainSectionData} height={heightOfMain} />
       <DescriptionSection data={descriptionSectionData} />
     </OverviewComponent>
   );
