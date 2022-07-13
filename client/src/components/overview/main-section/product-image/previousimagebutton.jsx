@@ -15,6 +15,7 @@ const PreviousImageButtonContainer = styled.div`
   grid-column-end: 3;
   font-size: 32px;
   font-weight: bolder;
+  color: #CCC;
 `;
 
 export default PreviousImageButton;

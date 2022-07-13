@@ -15,6 +15,7 @@ const NextImageButtonContainer = styled.div`
   grid-column-end: 5;
   font-size: 32px;
   font-weight: bolder;
+  color: #CCC;
 `;
 
 export default NextImageButton;
