@@ -29,11 +29,13 @@ function ProductImage({ photos }) {
   }
 
   return (
-    <ProductImageContainer selectionImageUrl={selection.thumbnail_url}>
-      <Carousel thumbnails={photoList} selection={selection} setSelection={setSelection} />
-      <PreviousImageButton />
-      <NextImageButton />
-    </ProductImageContainer>
+    <DivContainer>
+      <ProductImageContainer selectionImageUrl={selection.thumbnail_url}>
+        <Carousel thumbnails={photoList} selection={selection} setSelection={setSelection} />
+        <PreviousImageButton />
+        <NextImageButton />
+      </ProductImageContainer>
+    </DivContainer>
   );
 }
 // const imageHeight = '625px';
@@ -45,7 +47,12 @@ const ProductImageContainer = styled.div`
   background-color: #5d6699;
   background-image: url("${(props) => props.selectionImageUrl}");
   background-size: cover;
+  height: 625px;
   background-repeat: no-repeat;
+`;
+
+const DivContainer = styled.div`
+  background-color: #5d6699;
 `;
 
 export default ProductImage;
