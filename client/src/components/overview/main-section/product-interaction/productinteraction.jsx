@@ -5,13 +5,14 @@ import StyleSelector from './style-selector/styleselector.jsx';
 import UseProduct from './use-product/useproduct.jsx';
 
 function ProductInteraction({ data }) {
-  console.log('data inside product interaction is');
-  console.log(data);
+  // console.log('data inside product interaction is');
+  // console.log(data);
 
   const productInfoData = {
     name: data.name,
     category: data.category,
     price: data.price,
+    averageReview: data.averageReview,
   };
 
   return (
