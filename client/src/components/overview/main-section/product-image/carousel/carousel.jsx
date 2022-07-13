@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import CarouselThumbnail from './carouselthumbnail.jsx';
 import CarouselSelectedThumbnail from './carouselselectedthumbnail.jsx';
-import NextButton from './nextbutton.jsx';
 
 function Carousel({ thumbnails, selection, setSelection}) {
   let currentIndex = -1;

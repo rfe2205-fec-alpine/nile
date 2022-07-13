@@ -34,8 +34,12 @@ function ProductImage({ photos }) {
   const needsInitialProductImage = hasNoInitialImage || newStyleListHasLoaded;
 
   if (needsInitialProductImage) {
-    console.log('Style change imminent: selection index is', selectionIndex);
-    setInitialProductImage(photoList[selectionIndex], selectionIndex, setSelection);
+    // console.log('Style change imminent: selection index is', selectionIndex);
+    if (selectionIndex >= photoList.length) {
+      setInitialProductImage(photoList[0], 0, setSelection);
+    } else {
+      setInitialProductImage(photoList[selectionIndex], selectionIndex, setSelection);
+    }
   }
 
   const finalSelection = selection || photos[selectionIndex];
