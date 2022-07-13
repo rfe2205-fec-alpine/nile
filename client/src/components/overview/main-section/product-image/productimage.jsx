@@ -72,6 +72,9 @@ const ProductImageContainer = styled.div`
 
 const DivContainer = styled.div`
   background-color: #5d6699;
+  &:hover ${ProductImageContainer} {
+    cursor: zoom-in;
+  }
 `;
 
 export default ProductImage;

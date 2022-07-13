@@ -7,7 +7,8 @@ function StyleSelector({ styles, selectedStyle, setSelection }) {
   const styleList = styles || [];
   // console.log('style list in style selector is', styleList);
   const numberOfStyles = styleList.length;
-  const heightOfStyleList = ((numberOfStyles / 4) + 1) * (66 + 29);
+  const numberOfRows = (numberOfStyles / 4) + 1;
+  const heightOfStyleList = (numberOfRows * (66 + 29));
   const styleSelected = selectedStyle || {
     name: '',
     style_id: 0,
