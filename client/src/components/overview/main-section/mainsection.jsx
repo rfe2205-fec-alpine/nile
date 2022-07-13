@@ -23,7 +23,7 @@ function MainSection({ data }) {
 
   const [styleSelected, setSelection] = useState(selectedStyle);
 
-  const selectedStyleIsEmpty = selectedStyle.name === '' && selectedStyle.style_id === 0;
+  const selectedStyleIsEmpty = styleSelected.name === '' && styleSelected.style_id === 0;
 
   const needsInitialStyleSelection = styles.length !== 0 && selectedStyleIsEmpty;
 
