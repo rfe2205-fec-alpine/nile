@@ -18,7 +18,7 @@ function ProductInteraction({ data, selectedStyle, setSelection }) {
 
   return (
     <ProductInteractionContainer>
-      <ProductInfo data={productInfoData} />
+      <ProductInfo data={productInfoData} salePrice={selectedStyle.sale_price} />
       <StyleSelector styles={data.styles} selectedStyle={selectedStyle} setSelection={setSelection} />
       <UseProduct />
     </ProductInteractionContainer>

@@ -16,7 +16,7 @@ function MainSection({ data }) {
   // console.log('data in main is');
   // console.log(data);
 
-  console.log('styles list is', styles);
+  // console.log('styles list is', styles);
 
   const selectedStyle = styles[0] || {
     name: '',

@@ -6,7 +6,7 @@ import ProductName from './productname.jsx';
 import Price from './price.jsx';
 import SocialMedia from './social-media/socialmedia.jsx';
 
-function ProductInfo({ data }) {
+function ProductInfo({ data, salePrice }) {
   // console.log('data inside product info is');
   // console.log(data);
 
@@ -24,7 +24,7 @@ function ProductInfo({ data }) {
       {reviewSection}
       <Category category={data.category} />
       <ProductName name={data.name} />
-      <Price price={data.price}/>
+      <Price price={data.price} salePrice={salePrice} />
       <SocialMedia />
     </Info>
   );
@@ -33,7 +33,7 @@ function ProductInfo({ data }) {
 const Info = styled.div`
   padding: 35px;
   display: grid;
-  grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1.5fr 1fr 1fr;
 `;
 
 export default ProductInfo;

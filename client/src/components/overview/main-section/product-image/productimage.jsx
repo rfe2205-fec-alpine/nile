@@ -16,7 +16,7 @@ function ProductImage({ photos }) {
   const firstPhoto = photoList[0] || { thumbnail_url: '' };
   const [selection, setSelection] = useState(firstPhoto);
 
-  console.log('first photo', firstPhoto);
+  // console.log('first photo', firstPhoto);
 
   const hasNoInitialImage = firstPhoto.thumbnail_url !== '' && selection.thumbnail_url === '';
   const newStyleListHasLoaded = firstPhoto.thumbnail_url !== firstThumbnailOfCurrentList && firstThumbnailOfCurrentList !== '';
@@ -24,7 +24,7 @@ function ProductImage({ photos }) {
   const needsInitialProductImage = hasNoInitialImage || newStyleListHasLoaded;
 
   if (needsInitialProductImage) {
-    console.log('AAAAAARGGGGGGH');
+    // console.log('AAAAAARGGGGGGH');
     setInitialProductImage(photoList[0], setSelection);
   }
 
