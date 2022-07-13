@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
 import StarRating from '../starRating/starRating.jsx';
 
-function RelatedCard() {
+function RelatedCard({product}) {
   return (
     <div>
       <Card>
