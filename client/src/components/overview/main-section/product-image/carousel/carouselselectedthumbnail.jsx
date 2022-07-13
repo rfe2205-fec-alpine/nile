@@ -29,7 +29,7 @@ const IsSelectedBar = styled.div`
   grid-row-start: 3;
   grid-row-end: row-end;
   width: 65px;
-  background-color: black;
+  background-color: #5d6699;
 `;
 
 export default CarouselSelectedThumbnail;
