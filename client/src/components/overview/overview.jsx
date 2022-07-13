@@ -1,36 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 
-import { GITHUB_API_KEY, CAMPUS_CODE } from '../../../../config.js';
+import getApiDataFromProductId from './apidata.js';
 import ProductContext from '../../ProductContext.jsx';
 
 import TitleSection from './title-section/titlesection.jsx';
 import MainSection from './main-section/mainsection.jsx';
 import DescriptionSection from './description-section/descriptionsection.jsx';
 
-function getApiDataFromProductId() {
-  const productId = React.useContext(ProductContext);
-  const productUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/${CAMPUS_CODE}/products/`;
-  axios({
-    method: 'get',
-    url: productUrl,
-    headers: {
-      Authorization: GITHUB_API_KEY,
-    },
-  })
-    .then((data) => {
-      console.log(data);
-    });
-}
-
 function Overview() {
-  getApiDataFromProductId();
+  const productId = React.useContext(ProductContext);
+  const [[mainSectionData, descriptionSectionData], setData] = useState([{}, {}]);
+
+  useEffect(() => {
+    getApiDataFromProductId(productId, setData);
+  }, []);
+
   return (
     <OverviewComponent>
       <TitleSection />
-      <MainSection />
-      <DescriptionSection />
+      <MainSection data={mainSectionData} />
+      <DescriptionSection data={descriptionSectionData} />
     </OverviewComponent>
   );
 }

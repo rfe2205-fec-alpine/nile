@@ -6,7 +6,10 @@ import ProductName from './productname.jsx';
 import Price from './price.jsx';
 import SocialMedia from './social-media/socialmedia.jsx';
 
-function ProductInfo() {
+function ProductInfo({ data }) {
+  console.log('data inside product info is');
+  console.log(data);
+
   return (
     <Info>
       <ReviewSection reviewScore={4.5} />

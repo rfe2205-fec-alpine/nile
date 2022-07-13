@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import ProductImage from './product-image/productimage.jsx';
 import ProductInteraction from './product-interaction/productinteraction.jsx';
 
-function MainSection() {
+function MainSection({ data }) {
+  // console.log('data in main is');
+  // console.log(data);
   return (
     <Main>
       <ProductImage />
-      <ProductInteraction />
+      <ProductInteraction data={data} />
     </Main>
   );
 }
