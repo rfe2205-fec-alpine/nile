@@ -19,7 +19,7 @@ function ProductInteraction({ data }) {
   return (
     <ProductInteractionContainer>
       <ProductInfo data={productInfoData} />
-      <StyleSelector />
+      <StyleSelector styles={data.styles} />
       <UseProduct />
     </ProductInteractionContainer>
   );
@@ -27,7 +27,7 @@ function ProductInteraction({ data }) {
 
 const ProductInteractionContainer = styled.div`
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 243px, 243px, 243px;
   background-color: #CCC;
 `;
 

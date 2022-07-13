@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Feature from './feature.jsx';
 
 function FeaturesList({ features }) {
-  console.log('data in features list');
-  console.log(features);
+  // console.log('data in features list');
+  // console.log(features);
 
   let featuresList = features || [];
 

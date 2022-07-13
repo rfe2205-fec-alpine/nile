@@ -15,22 +15,28 @@ const thumbnails = [
   { id: '8', imgUrl: snowMobileUrl },
 ];
 
-function StyleSelector() {
-  const [selectionId, setSelection] = useState('3');
+function StyleSelector({ styles }) {
+  const [selectionId, setSelection] = useState(221014);
 
+  const stylesList = styles || [];
+  const numberOfStyles = stylesList.length;
+  const heightOfStyleList = ((numberOfStyles / 4) + 1) * (66 + 29);
+
+  console.log('height of list', heightOfStyleList);
   return (
-    <StyleSelectorContainer>
+    <StyleSelectorContainer height={heightOfStyleList}>
       <StyleSelected />
-      <ThumbnailSelector thumbnails={thumbnails} selectionId={selectionId}
-        setSelection={setSelection} />
+      <ThumbnailSelector styles={styles} selectionId={selectionId}
+        setSelection={setSelection} height={heightOfStyleList}/>
     </StyleSelectorContainer>
   );
 }
 
 const StyleSelectorContainer = styled.div`
+  width: 400px;
   padding-left: 35px;
   display: grid;
-  grid-template-rows: 2fr 9fr;
+  grid-template-rows: 50px, ${(props) => props.height};
 `;
 
 export default StyleSelector;
