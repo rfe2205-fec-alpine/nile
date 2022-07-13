@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Price() {
+function Price({ price }) {
   return (
-    <PriceInDollars>$369</PriceInDollars>
+    <PriceInDollars>
+      ${price}
+    </PriceInDollars>
   );
 }
 

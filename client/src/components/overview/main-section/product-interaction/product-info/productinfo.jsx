@@ -10,12 +10,21 @@ function ProductInfo({ data }) {
   // console.log('data inside product info is');
   // console.log(data);
 
+  let numberOfReviews = data.numberOfReviews || 0;
+  let reviewSection;
+
+  if (numberOfReviews === 0) {
+    reviewSection = <div />;
+  } else {
+    reviewSection = <ReviewSection reviewScore={data.averageReview} numberOfReviews={data.numberOfReviews} />;
+  }
+
   return (
     <Info>
-      <ReviewSection reviewScore={data.averageReview} numberOfReviews={data.numberOfReviews} />
+      {reviewSection}
       <Category category={data.category} />
-      <ProductName />
-      <Price />
+      <ProductName name={data.name} />
+      <Price price={data.price}/>
       <SocialMedia />
     </Info>
   );

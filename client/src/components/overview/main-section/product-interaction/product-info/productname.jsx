@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function ProductName() {
+function ProductName({ name }) {
   return (
-    <Name>Expanded Product Name</Name>
+    <Name>
+      {name}
+    </Name>
   );
 }
 
