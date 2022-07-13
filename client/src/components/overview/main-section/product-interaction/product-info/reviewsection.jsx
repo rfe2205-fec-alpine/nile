@@ -1,13 +1,15 @@
 import React from 'react';
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
 
-function ReviewSection({ reviewScore }) {
+function ReviewSection({ reviewScore, numberOfReviews }) {
   let rating = ratingInStars(reviewScore);
   return (
     <div>
       {rating}
       &emsp;
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Read all reviews</a>
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+        Read all {numberOfReviews} reviews
+      </a>
     </div>
   );
 }

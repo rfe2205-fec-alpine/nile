@@ -12,7 +12,7 @@ function ProductInfo({ data }) {
 
   return (
     <Info>
-      <ReviewSection reviewScore={data.averageReview} />
+      <ReviewSection reviewScore={data.averageReview} numberOfReviews={data.numberOfReviews} />
       <Category />
       <ProductName />
       <Price />

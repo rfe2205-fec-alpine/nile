@@ -13,6 +13,7 @@ function ProductInteraction({ data }) {
     category: data.category,
     price: data.price,
     averageReview: data.averageReview,
+    numberOfReviews: data.numberOfReviews,
   };
 
   return (

@@ -76,6 +76,7 @@ function getApiDataFromProductId(productId, setData) {
               let averageReview = getAverageReviewFromData(innerData);
               // console.log(averageReview);
               mainSectionData.averageReview = averageReview;
+              mainSectionData.numberOfReviews = innerData.count;
               setData([mainSectionData, descriptionSectionData]);
             })
             .catch(error => {
