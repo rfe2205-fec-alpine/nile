@@ -71,12 +71,12 @@ function getApiDataFromProductId(productId, setData) {
           })
             .then((data) => {
               let innerData = data.data;
-              // console.log(innerData);
+              console.log('review data:', innerData);
 
               let averageReview = getAverageReviewFromData(innerData);
               // console.log(averageReview);
               mainSectionData.averageReview = averageReview;
-              mainSectionData.numberOfReviews = innerData.count;
+              mainSectionData.numberOfReviews = innerData.results.length;
               setData([mainSectionData, descriptionSectionData]);
             })
             .catch(error => {
