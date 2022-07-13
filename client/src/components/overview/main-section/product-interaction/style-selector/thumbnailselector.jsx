@@ -6,21 +6,28 @@ import SelectedThumbnail from './selectedthumbnail.jsx';
 function ThumbnailSelector({ styles, setSelection, selectionId, height }) {
   let styleList = styles || [];
 
-  let numberOfRows = styleList.length / 4;
-
   let redBaron = styleList.map(function(style) {
     let imgUrl = style.photos[0].thumbnail_url;
     if (style.style_id === selectionId) {
       return <SelectedThumbnail imgUrl={imgUrl} />
     } else {
-      return <Thumbnail imgUrl={imgUrl} setSelection={() => setSelection(style.style_id)} />
+      return <Thumbnail imgUrl={imgUrl} setSelection={() => setSelection([style, style.style_id, style.name])} />
     }
   });
+
+  let numberOfRows = redBaron.length / 4;
+  let remainingColumns = styleList.length % 4;
+  let fillerDivs = [];
+
+  for (let currentIndex = 0; currentIndex < remainingColumns; currentIndex++) {
+    fillerDivs.push(<div />);
+  }
 
   // console.log(redBaron.length);
   return (
     <ThumbnailContainer height={height} numberOfRows={numberOfRows}>
       {redBaron}
+      {fillerDivs}
     </ThumbnailContainer>
   );
 }

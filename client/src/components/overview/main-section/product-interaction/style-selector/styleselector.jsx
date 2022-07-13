@@ -3,29 +3,35 @@ import styled from 'styled-components';
 import StyleSelected from './styleselected.jsx';
 import ThumbnailSelector from './thumbnailselector.jsx';
 
-const snowMobileUrl = 'https://blog.amsoil.com/wp-content/uploads/2018/10/EDIT-7130-scaled.jpg';
-const thumbnails = [
-  { id: '1', imgUrl: snowMobileUrl },
-  { id: '2', imgUrl: snowMobileUrl },
-  { id: '3', imgUrl: snowMobileUrl },
-  { id: '4', imgUrl: snowMobileUrl },
-  { id: '5', imgUrl: snowMobileUrl },
-  { id: '6', imgUrl: snowMobileUrl },
-  { id: '7', imgUrl: snowMobileUrl },
-  { id: '8', imgUrl: snowMobileUrl },
-];
+function setInitialStyleSelection(styleList, setSelection) {
+  const initialStyle = styleList[0];
+  const initialName = initialStyle.name;
+  const initialSelectionId = initialStyle.style_id;
+
+  setSelection([initialStyle, initialSelectionId, initialName]);
+}
 
 function StyleSelector({ styles }) {
-  const [selectionId, setSelection] = useState(221014);
+  const styleList = styles || [];
+  const selectedStyle = styleList[0] || {};
+  const selectedName = selectedStyle.name || '';
+  const selectedId = selectedStyle.style_id || 0;
 
-  const stylesList = styles || [];
-  const numberOfStyles = stylesList.length;
+  const [[styleSelected, selectionId, selectionName], setSelection] = useState([selectedStyle, selectedId, selectedName]);
+
+  const needsInitialStyleSelection = styleList.length !== 0 && Object.keys(styleSelected).length === 0;
+
+  if (needsInitialStyleSelection) {
+    console.log('entered');
+    setInitialStyleSelection(styleList, setSelection);
+  }
+
+  const numberOfStyles = styleList.length;
   const heightOfStyleList = ((numberOfStyles / 4) + 1) * (66 + 29);
 
-  console.log('height of list', heightOfStyleList);
   return (
     <StyleSelectorContainer height={heightOfStyleList}>
-      <StyleSelected />
+      <StyleSelected name={selectionName} />
       <ThumbnailSelector styles={styles} selectionId={selectionId}
         setSelection={setSelection} height={heightOfStyleList}/>
     </StyleSelectorContainer>

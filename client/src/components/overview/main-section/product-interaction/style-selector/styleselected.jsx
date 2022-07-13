@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function StyleSelected() {
+function StyleSelected({ name }) {
   return (
     <StyleSelectedContainer>
       <strong>Style {">"} </strong>
-      Selected Style
+      {name}
     </StyleSelectedContainer>
   );
 }
