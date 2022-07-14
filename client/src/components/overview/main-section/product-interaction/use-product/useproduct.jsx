@@ -31,8 +31,8 @@ function getSizesInStock(stockItems) {
 }
 
 function sizeIsInNewStock(itemsInStock, sizeSelected) {
-  console.log('items in stock are', itemsInStock);
-  console.log('size selected is', sizeSelected);
+  // console.log('items in stock are', itemsInStock);
+  // console.log('size selected is', sizeSelected);
   for (const item of itemsInStock) {
     console.log('item size is', item.size);
     if (item.size === sizeSelected.size) {
@@ -44,10 +44,10 @@ function sizeIsInNewStock(itemsInStock, sizeSelected) {
 }
 
 function UseProduct({ stock }) {
-  console.log('stock is', stock);
+  // console.log('stock is', stock);
 
   const sizesInStock = getSizesInStock(stock);
-  console.log('sizes in stock are', sizesInStock);
+  // console.log('sizes in stock are', sizesInStock);
 
   const [[selectionId, sizeSelection], setSizeSelection] = useState([0, 'Select Size']);
 
@@ -66,7 +66,7 @@ function UseProduct({ stock }) {
   }
 
   const [qtySelected, setQtySelected] = useState(defaultQtySelection);
-  console.log('new size selected is', sizeSelection);
+  // console.log('new size selected is', sizeSelection);
 
   const needsResetQuantity = selectionId === 0 && qtySelected !== '-';
 

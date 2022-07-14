@@ -13,14 +13,17 @@ function SelectSize({ container, sizeSelected, setSizeSelection, listOfSizes, st
     setSizeSelection([newSelectionId, newSelectionSize]);
   }
 
+  let key = 300;
+
   let options = listOfSizes.map(function(item) {
+    key++;
     let size = item.size;
     // console.log('size is', size);
     // console.log('selected is', sizeSelected);
     let id = item.id;
 
     if (size !== sizeSelected.size) {
-      return <option value={id}>{size}</option>;
+      return <option key={key} value={id}>{size}</option>;
     }
   });
 
@@ -34,20 +37,18 @@ function SelectSize({ container, sizeSelected, setSizeSelection, listOfSizes, st
 
   if (sizeSelected.size === 'Select Size') {
     selectedOption = <option selected value={sizeSelected.id} hidden>{sizeSelected.size}</option>;
-  } else {
-    selectedOption = <option selected value={sizeSelected.id}>{sizeSelected.size.size}</option>;
+    options = [selectedOption].concat(options);
   }
 
   return (
-      <SelectSizeMenu value={"SELECT SIZE"} onChange={changeSizeSelection}>
-        {selectedOption}
+      <SelectSizeMenu defaultValue={'Select Size'} onChange={changeSizeSelection}>
         {options}
       </SelectSizeMenu>
   );
 }
 
 const SelectSizeMenu = styled.select.attrs((props) => ({
-  value: props.value,
+  defaultValue: props.defaultValue,
   onChange: props.onChange,
 }))`
   display: flex;

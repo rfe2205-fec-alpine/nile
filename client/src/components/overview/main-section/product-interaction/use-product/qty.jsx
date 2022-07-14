@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 function Qty({ container, qtySelected, setQtySelected, qtyInStock }) {
-  console.log('quantity selected is', qtySelected);
+  // console.log('quantity selected is', qtySelected);
   const QtyContainer = styled(container)`
     justify-content: center;
     font-size: 32px;
@@ -34,11 +34,10 @@ function Qty({ container, qtySelected, setQtySelected, qtyInStock }) {
   let selectedQty = <option selected value={qtySelected}>{qtySelected}</option>;
 
   return (
-    <SelectQtyMenu onChange={changeQuantitySelection}>
-      {selectedQty}
+    <SelectQtyMenu defaultValue={'Qty'} onChange={changeQuantitySelection}>
       {quantitiesAvailable}
     </SelectQtyMenu>
-  )
+  );
 }
 
 const SelectQtyMenu = styled.select.attrs((props) => ({

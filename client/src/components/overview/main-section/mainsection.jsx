@@ -7,7 +7,7 @@ import ProductInteraction from './product-interaction/productinteraction.jsx';
 let firstStyle = { style_id: -1 };
 
 function setInitialStyleSelection(styleList, setSelection) {
-  console.log('entering set initial style selection');
+  // console.log('entering set initial style selection');
   const initialStyle = styleList[0];
   firstStyle = initialStyle;
   setSelection(initialStyle);
@@ -17,8 +17,8 @@ function MainSection({ data, height }) {
   const styles = data.styles || [];
   const numberOfStyles = styles.length;
   const heightOfStyleList = (((numberOfStyles / 4) + 2) * (66 + 29));
-  console.log('data in main is');
-  console.log(data);
+  // console.log('data in main is');
+  // console.log(data);
 
   // console.log('styles list is', styles);
 
