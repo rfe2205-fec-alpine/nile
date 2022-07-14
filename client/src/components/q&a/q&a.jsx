@@ -2,6 +2,16 @@ import React from "react";
 import SearchQuestions from "./searchQuestions/searchQuestions.jsx";
 import QuestionList from "./questionList/questionList.jsx";
 
+function QAndA() {
+  return (
+    <div class="QAndA">
+      <h2>QUESTIONS & ANSWERS</h2>
+      <SearchQuestions />
+      <QuestionList dummyData={dummyData.results} />
+    </div>
+  );
+}
+
 const dummyData = {
   product_id: "5",
   results: [
@@ -53,15 +63,5 @@ const dummyData = {
     // ...
   ],
 };
-
-function QAndA() {
-  return (
-    <div>
-      <h2>Questions and Answers</h2>
-      <SearchQuestions />
-      <QuestionList dummyData={dummyData.results} />
-    </div>
-  );
-}
 
 export default QAndA;
