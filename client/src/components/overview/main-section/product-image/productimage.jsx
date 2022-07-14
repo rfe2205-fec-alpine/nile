@@ -4,10 +4,7 @@ import Carousel from './carousel/carousel.jsx';
 import PreviousImageButton from './previousimagebutton.jsx';
 import NextImageButton from './nextimagebutton.jsx';
 
-let firstThumbnailOfCurrentList = '';
-
 function setInitialProductImage(photo, selectionIndex, setSelection) {
-  firstThumbnailOfCurrentList = photo.thumbnail_url;
   setSelection([photo, selectionIndex]);
 }
 
@@ -21,22 +18,19 @@ function addIndexesToPhotos(photos) {
 }
 
 function ProductImage({ photos }) {
-  const photoList = photos || [];
+  const photoList = photos;
   addIndexesToPhotos(photoList);
   // console.log('indexed photos', photoList);
 
   const firstPhoto = photoList[0] || { thumbnail_url: '' };
   const [[selection, selectionIndex], setSelection] = useState([firstPhoto, 0]);
 
-  const hasNoInitialImage = firstPhoto.thumbnail_url !== '' && selection.thumbnail_url === '';
-  const newStyleListHasLoaded = photoList[selectionIndex].thumbnail_url !== firstThumbnailOfCurrentList && firstThumbnailOfCurrentList !== '';
-
-  const needsInitialProductImage = hasNoInitialImage || newStyleListHasLoaded;
+  const needsInitialProductImage = selection.thumbnail_url !== photoList[selectionIndex].thumbnail_url;
 
   if (needsInitialProductImage) {
     // console.log('Style change imminent: selection index is', selectionIndex);
     if (selectionIndex >= photoList.length) {
-      setInitialProductImage(photoList[0], 0, setSelection);
+      setInitialProductImage(photos[0], 0, setSelection);
     } else {
       setInitialProductImage(photoList[selectionIndex], selectionIndex, setSelection);
     }

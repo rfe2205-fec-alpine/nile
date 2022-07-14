@@ -22,7 +22,11 @@ function Overview() {
 
   useEffect(() => {
     getApiDataFromProductId(productId, setData);
-  }, []);
+  }, [productId]);
+
+  if (styles.length === 0) {
+    return null;
+  }
 
   return (
     <OverviewComponent title={heightOfTitle} main={heightOfMain} description={heightOfDescription}>
