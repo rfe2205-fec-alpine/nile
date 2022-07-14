@@ -13,14 +13,34 @@ const ItemContainer = styled.div`
   margin: 25px;
 `;
 
-function UseProduct() {
-  const [sizeSelection, setSizeSelection] = useState('Select Size');
+function getSizesInStock(stockItems) {
+  let sizesInStock = [];
 
-  console.log('new size selected is', sizeSelection);
+  for (const stockId in stockItems) {
+
+    let stockItem = stockItems[stockId];
+    let amountInStock = stockItem.quantity;
+    let size = stockItem.size;
+
+    if (amountInStock > 0) {
+      sizesInStock.push({ id: stockId, size: size });
+    }
+  }
+
+  return sizesInStock;
+}
+
+function UseProduct({ stock }) {
+  const [[selectionId, sizeSelection], setSizeSelection] = useState([0, 'Select Size']);
+
+  // console.log('new size selected is', sizeSelection);
+  let sizesInStock = getSizesInStock(stock);
+  // console.log('sizes in stock are', sizesInStock);
 
   return (
     <UseProductContainer>
-      <SelectionRow container={ItemContainer} sizeSelected={sizeSelection} setSizeSelection={setSizeSelection} />
+      <SelectionRow container={ItemContainer} sizeSelected={{ id: selectionId, size: sizeSelection }}
+      setSizeSelection={setSizeSelection} listOfSizes={sizesInStock} stock={stock} />
       <AddToBagRow container={ItemContainer} />
     </UseProductContainer>
   );

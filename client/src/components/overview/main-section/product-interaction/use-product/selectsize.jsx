@@ -1,23 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const listOfSizes = ['Small', 'Medium', 'Large'];
-let selectedSize = 'Select Size';
+// const listOfSizes = ['Small', 'Medium', 'Large'];
+// 'Small', 'Medium', 'Large'
 
-function SelectSize({ container, sizeSelected, setSizeSelection }) {
+function SelectSize({ container, sizeSelected, setSizeSelection, listOfSizes, stock }) {
   const SelectSizeContainer = container;
-
   // console.log('size selected is', sizeSelected);
   function changeSizeSelection(event) {
-    selectedSize = event.target.value;
-    setSizeSelection(event.target.value);
+    let newSelectionId = event.target.value;
+    let newSelectionSize = stock[newSelectionId];
+    setSizeSelection([newSelectionId, newSelectionSize]);
   }
 
-  let options = listOfSizes.map(function(size) {
+  let options = listOfSizes.map(function(item) {
+    let size = item.size;
     // console.log('size is', size);
     // console.log('selected is', sizeSelected);
-    if (size !== sizeSelected) {
-      return <option value={size}>{size}</option>;
+    let id = item.id;
+
+    if (size !== sizeSelected.size) {
+      return <option value={id}>{size}</option>;
     }
   });
 
@@ -29,10 +32,10 @@ function SelectSize({ container, sizeSelected, setSizeSelection }) {
 
   let selectedOption;
 
-  if (sizeSelected === 'Select Size') {
-    selectedOption = <option selected value={sizeSelected} hidden>{sizeSelected}</option>;
+  if (sizeSelected.size === 'Select Size') {
+    selectedOption = <option selected value={sizeSelected.id} hidden>{sizeSelected.size}</option>;
   } else {
-    selectedOption = <option selected value={sizeSelected}>{sizeSelected}</option>;
+    selectedOption = <option selected value={sizeSelected.id}>{sizeSelected.size.size}</option>;
   }
 
   return (

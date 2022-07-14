@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import SelectSize from './selectsize.jsx';
 import Qty from './qty.jsx';
 
-function SelectionRow({ container, sizeSelected, setSizeSelection }) {
+function SelectionRow({ container, sizeSelected, setSizeSelection, listOfSizes, stock }) {
   return (
     <SelectionRowContainer>
-      <SelectSize container={container} sizeSelected={sizeSelected} setSizeSelection={setSizeSelection} />
+      <SelectSize container={container} sizeSelected={sizeSelected}
+      setSizeSelection={setSizeSelection} listOfSizes={listOfSizes} stock={stock} />
       <Qty container={container} />
     </SelectionRowContainer>
   );
