@@ -36,7 +36,7 @@ function ProductImage({ photos }) {
   }
 
   const carouselIndexStart = (Math.floor(selectionIndex / 7)) * 7;
-  const carouselIndexEnd = carouselIndexStart + 7 >= photos.length ? photos.length - 1 : carouselIndexStart + 7;
+  const carouselIndexEnd = carouselIndexStart + 7 >= photos.length ? photos.length : carouselIndexStart + 7;
 
   console.log('carousel start', carouselIndexStart);
   console.log('carousel end', carouselIndexEnd);
