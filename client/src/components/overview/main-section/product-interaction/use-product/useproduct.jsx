@@ -18,9 +18,9 @@ function getSizesInStock(stockItems) {
 
   for (const stockId in stockItems) {
 
-    let stockItem = stockItems[stockId];
-    let amountInStock = stockItem.quantity;
-    let size = stockItem.size;
+    const stockItem = stockItems[stockId];
+    const amountInStock = stockItem.quantity;
+    const size = stockItem.size;
 
     if (amountInStock > 0) {
       sizesInStock.push({ id: stockId, size: size });
@@ -30,17 +30,48 @@ function getSizesInStock(stockItems) {
   return sizesInStock;
 }
 
-function UseProduct({ stock }) {
+function UseProduct({ stock, selectedStyle }) {
+  console.log('stock is', stock);
+
   const [[selectionId, sizeSelection], setSizeSelection] = useState([0, 'Select Size']);
 
+  const sizeHasBeenSelected = selectionId !== 0;
+  const defaultQtySelection = sizeHasBeenSelected ? 1 : '-';
+
+  const newStylesLoaded = !stock[selectionId] && sizeHasBeenSelected;
+
+  if (newStylesLoaded) {
+    setSizeSelection([0, 'Select Size']);
+  }
+
+  const [qtySelected, setQtySelected] = useState(defaultQtySelection);
   // console.log('new size selected is', sizeSelection);
-  let sizesInStock = getSizesInStock(stock);
+
+  const needsResetQuantity = selectionId === 0 && qtySelected !== '-';
+
+  if (needsResetQuantity) {
+    setQtySelected('-');
+  } else if (sizeHasBeenSelected && qtySelected === '-') {
+    setQtySelected(1);
+  }
+
+  const sizesInStock = getSizesInStock(stock);
   // console.log('sizes in stock are', sizesInStock);
+
+  const qtyInStock = sizeSelection === 'Select Size' ? 0 : sizeSelection.quantity;
 
   return (
     <UseProductContainer>
-      <SelectionRow container={ItemContainer} sizeSelected={{ id: selectionId, size: sizeSelection }}
-      setSizeSelection={setSizeSelection} listOfSizes={sizesInStock} stock={stock} />
+      <SelectionRow
+        container={ItemContainer}
+        sizeSelected={{ id: selectionId, size: sizeSelection }}
+        setSizeSelection={setSizeSelection}
+        listOfSizes={sizesInStock}
+        stock={stock}
+        qtySelected={qtySelected}
+        styQtySelected={setQtySelected}
+        qtyInStock={qtyInStock}
+      />
       <AddToBagRow container={ItemContainer} />
     </UseProductContainer>
   );
