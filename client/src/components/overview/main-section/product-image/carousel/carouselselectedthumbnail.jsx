@@ -32,6 +32,7 @@ const IsSelectedBar = styled.div`
   grid-row-start: 3;
   grid-row-end: row-end;
   width: 65px;
+  height: 5px;
   background-color: #5d6699;
 `;
 
