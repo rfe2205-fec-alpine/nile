@@ -5,7 +5,9 @@ function Question({ question }) {
   return (
     <div>
       <div>
-        <b>{"Question: " + question.question_body}</b>
+        <p>
+          <b>{"Q: " + question.question_body}</b>
+        </p>
       </div>
       <div>
         {Object.entries(question.answers).map(function (entry) {

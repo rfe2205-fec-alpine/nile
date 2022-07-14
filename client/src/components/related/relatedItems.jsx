@@ -14,15 +14,15 @@ function RelatedItems() {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products?count=1',
       headers: {
         Authorization: GITHUB_API_KEY,
       },
     })
-      .then((products) => {
+      .then((firstproduct) => {
         axios({
           method: 'get',
-          url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${products.data[0].id}/related`,
+          url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${firstproduct.data[0].id}/related`,
           headers: {
             Authorization: GITHUB_API_KEY,
           },
