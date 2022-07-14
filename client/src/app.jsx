@@ -7,7 +7,7 @@ import RelatedItems from './components/related/relatedItems.jsx';
 import ProductContext from './ProductContext.jsx';
 
 function App() {
-  const [productId, setProductId] = useState('37311');
+  const [productId, setProductId] = useState('37318');
   return (
     <ProductContext.Provider value={[productId, setProductId]}>
       <PageContainer>

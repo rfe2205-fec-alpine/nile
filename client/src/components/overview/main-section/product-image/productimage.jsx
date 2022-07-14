@@ -55,7 +55,7 @@ function ProductImage({ photos }) {
     <DivContainer>
       <ProductImageContainer selectionImageUrl={finalSelection.thumbnail_url}>
         <Carousel thumbnails={photoList} selection={finalSelection} setSelection={setSelection}
-        canGoForward={canGoForward} canGoBack={canGoBack} />
+        canGoForward={canGoForward} canGoBack={canGoBack} allPhotos={photos} />
         {previousButton}
         {nextButton}
       </ProductImageContainer>

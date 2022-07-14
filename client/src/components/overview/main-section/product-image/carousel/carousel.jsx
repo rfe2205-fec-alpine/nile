@@ -6,7 +6,7 @@ import CarouselThumbnail from './carouselthumbnail.jsx';
 import CarouselSelectedThumbnail from './carouselselectedthumbnail.jsx';
 import NextButton from './nextbutton.jsx';
 
-function Carousel({ thumbnails, selection, setSelection, canGoForward, canGoBack }) {
+function Carousel({ thumbnails, selection, setSelection, canGoForward, canGoBack, allPhotos }) {
   const redBaron = thumbnails.map(function(thumbnail) {
     if (thumbnail.thumbnail_url === selection.thumbnail_url) {
       return <CarouselSelectedThumbnail imgUrl={thumbnail.thumbnail_url} />
@@ -15,8 +15,19 @@ function Carousel({ thumbnails, selection, setSelection, canGoForward, canGoBack
     }
   });
 
-  const previousButton = canGoBack ? <PreviousButton /> : <div />;
-  const nextButton = canGoForward ? <NextButton /> : <div />;
+  const nextButtonIndex = selection.index + 7 >= allPhotos.length ? allPhotos.length - 1 : selection.index + 7;
+  const previousButtonIndex = selection.index - 7 < 0 ? 0 : selection.index - 7;
+
+  const nextButtonThumbnail = allPhotos[nextButtonIndex];
+  const previousButtonThumbnail = allPhotos[previousButtonIndex];
+
+  const previousButton = canGoBack ?
+    <PreviousButton setSelection={() => setSelection([previousButtonThumbnail, previousButtonIndex])}/>
+    : <div />;
+
+  const nextButton = canGoForward ?
+    <NextButton setSelection={() => setSelection([nextButtonThumbnail, nextButtonIndex])} />
+    : <div />;
 
   return (
     <CarouselContainer>
