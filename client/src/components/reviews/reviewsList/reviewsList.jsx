@@ -21,7 +21,7 @@ function ReviewsList() {
       params: {
         product_id: productID,
         sort: query,
-        count: 15,
+        count: 2,
       },
     }).then((res) => {
       setReviews(res.data);
