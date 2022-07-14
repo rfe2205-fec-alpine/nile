@@ -1,0 +1,8 @@
+.searchrow {
+  padding: 10x 0;
+  display: flex;
+}
+
+.searchrow input {
+  flex: 1;
+}
