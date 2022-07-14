@@ -23,6 +23,9 @@ const CarouselThumbnailContainer = styled.div`
 const SelectedThumbnailContainer = styled.div`
   display: grid;
   grid-template-rows: 65px 1px 5px;
+  &:hover ${CarouselThumbnailContainer} {
+    cursor: default;
+  }
 `;
 
 const IsSelectedBar = styled.div`
