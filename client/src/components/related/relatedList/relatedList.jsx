@@ -5,11 +5,10 @@ import RelatedCard from './relatedCard.jsx';
 function RelatedList({productList}) {
   return (
     <div>
-      {console.log(productList)}
-      {/* {productList.map((product) => {
+      {productList.map((product) => {
       return <RelatedCard key={product.id} product={product} />
     }
-  )} */}
+  )}
     </div>
   );
 }

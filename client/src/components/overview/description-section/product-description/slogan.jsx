@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Slogan() {
+function Slogan({ catchphrase }) {
   return (
     <Catchphrase>
-      Catchphrase
+      {catchphrase}
     </Catchphrase>
   );
 }
 
 const Catchphrase = styled.div`
-  font-size: 36px;
+  font-size: 24px;
   font-weight: bolder;
 `;
 

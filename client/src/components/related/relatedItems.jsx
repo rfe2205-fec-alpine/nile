@@ -9,7 +9,7 @@ const axios = require('axios');
 const { GITHUB_API_KEY } = require('../../../../config.js');
 
 function RelatedItems() {
-  const [productList, setProductList] = useState();
+  const [productList, setProductList] = useState(null);
 
   useEffect(() => {
     axios({
@@ -58,6 +58,9 @@ function RelatedItems() {
       });
   }, []);
 
+  if (!productList) {
+    return null;
+  }
   return (
     <div>
       <RelatedProducts />

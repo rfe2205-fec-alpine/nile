@@ -57,7 +57,7 @@ const dummyData = {
 function QAndA() {
   return (
     <div>
-      <header>Questions and Answers</header>
+      <h2>Questions and Answers</h2>
       <SearchQuestions />
       <QuestionList dummyData={dummyData.results} />
     </div>

@@ -9,9 +9,9 @@ function RelatedCard({product}) {
       <Card>
         <StarButton><FaStar /></StarButton>
         <ul>image</ul>
-        <ul>Catergory</ul>
-        <ul>Name</ul>
-        <ul>price</ul>
+        <ul>{product.category}</ul>
+        <ul>{product.name}</ul>
+        <ul>{product.default_price}</ul>
         <StarRating />
       </Card>
     </div>

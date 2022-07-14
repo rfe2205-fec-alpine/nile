@@ -3,14 +3,20 @@ import styled from 'styled-components';
 import CarouselThumbnail from './carouselthumbnail.jsx';
 import CarouselSelectedThumbnail from './carouselselectedthumbnail.jsx';
 
-function Carousel() {
+function Carousel({ thumbnails, selection, setSelection}) {
+  let currentIndex = -1;
+  const redBaron = thumbnails.map(function(thumbnail) {
+    currentIndex++;
+    if (thumbnail.thumbnail_url === selection.thumbnail_url) {
+      return <CarouselSelectedThumbnail imgUrl={thumbnail.thumbnail_url} />
+    } else {
+      return <CarouselThumbnail imgUrl={thumbnail.thumbnail_url} setSelection={() => setSelection([thumbnail, thumbnail.index])} />
+    }
+  });
+
   return (
     <CarouselContainer>
-      <CarouselSelectedThumbnail />
-      <CarouselThumbnail />
-      <CarouselThumbnail />
-      <CarouselThumbnail />
-      <CarouselThumbnail />
+      {redBaron}
     </CarouselContainer>
   );
 }
@@ -20,7 +26,7 @@ const CarouselContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   width: 65px;
-  height: 400px;
+  height: 550px;
   margin: 35px;
 `;
 
