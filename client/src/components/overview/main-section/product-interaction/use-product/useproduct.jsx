@@ -87,10 +87,15 @@ function UseProduct({ stock }) {
         listOfSizes={sizesInStock}
         stock={stock}
         qtySelected={qtySelected}
-        styQtySelected={setQtySelected}
+        setQtySelected={setQtySelected}
         qtyInStock={qtyInStock}
       />
-      <AddToBagRow container={ItemContainer} />
+      <AddToBagRow
+        container={ItemContainer}
+        sizesInStock={sizesInStock}
+        sizeSelected={{ id: selectionId, size: sizeSelection }}
+        qtySelected={qtySelected}
+      />
     </UseProductContainer>
   );
 }
