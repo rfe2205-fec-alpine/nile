@@ -41,6 +41,11 @@ function CharacterBar({ wide, quality }) {
     marginBottom: '-6px',
   };
 
+  const labelDiv = {
+    display: 'flex',
+    justifyContent: 'space-between',
+  };
+
   return (
     <div>
       <h5>Name</h5>
@@ -52,7 +57,7 @@ function CharacterBar({ wide, quality }) {
         <div style={Quadrant} />
         <div style={Quadrant} />
       </div>
-      <div>
+      <div style={labelDiv}>
         <p>{qualityObject[quality][0]}</p>
         <p>{qualityObject[quality][1]}</p>
         <p>{qualityObject[quality][2]}</p>
