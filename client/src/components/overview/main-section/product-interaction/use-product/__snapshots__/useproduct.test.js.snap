@@ -19,17 +19,12 @@ exports[`Use Product component renders to the page 1`] = `
     </div>
   </div>
   <div
-    className="sc-gsnTZi kRnlau"
+    className="sc-gsnTZi cwWRZv"
   >
     <div
       className="sc-dkzDqf biAELA"
     >
       ADD TO BAG
-    </div>
-    <div
-      className="sc-dkzDqf biAELA"
-    >
-      Favorite
     </div>
   </div>
 </div>

@@ -9,9 +9,9 @@ const Announcement = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #C8C3C2;
+  background-color: #fff;
   color: #5d6699;
   height: 50px;
-`
-
+`;
+// color: #C8C3C2;
 export default AnnouncementBar;

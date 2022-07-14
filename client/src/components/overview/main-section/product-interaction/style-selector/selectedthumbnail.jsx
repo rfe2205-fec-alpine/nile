@@ -3,23 +3,25 @@ import styled from 'styled-components';
 import Thumbnail from './thumbnail.jsx';
 import CheckMark from './checkmark.jsx';
 
-function SelectedThumbnail() {
+const minSize = 66;
+
+function SelectedThumbnail({ size, imgUrl }) {
+  let selectedSize = size || minSize;
   return (
     <SelectedThumbnailContainer>
-      <SelectedThumbnailItem />
-      <CheckMark />
+      <SelectedThumbnailItem size={selectedSize} imgUrl={imgUrl} />
+      <CheckMark size={selectedSize / 4} />
     </SelectedThumbnailContainer>
   );
 }
 
-const snowMobileUrl = 'https://blog.amsoil.com/wp-content/uploads/2018/10/EDIT-7130-scaled.jpg';
-
 const ThumbnailItemContainer = styled.div`
   margin-right: 29px;
   border: 1px solid black;
-  margin-bottom: 29px;
+  margin-top: 14px;
+  margin-bottom: 15px;
   border-radius: 100%;
-  background-image: url("${snowMobileUrl}");
+  background-image: url("${(props) => props.imgUrl}");
   background-size: cover;
   background-position: right center;
   background-repeat: no-repeat;
@@ -31,8 +33,9 @@ const SelectedThumbnailContainer = styled.div`
 
 const SelectedThumbnailItem = styled(ThumbnailItemContainer)`
   position: absolute;
-  width: 70px;
-  height: 70px;
+  width: ${(props) => props.size}px;
+  height: ${(props) => props.size}px;
+
 `;
 
 export default SelectedThumbnail;

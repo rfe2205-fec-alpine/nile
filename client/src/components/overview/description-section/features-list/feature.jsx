@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Feature() {
+function Feature({ feature, value }) {
   return (
     <FeatureItem>
-      I am one with the force and the force is with me
+      {feature}: {value}
     </FeatureItem>
   );
 }

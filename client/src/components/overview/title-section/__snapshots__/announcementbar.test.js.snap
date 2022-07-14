@@ -2,7 +2,7 @@
 
 exports[`Announcement bar renders to the page 1`] = `
 <div
-  className="sc-bczRLJ bnzveL"
+  className="sc-bczRLJ iHNVvf"
 >
   SITE-WIDE ANNOUNCEMENT MESSAGE! SALE/DISCOUNT 
   <strong>

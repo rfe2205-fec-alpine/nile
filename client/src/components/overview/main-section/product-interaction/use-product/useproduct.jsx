@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SelectionRow from './selectionrow.jsx';
+import AddToBag from './addtobag.jsx';
 import AddToBagRow from './addtobagrow.jsx';
 
 const ItemContainer = styled.div`

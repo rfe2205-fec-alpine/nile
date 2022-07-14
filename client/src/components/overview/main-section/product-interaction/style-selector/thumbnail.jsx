@@ -1,20 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Thumbnail() {
+const minSize = '66px';
+
+function Thumbnail({ size, imgUrl, setSelection }) {
+  const selectedSize = size || minSize;
   return (
-    <ThumbnailItemContainer />
+    <ThumbnailItemContainer imgUrl={imgUrl} size={selectedSize} onClick={setSelection} />
   );
 }
 
-const snowMobileUrl = 'https://blog.amsoil.com/wp-content/uploads/2018/10/EDIT-7130-scaled.jpg';
-
 const ThumbnailItemContainer = styled.div`
+  height: ${(props) => props.size};
+  width: ${(props) => props.size};
   margin-right: 29px;
   border: 1px solid black;
-  margin-bottom: 29px;
+  margin-top: 14px;
+  margin-bottom: 15px;
   border-radius: 100%;
-  background-image: url("${snowMobileUrl}");
+  background-image: url("${(props) => props.imgUrl}");
   background-size: cover;
   background-position: right center;
   background-repeat: no-repeat;

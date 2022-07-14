@@ -3,25 +3,42 @@ import styled from 'styled-components';
 import Thumbnail from './thumbnail.jsx';
 import SelectedThumbnail from './selectedthumbnail.jsx';
 
-function ThumbnailSelector() {
+function ThumbnailSelector({ styles, selectionId, setSelection, height }) {
+  let styleList = styles || [];
+
+  console.log('style list is', styleList);
+
+  let redBaron = styleList.map(function(style) {
+    let imgUrl = style.photos[0].thumbnail_url;
+    if (style.style_id === selectionId) {
+      return <SelectedThumbnail imgUrl={imgUrl} />
+    } else {
+      return <Thumbnail imgUrl={imgUrl} setSelection={() => setSelection(style)} />
+    }
+  });
+
+  let numberOfRows = redBaron.length / 4;
+  let remainingColumns = styleList.length % 4;
+  let fillerDivs = [];
+
+  for (let currentIndex = 0; currentIndex < remainingColumns; currentIndex++) {
+    fillerDivs.push(<div />);
+  }
+
+  // console.log(redBaron.length);
   return (
-    <ThumbnailContainer>
-      <Thumbnail />
-      <Thumbnail />
-      <Thumbnail />
-      <Thumbnail />
-      <SelectedThumbnail />
-      <Thumbnail />
-      <Thumbnail />
-      <Thumbnail />
+    <ThumbnailContainer height={height} numberOfRows={numberOfRows}>
+      {redBaron}
+      {fillerDivs}
     </ThumbnailContainer>
   );
 }
 
 const ThumbnailContainer = styled.div`
   display: grid;
-  grid-template-rows: 100px 100px;
-  grid-template-columns: 100px 100px 100px 100px;
+  height: ${(props) => props.height}px;
+  grid-template-rows: repeat(${(props) => props.numberOfRows}, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 `;
 
 export default ThumbnailSelector;
