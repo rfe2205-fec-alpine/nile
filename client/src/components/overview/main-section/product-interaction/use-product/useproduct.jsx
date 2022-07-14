@@ -30,22 +30,43 @@ function getSizesInStock(stockItems) {
   return sizesInStock;
 }
 
-function UseProduct({ stock, selectedStyle }) {
+function sizeIsInNewStock(itemsInStock, sizeSelected) {
+  console.log('items in stock are', itemsInStock);
+  console.log('size selected is', sizeSelected);
+  for (const item of itemsInStock) {
+    console.log('item size is', item.size);
+    if (item.size === sizeSelected.size) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function UseProduct({ stock }) {
   console.log('stock is', stock);
+
+  const sizesInStock = getSizesInStock(stock);
+  console.log('sizes in stock are', sizesInStock);
 
   const [[selectionId, sizeSelection], setSizeSelection] = useState([0, 'Select Size']);
 
   const sizeHasBeenSelected = selectionId !== 0;
   const defaultQtySelection = sizeHasBeenSelected ? 1 : '-';
 
-  const newStylesLoaded = !stock[selectionId] && sizeHasBeenSelected;
+  const mightNeedSizeReset = !stock[selectionId] && sizeHasBeenSelected;
+  let needsSizeReset = false;
 
-  if (newStylesLoaded) {
+  if (mightNeedSizeReset) {
+    needsSizeReset = !sizeIsInNewStock(sizesInStock, sizeSelection);
+  }
+
+  if (needsSizeReset) {
     setSizeSelection([0, 'Select Size']);
   }
 
   const [qtySelected, setQtySelected] = useState(defaultQtySelection);
-  // console.log('new size selected is', sizeSelection);
+  console.log('new size selected is', sizeSelection);
 
   const needsResetQuantity = selectionId === 0 && qtySelected !== '-';
 
@@ -54,9 +75,6 @@ function UseProduct({ stock, selectedStyle }) {
   } else if (sizeHasBeenSelected && qtySelected === '-') {
     setQtySelected(1);
   }
-
-  const sizesInStock = getSizesInStock(stock);
-  // console.log('sizes in stock are', sizesInStock);
 
   const qtyInStock = sizeSelection === 'Select Size' ? 0 : sizeSelection.quantity;
 
