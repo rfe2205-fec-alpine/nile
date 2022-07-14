@@ -5,20 +5,26 @@ import Reviews from './components/reviews/reviews.jsx';
 import QAndA from "./components/q&a/q&a.jsx";
 import RelatedItems from './components/related/relatedItems.jsx';
 import ProductContext from './ProductContext.jsx';
+import ThemeContext from './ThemeContext.jsx';
+import Themes from './themes.js';
 
 function App() {
   const [productId, setProductId] = useState('37311');
+  const [colorScheme, setColorScheme] = useState(Themes.nile.light);
+
   return (
-    <ProductContext.Provider value={[productId, setProductId]}>
-      <PageContainer>
-        <AppContainer>
-          <Overview />
-          <RelatedItems />
-          <Reviews />
-          <QAndA />
-        </AppContainer>
-      </PageContainer>
-    </ProductContext.Provider>
+    <ThemeContext.Provider value={[colorScheme, setColorScheme]}>
+      <ProductContext.Provider value={[productId, setProductId]}>
+        <PageContainer>
+          <AppContainer>
+            <Overview />
+            <RelatedItems />
+            <Reviews />
+            <QAndA />
+          </AppContainer>
+        </PageContainer>
+      </ProductContext.Provider>
+    </ThemeContext.Provider>
   );
 }
 
