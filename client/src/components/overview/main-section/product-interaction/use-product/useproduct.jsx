@@ -43,7 +43,7 @@ function sizeIsInNewStock(itemsInStock, sizeSelected) {
   return false;
 }
 
-function UseProduct({ stock }) {
+function UseProduct({ stock, selectedStyle, nameOfProduct }) {
   // console.log('stock is', stock);
 
   const sizesInStock = getSizesInStock(stock);
@@ -95,6 +95,8 @@ function UseProduct({ stock }) {
         sizesInStock={sizesInStock}
         sizeSelected={{ id: selectionId, size: sizeSelection }}
         qtySelected={qtySelected}
+        selectedStyle={selectedStyle}
+        nameOfProduct={nameOfProduct}
       />
     </UseProductContainer>
   );

@@ -6,7 +6,7 @@ import { GITHUB_API_KEY, CAMPUS_CODE } from '../../../../../../../config.js';
 
 const cartUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/${CAMPUS_CODE}/cart`;
 
-function AddToBag({ sizeSelected, qtySelected }) {
+function AddToBag({ sizeSelected, qtySelected, selectedStyle, nameOfProduct }) {
   function addToCart() {
     if (sizeSelected.size === 'Select Size') {
       alert('Please select size');
@@ -16,6 +16,8 @@ function AddToBag({ sizeSelected, qtySelected }) {
       console.log('quantity being submitted', qtySelected);
 
       let id = sizeSelected.id;
+      let styleName = selectedStyle.name;
+      console.log('style name is', styleName);
 
       axios({
         method: 'post',
@@ -30,7 +32,8 @@ function AddToBag({ sizeSelected, qtySelected }) {
         .then(response => {
           console.log('Successful!');
           console.log(response);
-          alert('Successfully added to your cart');
+          let alertMessage = 'Successfylly added ' + styleName + ' ' + nameOfProduct + ' to your cart';
+          alert(alertMessage);
         })
         .catch(error => {
           console.log(error);

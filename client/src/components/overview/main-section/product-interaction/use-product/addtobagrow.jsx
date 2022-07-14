@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import AddToBag from './addtobag.jsx';
 // import Favorite from './favorite.jsx';
 
-function AddToBagRow({ container, sizesInStock, sizeSelected, qtySelected }) {
+function AddToBagRow({ container, sizesInStock, sizeSelected, qtySelected, selectedStyle, nameOfProduct }) {
   let outOfStock = sizesInStock.length === 0;
 
   if (outOfStock) {
@@ -16,6 +16,8 @@ function AddToBagRow({ container, sizesInStock, sizeSelected, qtySelected }) {
         container={container}
         sizeSelected={sizeSelected}
         qtySelected={qtySelected}
+        selectedStyle={selectedStyle}
+        nameOfProduct={nameOfProduct}
       />
     </AddToBagRowContainer>
   );
