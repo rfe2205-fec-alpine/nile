@@ -2,10 +2,10 @@ import React from 'react';
 import TitleBar from './titlebar.jsx';
 import AnnouncementBar from './announcementbar.jsx';
 
-function TitleSection() {
+function TitleSection({ colorScheme }) {
   return (
     <div>
-      <TitleBar />
+      <TitleBar colorScheme={colorScheme} />
       <AnnouncementBar />
     </div>
   );

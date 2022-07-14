@@ -1,12 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import ThemeContext from '../../../ThemeContext.jsx';
 import logo from '../img/logo.jpg';
 // import SearchBar from './searchbar.jsx';
 
-function TitleBar() {
-  const [colorScheme] = React.useContext(ThemeContext);
+function TitleBar({ colorScheme }) {
   console.log('color scheme is', colorScheme);
   return (
     <TitleContainer bgColor={colorScheme.primaryColor}>
@@ -23,8 +20,6 @@ const TitleContainer = styled.div`
   background-color: ${(props) => props.bgColor};
   align-self: stretch;
 `;
-
-TitleContainer.contextType = ThemeContext;
 
 const Title = styled.div`
   color: #fff;
