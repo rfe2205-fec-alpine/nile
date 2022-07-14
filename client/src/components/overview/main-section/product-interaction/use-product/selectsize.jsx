@@ -7,7 +7,7 @@ let selectedSize = 'Select Size';
 function SelectSize({ container, sizeSelected, setSizeSelection }) {
   const SelectSizeContainer = container;
 
-  console.log('size selected is', sizeSelected);
+  // console.log('size selected is', sizeSelected);
   function changeSizeSelection(event) {
     selectedSize = event.target.value;
     setSizeSelection(event.target.value);
@@ -21,9 +21,23 @@ function SelectSize({ container, sizeSelected, setSizeSelection }) {
     }
   });
 
+  if (options.length === 0) {
+    return (
+      <SelectSizeContainer>OUT OF STOCK</SelectSizeContainer>
+    );
+  }
+
+  let selectedOption;
+
+  if (sizeSelected === 'Select Size') {
+    selectedOption = <option selected value={sizeSelected} hidden>{sizeSelected}</option>;
+  } else {
+    selectedOption = <option selected value={sizeSelected}>{sizeSelected}</option>;
+  }
+
   return (
       <SelectSizeMenu value={"SELECT SIZE"} onChange={changeSizeSelection}>
-        <option selected value={sizeSelected}>{sizeSelected}</option>
+        {selectedOption}
         {options}
       </SelectSizeMenu>
   );
@@ -40,12 +54,6 @@ const SelectSizeMenu = styled.select.attrs((props) => ({
   background-color: #E4E4E4;
   margin: 25px;
   font-size: 18px;
-`;
-
-const SizeOption = styled.option.attrs((props) => ({
-
-}))`
-  color: green;
 `;
 
 export default SelectSize;
