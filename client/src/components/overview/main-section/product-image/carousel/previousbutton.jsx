@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { AiOutlineUp } from 'react-icons/ai';
 
 function PreviousButton({ setSelection }) {
   return (
     <PreviousButtonContainer>
       <ActualPreviousButton onClick={setSelection}>
-        ^
+        <AiOutlineUp color="#5d6699" />
       </ActualPreviousButton>
     </PreviousButtonContainer>
   );
@@ -14,7 +15,7 @@ function PreviousButton({ setSelection }) {
 const ActualPreviousButton = styled.div`
   text-align: center;
   color: #5d6699;
-  font-size: 32px;
+  font-size: 24px;
   font-weight: bolder;
 `;
 

@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { AiOutlineArrowRight } from 'react-icons/ai';
 
 function NextImageButton({ currentIndex, setSelection }) {
   return (
     <NextImageButtonContainer onClick={() => setSelection([false, currentIndex + 1])}>
-      <NextImageActualButton>{'->'}</NextImageActualButton>
+      <NextImageActualButton>
+        <AiOutlineArrowRight />
+      </NextImageActualButton>
     </NextImageButtonContainer>
   );
 }
@@ -12,7 +15,7 @@ function NextImageButton({ currentIndex, setSelection }) {
 const NextImageActualButton = styled.div`
   font-size: 32px;
   font-weight: bolder;
-  color: #CCC;
+  color: #5d6699;
 `;
 
 const NextImageButtonContainer = styled.div`
