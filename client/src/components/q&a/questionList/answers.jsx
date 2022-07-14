@@ -3,7 +3,7 @@ import React from "react";
 function Answers({ answer }) {
   return (
     <div>
-      <i>{"Answer: " + answer}</i>
+      <i>{"A: " + answer}</i>
     </div>
   );
 }
