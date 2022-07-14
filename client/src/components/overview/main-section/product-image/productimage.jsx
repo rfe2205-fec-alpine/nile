@@ -18,33 +18,41 @@ function addIndexesToPhotos(photos) {
 }
 
 function ProductImage({ photos }) {
-  const photoList = photos;
-  addIndexesToPhotos(photoList);
+  addIndexesToPhotos(photos);
   // console.log('indexed photos', photoList);
 
-  const firstPhoto = photoList[0] || { thumbnail_url: '' };
+  const firstPhoto = photos[0] || { thumbnail_url: '' };
   const [[selection, selectionIndex], setSelection] = useState([firstPhoto, 0]);
 
-  const needsInitialProductImage = selection.thumbnail_url !== photoList[selectionIndex].thumbnail_url;
+  const needsInitialProductImage = selection.thumbnail_url !== photos[selectionIndex].thumbnail_url;
 
   if (needsInitialProductImage) {
     // console.log('Style change imminent: selection index is', selectionIndex);
-    if (selectionIndex >= photoList.length) {
+    if (selectionIndex >= photos.length) {
       setInitialProductImage(photos[0], 0, setSelection);
     } else {
-      setInitialProductImage(photoList[selectionIndex], selectionIndex, setSelection);
+      setInitialProductImage(photos[selectionIndex], selectionIndex, setSelection);
     }
   }
+
+  const carouselIndexStart = (selectionIndex / 7) * 7;
+  const carouselIndexEnd = carouselIndexStart + 7 >= photos.length ? photos.length - 1 : carouselIndexStart + 7;
+
+  const canGoForward = carouselIndexEnd < photos.length;
+  const canGoBack = carouselIndexStart >= 7;
+
+  const photoList = photos.slice(carouselIndexStart, carouselIndexEnd);
 
   const finalSelection = selection || photos[selectionIndex];
 
   const previousButton = selectionIndex === 0 ? <div /> : <PreviousImageButton currentIndex={selectionIndex} setSelection={setSelection} />;
-  const nextButton = selectionIndex === photoList.length - 1 ? <div /> : <NextImageButton currentIndex={selectionIndex} setSelection={setSelection} />;
+  const nextButton = selectionIndex === photos.length - 1 ? <div /> : <NextImageButton currentIndex={selectionIndex} setSelection={setSelection} />;
 
   return (
     <DivContainer>
       <ProductImageContainer selectionImageUrl={finalSelection.thumbnail_url}>
-        <Carousel thumbnails={photoList} selection={finalSelection} setSelection={setSelection} />
+        <Carousel thumbnails={photoList} selection={finalSelection} setSelection={setSelection}
+        canGoForward={canGoForward} canGoBack={canGoBack} />
         {previousButton}
         {nextButton}
       </ProductImageContainer>

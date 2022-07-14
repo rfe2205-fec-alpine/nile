@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 function PreviousButton() {
   return (
-    <PreviousButtonContainer>v</PreviousButtonContainer>
+    <PreviousButtonContainer>^</PreviousButtonContainer>
   );
 }
 

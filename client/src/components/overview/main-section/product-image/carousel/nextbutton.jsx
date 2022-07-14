@@ -3,14 +3,22 @@ import styled from 'styled-components';
 
 function NextButton() {
   return (
-    <NextButtonContainer>v</NextButtonContainer>
+    <NextButtonContainer>
+      <ActualNextButton>v</ActualNextButton>
+    </NextButtonContainer>
   );
 }
 
-const NextButtonContainer = styled.div`
+const ActualNextButton = styled.div`
   text-align: center;
   font-size: 32px;
   font-weight: bolder;
+`;
+
+const NextButtonContainer = styled.div`
+  &:hover ${ActualNextButton} {
+    cursor: default;
+  }
 `;
 
 export default NextButton;
