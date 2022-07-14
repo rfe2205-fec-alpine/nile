@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import SelectionRow from './selectionrow.jsx';
 import AddToBag from './addtobag.jsx';
@@ -14,9 +14,13 @@ const ItemContainer = styled.div`
 `;
 
 function UseProduct() {
+  const [sizeSelection, setSizeSelection] = useState('Select Size');
+
+  console.log('new size selected is', sizeSelection);
+
   return (
     <UseProductContainer>
-      <SelectionRow container={ItemContainer} />
+      <SelectionRow container={ItemContainer} sizeSelected={sizeSelection} setSizeSelection={setSizeSelection} />
       <AddToBagRow container={ItemContainer} />
     </UseProductContainer>
   );

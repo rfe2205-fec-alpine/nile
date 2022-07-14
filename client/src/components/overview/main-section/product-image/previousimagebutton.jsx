@@ -15,7 +15,7 @@ function PreviousImageButton({ currentIndex, setSelection }) {
 const PreviousImageActualButton = styled.div`
   font-size: 32px;
   font-weight: bolder;
-  color: #5d6699;
+  color: #CCC;
 `;
 
 const PreviousImageButtonContainer = styled.div`

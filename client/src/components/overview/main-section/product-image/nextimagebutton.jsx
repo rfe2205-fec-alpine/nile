@@ -15,7 +15,7 @@ function NextImageButton({ currentIndex, setSelection }) {
 const NextImageActualButton = styled.div`
   font-size: 32px;
   font-weight: bolder;
-  color: #5d6699;
+  color: #CCC;
 `;
 
 const NextImageButtonContainer = styled.div`
