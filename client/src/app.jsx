@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Overview from './components/overview/overview.jsx';
 import Reviews from './components/reviews/reviews.jsx';
 import QAndA from "./components/q&a/q&a.jsx";
-import RelatedItems from './components/related/relatedItems.jsx';
+// import RelatedItems from './components/related/relatedItems.jsx';
 import ProductContext from './ProductContext.jsx';
 
 function App() {
@@ -13,7 +13,6 @@ function App() {
       <PageContainer>
         <AppContainer>
           <Overview />
-          <RelatedItems />
           <Reviews />
           <QAndA />
         </AppContainer>

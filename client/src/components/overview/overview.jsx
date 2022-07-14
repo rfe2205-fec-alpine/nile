@@ -9,7 +9,7 @@ import MainSection from './main-section/mainsection.jsx';
 import DescriptionSection from './description-section/descriptionsection.jsx';
 
 function Overview() {
-  const productId = React.useContext(ProductContext);
+  const [productId] = React.useContext(ProductContext);
   const [[mainSectionData, descriptionSectionData], setData] = useState([{}, {}]);
 
   const styles = mainSectionData.styles || [];
