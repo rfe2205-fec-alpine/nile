@@ -46,9 +46,13 @@ function CharacterBar({ wide, quality }) {
     justifyContent: 'space-between',
   };
 
+  const title = {
+    margin: 'auto',
+  };
+
   return (
     <div>
-      <h5>Name</h5>
+      <h5 style={title}>{quality}</h5>
       <AiFillCaretDown style={PointerStyle} />
       <div style={Wrapper}>
         <div style={Quadrant} />
