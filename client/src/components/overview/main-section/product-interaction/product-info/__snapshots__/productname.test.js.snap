@@ -3,7 +3,5 @@
 exports[`Product name renders to the page 1`] = `
 <div
   className="sc-bczRLJ fuTHEy"
->
-  Expanded Product Name
-</div>
+/>
 `;

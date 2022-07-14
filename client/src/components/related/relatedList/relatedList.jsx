@@ -1,10 +1,14 @@
 import React from 'react';
-import RelatedCard from './relatedCard.jsx'
+import { useEffect, useState } from 'react';
+import RelatedCard from './relatedCard.jsx';
 
-function RelatedList() {
+function RelatedList({productList}) {
   return (
     <div>
-      <RelatedCard />
+      {productList.map((product) => {
+      return <RelatedCard key={product.id} product={product} />
+    }
+  )}
     </div>
   );
 }

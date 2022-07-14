@@ -8,7 +8,7 @@ function TitleSection() {
       <TitleBar />
       <AnnouncementBar />
     </div>
-  )
+  );
 }
 
 export default TitleSection;

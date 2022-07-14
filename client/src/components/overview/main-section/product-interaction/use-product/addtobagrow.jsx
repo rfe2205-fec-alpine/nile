@@ -1,20 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import AddToBag from './addtobag.jsx';
-import Favorite from './favorite.jsx';
+// import Favorite from './favorite.jsx';
 
-function AddToBagRow(props) {
+function AddToBagRow({ container }) {
   return (
     <AddToBagRowContainer>
-      <AddToBag container={props.container} />
-      <Favorite container={props.container} />
+      <AddToBag container={container} />
     </AddToBagRowContainer>
   );
 }
 
 const AddToBagRowContainer = styled.div`
   display: grid;
-  grid-template-columns: 6fr 1fr;
+  grid-template-columns: 3fr 1fr;
 `;
 
 export default AddToBagRow;
