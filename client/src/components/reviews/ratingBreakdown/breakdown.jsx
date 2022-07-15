@@ -2,16 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 import { AiFillCaretDown } from 'react-icons/ai';
 
-function Breakdown() {
+function Breakdown({ characteristics }) {
   return (
     <BreakdownWrapper>
-      <CharacterBar />
-      <CharacterBar />
+      {Object.keys(characteristics).map((item) => {
+        return <CharacterBar wide={characteristics[item].value} quality={item} key={characteristics[item].id} />;
+      })}
     </BreakdownWrapper>
   );
 }
 
-function CharacterBar() {
+function CharacterBar({ wide, quality }) {
+  const qualityObject = {
+    Size: ['Too Small', 'Perfect', 'Too Big'],
+    Width: ['Too Narrow', 'Perfect', 'Too Wide'],
+    Comfort: ['Poor', 'Average', 'Perfect'],
+    Quality: ['Poor', 'Average', 'Great'],
+    Length: ['Too Short', 'Perfect', 'Too Long'],
+    Fit: ['Poor', 'Average', 'Perfect'],
+  };
+
   const Wrapper = {
     display: 'flex',
     alignItems: 'center',
@@ -22,20 +32,39 @@ function CharacterBar() {
     backgroundColor: 'Gainsboro',
     height: '5px',
     marginRight: '5px',
-    width: '80%',
+    width: '100%',
   };
-  const img = {
-    backgroundPosition: '50%',
+  const PointerStyle = {
+    display: 'block',
+    marginLeft: `${(wide / 5) * 100}%`,
+    marginRight: 'auto',
+    marginBottom: '-6px',
   };
+
+  const labelDiv = {
+    display: 'flex',
+    justifyContent: 'space-between',
+  };
+
+  const title = {
+    margin: 'auto',
+  };
+
   return (
     <div>
-      <h5>Name</h5>
+      <h5 style={title}>{quality}</h5>
+      <AiFillCaretDown style={PointerStyle} />
       <div style={Wrapper}>
-        <AiFillCaretDown />
         <div style={Quadrant} />
         <div style={Quadrant} />
         <div style={Quadrant} />
         <div style={Quadrant} />
+        <div style={Quadrant} />
+      </div>
+      <div style={labelDiv}>
+        <p>{qualityObject[quality][0]}</p>
+        <p>{qualityObject[quality][1]}</p>
+        <p>{qualityObject[quality][2]}</p>
       </div>
     </div>
   );
