@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import getApiDataFromProductId from './apidata.js';
 import ProductContext from '../../ProductContext.jsx';
+import ThemeContext from '../../ThemeContext.jsx';
 
 import TitleSection from './title-section/titlesection.jsx';
 import MainSection from './main-section/mainsection.jsx';
@@ -10,6 +11,8 @@ import DescriptionSection from './description-section/descriptionsection.jsx';
 
 function Overview() {
   const [productId] = React.useContext(ProductContext);
+  const [colorScheme] = React.useContext(ThemeContext);
+
   const [[mainSectionData, descriptionSectionData], setData] = useState([{}, {}]);
 
   const styles = mainSectionData.styles || [];
@@ -24,9 +27,13 @@ function Overview() {
     getApiDataFromProductId(productId, setData);
   }, [productId]);
 
+  if (styles.length === 0) {
+    return null;
+  }
+
   return (
     <OverviewComponent title={heightOfTitle} main={heightOfMain} description={heightOfDescription}>
-      <TitleSection />
+      <TitleSection colorScheme={colorScheme} />
       <MainSection data={mainSectionData} height={heightOfMain} />
       <DescriptionSection data={descriptionSectionData} />
     </OverviewComponent>

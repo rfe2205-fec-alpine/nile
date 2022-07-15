@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 function CarouselThumbnail({ imgUrl, setSelection }) {
   return (
-    <CarouselThumbnailContainer onClick={setSelection} imgUrl={imgUrl} />
+    <OverallContainer>
+      <CarouselThumbnailContainer onClick={setSelection} imgUrl={imgUrl} />
+    </OverallContainer>
   );
 }
 
@@ -13,6 +15,12 @@ const CarouselThumbnailContainer = styled.div`
   border: 1px solid black;
   background-image: url("${(props) => props.imgUrl}");
   background-size: cover;
+`;
+
+const OverallContainer = styled.div`
+  &:hover ${CarouselThumbnailContainer} {
+    cursor: default;
+  }
 `;
 
 export default CarouselThumbnail;

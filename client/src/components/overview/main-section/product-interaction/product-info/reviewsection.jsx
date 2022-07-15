@@ -17,14 +17,18 @@ function ReviewSection({ reviewScore, numberOfReviews }) {
 function ratingInStars(reviewScore) {
   let remainingScore = reviewScore;
   let redBaron = [];
+  let key = 200;
+
   for (let currentIndex = 0; currentIndex < 5; currentIndex++) {
+    key++;
+
     if (remainingScore < 0.5) {
-      redBaron.push(<BsStar />);
+      redBaron.push(<BsStar key={key} />);
     } else if (remainingScore < 1) {
-      redBaron.push(<BsStarHalf />);
+      redBaron.push(<BsStarHalf key={key} />);
       remainingScore -= 0.5;
     } else {
-      redBaron.push(<BsStarFill />);
+      redBaron.push(<BsStarFill key={key} />);
       remainingScore -= 1;
     }
   }

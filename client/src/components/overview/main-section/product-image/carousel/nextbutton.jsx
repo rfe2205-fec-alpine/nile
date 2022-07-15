@@ -1,16 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
+import { AiOutlineDown } from 'react-icons/ai';
 
-function NextButton() {
+function NextButton({ setSelection }) {
   return (
-    <NextButtonContainer>v</NextButtonContainer>
+    <NextButtonContainer>
+      <ActualNextButton onClick={setSelection}>
+        <AiOutlineDown color="#5d6699" />
+      </ActualNextButton>
+    </NextButtonContainer>
   );
 }
 
-const NextButtonContainer = styled.div`
+const ActualNextButton = styled.div`
   text-align: center;
-  font-size: 32px;
+  color: #5d6699;
+  font-size: 24px;
   font-weight: bolder;
+`;
+
+const NextButtonContainer = styled.div`
+  &:hover ${ActualNextButton} {
+    cursor: default;
+  }
 `;
 
 export default NextButton;
