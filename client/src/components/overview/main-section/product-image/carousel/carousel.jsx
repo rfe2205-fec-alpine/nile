@@ -6,15 +6,28 @@ import CarouselThumbnail from './carouselthumbnail.jsx';
 import CarouselSelectedThumbnail from './carouselselectedthumbnail.jsx';
 import NextButton from './nextbutton.jsx';
 
-function Carousel({ thumbnails, selection, setSelection, canGoForward, canGoBack, allPhotos }) {
+function Carousel({ thumbnails, selection, setSelection, canGoForward, canGoBack, allPhotos, isFullScreen }) {
   let key = 100;
 
-  const redBaron = thumbnails.map(function(thumbnail) {
+  const redBaron = thumbnails.map(function (thumbnail) {
     key++;
     if (thumbnail.thumbnail_url === selection.thumbnail_url) {
-      return <CarouselSelectedThumbnail key={key} imgUrl={thumbnail.thumbnail_url} />
+      return (
+        <CarouselSelectedThumbnail
+          key={key}
+          imgUrl={thumbnail.thumbnail_url}
+          isFullScreen={isFullScreen}
+        />
+      );
     } else {
-      return <CarouselThumbnail key={key} imgUrl={thumbnail.thumbnail_url} setSelection={() => setSelection([thumbnail, thumbnail.index])} />
+      return (
+        <CarouselThumbnail
+          key={key}
+          imgUrl={thumbnail.thumbnail_url}
+          setSelection={() => setSelection([thumbnail, thumbnail.index])}
+          isFullScreen={isFullScreen}
+        />
+      );
     }
   });
 
@@ -25,12 +38,24 @@ function Carousel({ thumbnails, selection, setSelection, canGoForward, canGoBack
   const previousButtonThumbnail = allPhotos[previousButtonIndex];
 
   const previousButton = canGoBack ?
-    <PreviousButton setSelection={() => setSelection([previousButtonThumbnail, previousButtonIndex])}/>
+    <PreviousButton setSelection={() => setSelection([previousButtonThumbnail, previousButtonIndex])} />
     : <div />;
 
   const nextButton = canGoForward ?
     <NextButton setSelection={() => setSelection([nextButtonThumbnail, nextButtonIndex])} />
     : <div />;
+
+  if (isFullScreen) {
+    return (
+      <FullScreenCarouselContainer>
+        {previousButton}
+        <CarouselItems>
+          {redBaron}
+        </CarouselItems>
+        {nextButton}
+      </FullScreenCarouselContainer>
+    );
+  }
 
   return (
     <CarouselContainer>
@@ -55,6 +80,15 @@ const CarouselContainer = styled.div`
   grid-template-rows: 20px, 1fr, 20px;
   width: 65px;
   height: 590px;
+  margin: 35px;
+`;
+
+const FullScreenCarouselContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 65px;
+  height: 300px;
   margin: 35px;
 `;
 

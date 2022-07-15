@@ -3,7 +3,14 @@ import styled from 'styled-components';
 
 const swissAlpsUrl = "https://miro.medium.com/max/1400/1*yweiw7AyafIdk0YKt4G03Q.jpeg";
 
-function CarouselSelectedThumbnail({ imgUrl }) {
+function CarouselSelectedThumbnail({ imgUrl, isFullScreen }) {
+  if (isFullScreen) {
+    return (
+      <FullScreenThumbnailContainer>
+        <CarouselThumbnailContainer imgUrl={imgUrl} />
+      </FullScreenThumbnailContainer>
+    );
+  }
   return (
     <SelectedThumbnailContainer>
       <CarouselThumbnailContainer imgUrl={imgUrl} />
@@ -26,6 +33,13 @@ const SelectedThumbnailContainer = styled.div`
   &:hover ${CarouselThumbnailContainer} {
     cursor: default;
   }
+`;
+
+const FullScreenThumbnailContainer = styled.div`
+  &:hover ${CarouselThumbnailContainer} {
+    cursor: default;
+  }
+  margin-bottom: 20px;
 `;
 
 const IsSelectedBar = styled.div`
