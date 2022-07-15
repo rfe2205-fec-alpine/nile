@@ -1,10 +1,16 @@
 import React from "react";
+import styled from "styled-components";
+
+const SearchBar = styled.input`
+  width: 100%;
+`;
 
 function SearchQuestions() {
   return (
-    <div class="searchrow">
-      <input type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
-    </div>
+    <SearchBar
+      type="text"
+      placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
+    />
   );
 }
 

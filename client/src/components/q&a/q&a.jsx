@@ -1,10 +1,11 @@
 import React from "react";
 import SearchQuestions from "./searchQuestions/searchQuestions.jsx";
 import QuestionList from "./questionList/questionList.jsx";
+import styled from "styled-components";
 
 function QAndA() {
   return (
-    <div class="QAndA">
+    <div>
       <h2>QUESTIONS & ANSWERS</h2>
       <SearchQuestions />
       <QuestionList dummyData={dummyData.results} />
