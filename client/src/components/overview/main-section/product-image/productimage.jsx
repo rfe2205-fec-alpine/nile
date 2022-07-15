@@ -38,7 +38,7 @@ function ProductImage({ photos }) {
   const [[selection, selectionIndex], setSelection] = useState([firstPhoto, 0]);
 
   const [isFullScreen, setFullScreen] = useState(false);
-  const [isZoomedIn, setZoomedIn] = useState(false);
+  const [[isZoomedIn, offSetX], setZoomedIn] = useState([false, 0]);
 
   if (!isFullScreen && isZoomedIn) {
     setZoomedIn(false);
@@ -81,8 +81,8 @@ function ProductImage({ photos }) {
           <ZoomedInImageContainer>
             <FullScreenImageContainer
               selectionImageUrl={finalSelection.thumbnail_url}
-              onClick={() => setZoomedIn(false)}
-              onMouseMove={() => console.log('moving the mickey!')}
+              onClick={() => setZoomedIn([false, 0])}
+              onMouseMove={(event) => console.log('off set x is', offSetX)}
             >
               <Carousel
                 thumbnails={photoList}
@@ -107,7 +107,7 @@ function ProductImage({ photos }) {
       <FullScreenDivContainer>
         <FullScreenImageContainer
           selectionImageUrl={finalSelection.thumbnail_url}
-          onClick={() => setZoomedIn(true)}
+          onClick={(event) => setZoomedIn([true, event.nativeEvent.offsetX])}
         >
           <Carousel
             thumbnails={photoList}
