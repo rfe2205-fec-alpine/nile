@@ -12,7 +12,7 @@ function enterFullScreenMode(callback) {
 }
 
 function exitFullScreenMode(callback) {
-  console.log('exiting full screen mode now');
+  // console.log('exiting full screen mode now');
   document.body.style.overflow = 'visible';
   callback();
 }
@@ -71,8 +71,8 @@ function ProductImage({ photos }) {
   const previousButton = selectionIndex === 0 ? <div /> : <PreviousImageButton currentIndex={selectionIndex} setSelection={setSelection} />;
   const nextButton = selectionIndex === photos.length - 1 ? <div /> : <NextImageButton currentIndex={selectionIndex} setSelection={setSelection} />;
 
-  console.log('is zoomed is', isZoomedIn);
-  console.log('is full screen is', isFullScreen);
+  // console.log('is zoomed is', isZoomedIn);
+  // console.log('is full screen is', isFullScreen);
 
   if (isFullScreen) {
     if (isZoomedIn) {
@@ -82,6 +82,7 @@ function ProductImage({ photos }) {
             <FullScreenImageContainer
               selectionImageUrl={finalSelection.thumbnail_url}
               onClick={() => setZoomedIn(false)}
+              onMouseMove={() => console.log('moving the mickey!')}
             >
               <Carousel
                 thumbnails={photoList}
