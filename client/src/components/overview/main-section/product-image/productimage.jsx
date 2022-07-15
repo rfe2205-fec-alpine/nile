@@ -12,6 +12,7 @@ function enterFullScreenMode(callback) {
 }
 
 function exitFullScreenMode(callback) {
+  console.log('exiting full screen mode now');
   document.body.style.overflow = 'visible';
   callback();
 }
@@ -36,7 +37,12 @@ function ProductImage({ photos }) {
   const firstPhoto = photos[0] || { thumbnail_url: '' };
   const [[selection, selectionIndex], setSelection] = useState([firstPhoto, 0]);
 
-  const [[isFullScreen, isZoomedIn], setFullScreen] = useState([false, false]);
+  const [isFullScreen, setFullScreen] = useState(false);
+  const [isZoomedIn, setZoomedIn] = useState(false);
+
+  if (!isFullScreen && isZoomedIn) {
+    setZoomedIn(false);
+  }
 
   const needsInitialProductImage = selection.thumbnail_url !== photos[selectionIndex].thumbnail_url;
 
@@ -65,6 +71,9 @@ function ProductImage({ photos }) {
   const previousButton = selectionIndex === 0 ? <div /> : <PreviousImageButton currentIndex={selectionIndex} setSelection={setSelection} />;
   const nextButton = selectionIndex === photos.length - 1 ? <div /> : <NextImageButton currentIndex={selectionIndex} setSelection={setSelection} />;
 
+  console.log('is zoomed is', isZoomedIn);
+  console.log('is full screen is', isFullScreen);
+
   if (isFullScreen) {
     if (isZoomedIn) {
       return (
@@ -72,7 +81,7 @@ function ProductImage({ photos }) {
           <ZoomedInImageContainer>
             <FullScreenImageContainer
               selectionImageUrl={finalSelection.thumbnail_url}
-              onClick={() => setFullScreen([true, false])}
+              onClick={() => setZoomedIn(false)}
             >
               <Carousel
                 thumbnails={photoList}
@@ -86,7 +95,7 @@ function ProductImage({ photos }) {
               {previousButton}
               {nextButton}
               <FullScreenButton
-                setFullScreen={() => exitFullScreenMode(() => setFullScreen([false, false]))}
+                setFullScreen={() => exitFullScreenMode(() => setFullScreen(false))}
               />
             </FullScreenImageContainer>
           </ZoomedInImageContainer>
@@ -97,7 +106,7 @@ function ProductImage({ photos }) {
       <FullScreenDivContainer>
         <FullScreenImageContainer
           selectionImageUrl={finalSelection.thumbnail_url}
-          onClick={() => setFullScreen([true, true])}
+          onClick={() => setZoomedIn(true)}
         >
           <Carousel
             thumbnails={photoList}
@@ -111,7 +120,7 @@ function ProductImage({ photos }) {
           {previousButton}
           {nextButton}
           <FullScreenButton
-            setFullScreen={() => exitFullScreenMode(() => setFullScreen([false, false]))}
+            setFullScreen={() => exitFullScreenMode(() => setFullScreen(false))}
           />
         </FullScreenImageContainer>
       </FullScreenDivContainer>
@@ -122,7 +131,7 @@ function ProductImage({ photos }) {
     <DivContainer>
       <ProductImageContainer
         selectionImageUrl={finalSelection.thumbnail_url}
-        onClick={() => enterFullScreenMode(() => setFullScreen([true, false]))}
+        onClick={() => enterFullScreenMode(() => setFullScreen(true))}
       >
         <Carousel
           thumbnails={photoList}
