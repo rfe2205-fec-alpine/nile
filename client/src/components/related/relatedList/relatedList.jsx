@@ -2,11 +2,11 @@ import React from 'react';
 import RelatedCard from './relatedCard.jsx';
 import styled from 'styled-components';
 
-function RelatedList({productList}) {
+function RelatedList({productList, defaultData}) {
   return (
     <CardList>
       {productList.map((product) => {
-      return <RelatedCard key={product.id} product={product} />
+      return <RelatedCard key={product.id} product={product} defaultData={defaultData} />
     }
   )}
     </CardList>

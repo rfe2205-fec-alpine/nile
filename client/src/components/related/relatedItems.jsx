@@ -11,34 +11,47 @@ const { GITHUB_API_KEY } = require('../../../../config.js');
 
 function RelatedItems() {
   const [productList, setProductList] = useState(null);
+  const [defaultData, setDefaultData] = useState(null);
   const [productId, setProductId] = useContext(ProductContext);
 
   useEffect(() => {
     axios({
       method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}/related`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}`,
       headers: {
         Authorization: GITHUB_API_KEY,
       },
     })
-      .then((related) => {
-        console.log('this is current item: 🦠', productId, 'this is related: 💈', related.data);
-        Promise.all(
-          related.data.map((relatedList) => {
-            return axios({
-              method: 'get',
-              url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${relatedList}`,
-              headers: {
-                Authorization: GITHUB_API_KEY,
-              },
-            })
-            .then((data) => {
-              return data.data;
-            })
-          }),
-        )
-          .then((data) => {
-            setProductList(data);
+      .then((data) => {
+        setDefaultData(() => (data.data));
+        axios({
+          method: 'get',
+          url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}/related`,
+          headers: {
+            Authorization: GITHUB_API_KEY,
+          },
+        })
+          .then((related) => {
+            Promise.all(
+              related.data.map((relatedList) => {
+                return axios({
+                  method: 'get',
+                  url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${relatedList}`,
+                  headers: {
+                    Authorization: GITHUB_API_KEY,
+                  },
+                })
+                .then((data) => {
+                  return data.data;
+                })
+              }),
+            )
+              .then((data) => {
+                setProductList(() => (data));
+              })
+              .catch((err) => {
+                console.log(err);
+              });
           })
           .catch((err) => {
             console.log(err);
@@ -50,12 +63,15 @@ function RelatedItems() {
   }, [productId]);
 
   if (!productList) {
-    return;
+    return null;
+  }
+  if (!defaultData) {
+    return null;
   }
   return (
     <div>
       <RelatedProducts />
-      <RelatedList productList={productList} />
+      <RelatedList productList={productList} defaultData={defaultData} />
       <Outfit />
       <OutfitList />
     </div>

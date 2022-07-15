@@ -4,12 +4,11 @@ import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
 import ProductContext from '../../../ProductContext.jsx';
 
-function Comparison({product}) {
-  console.log(product);
-  const [productId] = useContext(ProductContext);
+function Comparison({product, defaultData}) {
+  const combineFeatures = product.features.concat(defaultData.features);
   return (
     <div>
-      <StarButton onClick={() => { console.log('clicked', product, productId); }} />
+      <StarButton onClick={() => { console.log('clicked product: 💊 ', combineFeatures); }} />
     </div>
   );
 }

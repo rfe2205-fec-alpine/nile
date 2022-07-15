@@ -17,7 +17,7 @@ function GetStyles({product}) {
       },
     })
       .then((data) => {
-        useProductImage(data.data.results);
+        useProductImage(() => (data.data.results));
       })
       .catch();
   }, []);
