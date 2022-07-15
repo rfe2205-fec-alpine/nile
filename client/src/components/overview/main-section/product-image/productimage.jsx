@@ -108,8 +108,13 @@ function ProductImage({ photos }) {
     return (
       <FullScreenDivContainer>
         <FullScreenImageContainer
+          id="fullScreenImage"
           selectionImageUrl={finalSelection.thumbnail_url}
-          onClick={(event) => setZoomedIn([true, event.nativeEvent.offsetX, event.nativeEvent.offsetY])}
+          onClick={(event) => {
+            if (event.target.id === 'fullScreenImage') {
+              setZoomedIn([true, event.nativeEvent.offsetX, event.nativeEvent.offsetY]);
+            }
+          }}
         >
           <Carousel
             thumbnails={photoList}
