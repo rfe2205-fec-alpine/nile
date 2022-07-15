@@ -169,6 +169,9 @@ const ProductImageContainer = styled.div`
 `;
 
 const FullScreenImageContainer = styled(ProductImageContainer)`
+  &:hover ${ProductImageContainer} {
+    transform: scale(${(props) => props.nextScale});
+  }
   position: absolute;
   z-index: 15;
   left: 0px;
@@ -193,6 +196,7 @@ const FullScreenDivContainer = styled.div`
 const ZoomedInImageContainer = styled.div`
   &:hover ${FullScreenImageContainer} {
     cursor: help;
+    transform: scale(2.5);
   }
 `;
 
