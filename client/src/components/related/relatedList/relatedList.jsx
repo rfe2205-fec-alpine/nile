@@ -1,16 +1,21 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
 import RelatedCard from './relatedCard.jsx';
+import styled from 'styled-components';
 
-function RelatedList({productList}) {
+function RelatedList({productList, defaultData}) {
   return (
-    <div>
+    <CardList>
       {productList.map((product) => {
-      return <RelatedCard key={product.id} product={product} />
+      return <RelatedCard key={product.id} product={product} defaultData={defaultData} />
     }
   )}
-    </div>
+    </CardList>
   );
 }
+const CardList = styled.div`
+  display: flex;
+  gap: 1rem;
+  padding: 0.25rem;
+`;
 
 export default RelatedList;

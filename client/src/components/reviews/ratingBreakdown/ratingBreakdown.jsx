@@ -6,9 +6,11 @@ import Breakdown from './breakdown.jsx';
 import ProductBreakdown from './product-breakdown.jsx';
 import { GITHUB_API_KEY } from '../../../../../config.js';
 import ProductContext from '../../../ProductContext.jsx';
+import ReviewAmountContext from '../reviewAmountContext.jsx';
 
 function RatingBreakdown() {
   const [productID] = useContext(ProductContext);
+  const [, changeReviewAmount] = useContext(ReviewAmountContext);
   const [reviewData, setReviewData] = useState(null);
 
   useEffect(() => {
@@ -23,6 +25,7 @@ function RatingBreakdown() {
       },
     }).then((res) => {
       setReviewData(res.data);
+      changeReviewAmount(parseInt(res.data.recommended.true, 10) + parseInt(res.data.recommended.false, 10));
     }).catch((err) => { console.log(err); });
   }, [productID]);
 
@@ -35,13 +38,12 @@ function RatingBreakdown() {
       <h3>RATINGS AND REVIEWS</h3>
       <Summary ratings={reviewData.ratings} recommended={reviewData.recommended} />
       <ProductBreakdown ratings={reviewData.ratings} />
-      <Breakdown />
+      <Breakdown characteristics={reviewData.characteristics} />
     </RatingBreakdownWrapper>
   );
 }
 
 const RatingBreakdownWrapper = styled.div`
-  border: 1px solid red;
   padding 20px;
   margin 5px;
 `;

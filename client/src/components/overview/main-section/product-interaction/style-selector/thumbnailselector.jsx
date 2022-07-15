@@ -6,14 +6,17 @@ import SelectedThumbnail from './selectedthumbnail.jsx';
 function ThumbnailSelector({ styles, selectionId, setSelection, height }) {
   let styleList = styles || [];
 
-  console.log('style list is', styleList);
+  // console.log('style list is', styleList);
+
+  let key = 400;
 
   let redBaron = styleList.map(function(style) {
+    key++;
     let imgUrl = style.photos[0].thumbnail_url;
     if (style.style_id === selectionId) {
-      return <SelectedThumbnail imgUrl={imgUrl} />
+      return <SelectedThumbnail key={key} imgUrl={imgUrl} />
     } else {
-      return <Thumbnail imgUrl={imgUrl} setSelection={() => setSelection(style)} />
+      return <Thumbnail key={key} imgUrl={imgUrl} setSelection={() => setSelection(style)} />
     }
   });
 
@@ -22,7 +25,8 @@ function ThumbnailSelector({ styles, selectionId, setSelection, height }) {
   let fillerDivs = [];
 
   for (let currentIndex = 0; currentIndex < remainingColumns; currentIndex++) {
-    fillerDivs.push(<div />);
+    key++;
+    fillerDivs.push(<div key={key} />);
   }
 
   // console.log(redBaron.length);

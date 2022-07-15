@@ -1,16 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
+import { AiOutlineUp } from 'react-icons/ai';
 
-function PreviousButton() {
+function PreviousButton({ setSelection }) {
   return (
-    <PreviousButtonContainer>v</PreviousButtonContainer>
+    <PreviousButtonContainer>
+      <ActualPreviousButton onClick={setSelection}>
+        <AiOutlineUp color="#5d6699" />
+      </ActualPreviousButton>
+    </PreviousButtonContainer>
   );
 }
 
-const PreviousButtonContainer = styled.div`
+const ActualPreviousButton = styled.div`
   text-align: center;
-  font-size: 32px;
+  color: #5d6699;
+  font-size: 24px;
   font-weight: bolder;
+`;
+
+const PreviousButtonContainer = styled.div`
+  &:hover ${ActualPreviousButton} {
+    cursor: default;
+  }
 `;
 
 export default PreviousButton;

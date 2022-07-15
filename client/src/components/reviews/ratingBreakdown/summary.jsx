@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import QuarterStars from '../../../starRatingFunction.jsx';
 
 function Summary( {ratings, recommended} ) {
   /* Calculates the average score from all reviews for this product */
@@ -15,7 +16,10 @@ function Summary( {ratings, recommended} ) {
 
   return (
     <SummaryWrapper>
-      <h1>{averageRating}</h1>
+      <NumberAndStarsWrapper>
+        <h1>{averageRating}</h1>
+        <QuarterStars rating={averageRating} />
+      </NumberAndStarsWrapper>
       <h3>
         {percentRecommended}
         % of reviews recommend this product
@@ -25,9 +29,15 @@ function Summary( {ratings, recommended} ) {
 }
 
 const SummaryWrapper = styled.div`
-  border: 1px solid red;
   padding 5px;
   margin 5px;
+  border: 1px solid red;
+`;
+
+const NumberAndStarsWrapper = styled.div`
+display: flex;
+align-items: center;
+
 `;
 
 export default Summary;

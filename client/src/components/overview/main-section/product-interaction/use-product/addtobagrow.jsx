@@ -3,10 +3,22 @@ import styled from 'styled-components';
 import AddToBag from './addtobag.jsx';
 // import Favorite from './favorite.jsx';
 
-function AddToBagRow({ container }) {
+function AddToBagRow({ container, sizesInStock, sizeSelected, qtySelected, selectedStyle, nameOfProduct }) {
+  let outOfStock = sizesInStock.length === 0;
+
+  if (outOfStock) {
+    return <div />;
+  }
+
   return (
     <AddToBagRowContainer>
-      <AddToBag container={container} />
+      <AddToBag
+        container={container}
+        sizeSelected={sizeSelected}
+        qtySelected={qtySelected}
+        selectedStyle={selectedStyle}
+        nameOfProduct={nameOfProduct}
+      />
     </AddToBagRowContainer>
   );
 }

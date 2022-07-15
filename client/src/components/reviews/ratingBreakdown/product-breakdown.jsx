@@ -9,13 +9,13 @@ function ProductBreakdown({ ratings }) {
     return ((amount / total) * 100);
   }
   return (
-    <ProductBrewkdownWrapper>
+    <ProductBreakdownWrapper>
       <ProgressBar progress={getPercentRating(ratings['5'], ratingsSum)} starRating="Five" />
       <ProgressBar progress={getPercentRating(ratings['4'], ratingsSum)} starRating="Four" />
       <ProgressBar progress={getPercentRating(ratings['3'], ratingsSum)} starRating="Three" />
       <ProgressBar progress={getPercentRating(ratings['2'], ratingsSum)} starRating="Two" />
       <ProgressBar progress={getPercentRating(ratings['1'], ratingsSum)} starRating="One" />
-    </ProductBrewkdownWrapper>
+    </ProductBreakdownWrapper>
   );
 }
 
@@ -51,8 +51,7 @@ function ProgressBar({ progress, starRating }) {
   );
 }
 
-const ProductBrewkdownWrapper = styled.div`
-border: 1px solid red;
+const ProductBreakdownWrapper = styled.div`
 padding 0px;
 margin 5px;
 `;

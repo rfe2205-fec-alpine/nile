@@ -1,13 +1,43 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import ReviewAmountContext from '../reviewAmountContext.jsx';
 
-function SortReviews() {
+function SortReviews({ change, reviewQuery }) {
   return (
     <SortReviewsWrapper>
-      <h4>Sort Bar</h4>
+      <ReviewCount />
+      <SortBar changeQuery={change} query={reviewQuery} />
     </SortReviewsWrapper>
   );
 }
+
+function ReviewCount({ amount }) {
+  const [reviewAmount] = useContext(ReviewAmountContext);
+  return (
+    <h5>Total reviews: {reviewAmount}</h5>
+  );
+}
+
+function SortBar({ changeQuery, query }) {
+  console.log('changequery: ', changeQuery, 'query: ', query);
+  const divWrapper = {
+    position: 'relative',
+    display: 'inline-block',
+  };
+
+  return (
+    <div style={divWrapper}>
+      <button type="submit">{query}</button>
+      <div>
+        <div value="Helpful" onClick={() => {changeQuery('helpful')}}>Helpful</div>
+        <div value="Newest" onClick={() => {changeQuery('newest')}}> Newest </div>
+        <div value="Relevant" onClick={() => {changeQuery('relevant')}}>Relevant</div>
+      </div>
+    </div>
+  );
+}
+
+//onClick={changeQuery('helpful')}
 
 const SortReviewsWrapper = styled.div`
   border: 1px solid red;

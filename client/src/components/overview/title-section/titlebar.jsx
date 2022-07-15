@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import logo from '../img/logo.jpg';
 // import SearchBar from './searchbar.jsx';
 
-function TitleBar() {
+function TitleBar({ colorScheme }) {
+  console.log('color scheme is', colorScheme);
   return (
-    <TitleContainer>
+    <TitleContainer bgColor={colorScheme.primaryColor}>
       <div></div>
       <img src={logo} height="75" />
       <Title>Nile</Title>
@@ -16,7 +17,7 @@ function TitleBar() {
 const TitleContainer = styled.div`
   display: grid;
   grid-template-columns: 25px 5.6fr 5fr 2fr;
-  background-color: #5d6699;
+  background-color: ${(props) => props.bgColor};
   align-self: stretch;
 `;
 

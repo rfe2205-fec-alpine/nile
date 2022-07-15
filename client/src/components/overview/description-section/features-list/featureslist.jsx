@@ -8,8 +8,10 @@ function FeaturesList({ features }) {
 
   let featuresList = features || [];
 
+  let key = 0;
   let redBaron = featuresList.map(function(entry) {
-    return <Feature feature={entry.feature} value={entry.value} />
+    key++;
+    return <Feature feature={entry.feature} key={key} value={entry.value} />
   });
 
   return (

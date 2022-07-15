@@ -1,28 +1,32 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import RelatedProducts from './relatedList/relatedProducts.jsx';
 import Outfit from './outfitList/outfit.jsx';
 import OutfitList from './outfitList/outfitList.jsx';
 import RelatedList from './relatedList/relatedList.jsx';
+import ProductContext from '../../ProductContext.jsx';
 
 const axios = require('axios');
 const { GITHUB_API_KEY } = require('../../../../config.js');
 
 function RelatedItems() {
   const [productList, setProductList] = useState(null);
+  const [defaultData, setDefaultData] = useState(null);
+  const [productId, setProductId] = useContext(ProductContext);
 
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}`,
       headers: {
         Authorization: GITHUB_API_KEY,
       },
     })
-      .then((products) => {
+      .then((data) => {
+        setDefaultData(() => (data.data));
         axios({
           method: 'get',
-          url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${products.data[0].id}/related`,
+          url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}/related`,
           headers: {
             Authorization: GITHUB_API_KEY,
           },
@@ -43,7 +47,7 @@ function RelatedItems() {
               }),
             )
               .then((data) => {
-                setProductList(data);
+                setProductList(() => (data));
               })
               .catch((err) => {
                 console.log(err);
@@ -56,15 +60,18 @@ function RelatedItems() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [productId]);
 
   if (!productList) {
+    return null;
+  }
+  if (!defaultData) {
     return null;
   }
   return (
     <div>
       <RelatedProducts />
-      <RelatedList productList={productList} />
+      <RelatedList productList={productList} defaultData={defaultData} />
       <Outfit />
       <OutfitList />
     </div>
