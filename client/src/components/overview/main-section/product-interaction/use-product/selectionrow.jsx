@@ -3,11 +3,23 @@ import styled from 'styled-components';
 import SelectSize from './selectsize.jsx';
 import Qty from './qty.jsx';
 
-function SelectionRow(props) {
+function SelectionRow({ container, sizeSelected, setSizeSelection,
+  listOfSizes, stock, qtySelected, setQtySelected, qtyInStock }) {
   return (
     <SelectionRowContainer>
-      <SelectSize container={props.container} />
-      <Qty container={props.container} />
+      <SelectSize
+        container={container}
+        sizeSelected={sizeSelected}
+        setSizeSelection={setSizeSelection}
+        listOfSizes={listOfSizes}
+        stock={stock}
+      />
+      <Qty
+        container={container}
+        qtySelected={qtySelected}
+        setQtySelected={setQtySelected}
+        qtyInStock={qtyInStock}
+      />
     </SelectionRowContainer>
   );
 }

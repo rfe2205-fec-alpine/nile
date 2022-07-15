@@ -4,10 +4,7 @@ import Carousel from './carousel/carousel.jsx';
 import PreviousImageButton from './previousimagebutton.jsx';
 import NextImageButton from './nextimagebutton.jsx';
 
-let firstThumbnailOfCurrentList = '';
-
 function setInitialProductImage(photo, selectionIndex, setSelection) {
-  firstThumbnailOfCurrentList = photo.thumbnail_url;
   setSelection([photo, selectionIndex]);
 }
 
@@ -21,43 +18,50 @@ function addIndexesToPhotos(photos) {
 }
 
 function ProductImage({ photos }) {
-  const photoList = photos || [];
-  addIndexesToPhotos(photoList);
+  addIndexesToPhotos(photos);
   // console.log('indexed photos', photoList);
 
-  const firstPhoto = photoList[0] || { thumbnail_url: '' };
+  const firstPhoto = photos[0] || { thumbnail_url: '' };
   const [[selection, selectionIndex], setSelection] = useState([firstPhoto, 0]);
 
-  const hasNoInitialImage = firstPhoto.thumbnail_url !== '' && selection.thumbnail_url === '';
-  const newStyleListHasLoaded = photoList[selectionIndex].thumbnail_url !== firstThumbnailOfCurrentList && firstThumbnailOfCurrentList !== '';
-
-  const needsInitialProductImage = hasNoInitialImage || newStyleListHasLoaded;
+  const needsInitialProductImage = selection.thumbnail_url !== photos[selectionIndex].thumbnail_url;
 
   if (needsInitialProductImage) {
     // console.log('Style change imminent: selection index is', selectionIndex);
-    if (selectionIndex >= photoList.length) {
-      setInitialProductImage(photoList[0], 0, setSelection);
+    if (selectionIndex >= photos.length) {
+      setInitialProductImage(photos[0], 0, setSelection);
     } else {
-      setInitialProductImage(photoList[selectionIndex], selectionIndex, setSelection);
+      setInitialProductImage(photos[selectionIndex], selectionIndex, setSelection);
     }
   }
+
+  const carouselIndexStart = (Math.floor(selectionIndex / 7)) * 7;
+  const carouselIndexEnd = carouselIndexStart + 7 >= photos.length ? photos.length : carouselIndexStart + 7;
+
+  // console.log('carousel start', carouselIndexStart);
+  // console.log('carousel end', carouselIndexEnd);
+
+  const canGoForward = carouselIndexEnd < photos.length;
+  const canGoBack = carouselIndexStart >= 7;
+
+  const photoList = photos.slice(carouselIndexStart, carouselIndexEnd);
 
   const finalSelection = selection || photos[selectionIndex];
 
   const previousButton = selectionIndex === 0 ? <div /> : <PreviousImageButton currentIndex={selectionIndex} setSelection={setSelection} />;
-  const nextButton = selectionIndex === photoList.length - 1 ? <div /> : <NextImageButton currentIndex={selectionIndex} setSelection={setSelection} />;
+  const nextButton = selectionIndex === photos.length - 1 ? <div /> : <NextImageButton currentIndex={selectionIndex} setSelection={setSelection} />;
 
   return (
     <DivContainer>
       <ProductImageContainer selectionImageUrl={finalSelection.thumbnail_url}>
-        <Carousel thumbnails={photoList} selection={finalSelection} setSelection={setSelection} />
+        <Carousel thumbnails={photoList} selection={finalSelection} setSelection={setSelection}
+        canGoForward={canGoForward} canGoBack={canGoBack} allPhotos={photos} />
         {previousButton}
         {nextButton}
       </ProductImageContainer>
     </DivContainer>
   );
 }
-// const imageHeight = '625px';
 
 const ProductImageContainer = styled.div`
   position: relative;

@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import ProductContext from '../../../ProductContext.jsx';
 import ProductImage from './product-image/productimage.jsx';
 import ProductInteraction from './product-interaction/productinteraction.jsx';
 
+let firstStyle = { style_id: -1 };
+
 function setInitialStyleSelection(styleList, setSelection) {
+  // console.log('entering set initial style selection');
   const initialStyle = styleList[0];
+  firstStyle = initialStyle;
   setSelection(initialStyle);
 }
 
@@ -23,11 +28,17 @@ function MainSection({ data, height }) {
     photos: [''],
   };
 
+  // console.log('selectedStyle is', selectedStyle);
+
   const [styleSelected, setSelection] = useState(selectedStyle);
 
-  const selectedStyleIsEmpty = styleSelected.name === '' && styleSelected.style_id === 0;
+  // console.log('styleSelected is', styleSelected);
+  // console.log('name is', styleSelected.name);
 
-  const needsInitialStyleSelection = styles.length !== 0 && selectedStyleIsEmpty;
+  const selectedStyleIsEmpty = styleSelected.name === '' && styleSelected.style_id === 0;
+  const productHasChanged = styles[0].style_id !== firstStyle.style_id;
+
+  const needsInitialStyleSelection = (styles.length !== 0 && selectedStyleIsEmpty) || productHasChanged;
 
   if (needsInitialStyleSelection) {
     setInitialStyleSelection(styles, setSelection);
