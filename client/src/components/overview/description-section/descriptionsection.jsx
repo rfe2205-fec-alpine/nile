@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import ProductDescription from './product-description/productdescription.jsx';
 import FeaturesList from './features-list/featureslist.jsx';
 
-function DescriptionSection({ data }) {
+function DescriptionSection({ data, colorScheme }) {
   // console.log('description section data');
   // console.log(data);
+
+  console.log('color scheme in description section is', colorScheme);
 
   const descriptionData = {
     catchphrase: data.slogan,
@@ -13,8 +15,8 @@ function DescriptionSection({ data }) {
   };
 
   return (
-    <DescriptionSectionContainer>
-      <ProductDescription data={descriptionData} />
+    <DescriptionSectionContainer primaryColor={colorScheme.primaryColor}>
+      <ProductDescription data={descriptionData} colorScheme={colorScheme} />
       <FeaturesList features={data.features} />
     </DescriptionSectionContainer>
   );
@@ -23,7 +25,8 @@ function DescriptionSection({ data }) {
 const DescriptionSectionContainer = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;
-  background-color: #5d6699;
+  background-color: ${(props) => props.primaryColor};
+  border-top: 0px solid ${(props) => props.primaryColor};
   height: 300px;
 `;
 

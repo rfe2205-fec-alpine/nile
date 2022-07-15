@@ -1,18 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
+import { AiOutlineClose } from 'react-icons/ai';
 
-function FullScreenButton() {
+function FullScreenButton({ setFullScreen }) {
   return (
-    <FullScreenButtonContainer>[]</FullScreenButtonContainer>
+    <FullScreenExitButtonContainer>
+      <FullScreenButtonContainer onClick={setFullScreen}>
+        <AiOutlineClose />
+      </FullScreenButtonContainer>
+    </FullScreenExitButtonContainer>
   );
 }
 
 const FullScreenButtonContainer = styled.div`
-  padding-top: 25px;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  position: absolute;
+  right: 35px;
+  top: 35px;
   font-size: 32px;
   font-weight: bolder;
+`;
+
+const FullScreenExitButtonContainer = styled.div`
+  &:hover ${FullScreenButtonContainer} {
+    cursor: default;
+  }
 `;
 
 export default FullScreenButton;

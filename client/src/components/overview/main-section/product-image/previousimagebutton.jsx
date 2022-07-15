@@ -4,9 +4,9 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 function PreviousImageButton({ currentIndex, setSelection }) {
   return (
-    <PreviousImageButtonContainer onClick={() => setSelection([false, currentIndex - 1])}>
+    <PreviousImageButtonContainer>
       <PreviousImageActualButton>
-        <AiOutlineArrowLeft />
+        <AiOutlineArrowLeft onClick={() => setSelection([false, currentIndex - 1])} />
       </PreviousImageActualButton>
     </PreviousImageButtonContainer>
   );
@@ -16,6 +16,7 @@ const PreviousImageActualButton = styled.div`
   font-size: 32px;
   font-weight: bolder;
   color: #CCC;
+  width: 32px;
 `;
 
 const PreviousImageButtonContainer = styled.div`

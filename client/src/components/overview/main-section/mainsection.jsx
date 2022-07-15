@@ -13,12 +13,12 @@ function setInitialStyleSelection(styleList, setSelection) {
   setSelection(initialStyle);
 }
 
-function MainSection({ data, height }) {
+function MainSection({ data, height, colorScheme }) {
   const styles = data.styles || [];
   const numberOfStyles = styles.length;
   const heightOfStyleList = (((numberOfStyles / 4) + 2) * (66 + 29));
-  // console.log('data in main is');
-  // console.log(data);
+  console.log('data in main is');
+  console.log(data);
 
   // console.log('styles list is', styles);
 
@@ -45,7 +45,7 @@ function MainSection({ data, height }) {
   }
 
   return (
-    <Main height={height}>
+    <Main height={height} colorScheme={colorScheme}>
       <ProductImage photos={styleSelected.photos} />
       <ProductInteraction data={data} selectedStyle={styleSelected} setSelection={setSelection} height={heightOfStyleList} />
     </Main>
@@ -55,7 +55,7 @@ function MainSection({ data, height }) {
 const Main = styled.div`
   display: grid;
   grid-template-columns: 3.32fr 2fr;
-  background-color: #CCC;
+  background-color: ${(props) => props.colorScheme.secondaryColor};
   height: ${(props) => props.height}px;
 `;
 
