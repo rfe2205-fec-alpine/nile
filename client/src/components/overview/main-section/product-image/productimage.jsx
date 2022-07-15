@@ -5,6 +5,8 @@ import PreviousImageButton from './previousimagebutton.jsx';
 import NextImageButton from './nextimagebutton.jsx';
 import FullScreenButton from './fullscreenbutton.jsx';
 
+import minusSignIcon from '../../img/minus-sign-2-16.png';
+
 function enterFullScreenMode(callback) {
   window.scrollTo(0, 0);
   document.body.style.overflow = 'hidden';
@@ -78,7 +80,7 @@ function ProductImage({ photos }) {
 
   if (isFullScreen) {
     if (isZoomedIn) {
-      let xAmountChange = ((xPosition - mouseClickPositionX) / mouseClickPositionX) * 1000;
+      let xAmountChange = ((xPosition - mouseClickPositionX) / mouseClickPositionX) * 100;
       let yAmountChange = ((yPosition - mouseClickPositionY) / mouseClickPositionY) * 100;
 
       let newXPosition = ((xPosition) / widthOfElement) * 100;
@@ -96,8 +98,8 @@ function ProductImage({ photos }) {
       //   newXPosition = widthOfElement;
       // }
 
-      console.log('newXPosition is', newXPosition);
-      console.log('newYPosition is', newYPosition);
+      // console.log('newXPosition is', newXPosition);
+      // console.log('newYPosition is', newYPosition);
 
       const newPosition = `${newXPosition}% ${newYPosition}%`;
 
@@ -114,22 +116,7 @@ function ProductImage({ photos }) {
                 setZoomedIn([true, event.nativeEvent.offsetX, event.nativeEvent.offsetY,
                   widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY]);
               }}
-            >
-              <Carousel
-                thumbnails={photoList}
-                selection={finalSelection}
-                setSelection={setSelection}
-                canGoForward={canGoForward}
-                canGoBack={canGoBack}
-                allPhotos={photos}
-                isFullScreen={isFullScreen}
-              />
-              {previousButton}
-              {nextButton}
-              <FullScreenButton
-                setFullScreen={() => exitFullScreenMode(() => setFullScreen(false))}
-              />
-            </FullScreenImageContainer>
+            />
           </ZoomedInImageContainer>
         </FullScreenDivContainer>
       );
@@ -233,9 +220,12 @@ const FullScreenDivContainer = styled.div`
 
 const ZoomedInImageContainer = styled.div`
   &:hover ${FullScreenImageContainer} {
-    cursor: help;
-    transform: scale(2.5);
+    cursor: url("client/src/components/overview/img/minus-sign-2-16.png"), zoom-out;
+    height: 250%;
+    width: 250%;
   }
 `;
 
 export default ProductImage;
+
+//'client/src/components/overview/img/minus-sign-2-16.png'
