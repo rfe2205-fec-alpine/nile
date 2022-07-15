@@ -68,6 +68,8 @@ function ProductImage({ photos }) {
 
   const finalSelection = selection || photos[selectionIndex];
 
+  const sideButtonClick = (callbackValues) => exitFullScreenMode(() => setSelection(callbackValues));
+
   const previousButton = selectionIndex === 0 ? <div /> : <PreviousImageButton currentIndex={selectionIndex} setSelection={setSelection} />;
   const nextButton = selectionIndex === photos.length - 1 ? <div /> : <NextImageButton currentIndex={selectionIndex} setSelection={setSelection} />;
 
@@ -132,7 +134,12 @@ function ProductImage({ photos }) {
     <DivContainer>
       <ProductImageContainer
         selectionImageUrl={finalSelection.thumbnail_url}
-        onClick={() => enterFullScreenMode(() => setFullScreen(true))}
+        id="productImage"
+        onClick={(event) => {
+          if (event.target.id === 'productImage') {
+            enterFullScreenMode(() => setFullScreen(true));
+          }
+        }}
       >
         <Carousel
           thumbnails={photoList}

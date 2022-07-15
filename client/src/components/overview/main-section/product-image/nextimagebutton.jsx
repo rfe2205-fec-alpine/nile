@@ -4,8 +4,8 @@ import { AiOutlineArrowRight } from 'react-icons/ai';
 
 function NextImageButton({ currentIndex, setSelection }) {
   return (
-    <NextImageButtonContainer onClick={() => setSelection([false, currentIndex + 1])}>
-      <NextImageActualButton>
+    <NextImageButtonContainer>
+      <NextImageActualButton onClick={() => setSelection([false, currentIndex + 1])}>
         <AiOutlineArrowRight />
       </NextImageActualButton>
     </NextImageButtonContainer>
