@@ -1,7 +1,6 @@
 import React from 'react';
-// import styled from 'styled-components';
 
-function QuarterStars(props) {
+function QuarterStars({ rating = 0 }) {
   const SingleStarContainer = {
     height: '20px',
     width: '18px',
@@ -11,8 +10,9 @@ function QuarterStars(props) {
     height: '20px',
     width: '18px',
   };
-
-  let rating = props.rating || 0;
+  const WrapperDiv = {
+    width: '100%',
+  };
   const stars = [];
   while (stars.length < 5) {
     if (rating > 1) {
@@ -52,7 +52,7 @@ function QuarterStars(props) {
   }
 
   return (
-    <div>
+    <div style={WrapperDiv}>
       {stars.map((item) => {
         const SingleStarFill = {
           position: 'relative',
