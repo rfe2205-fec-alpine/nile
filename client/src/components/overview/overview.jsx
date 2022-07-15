@@ -34,8 +34,8 @@ function Overview() {
   return (
     <OverviewComponent title={heightOfTitle} main={heightOfMain} description={heightOfDescription}>
       <TitleSection colorScheme={colorScheme} />
-      <MainSection data={mainSectionData} height={heightOfMain} />
-      <DescriptionSection data={descriptionSectionData} />
+      <MainSection data={mainSectionData} height={heightOfMain} colorScheme={colorScheme} />
+      <DescriptionSection data={descriptionSectionData} colorScheme={colorScheme} />
     </OverviewComponent>
   );
 }

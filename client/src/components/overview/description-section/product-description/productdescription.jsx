@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import Slogan from './slogan.jsx';
 import Description from './description.jsx';
 
-function ProductDescription({ data }) {
+function ProductDescription({ data, colorScheme }) {
   // console.log('data in product description section');
   // console.log(data);
 
   return (
-    <ProductDescriptionContainer>
+    <ProductDescriptionContainer secondaryColor={colorScheme.secondaryColor}>
       <Slogan catchphrase={data.catchphrase} />
       <Description description={data.description} />
     </ProductDescriptionContainer>
@@ -18,7 +18,7 @@ function ProductDescription({ data }) {
 const ProductDescriptionContainer = styled.div`
   display: grid;
   grid-template-rows: 1fr 2fr;
-  background-color: #CCC;
+  background-color: ${(props) => props.secondaryColor};
   background-size: contain;
   background-repeat: no-repeat;
   padding-top: 60px;
