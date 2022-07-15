@@ -71,7 +71,6 @@ function CharacterBar({ wide, quality }) {
 }
 
 const BreakdownWrapper = styled.div`
-border: 1px solid red;
 padding 0px;
 margin 5px;
 `;
