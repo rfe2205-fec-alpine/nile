@@ -38,10 +38,10 @@ function ProductImage({ photos }) {
   const [[selection, selectionIndex], setSelection] = useState([firstPhoto, 0]);
 
   const [isFullScreen, setFullScreen] = useState(false);
-  const [[isZoomedIn, offSetX], setZoomedIn] = useState([false, 0]);
+  const [[isZoomedIn, offSetX, offSetY], setZoomedIn] = useState([false, 0, 0]);
 
   if (!isFullScreen && isZoomedIn) {
-    setZoomedIn(false);
+    setZoomedIn([false, 0, 0]);
   }
 
   const needsInitialProductImage = selection.thumbnail_url !== photos[selectionIndex].thumbnail_url;
@@ -81,7 +81,7 @@ function ProductImage({ photos }) {
           <ZoomedInImageContainer>
             <FullScreenImageContainer
               selectionImageUrl={finalSelection.thumbnail_url}
-              onClick={() => setZoomedIn([false, 0])}
+              onClick={() => setZoomedIn([false, 0, 0])}
               onMouseMove={(event) => console.log('off set x is', offSetX)}
             >
               <Carousel
@@ -107,7 +107,7 @@ function ProductImage({ photos }) {
       <FullScreenDivContainer>
         <FullScreenImageContainer
           selectionImageUrl={finalSelection.thumbnail_url}
-          onClick={(event) => setZoomedIn([true, event.nativeEvent.offsetX])}
+          onClick={(event) => setZoomedIn([true, event.nativeEvent.offsetX, event.nativeEvent.offsetY])}
         >
           <Carousel
             thumbnails={photoList}
