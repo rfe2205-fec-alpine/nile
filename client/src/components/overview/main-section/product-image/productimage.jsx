@@ -38,7 +38,7 @@ function ProductImage({ photos }) {
   const [[selection, selectionIndex], setSelection] = useState([firstPhoto, 0]);
 
   const [isFullScreen, setFullScreen] = useState(false);
-  const [[isZoomedIn, offSetX, offSetY], setZoomedIn] = useState([false, 0, 0]);
+  const [[isZoomedIn, xPosition, yPosition, widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY], setZoomedIn] = useState([false, 0, 0, 0, 0, 0, 0]);
 
   if (!isFullScreen && isZoomedIn) {
     setZoomedIn([false, 0, 0]);
@@ -78,13 +78,42 @@ function ProductImage({ photos }) {
 
   if (isFullScreen) {
     if (isZoomedIn) {
+      let xAmountChange = ((xPosition - mouseClickPositionX) / mouseClickPositionX) * 1000;
+      let yAmountChange = ((yPosition - mouseClickPositionY) / mouseClickPositionY) * 100;
+
+      let newXPosition = ((xPosition) / widthOfElement) * 100;
+      let newYPosition = ((yPosition) / heightOfElement) * 100;
+
+      // if (newYPosition < 0) {
+      //   newYPosition = 0;
+      // } else if (newYPosition > heightOfElement) {
+      //   newYPosition = heightOfElement;
+      // }
+
+      // if (newXPosition < 0) {
+      //   newXPosition = 0;
+      // } else if (newXPosition > widthOfElement) {
+      //   newXPosition = widthOfElement;
+      // }
+
+      console.log('newXPosition is', newXPosition);
+      console.log('newYPosition is', newYPosition);
+
+      const newPosition = `${newXPosition}% ${newYPosition}%`;
+
       return (
         <FullScreenDivContainer>
-          <ZoomedInImageContainer>
+          <ZoomedInImageContainer newXPosition={newXPosition} newYPosition={newYPosition}>
             <FullScreenImageContainer
               selectionImageUrl={finalSelection.thumbnail_url}
-              onClick={() => setZoomedIn([false, 0, 0])}
-              onMouseMove={(event) => console.log('off set x is', offSetX)}
+              onClick={() => setZoomedIn([false, 0, 0, 0, 0])}
+              position={newPosition}
+              onMouseMove={(event) => {
+                // console.log('off set x is', event.nativeEvent.offsetX);
+                // console.log('off set y is', event.nativeEvent.offsetY);
+                setZoomedIn([true, event.nativeEvent.offsetX, event.nativeEvent.offsetY,
+                  widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY]);
+              }}
             >
               <Carousel
                 thumbnails={photoList}
@@ -110,9 +139,12 @@ function ProductImage({ photos }) {
         <FullScreenImageContainer
           id="fullScreenImage"
           selectionImageUrl={finalSelection.thumbnail_url}
+          position="center"
           onClick={(event) => {
             if (event.target.id === 'fullScreenImage') {
-              setZoomedIn([true, event.nativeEvent.offsetX, event.nativeEvent.offsetY]);
+              console.log(event.target);
+              setZoomedIn([true, event.nativeEvent.offsetX, event.nativeEvent.offsetY, event.target.clientWidth,
+                event.target.clientHeight, event.nativeEvent.offsetX, event.nativeEvent.offsetY]);
             }
           }}
         >
@@ -177,6 +209,7 @@ const FullScreenImageContainer = styled(ProductImageContainer)`
   &:hover ${ProductImageContainer} {
     transform: scale(${(props) => props.nextScale});
   }
+  background-position: ${(props) => props.position};
   position: absolute;
   z-index: 15;
   left: 0px;
