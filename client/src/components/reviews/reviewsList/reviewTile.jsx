@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { AiOutlineCheck } from 'react-icons/ai';
+import QuarterStars from '../../../starRatingFunction.jsx';
 
 function ReviewTile({ reviewData }) {
   const topDiv = {
@@ -18,7 +19,7 @@ function ReviewTile({ reviewData }) {
   return (
     <ReviewTileWrapper>
       <div style={topDiv}>
-        <StarRating rating={reviewData.rating} />
+        <QuarterStars rating={reviewData.rating} />
         <div style={usernameAndDateDiv}>
           <User username={reviewData.reviewer_name} />
           <Date reviewDate={reviewData.date} />

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import ReviewAmountContext from '../reviewAmountContext.jsx';
 
 function SortReviews({ change, reviewQuery }) {
-  console.log('Should be state and setstate from parent: ', change, reviewQuery);
   return (
     <SortReviewsWrapper>
       <ReviewCount />
@@ -12,8 +12,9 @@ function SortReviews({ change, reviewQuery }) {
 }
 
 function ReviewCount({ amount }) {
+  const [reviewAmount] = useContext(ReviewAmountContext);
   return (
-    <h5>{amount}</h5>
+    <h5>Total reviews: {reviewAmount}</h5>
   );
 }
 
