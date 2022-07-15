@@ -3,6 +3,18 @@ import styled from 'styled-components';
 import Carousel from './carousel/carousel.jsx';
 import PreviousImageButton from './previousimagebutton.jsx';
 import NextImageButton from './nextimagebutton.jsx';
+import FullScreenButton from './fullscreenbutton.jsx';
+
+function enterFullScreenMode(callback) {
+  window.scrollTo(0, 0);
+  document.body.style.overflow = 'hidden';
+  callback();
+}
+
+function exitFullScreenMode(callback) {
+  document.body.style.overflow = 'visible';
+  callback();
+}
 
 function setInitialProductImage(photo, selectionIndex, setSelection) {
   setSelection([photo, selectionIndex]);
@@ -23,6 +35,8 @@ function ProductImage({ photos }) {
 
   const firstPhoto = photos[0] || { thumbnail_url: '' };
   const [[selection, selectionIndex], setSelection] = useState([firstPhoto, 0]);
+
+  const [[isFullScreen, isZoomedIn], setFullScreen] = useState([false, false]);
 
   const needsInitialProductImage = selection.thumbnail_url !== photos[selectionIndex].thumbnail_url;
 
@@ -51,11 +65,74 @@ function ProductImage({ photos }) {
   const previousButton = selectionIndex === 0 ? <div /> : <PreviousImageButton currentIndex={selectionIndex} setSelection={setSelection} />;
   const nextButton = selectionIndex === photos.length - 1 ? <div /> : <NextImageButton currentIndex={selectionIndex} setSelection={setSelection} />;
 
+  if (isFullScreen) {
+    if (isZoomedIn) {
+      return (
+        <FullScreenDivContainer>
+          <ZoomedInImageContainer>
+            <FullScreenImageContainer
+              selectionImageUrl={finalSelection.thumbnail_url}
+              onClick={() => setFullScreen([true, false])}
+            >
+              <Carousel
+                thumbnails={photoList}
+                selection={finalSelection}
+                setSelection={setSelection}
+                canGoForward={canGoForward}
+                canGoBack={canGoBack}
+                allPhotos={photos}
+                isFullScreen={isFullScreen}
+              />
+              {previousButton}
+              {nextButton}
+              <FullScreenButton
+                setFullScreen={() => exitFullScreenMode(() => setFullScreen([false, false]))}
+              />
+            </FullScreenImageContainer>
+          </ZoomedInImageContainer>
+        </FullScreenDivContainer>
+      );
+    }
+    return (
+      <FullScreenDivContainer>
+        <FullScreenImageContainer
+          selectionImageUrl={finalSelection.thumbnail_url}
+          onClick={() => setFullScreen([true, true])}
+        >
+          <Carousel
+            thumbnails={photoList}
+            selection={finalSelection}
+            setSelection={setSelection}
+            canGoForward={canGoForward}
+            canGoBack={canGoBack}
+            allPhotos={photos}
+            isFullScreen={isFullScreen}
+          />
+          {previousButton}
+          {nextButton}
+          <FullScreenButton
+            setFullScreen={() => exitFullScreenMode(() => setFullScreen([false, false]))}
+          />
+        </FullScreenImageContainer>
+      </FullScreenDivContainer>
+    );
+  }
+
   return (
     <DivContainer>
-      <ProductImageContainer selectionImageUrl={finalSelection.thumbnail_url}>
-        <Carousel thumbnails={photoList} selection={finalSelection} setSelection={setSelection}
-        canGoForward={canGoForward} canGoBack={canGoBack} allPhotos={photos} />
+      <ProductImageContainer
+        selectionImageUrl={finalSelection.thumbnail_url}
+        onClick={() => enterFullScreenMode(() => setFullScreen([true, false]))}
+      >
+        <Carousel
+          thumbnails={photoList}
+          selection={finalSelection}
+          setSelection={setSelection}
+          canGoForward={canGoForward}
+          canGoBack={canGoBack}
+          allPhotos={photos}
+          isFullScreen={isFullScreen}
+        />
         {previousButton}
         {nextButton}
       </ProductImageContainer>
@@ -74,10 +151,31 @@ const ProductImageContainer = styled.div`
   background-repeat: no-repeat;
 `;
 
+const FullScreenImageContainer = styled(ProductImageContainer)`
+  position: absolute;
+  z-index: 15;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+`;
+
 const DivContainer = styled.div`
   background-color: #5d6699;
   &:hover ${ProductImageContainer} {
     cursor: zoom-in;
+  }
+`;
+
+const FullScreenDivContainer = styled.div`
+  &:hover ${FullScreenImageContainer} {
+    cursor: crosshair;
+  }
+`;
+
+const ZoomedInImageContainer = styled.div`
+  &:hover ${FullScreenImageContainer} {
+    cursor: help;
   }
 `;
 
