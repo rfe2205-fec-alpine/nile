@@ -1,16 +1,17 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
-import { FaStar } from 'react-icons/fa';
 import StarRating from '../starRating/starRating.jsx';
 import GetStyles from './relatedImage.jsx';
+import ProductContext from '../../../ProductContext.jsx';
+import Comparison from './comparison.jsx';
 
 const axios = require('axios');
 const { GITHUB_API_KEY } = require('../../../../../config.js');
 
 function RelatedCard({product}) {
   const [rating, useRating] = useState(null);
-
+  const [productId, setProductId] = useContext(ProductContext);
   useEffect(() => {
     axios({
       method: 'get',
@@ -32,8 +33,9 @@ function RelatedCard({product}) {
   }
   return (
     <div>
+      <Comparison product={product.id} />
+    <div onClick={() => setProductId(product.id)}>
       <Card>
-        <StarButton><FaStar /></StarButton>
         <GetStyles product={product} />
         <ul>{product.category}</ul>
         <ul>{product.name}</ul>
@@ -41,18 +43,15 @@ function RelatedCard({product}) {
         <StarRating rating={rating} />
       </Card>
     </div>
+    </div>
   );
 }
 
-const Card = styled.div`
-  border: 2px solid;
-  width: 20%;
-`;
-
-// add click to StarButton
-const StarButton = styled.div`
-  color: #5d6699;
-  float: right;
-`;
-
 export default RelatedCard;
+
+const Card = styled.div`
+  background: #5d6699;
+  padding: 0.25rem;
+  width: 100%;
+  height: 100;
+`;
