@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Price({ price, salePrice }) {
+function Price({ price, salePrice, colorScheme }) {
   if (salePrice) {
     return (
       <PriceInDollars>

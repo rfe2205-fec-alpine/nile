@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BsFacebook } from 'react-icons/bs';
 
 function Facebook({ selectedStyle, productName }) {
   const styleName = selectedStyle.name.replace('&', 'and');
+
+  const [color, setColor] = useState('#4267B2');
 
   const facebookPost = `Look what I just found! It's
   ${styleName} ${productName} you can find here on Nile.
@@ -17,9 +19,9 @@ function Facebook({ selectedStyle, productName }) {
   const fullUrl = baseUrl + linkToShare;
 
   return (
-    <FacebookIcon>
+    <FacebookIcon onMouseEnter={() => setColor('black')} onMouseLeave={() => setColor('#4267B2')}>
       <a href={fullUrl} target="_blank" rel="noreferrer">
-        <BsFacebook size={25} color="#4267B2" />
+        <BsFacebook size={25} color={color} />
       </a>
     </FacebookIcon>
   );

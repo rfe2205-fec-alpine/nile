@@ -43,7 +43,7 @@ function sizeIsInNewStock(itemsInStock, sizeSelected) {
   return false;
 }
 
-function UseProduct({ stock, selectedStyle, nameOfProduct }) {
+function UseProduct({ stock, selectedStyle, nameOfProduct, colorScheme }) {
   // console.log('stock is', stock);
 
   const sizesInStock = getSizesInStock(stock);
@@ -89,6 +89,7 @@ function UseProduct({ stock, selectedStyle, nameOfProduct }) {
         qtySelected={qtySelected}
         setQtySelected={setQtySelected}
         qtyInStock={qtyInStock}
+        colorScheme={colorScheme}
       />
       <AddToBagRow
         container={ItemContainer}
@@ -97,6 +98,7 @@ function UseProduct({ stock, selectedStyle, nameOfProduct }) {
         qtySelected={qtySelected}
         selectedStyle={selectedStyle}
         nameOfProduct={nameOfProduct}
+        colorScheme={colorScheme}
       />
     </UseProductContainer>
   );

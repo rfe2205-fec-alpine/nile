@@ -4,7 +4,7 @@ import Facebook from './facebook.jsx';
 import Twitter from './twitter.jsx';
 import Pinterest from './pinterest.jsx';
 
-function SocialMedia({ selectedPhoto, selectedStyle, productName }) {
+function SocialMedia({ selectedPhoto, selectedStyle, productName, colorScheme }) {
   return (
     <SocialMediaBar>
       <Facebook selectedStyle={selectedStyle} productName={productName} />

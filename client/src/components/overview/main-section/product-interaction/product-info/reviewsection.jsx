@@ -54,4 +54,8 @@ const ReadAllReviews = styled.span`
   text-decoration: underline;
 `;
 
+const StarRating = styled(QuarterStars)`
+  background-color: ${(props) => props.colorScheme.secondaryColor}
+`;
+
 export default ReviewSection;

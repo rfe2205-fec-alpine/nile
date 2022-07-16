@@ -10,6 +10,7 @@ import MainSection from './main-section/mainsection.jsx';
 import DescriptionSection from './description-section/descriptionsection.jsx';
 
 function Overview() {
+  window.scrollTo(0, 0);
   const [productId] = React.useContext(ProductContext);
   const [colorScheme] = React.useContext(ThemeContext);
 

@@ -22,13 +22,14 @@ function ProductInfo({ data, salePrice, selectedPhoto, selectedStyle, colorSchem
   return (
     <Info>
       {reviewSection}
-      <Category category={data.category} />
-      <ProductName name={data.name} />
-      <Price price={data.price} salePrice={salePrice} />
+      <Category category={data.category} colorScheme={colorScheme} />
+      <ProductName name={data.name} colorScheme={colorScheme} />
+      <Price price={data.price} salePrice={salePrice} colorScheme={colorScheme} />
       <SocialMedia
         selectedPhoto={selectedPhoto}
         selectedStyle={selectedStyle}
         productName={data.name}
+        colorScheme={colorScheme}
       />
     </Info>
   );

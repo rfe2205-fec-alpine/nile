@@ -7,7 +7,7 @@ import { GITHUB_API_KEY, CAMPUS_CODE } from '../../../../../../../config.js';
 
 const cartUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/${CAMPUS_CODE}/cart`;
 
-function AddToBag({ sizeSelected, qtySelected, selectedStyle, nameOfProduct }) {
+function AddToBag({ sizeSelected, qtySelected, selectedStyle, nameOfProduct, colorScheme }) {
   function addToCart() {
     if (sizeSelected.size === 'Select Size') {
       alert('Please select size');
