@@ -22,6 +22,7 @@ function ProductInteraction({ data, selectedStyle, setSelection, height, selecte
         data={productInfoData}
         salePrice={selectedStyle.sale_price}
         selectedPhoto={selectedPhoto}
+        selectedStyle={selectedStyle}
       />
       <StyleSelector styles={data.styles} selectedStyle={selectedStyle} setSelection={setSelection} />
       <UseProduct stock={selectedStyle.skus} selectedStyle={selectedStyle} nameOfProduct={productInfoData.name}/>

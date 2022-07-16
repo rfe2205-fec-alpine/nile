@@ -2,10 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { AiOutlineTwitter } from 'react-icons/ai';
 
-function Twitter() {
+function Twitter({ selectedPhoto, selectedStyle, productName }) {
+  const styleName = selectedStyle.name.replace('&', 'and');
+
+  const tweetText = `Look what I just found! It's
+  ${styleName} ${productName} you can find here on Nile`;
+  const baseUrl = 'http://localhost:3000';
+  const tweetMessage = `${tweetText} -> ${baseUrl}`;
+  const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetMessage}`;
+
   return (
     <TwitterIcon>
-      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-show-count="false">
+      <a href={tweetUrl} className="twitter-share-button" data-show-count="false" target="_blank" rel="noreferrer">
         <AiOutlineTwitter size={35} color="#1DA1F2" />
       </a>
     </TwitterIcon>

@@ -14,7 +14,7 @@ function Pinterest({ selectedPhoto }) {
 
   return (
     <PinterestIcon>
-      <a data-pin-do="buttonBookmark" href={fullUrl}>
+      <a data-pin-do="buttonBookmark" href={fullUrl} target="_blank" rel="noreferrer">
         <BsPinterest size={25} color="#E60023" />
       </a>
     </PinterestIcon>

@@ -6,7 +6,7 @@ import ProductName from './productname.jsx';
 import Price from './price.jsx';
 import SocialMedia from './social-media/socialmedia.jsx';
 
-function ProductInfo({ data, salePrice, selectedPhoto }) {
+function ProductInfo({ data, salePrice, selectedPhoto, selectedStyle}) {
   // console.log('data inside product info is');
   // console.log(data);
 
@@ -25,7 +25,11 @@ function ProductInfo({ data, salePrice, selectedPhoto }) {
       <Category category={data.category} />
       <ProductName name={data.name} />
       <Price price={data.price} salePrice={salePrice} />
-      <SocialMedia selectedPhoto={selectedPhoto} />
+      <SocialMedia
+        selectedPhoto={selectedPhoto}
+        selectedStyle={selectedStyle}
+        productName={data.name}
+      />
     </Info>
   );
 }
