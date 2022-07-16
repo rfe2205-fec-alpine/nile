@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import Promise from 'bluebird';
 
 import { GITHUB_API_KEY, CAMPUS_CODE } from '../../../../../../../config.js';
 
@@ -11,15 +12,17 @@ function AddToBag({ sizeSelected, qtySelected, selectedStyle, nameOfProduct }) {
     if (sizeSelected.size === 'Select Size') {
       alert('Please select size');
     } else {
-      console.log('Adding to cart!');
-      console.log('id being submitted', sizeSelected.id);
+      // console.log('Adding to cart!');
+      // console.log('id being submitted', sizeSelected.id);
       console.log('quantity being submitted', qtySelected);
+
+      const quantityToAdd = parseInt(qtySelected);
 
       let id = sizeSelected.id;
       let styleName = selectedStyle.name;
-      console.log('style name is', styleName);
+      // console.log('style name is', styleName);
 
-      axios({
+      let requests = Array(quantityToAdd).fill({
         method: 'post',
         url: cartUrl,
         data: {
@@ -28,11 +31,17 @@ function AddToBag({ sizeSelected, qtySelected, selectedStyle, nameOfProduct }) {
         headers: {
           Authorization: GITHUB_API_KEY,
         },
-      })
-        .then(response => {
-          console.log('Successful!');
-          console.log(response);
-          let alertMessage = 'Successfylly added ' + styleName + ' ' + nameOfProduct + ' to your cart';
+      });
+
+      console.log('length of requests', requests.length);
+
+      Promise.all(requests.map((request) => axios(request)
+        .then((response) => response)
+        .catch((error) => error)))
+
+        .then(responses => {
+          // console.log(responses);
+          let alertMessage = `Successfully added ${qtySelected} ${styleName} ${nameOfProduct} to your cart`;
           alert(alertMessage);
         })
         .catch(error => {
@@ -42,7 +51,7 @@ function AddToBag({ sizeSelected, qtySelected, selectedStyle, nameOfProduct }) {
   }
   return (
     <AddToBagContainer onClick={addToCart}>
-        ADD TO CART
+      ADD TO CART
     </AddToBagContainer>
   );
 }

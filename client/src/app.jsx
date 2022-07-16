@@ -9,7 +9,6 @@ import ThemeContext from './ThemeContext.jsx';
 import Themes from './themes.js';
 
 function App() {
-  window.fbAsyncInit();
   const [productId, setProductId] = useState('37314');
   const [colorScheme, setColorScheme] = useState(Themes.nile.light);
 
