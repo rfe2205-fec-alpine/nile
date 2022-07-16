@@ -162,22 +162,24 @@ function ProductImage({ photos, selectionIndex, selection, setSelection }) {
                 const xDifference = event.nativeEvent.offsetX - mouseClickPositionX;
                 const yDifference = event.nativeEvent.offsetY - mouseClickPositionY;
 
+                const maxDifference = 10;
+
                 let needsChange = false;
-                if (xDifference < -20 && xPosition !== left) {
+                if (xDifference < -maxDifference && xPosition !== left) {
                   needsChange = true;
-                } else if (xDifference > 20 && xPosition !== right) {
+                } else if (xDifference > maxDifference && xPosition !== right) {
                   needsChange = true;
-                } else if (yDifference < -20 && yPosition !== top) {
+                } else if (yDifference < -maxDifference && yPosition !== top) {
                   needsChange = true;
-                } else if (yDifference > 20 && yPosition !== bottom) {
+                } else if (yDifference > maxDifference && yPosition !== bottom) {
                   needsChange = true;
                 }
 
                 if (needsChange) {
                   panImage(xDifference, yDifference, setZoomedIn, widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY, xPosition, yPosition);
                 } else {
-                  const xNeedsCenter = xDifference <= 20 && xDifference >= -20;
-                  const yNeedsCenter = yDifference <= 20 && yDifference >= -20;
+                  const xNeedsCenter = xDifference <= maxDifference && xDifference >= -maxDifference;
+                  const yNeedsCenter = yDifference <= maxDifference && yDifference >= -maxDifference;
 
                   const needsCenter = xNeedsCenter && yNeedsCenter;
 

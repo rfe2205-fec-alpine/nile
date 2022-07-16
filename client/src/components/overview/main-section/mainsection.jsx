@@ -57,6 +57,7 @@ function MainSection({ data, height, colorScheme }) {
         selectionIndex={selectionIndex}
         selection={selection}
         setSelection={setSelectionPhoto}
+        colorScheme={colorScheme}
       />
       <ProductInteraction
         data={data}
@@ -64,6 +65,7 @@ function MainSection({ data, height, colorScheme }) {
         setSelection={setSelection}
         height={heightOfStyleList}
         selectedPhoto={selectedPhoto}
+        colorScheme={colorScheme}
       />
     </Main>
   );

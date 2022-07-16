@@ -6,7 +6,7 @@ import ProductName from './productname.jsx';
 import Price from './price.jsx';
 import SocialMedia from './social-media/socialmedia.jsx';
 
-function ProductInfo({ data, salePrice, selectedPhoto, selectedStyle}) {
+function ProductInfo({ data, salePrice, selectedPhoto, selectedStyle, colorScheme }) {
   // console.log('data inside product info is');
   // console.log(data);
 
@@ -16,7 +16,7 @@ function ProductInfo({ data, salePrice, selectedPhoto, selectedStyle}) {
   if (numberOfReviews === 0) {
     reviewSection = <div />;
   } else {
-    reviewSection = <ReviewSection reviewScore={data.averageReview} numberOfReviews={data.numberOfReviews} />;
+    reviewSection = <ReviewSection reviewScore={data.averageReview} numberOfReviews={data.numberOfReviews} colorScheme={colorScheme}/>;
   }
 
   return (
