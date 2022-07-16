@@ -32,12 +32,11 @@ function addIndexesToPhotos(photos) {
   }
 }
 
-function ProductImage({ photos }) {
+function ProductImage({ photos, selectionIndex, selection, setSelection }) {
   addIndexesToPhotos(photos);
   // console.log('indexed photos', photoList);
 
   const firstPhoto = photos[0] || { thumbnail_url: '' };
-  const [[selection, selectionIndex], setSelection] = useState([firstPhoto, 0]);
 
   const [isFullScreen, setFullScreen] = useState(false);
   const [[isZoomedIn, xPosition, yPosition, widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY], setZoomedIn] = useState([false, 0, 0, 0, 0, 0, 0]);

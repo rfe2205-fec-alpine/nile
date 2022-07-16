@@ -44,10 +44,27 @@ function MainSection({ data, height, colorScheme }) {
     setInitialStyleSelection(styles, setSelection);
   }
 
+  const firstPhoto = styleSelected.photos[0] || { thumbnail_url: '' };
+
+  const [[selection, selectionIndex], setSelectionPhoto] = useState([firstPhoto, 0]);
+
+  const selectedPhoto = styleSelected.photos[selectionIndex] || styleSelected.photos[0];
+
   return (
     <Main height={height} colorScheme={colorScheme}>
-      <ProductImage photos={styleSelected.photos} />
-      <ProductInteraction data={data} selectedStyle={styleSelected} setSelection={setSelection} height={heightOfStyleList} />
+      <ProductImage
+        photos={styleSelected.photos}
+        selectionIndex={selectionIndex}
+        selection={selection}
+        setSelection={setSelectionPhoto}
+      />
+      <ProductInteraction
+        data={data}
+        selectedStyle={styleSelected}
+        setSelection={setSelection}
+        height={heightOfStyleList}
+        selectedPhoto={selectedPhoto}
+      />
     </Main>
   );
 }
