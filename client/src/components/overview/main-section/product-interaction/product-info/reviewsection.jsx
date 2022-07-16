@@ -1,5 +1,6 @@
 import React from 'react';
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
+import QuarterStars from '../../../../../starRatingFunction.jsx';
 
 function ReviewSection({ reviewScore, numberOfReviews }) {
   let rating = ratingInStars(reviewScore);

@@ -6,6 +6,19 @@
   <title>Team Alpine FEC</title>
 </head>
 <body>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId            : 462117495306007,
+        autoLogAppEvents : true,
+        xfbml            : true,
+        version          : 'v14.0'
+      });
+    };
+  </script>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+
   <div id="app"></div>
   <script src="bundle.js"></script>
 </body>

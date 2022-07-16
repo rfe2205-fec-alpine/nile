@@ -46,7 +46,9 @@ function ProductImage({ photos }) {
     setZoomedIn([false, 0, 0]);
   }
 
-  const needsInitialProductImage = selection.thumbnail_url !== photos[selectionIndex].thumbnail_url;
+  const selectedPhoto = photos[selectionIndex] || photos[0];
+
+  const needsInitialProductImage = selection.thumbnail_url !== selectedPhoto.thumbnail_url;
 
   if (needsInitialProductImage) {
     // console.log('Style change imminent: selection index is', selectionIndex);
@@ -208,13 +210,13 @@ const FullScreenImageContainer = styled(ProductImageContainer)`
 const DivContainer = styled.div`
   background-color: #5d6699;
   &:hover ${ProductImageContainer} {
-    cursor: zoom-in;
+    cursor: crosshair;
   }
 `;
 
 const FullScreenDivContainer = styled.div`
   &:hover ${FullScreenImageContainer} {
-    cursor: crosshair;
+    cursor: zoom-in;
   }
 `;
 

@@ -42,7 +42,7 @@ function AddToBag({ sizeSelected, qtySelected, selectedStyle, nameOfProduct }) {
   }
   return (
     <AddToBagContainer onClick={addToCart}>
-      ADD TO CART
+        ADD TO CART
     </AddToBagContainer>
   );
 }
