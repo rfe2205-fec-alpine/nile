@@ -163,18 +163,27 @@ function ProductImage({ photos, selectionIndex, selection, setSelection }) {
                 const yDifference = event.nativeEvent.offsetY - mouseClickPositionY;
 
                 let needsChange = false;
-                if (xDifference < 0 && xPosition !== left) {
+                if (xDifference < -20 && xPosition !== left) {
                   needsChange = true;
-                } else if (xDifference > 0 && xPosition !== right) {
+                } else if (xDifference > 20 && xPosition !== right) {
                   needsChange = true;
-                } else if (yDifference < 0 && yPosition !== top) {
+                } else if (yDifference < -20 && yPosition !== top) {
                   needsChange = true;
-                } else if (yDifference > 0 && yPosition !== bottom) {
+                } else if (yDifference > 20 && yPosition !== bottom) {
                   needsChange = true;
                 }
 
                 if (needsChange) {
                   panImage(xDifference, yDifference, setZoomedIn, widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY, xPosition, yPosition);
+                } else {
+                  const xNeedsCenter = xDifference <= 20 && xDifference >= -20;
+                  const yNeedsCenter = yDifference <= 20 && yDifference >= -20;
+
+                  const needsCenter = xNeedsCenter && yNeedsCenter;
+
+                  if (needsCenter && (xPosition !== '50%' || yPosition !== '50%')) {
+                    setZoomedIn([true, '50%', '50%', widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY]);
+                  }
                 }
               }}
             />
@@ -191,7 +200,7 @@ function ProductImage({ photos, selectionIndex, selection, setSelection }) {
           onClick={(event) => {
             if (event.target.id === 'fullScreenImage') {
               console.log(event.target);
-              setZoomedIn([true, event.nativeEvent.offsetX, event.nativeEvent.offsetY, event.target.clientWidth,
+              setZoomedIn([true, '50%', '50%', event.target.clientWidth,
                 event.target.clientHeight, event.nativeEvent.offsetX, event.nativeEvent.offsetY]);
             }
           }}
