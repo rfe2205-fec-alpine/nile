@@ -28,7 +28,7 @@ function RatingBreakdown() {
     }).then((res) => {
       setReviewData(res.data);
       changeReviewAmount(parseInt(res.data.recommended.true, 10) + parseInt(res.data.recommended.false, 10));
-      changeReviewQualities(Object.keys(res.data.characteristics));
+      changeReviewQualities(res.data.characteristics);
     }).catch((err) => { console.log(err); });
   }, [productID]);
 

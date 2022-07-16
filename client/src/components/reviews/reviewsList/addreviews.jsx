@@ -65,7 +65,7 @@ function AddReviewForm(props) {
       <InputTitle>Do You Recommend this Product?</InputTitle>
       <RecommendReview changeRecommend={changeRecommend} />
       <InputTitle>Characteristics</InputTitle>
-      <Characteristics />
+      <Characteristics characteristics={characteristics} changeCharacteristics={changeCharacteristics} />
       <InputTitle>Review Title</InputTitle>
       <ReviewTitle summary={summary} changeSummary={changeSummary} />
       <InputTitle>Body</InputTitle>
@@ -93,18 +93,20 @@ function Characteristics({ characteristics, changeCharacteristics }) {
     Length: ['Runs Short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
     Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'],
   };
+
   return (
     <div>
       {reviewQualities ? (
-        reviewQualities.map((quality) => {
+        Object.keys(reviewQualities).map((quality) => {
+          const newKey = reviewQualities[quality].id.toString();
           return(
             <div>
               <p>{quality}</p>
-              <input name={quality} type="radio" value={charRef[quality][0]} onClick={(e) => {} }/>
-              <input name={quality} type="radio" value={charRef[quality][1]} onClick={(e) => {} }/>
-              <input name={quality} type="radio" value={charRef[quality][2]} onClick={(e) => {} }/>
-              <input name={quality} type="radio" value={charRef[quality][3]} onClick={(e) => {} }/>
-              <input name={quality} type="radio" value={charRef[quality][4]} onClick={(e) => {} }/>
+              <input name={quality} type="radio" value={charRef[quality][0]} onClick={(e) => { changeCharacteristics({ ...characteristics, [newKey]: 1 }); }} />
+              <input name={quality} type="radio" value={charRef[quality][1]} onClick={(e) => { changeCharacteristics({ ...characteristics, [newKey]: 2 }); }} />
+              <input name={quality} type="radio" value={charRef[quality][2]} onClick={(e) => { changeCharacteristics({ ...characteristics, [newKey]: 3 }); }} />
+              <input name={quality} type="radio" value={charRef[quality][3]} onClick={(e) => { changeCharacteristics({ ...characteristics, [newKey]: 4 }); }} />
+              <input name={quality} type="radio" value={charRef[quality][4]} onClick={(e) => { changeCharacteristics({ ...characteristics, [newKey]: 5 }); }} />
             </div>
           );
         })
