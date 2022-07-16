@@ -5,7 +5,7 @@ import { AiOutlineTwitter } from 'react-icons/ai';
 function Twitter({ selectedPhoto, selectedStyle, productName }) {
   const styleName = selectedStyle.name.replace('&', 'and');
 
-  const tweetText = `Look what I just found! It's
+  const tweetText = `Look what I just found!
   ${styleName} ${productName} you can find here on Nile`;
   const baseUrl = 'http://localhost:3000';
   const tweetMessage = `${tweetText} -> ${baseUrl}`;
