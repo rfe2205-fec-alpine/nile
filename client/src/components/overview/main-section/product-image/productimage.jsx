@@ -102,7 +102,7 @@ function ProductImage({ photos, selectionIndex, selection, setSelection }) {
       // console.log('newXPosition is', newXPosition);
       // console.log('newYPosition is', newYPosition);
 
-      const newPosition = `${newXPosition}% ${newYPosition}%`;
+      const newPosition = { x: xPosition, y: yPosition };
 
       return (
         <FullScreenDivContainer>
@@ -114,7 +114,7 @@ function ProductImage({ photos, selectionIndex, selection, setSelection }) {
               onMouseMove={(event) => {
                 // console.log('off set x is', event.nativeEvent.offsetX);
                 // console.log('off set y is', event.nativeEvent.offsetY);
-                setZoomedIn([true, event.nativeEvent.offsetX, event.nativeEvent.offsetY,
+                setZoomedIn([true, 100, 100,
                   widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY]);
               }}
             />
@@ -197,13 +197,14 @@ const FullScreenImageContainer = styled(ProductImageContainer)`
   &:hover ${ProductImageContainer} {
     transform: scale(${(props) => props.nextScale});
   }
-  background-position: ${(props) => props.position};
+  background-position: ${(props) => props.position.x}px ${(props) => props.position.y}px;
   position: absolute;
   z-index: 15;
   left: 0px;
   top: 0px;
   height: 100%;
   width: 100%;
+  transition: background-position 4s;
 `;
 
 const DivContainer = styled.div`
@@ -221,7 +222,7 @@ const FullScreenDivContainer = styled.div`
 
 const ZoomedInImageContainer = styled.div`
   &:hover ${FullScreenImageContainer} {
-    cursor: url("client/src/components/overview/img/minus-sign-2-16.png"), zoom-out;
+    cursor: zoom-out;
     height: 250%;
     width: 250%;
   }
@@ -230,3 +231,4 @@ const ZoomedInImageContainer = styled.div`
 export default ProductImage;
 
 //'client/src/components/overview/img/minus-sign-2-16.png'
+// ${(props) => props.position.x}px ${(props) => props.position.y}px;
