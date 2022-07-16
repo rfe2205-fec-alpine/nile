@@ -7,11 +7,13 @@ import ProductBreakdown from './product-breakdown.jsx';
 import { GITHUB_API_KEY } from '../../../../../config.js';
 import ProductContext from '../../../ProductContext.jsx';
 import ReviewAmountContext from '../reviewAmountContext.jsx';
+import ReviewQualitiesContext from '../reviewQualities.jsx';
 
 function RatingBreakdown() {
   const [productID] = useContext(ProductContext);
   const [, changeReviewAmount] = useContext(ReviewAmountContext);
   const [reviewData, setReviewData] = useState(null);
+  const [, changeReviewQualities] = useContext(ReviewQualitiesContext);
 
   useEffect(() => {
     Axios({
@@ -26,19 +28,25 @@ function RatingBreakdown() {
     }).then((res) => {
       setReviewData(res.data);
       changeReviewAmount(parseInt(res.data.recommended.true, 10) + parseInt(res.data.recommended.false, 10));
+      changeReviewQualities(Object.keys(res.data.characteristics));
     }).catch((err) => { console.log(err); });
   }, [productID]);
 
-  if (!reviewData) {
-    return null;
-  }
+  // if (!reviewData) {
+  //   return null;
+  // }
 
   return (
     <RatingBreakdownWrapper>
-      <h3>RATINGS AND REVIEWS</h3>
-      <Summary ratings={reviewData.ratings} recommended={reviewData.recommended} />
-      <ProductBreakdown ratings={reviewData.ratings} />
-      <Breakdown characteristics={reviewData.characteristics} />
+      {reviewData ? (
+        <>
+          <h3>RATINGS AND REVIEWS</h3>
+          <Summary ratings={reviewData.ratings} recommended={reviewData.recommended} />
+          <ProductBreakdown ratings={reviewData.ratings} />
+          <Breakdown characteristics={reviewData.characteristics} />
+        </>
+      ) : <>Loading...</>}
+
     </RatingBreakdownWrapper>
   );
 }
