@@ -7,7 +7,7 @@ import Pinterest from './pinterest.jsx';
 function SocialMedia({ selectedPhoto, selectedStyle, productName }) {
   return (
     <SocialMediaBar>
-      <Facebook />
+      <Facebook selectedStyle={selectedStyle} productName={productName} />
       <Twitter selectedStyle={selectedStyle} productName={productName} />
       <Pinterest selectedPhoto={selectedPhoto} />
     </SocialMediaBar>
