@@ -1,7 +1,9 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
+import Axios from 'axios';
 import ProductContext from '../../../ProductContext.jsx';
 import ReviewQualitiesContext from '../reviewQualities.jsx';
+import { GITHUB_API_KEY } from '../../../../../config.js';
 
 function AddReviewsButton() {
   const [productID] = useContext(ProductContext);
@@ -57,6 +59,31 @@ function AddReviewForm(props) {
     height: 'auto',
   };
 
+  function sendDataToServer() {
+    Axios({
+      method: 'post',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews',
+      headers: {
+        Authorization: GITHUB_API_KEY,
+      },
+      params: {
+        product_id: parseInt(productID, 10),
+        rating: parseInt(overallRating, 10),
+        summary: summary,
+        body: body,
+        recommend: recommend,
+        name: name,
+        email: email,
+        // photos: images,
+        characteristics: characteristics,
+      },
+    }).then((res) => {
+      console.log('Add Review server request sent successfully: ', res);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+
   return (
     <>
       <h4>Add a New Review</h4>
@@ -65,7 +92,7 @@ function AddReviewForm(props) {
       <InputTitle>Do You Recommend this Product?</InputTitle>
       <RecommendReview changeRecommend={changeRecommend} />
       <InputTitle>Characteristics</InputTitle>
-      <Characteristics characteristics={characteristics} changeCharacteristics={changeCharacteristics} />
+      <Char characteristics={characteristics} changeCharacteristics={changeCharacteristics} />
       <InputTitle>Review Title</InputTitle>
       <ReviewTitle summary={summary} changeSummary={changeSummary} />
       <InputTitle>Body</InputTitle>
@@ -78,12 +105,12 @@ function AddReviewForm(props) {
       <InputTitle>Your Email</InputTitle>
       <Email email={email} changeEmail={changeEmail} />
       <InputTitle>Submit Your Review</InputTitle>
-      <button type="submit">Submit</button>
+      <button type="submit" onClick={() => { sendDataToServer(); }}>Submit</button>
     </>
   );
 }
 
-function Characteristics({ characteristics, changeCharacteristics }) {
+function Char({ characteristics, changeCharacteristics }) {
   const [reviewQualities, changeReviewQualities] = useContext(ReviewQualitiesContext);
   const charRef = {
     Size: ['A size too small', '½ a size too small', 'Perfect', '½ a size too big', 'A size too wide'],
@@ -94,19 +121,41 @@ function Characteristics({ characteristics, changeCharacteristics }) {
     Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'],
   };
 
+  const radioButtonStyle = {
+    display: 'flex',
+  };
+  const radioItemStyle = {
+    display: 'flex',
+  };
+
   return (
     <div>
       {reviewQualities ? (
         Object.keys(reviewQualities).map((quality) => {
           const newKey = reviewQualities[quality].id.toString();
-          return(
-            <div>
+          return (
+            <div style={radioButtonStyle}>
               <p>{quality}</p>
-              <input name={quality} type="radio" value={charRef[quality][0]} onClick={(e) => { changeCharacteristics({ ...characteristics, [newKey]: 1 }); }} />
-              <input name={quality} type="radio" value={charRef[quality][1]} onClick={(e) => { changeCharacteristics({ ...characteristics, [newKey]: 2 }); }} />
-              <input name={quality} type="radio" value={charRef[quality][2]} onClick={(e) => { changeCharacteristics({ ...characteristics, [newKey]: 3 }); }} />
-              <input name={quality} type="radio" value={charRef[quality][3]} onClick={(e) => { changeCharacteristics({ ...characteristics, [newKey]: 4 }); }} />
-              <input name={quality} type="radio" value={charRef[quality][4]} onClick={(e) => { changeCharacteristics({ ...characteristics, [newKey]: 5 }); }} />
+              <div style={radioItemStyle}>
+                <input name={quality} type="radio" value={charRef[quality][0]} onClick={() => { changeCharacteristics({ ...characteristics, [newKey]: 1 }); }} />
+                <p>{charRef[quality][0]}</p>
+              </div>
+              <div style={radioItemStyle}>
+                <input name={quality} type="radio" value={charRef[quality][1]} onClick={() => { changeCharacteristics({ ...characteristics, [newKey]: 2 }); }} />
+                <p>{charRef[quality][1]}</p>
+              </div>
+              <div style={radioItemStyle}>
+                <input name={quality} type="radio" value={charRef[quality][2]} onClick={() => { changeCharacteristics({ ...characteristics, [newKey]: 3 }); }} />
+                <p>{charRef[quality][2]}</p>
+              </div>
+              <div style={radioItemStyle}>
+                <input name={quality} type="radio" value={charRef[quality][3]} onClick={() => { changeCharacteristics({ ...characteristics, [newKey]: 4 }); }} />
+                <p>{charRef[quality][3]}</p>
+              </div>
+              <div style={radioItemStyle}>
+                <input name={quality} type="radio" value={charRef[quality][4]} onClick={() => { changeCharacteristics({ ...characteristics, [newKey]: 5 }); }} />
+                <p>{charRef[quality][4]}</p>
+              </div>
             </div>
           );
         })
@@ -143,7 +192,7 @@ function NickName({ name, changeName }) {
 
 function Body({ body, changeBody }) {
   return (
-    <textarea value={body} onChange={(e) => { changeBody(e.target.value); }} />
+    <input value={body} onChange={(e) => { changeBody(e.target.value); }} />
   );
 }
 
