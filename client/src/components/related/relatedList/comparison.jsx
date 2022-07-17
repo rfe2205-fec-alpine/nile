@@ -1,23 +1,55 @@
 import React from 'react';
 import { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
-import { FaStar } from 'react-icons/fa';
-import ProductContext from '../../../ProductContext.jsx';
 
-function Comparison({product, defaultData}) {
+function Comparison({ product, defaultData, show, setShow}) {
   const combineFeatures = product.features.concat(defaultData.features);
+
+  if (!show) {
+    return null;
+  }
+
   return (
-    <div>
-      <StarButton onClick={() => { console.log('clicked product: 💊 ', combineFeatures); }} />
-    </div>
+  <div onClick={() => { setShow(!show)}}>
+    <Model show={show}>
+      <table>
+        <thead>
+          <tr>
+            <th>Comparison</th>
+          </tr>
+        </thead>
+        <thead>
+          <tr>
+            <th>{defaultData.name}</th>
+            <th>Features</th>
+            <th>{product.name}</th>
+          </tr>
+        </thead>
+        <tbody>
+        {combineFeatures.map((feature) => {
+        return <tr>
+            <th>{defaultData.features.some((each) => {return each === feature} ) ? '✓' : ''}</th>
+            <th>{feature.feature}{feature.value ? `: ${feature.value}` : ''}</th>
+            <th>{product.features.some((each) => {return each === feature} ) ? '✓' : '𝗑'}</th>
+            </tr>
+          })}
+        </tbody>
+      </table>
+    </Model>
+  </div>
   );
 }
 
 export default Comparison;
 
-// add click to StarButton
-const StarButton = styled(FaStar)`
-  color: #5d6699;
-  font-size: 25px;
-  float: right;
+const Model = styled.div`
+  display: ${({ show }) => (show ? 'block' : 'none')};
+  background: grey;
+  position: absolute;
+  left: 50;
+  top: 120%;
+  padding: 0.25rem;
+  width: 450px;
+  height: 150px;
+  overflow-y: scroll;
 `;

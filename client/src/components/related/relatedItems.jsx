@@ -73,7 +73,7 @@ function RelatedItems() {
       <RelatedProducts />
       <RelatedList productList={productList} defaultData={defaultData} />
       <Outfit />
-      <OutfitList />
+      <OutfitList defaultData={defaultData} />
     </div>
   );
 }
