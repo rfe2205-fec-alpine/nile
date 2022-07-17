@@ -10,8 +10,9 @@ import Comparison from './comparison.jsx';
 const axios = require('axios');
 const { GITHUB_API_KEY } = require('../../../../../config.js');
 
-function RelatedCard({product, defaultData, rating, useRating}) {
+function RelatedCard({product, defaultData}) {
   const [productId, setProductId] = useContext(ProductContext);
+  const [rating, setRating] = useState(null);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -23,7 +24,7 @@ function RelatedCard({product, defaultData, rating, useRating}) {
       },
     })
     .then((styles) => {
-      useRating(() => (styles.data.results));
+      setRating(() => (styles.data.results));
     })
     .catch((err) => {
       console.log(err);
