@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import StyleSelected from './styleselected.jsx';
 import ThumbnailSelector from './thumbnailselector.jsx';
 
-function StyleSelector({ styles, selectedStyle, setSelection }) {
+function StyleSelector({ styles, selectedStyle, setSelection, colorScheme }) {
   const styleList = styles || [];
   // console.log('style list in style selector is', styleList);
   const numberOfStyles = styleList.length;
@@ -15,10 +15,15 @@ function StyleSelector({ styles, selectedStyle, setSelection }) {
   };
 
   return (
-    <StyleSelectorContainer height={heightOfStyleList}>
-      <StyleSelected name={styleSelected.name} />
-      <ThumbnailSelector styles={styles} selectionId={styleSelected.style_id}
-        setSelection={setSelection} height={heightOfStyleList}/>
+    <StyleSelectorContainer height={heightOfStyleList} colorScheme={colorScheme}>
+      <StyleSelected name={styleSelected.name} colorScheme={colorScheme} />
+      <ThumbnailSelector
+        styles={styles}
+        selectionId={styleSelected.style_id}
+        setSelection={setSelection}
+        height={heightOfStyleList}
+        colorScheme={colorScheme}
+      />
     </StyleSelectorContainer>
   );
 }

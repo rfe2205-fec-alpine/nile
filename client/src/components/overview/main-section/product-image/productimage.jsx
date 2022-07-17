@@ -32,12 +32,51 @@ function addIndexesToPhotos(photos) {
   }
 }
 
-function ProductImage({ photos }) {
+function panImage(xDifference, yDifference, setZoomedIn, widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY, xPosition, yPosition) {
+  const left = '0%';
+  const top = '0%';
+  const right = `${-widthOfElement}px`;
+  const bottom = `${-heightOfElement}px`;
+
+  const needsLeft = xDifference < 0;
+  const needsRight = xDifference > 0;
+  const needsTop = yDifference < 0;
+  const needsBottom = yDifference > 0;
+
+  const moveTopLeft = [true, left, top, widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY];
+  const moveTopRight = [true, right, top, widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY];
+  const moveBottomLeft = [true, left, bottom, widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY];
+  const moveBottomRight = [true, right, bottom, widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY];
+
+  const moveTop = [true, xPosition, top, widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY];
+  const moveBottom = [true, xPosition, bottom, widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY];
+  const moveLeft = [true, left, yPosition, widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY];
+  const moveRight = [true, right, yPosition, widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY];
+
+  if (needsLeft && needsTop) {
+    setZoomedIn(moveTopLeft);
+  } else if (needsLeft && needsBottom) {
+    setZoomedIn(moveBottomLeft);
+  } else if (needsLeft) {
+    setZoomedIn(moveLeft);
+  } else if (needsRight && needsTop) {
+    setZoomedIn(moveTopRight);
+  } else if (needsRight && needsBottom) {
+    setZoomedIn(moveBottomRight);
+  } else if (needsRight) {
+    setZoomedIn(moveRight);
+  } else if (needsTop) {
+    setZoomedIn(moveTop);
+  } else if (needsBottom) {
+    setZoomedIn(moveBottom);
+  }
+}
+
+function ProductImage({ photos, selectionIndex, selection, setSelection }) {
   addIndexesToPhotos(photos);
   // console.log('indexed photos', photoList);
 
   const firstPhoto = photos[0] || { thumbnail_url: '' };
-  const [[selection, selectionIndex], setSelection] = useState([firstPhoto, 0]);
 
   const [isFullScreen, setFullScreen] = useState(false);
   const [[isZoomedIn, xPosition, yPosition, widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY], setZoomedIn] = useState([false, 0, 0, 0, 0, 0, 0]);
@@ -46,7 +85,9 @@ function ProductImage({ photos }) {
     setZoomedIn([false, 0, 0]);
   }
 
-  const needsInitialProductImage = selection.thumbnail_url !== photos[selectionIndex].thumbnail_url;
+  const selectedPhoto = photos[selectionIndex] || photos[0];
+
+  const needsInitialProductImage = selection.thumbnail_url !== selectedPhoto.thumbnail_url;
 
   if (needsInitialProductImage) {
     // console.log('Style change imminent: selection index is', selectionIndex);
@@ -75,6 +116,11 @@ function ProductImage({ photos }) {
   const previousButton = selectionIndex === 0 ? <div /> : <PreviousImageButton currentIndex={selectionIndex} setSelection={setSelection} />;
   const nextButton = selectionIndex === photos.length - 1 ? <div /> : <NextImageButton currentIndex={selectionIndex} setSelection={setSelection} />;
 
+  const left = '0%';
+  const top = '0%';
+  const right = `${-widthOfElement}px`;
+  const bottom = `${-heightOfElement}px`;
+
   // console.log('is zoomed is', isZoomedIn);
   // console.log('is full screen is', isFullScreen);
 
@@ -86,14 +132,14 @@ function ProductImage({ photos }) {
       let newXPosition = ((xPosition) / widthOfElement) * 100;
       let newYPosition = ((yPosition) / heightOfElement) * 100;
 
-      // if (newYPosition < 0) {
-      //   newYPosition = 0;
+      // if (newYPosition < -heightOfElement) {
+      //   newYPosition = -heightOfElement;
       // } else if (newYPosition > heightOfElement) {
       //   newYPosition = heightOfElement;
       // }
 
-      // if (newXPosition < 0) {
-      //   newXPosition = 0;
+      // if (newXPosition < -widthOfElement) {
+      //   newXPosition = -widthOfElement;
       // } else if (newXPosition > widthOfElement) {
       //   newXPosition = widthOfElement;
       // }
@@ -101,20 +147,46 @@ function ProductImage({ photos }) {
       // console.log('newXPosition is', newXPosition);
       // console.log('newYPosition is', newYPosition);
 
-      const newPosition = `${newXPosition}% ${newYPosition}%`;
+      const newPosition = { x: xPosition, y: yPosition };
 
       return (
         <FullScreenDivContainer>
           <ZoomedInImageContainer newXPosition={newXPosition} newYPosition={newYPosition}>
             <FullScreenImageContainer
               selectionImageUrl={finalSelection.thumbnail_url}
-              onClick={() => setZoomedIn([false, 0, 0, 0, 0])}
+              onClick={() => setZoomedIn([false, '0%', '0%', 0, 0])}
               position={newPosition}
               onMouseMove={(event) => {
                 // console.log('off set x is', event.nativeEvent.offsetX);
                 // console.log('off set y is', event.nativeEvent.offsetY);
-                setZoomedIn([true, event.nativeEvent.offsetX, event.nativeEvent.offsetY,
-                  widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY]);
+                const xDifference = event.nativeEvent.offsetX - mouseClickPositionX;
+                const yDifference = event.nativeEvent.offsetY - mouseClickPositionY;
+
+                const maxDifference = 10;
+
+                let needsChange = false;
+                if (xDifference < -maxDifference && xPosition !== left) {
+                  needsChange = true;
+                } else if (xDifference > maxDifference && xPosition !== right) {
+                  needsChange = true;
+                } else if (yDifference < -maxDifference && yPosition !== top) {
+                  needsChange = true;
+                } else if (yDifference > maxDifference && yPosition !== bottom) {
+                  needsChange = true;
+                }
+
+                if (needsChange) {
+                  panImage(xDifference, yDifference, setZoomedIn, widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY, xPosition, yPosition);
+                } else {
+                  const xNeedsCenter = xDifference <= maxDifference && xDifference >= -maxDifference;
+                  const yNeedsCenter = yDifference <= maxDifference && yDifference >= -maxDifference;
+
+                  const needsCenter = xNeedsCenter && yNeedsCenter;
+
+                  if (needsCenter && (xPosition !== '50%' || yPosition !== '50%')) {
+                    setZoomedIn([true, '50%', '50%', widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY]);
+                  }
+                }
               }}
             />
           </ZoomedInImageContainer>
@@ -130,7 +202,7 @@ function ProductImage({ photos }) {
           onClick={(event) => {
             if (event.target.id === 'fullScreenImage') {
               console.log(event.target);
-              setZoomedIn([true, event.nativeEvent.offsetX, event.nativeEvent.offsetY, event.target.clientWidth,
+              setZoomedIn([true, '50%', '50%', event.target.clientWidth,
                 event.target.clientHeight, event.nativeEvent.offsetX, event.nativeEvent.offsetY]);
             }
           }}
@@ -196,31 +268,32 @@ const FullScreenImageContainer = styled(ProductImageContainer)`
   &:hover ${ProductImageContainer} {
     transform: scale(${(props) => props.nextScale});
   }
-  background-position: ${(props) => props.position};
+  background-position: ${(props) => props.position.x} ${(props) => props.position.y};
   position: absolute;
   z-index: 15;
   left: 0px;
   top: 0px;
   height: 100%;
   width: 100%;
+  transition: background-position 1s;
 `;
 
 const DivContainer = styled.div`
   background-color: #5d6699;
   &:hover ${ProductImageContainer} {
-    cursor: zoom-in;
+    cursor: crosshair;
   }
 `;
 
 const FullScreenDivContainer = styled.div`
   &:hover ${FullScreenImageContainer} {
-    cursor: crosshair;
+    cursor: zoom-in;
   }
 `;
 
 const ZoomedInImageContainer = styled.div`
   &:hover ${FullScreenImageContainer} {
-    cursor: url("client/src/components/overview/img/minus-sign-2-16.png"), zoom-out;
+    cursor: zoom-out;
     height: 250%;
     width: 250%;
   }
@@ -229,3 +302,6 @@ const ZoomedInImageContainer = styled.div`
 export default ProductImage;
 
 //'client/src/components/overview/img/minus-sign-2-16.png'
+// ${(props) => props.position.x}px ${(props) => props.position.y}px;
+// [true, `${-widthOfElement}px`, `${-heightOfElement}px`,
+// widthOfElement, heightOfElement, mouseClickPositionX, mouseClickPositionY]

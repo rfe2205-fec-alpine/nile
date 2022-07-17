@@ -4,12 +4,12 @@ import Facebook from './facebook.jsx';
 import Twitter from './twitter.jsx';
 import Pinterest from './pinterest.jsx';
 
-function SocialMedia() {
+function SocialMedia({ selectedPhoto, selectedStyle, productName, colorScheme }) {
   return (
     <SocialMediaBar>
-      <Facebook />
-      <Twitter />
-      <Pinterest />
+      <Facebook selectedStyle={selectedStyle} productName={productName} />
+      <Twitter selectedStyle={selectedStyle} productName={productName} />
+      <Pinterest selectedPhoto={selectedPhoto} />
     </SocialMediaBar>
   );
 }

@@ -12,6 +12,17 @@ function Reviews() {
 
   return (
     <ReviewAmountContext.Provider value={[reviewAmount, changeReviewAmount]}>
+<<<<<<< HEAD
+      <ReviewsWrapper id="allReviews">
+        <RatingBreakdownWrapper>
+          <RatingBreakdown />
+        </RatingBreakdownWrapper>
+        <ReviewsListWrapper>
+          <ReviewsList />
+          <ReviewButtons />
+        </ReviewsListWrapper>
+      </ReviewsWrapper>
+=======
       <ReviewQualitiesContext.Provider value={[reviewQualities, changeReviewQualities]}>
         <ReviewsWrapper id="allReviews">
           <RatingBreakdownWrapper>
@@ -23,6 +34,7 @@ function Reviews() {
           </ReviewsListWrapper>
         </ReviewsWrapper>
       </ReviewQualitiesContext.Provider>
+>>>>>>> 41b0e832c38530a5d75a159ca2cc62c1e0a82bd1
     </ReviewAmountContext.Provider>
   );
 }

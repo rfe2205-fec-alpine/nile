@@ -4,7 +4,7 @@ import ProductInfo from './product-info/productinfo.jsx';
 import StyleSelector from './style-selector/styleselector.jsx';
 import UseProduct from './use-product/useproduct.jsx';
 
-function ProductInteraction({ data, selectedStyle, setSelection, height }) {
+function ProductInteraction({ data, selectedStyle, setSelection, height, selectedPhoto, colorScheme }) {
   // console.log('data inside product interaction is');
   // console.log(data);
 
@@ -18,9 +18,25 @@ function ProductInteraction({ data, selectedStyle, setSelection, height }) {
 
   return (
     <ProductInteractionContainer height={height}>
-      <ProductInfo data={productInfoData} salePrice={selectedStyle.sale_price} />
-      <StyleSelector styles={data.styles} selectedStyle={selectedStyle} setSelection={setSelection} />
-      <UseProduct stock={selectedStyle.skus} selectedStyle={selectedStyle} nameOfProduct={productInfoData.name}/>
+      <ProductInfo
+        data={productInfoData}
+        salePrice={selectedStyle.sale_price}
+        selectedPhoto={selectedPhoto}
+        selectedStyle={selectedStyle}
+        colorScheme={colorScheme}
+      />
+      <StyleSelector
+        styles={data.styles}
+        selectedStyle={selectedStyle}
+        setSelection={setSelection}
+        colorScheme={colorScheme}
+      />
+      <UseProduct
+        stock={selectedStyle.skus}
+        selectedStyle={selectedStyle}
+        nameOfProduct={productInfoData.name}
+        colorScheme={colorScheme}
+      />
     </ProductInteractionContainer>
   );
 }
