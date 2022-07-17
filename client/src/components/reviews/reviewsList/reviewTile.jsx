@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { AiOutlineCheck } from 'react-icons/ai';
 import Axios from 'axios';
@@ -64,9 +64,9 @@ function Date({ reviewDate }) {
 
 function Summary({ title }) {
   return (
-    <p>
-      {title}
-    </p>
+    <h7>
+      <b>{title}</b>
+    </h7>
   );
 }
 
@@ -95,6 +95,8 @@ function ReviewBody({ body }) {
 }
 
 function Helpful({ help, id }) {
+  const [clicked, toggleClicked] = useState(false);
+
   const helpfulDiv = {
     display: 'flex',
   };
@@ -109,6 +111,7 @@ function Helpful({ help, id }) {
       data: { review_id: parseInt(id, 10) },
     }).then((res) => {
       console.log('Helpful Request was accepted: ', res);
+      toggleClicked(true);
     }).catch((err) => {
       console.log('There was an error sending helpful request to server: ', err);
     });
@@ -117,7 +120,9 @@ function Helpful({ help, id }) {
   return (
     <div style={helpfulDiv}>
       <p>Helpful?</p>
-      <p onClick={(e) => {sendHelpfulServerReq(); }} >Yes</p>
+      { !clicked ? (
+        <p onClick={(e) => { sendHelpfulServerReq(); }}>Yes</p>
+      ) : <p>Yes</p>}
       <p>{`(${help})`}</p>
     </div>
   );
@@ -157,6 +162,7 @@ function Response({ response }) {
   };
   return (
     <div style={responseDiv}>
+      <h8><b>Response from seller:</b></h8>
       <p>{response}</p>
     </div>
   );

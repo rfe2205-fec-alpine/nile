@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import Axios from 'axios';
 import ProductContext from '../../../ProductContext.jsx';
@@ -182,25 +182,53 @@ function Images({ image, addImage }) {
 
 function Email({ email, changeEmail }) {
   return (
-    <input type="email" value={email} onChange={(e) => { changeEmail(e.target.value); }} />
+    <>
+      <input placeholder="Example: jackson11@email.com" type="email" value={email} onChange={(e) => { changeEmail(e.target.value); }} />
+      <p>For authentication reasons, you will not be emailed</p>
+    </>
   );
 }
 
 function NickName({ name, changeName }) {
   return (
-    <input value={name} onChange={(e) => { changeName(e.target.value); }} />
+    <>
+      <input placeholder="Example: jackson11!" value={name} onChange={(e) => { changeName(e.target.value); }} />
+      <p>For privacy reasons, do not use your full name or email address</p>
+    </>
   );
 }
 
 function Body({ body, changeBody }) {
+  const [aboveFifty, toggleState] = useState(body.length > 50);
+
+  useEffect(() => {
+    if (body.length > 50) {
+      toggleState(true);
+    }
+  }, [body]);
+
   return (
-    <input value={body} onChange={(e) => { changeBody(e.target.value); }} />
+    <>
+      <input placeholder="Why did you like the product or not?" value={body} onChange={(e) => { changeBody(e.target.value); }} />
+      {aboveFifty
+        ? (
+          <p>
+            Minimum Reached
+          </p>
+        )
+        : (
+          <p>
+            Minimum required Characters left:
+            { 50 - body.length }
+          </p>
+        )}
+    </>
   );
 }
 
 function ReviewTitle({ summary, changeSummary }) {
   return (
-    <input value={summary} onChange={(e) => { changeSummary(e.target.value); }} />
+    <input placeholder="Best purchase ever!" value={summary} onChange={(e) => { changeSummary(e.target.value); }} />
   );
 }
 
