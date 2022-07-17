@@ -8,18 +8,19 @@ function ProductBreakdown({ ratings }) {
   function getPercentRating(amount, total) {
     return ((amount / total) * 100);
   }
+  console.log('Should be a number', ratings['1']);
   return (
     <ProductBreakdownWrapper>
-      <ProgressBar progress={getPercentRating(ratings['5'], ratingsSum)} starRating="Five" />
-      <ProgressBar progress={getPercentRating(ratings['4'], ratingsSum)} starRating="Four" />
-      <ProgressBar progress={getPercentRating(ratings['3'], ratingsSum)} starRating="Three" />
-      <ProgressBar progress={getPercentRating(ratings['2'], ratingsSum)} starRating="Two" />
-      <ProgressBar progress={getPercentRating(ratings['1'], ratingsSum)} starRating="One" />
+      <ProgressBar progress={getPercentRating(ratings['5'], ratingsSum)} starRating="Five" amount={ratings['5']} />
+      <ProgressBar progress={getPercentRating(ratings['4'], ratingsSum)} starRating="Four" amount={ratings['4']} />
+      <ProgressBar progress={getPercentRating(ratings['3'], ratingsSum)} starRating="Three" amount={ratings['3']} />
+      <ProgressBar progress={getPercentRating(ratings['2'], ratingsSum)} starRating="Two" amount={ratings['2']} />
+      <ProgressBar progress={getPercentRating(ratings['1'], ratingsSum)} starRating="One" amount={ratings['1']} />
     </ProductBreakdownWrapper>
   );
 }
 
-function ProgressBar({ progress, starRating }) {
+function ProgressBar({ progress, starRating, amount }) {
   const Wrapper = {
     display: 'flex',
     alignItems: 'center',
@@ -27,18 +28,22 @@ function ProgressBar({ progress, starRating }) {
   };
 
   const Parentdiv = {
-    paddingLeft: '5px',
+    marginLeft: '5px',
     height: 7,
-    width: '100%',
-    backgroundColor: 'whitesmoke',
-    borderRadius: 40,
+    width: '65%',
+    backgroundColor: 'lightgray',
+    // borderRadius: 40,
   };
 
   const Childdiv = {
     height: '100%',
     width: `${progress}%`,
-    backgroundColor: 'black',
+    backgroundColor: 'green',
     textAlign: 'right',
+  };
+
+  const amountStyle = {
+    paddingLeft: '3px',
   };
 
   return (
@@ -47,6 +52,7 @@ function ProgressBar({ progress, starRating }) {
       <div style={Parentdiv}>
         <div style={Childdiv} />
       </div>
+      <p style={amountStyle}>{amount} Ratings</p>
     </div>
   );
 }

@@ -1,68 +1,46 @@
-import React from "react";
+import Axios from "axios";
+import styled from "styled-components";
+import React, { useContext, useState, useEffect } from "react";
 import SearchQuestions from "./searchQuestions/searchQuestions.jsx";
 import QuestionList from "./questionList/questionList.jsx";
-import styled from "styled-components";
+import ProductContext from "../../ProductContext.jsx";
+import { GITHUB_API_KEY } from "../../../../config.js";
 
 function QAndA() {
+  const [productID] = useContext(ProductContext);
+  const [questions, setQuestions] = useState(null);
+
+  useEffect(() => {
+    Axios({
+      method: "get",
+      url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions",
+      headers: {
+        Authorization: GITHUB_API_KEY,
+      },
+      params: {
+        product_id: productID,
+        count: 2,
+      },
+    })
+      .then((res) => {
+        setQuestions(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [productID]);
+
+  if (!questions) {
+    return null;
+  }
+
   return (
     <div>
       <h2>QUESTIONS & ANSWERS</h2>
       <SearchQuestions />
-      <QuestionList dummyData={dummyData.results} />
+      <QuestionList questions={questions} />
     </div>
   );
 }
-
-const dummyData = {
-  product_id: "5",
-  results: [
-    {
-      question_id: 37,
-      question_body: "Why is this product cheaper here than other sites?",
-      question_date: "2018-10-18T00:00:00.000Z",
-      asker_name: "williamsmith",
-      question_helpfulness: 4,
-      reported: false,
-      answers: {
-        68: {
-          id: 68,
-          body: "We are selling it here without any markup from the middleman!",
-          date: "2018-08-18T00:00:00.000Z",
-          answerer_name: "Seller",
-          helpfulness: 4,
-          photos: [],
-          // ...
-        },
-      },
-    },
-    {
-      question_id: 38,
-      question_body: "How long does it last?",
-      question_date: "2019-06-28T00:00:00.000Z",
-      asker_name: "funnygirl",
-      question_helpfulness: 2,
-      reported: false,
-      answers: {
-        70: {
-          id: 70,
-          body: "Some of the seams started splitting the first time I wore it!",
-          date: "2019-11-28T00:00:00.000Z",
-          answerer_name: "sillyguy",
-          helpfulness: 6,
-          photos: [],
-        },
-        78: {
-          id: 78,
-          body: "9 lives",
-          date: "2019-11-12T00:00:00.000Z",
-          answerer_name: "iluvdogz",
-          helpfulness: 31,
-          photos: [],
-        },
-      },
-    },
-    // ...
-  ],
-};
 
 export default QAndA;

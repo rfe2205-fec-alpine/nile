@@ -17,7 +17,7 @@ function Pinterest({ selectedPhoto }) {
   return (
     <PinterestIcon onMouseEnter={() => setColor('black')} onMouseLeave={() => setColor('#E60023')}>
       <a data-pin-do="buttonBookmark" href={fullUrl} target="_blank" rel="noreferrer">
-        <RiPinterestFill size={30} color={color} />
+        <RiPinterestLine size={30} color={color} />
       </a>
     </PinterestIcon>
   );

@@ -8,7 +8,7 @@ function ProductDescription({ data, colorScheme }) {
   // console.log(data);
 
   return (
-    <ProductDescriptionContainer secondaryColor={colorScheme.secondaryColor}>
+    <ProductDescriptionContainer background={colorScheme.background}>
       <Slogan catchphrase={data.catchphrase} />
       <Description description={data.description} />
     </ProductDescriptionContainer>
@@ -18,7 +18,7 @@ function ProductDescription({ data, colorScheme }) {
 const ProductDescriptionContainer = styled.div`
   display: grid;
   grid-template-rows: 1fr 2fr;
-  background-color: ${(props) => props.secondaryColor};
+  background-color: ${(props) => props.background};
   background-size: contain;
   background-repeat: no-repeat;
   padding-top: 60px;

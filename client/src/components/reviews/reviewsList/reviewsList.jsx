@@ -9,7 +9,7 @@ import { GITHUB_API_KEY } from '../../../../../config.js';
 function ReviewsList() {
   const [productID] = useContext(ProductContext);
   const [reviews, setReviews] = useState(null);
-  const [query, changeQuery] = useState('newest');
+  const [query, changeQuery] = useState('relevant');
 
   useEffect(() => {
     Axios({
