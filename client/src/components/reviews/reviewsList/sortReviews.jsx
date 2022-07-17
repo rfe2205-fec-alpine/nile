@@ -19,7 +19,6 @@ function ReviewCount({ amount }) {
 }
 
 function SortBar({ changeQuery, query }) {
-  console.log('changequery: ', changeQuery, 'query: ', query);
   const divWrapper = {
     position: 'relative',
     display: 'inline-block',

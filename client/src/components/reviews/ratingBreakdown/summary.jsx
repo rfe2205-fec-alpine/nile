@@ -31,7 +31,6 @@ function Summary( {ratings, recommended} ) {
 const SummaryWrapper = styled.div`
   padding 5px;
   margin 5px;
-  border: 1px solid red;
 `;
 
 const NumberAndStarsWrapper = styled.div`
