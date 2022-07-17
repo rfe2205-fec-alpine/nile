@@ -1,6 +1,6 @@
 import React from 'react';
 
-function QuarterStars({ rating = 0 }) {
+function QuarterStars({ rating }) {
   const SingleStarContainer = {
     height: '20px',
     width: '18px',
