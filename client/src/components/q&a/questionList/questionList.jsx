@@ -1,10 +1,11 @@
 import React from "react";
 import Question from "./question.jsx";
 
-function QuestionList({ dummyData }) {
+function QuestionList({ questions }) {
+  console.log(questions);
   return (
     <div>
-      {dummyData.map(function (question) {
+      {questions.results.map(function (question) {
         return <Question question={question} />;
       })}
     </div>
