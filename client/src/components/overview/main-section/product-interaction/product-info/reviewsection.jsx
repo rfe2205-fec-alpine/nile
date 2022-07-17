@@ -1,16 +1,26 @@
 import React from 'react';
+import styled from 'styled-components';
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
+import QuarterStars from '../../../../../starRatingFunction.jsx';
 
-function ReviewSection({ reviewScore, numberOfReviews }) {
+function readReviews() {
+  const element = document.getElementById('allReviews');
+  const rectangle = element.getBoundingClientRect();
+  const newYPosition = rectangle.y;
+
+  window.scrollTo(0, newYPosition);
+}
+
+function ReviewSection({ reviewScore, numberOfReviews, colorScheme }) {
   let rating = ratingInStars(reviewScore);
   return (
-    <div>
+    <span>
       {rating}
       &emsp;
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+      <ReadAllReviews onClick={readReviews} primaryColor={colorScheme.primaryColor}>
         Read all {numberOfReviews} reviews
-      </a>
-    </div>
+      </ReadAllReviews>
+    </span>
   );
 }
 
@@ -35,5 +45,18 @@ function ratingInStars(reviewScore) {
 
   return redBaron;
 }
+
+const ReadAllReviews = styled.span`
+&:hover {
+  color: ${(props) => props.primaryColor};
+  cursor: default;
+}
+  color: black;
+  text-decoration: underline;
+`;
+
+const StarRating = styled(QuarterStars)`
+  background-color: ${(props) => props.colorScheme.secondaryColor}
+`;
 
 export default ReviewSection;

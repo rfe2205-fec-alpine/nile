@@ -9,7 +9,6 @@ const Announcement = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
   color: #5d6699;
   height: 50px;
 `;

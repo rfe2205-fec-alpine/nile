@@ -4,7 +4,7 @@ import SelectSize from './selectsize.jsx';
 import Qty from './qty.jsx';
 
 function SelectionRow({ container, sizeSelected, setSizeSelection,
-  listOfSizes, stock, qtySelected, setQtySelected, qtyInStock }) {
+  listOfSizes, stock, qtySelected, setQtySelected, qtyInStock, colorScheme }) {
   return (
     <SelectionRowContainer>
       <SelectSize
@@ -13,12 +13,14 @@ function SelectionRow({ container, sizeSelected, setSizeSelection,
         setSizeSelection={setSizeSelection}
         listOfSizes={listOfSizes}
         stock={stock}
+        colorScheme={colorScheme}
       />
       <Qty
         container={container}
         qtySelected={qtySelected}
         setQtySelected={setQtySelected}
         qtyInStock={qtyInStock}
+        colorScheme={colorScheme}
       />
     </SelectionRowContainer>
   );

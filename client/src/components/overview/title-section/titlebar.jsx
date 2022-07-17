@@ -6,7 +6,7 @@ import logo from '../img/logo.jpg';
 function TitleBar({ colorScheme }) {
   console.log('color scheme is', colorScheme);
   return (
-    <TitleContainer bgColor={colorScheme.primaryColor}>
+    <TitleContainer bgColor={colorScheme.foreground}>
       <div></div>
       <img src={logo} height="75" />
       <Title>Nile</Title>

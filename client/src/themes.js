@@ -1,8 +1,8 @@
 const themes = {
   nile: {
     light: {
-      primaryColor: '#5d6699',
-      secondaryColor: '#CCC',
+      foreground: '#5d6699',
+      background: '#CCC',
     },
   },
 };

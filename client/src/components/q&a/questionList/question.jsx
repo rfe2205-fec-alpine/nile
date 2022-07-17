@@ -17,24 +17,20 @@ const AnswerRow = styled.div`
 `;
 
 const LargeText = styled.p`
-  color: red;
   font-size: 1.25em;
 `;
 
 const LargeBoldText = styled.p`
-  color: red;
   font-size: 1.25em;
   flex-grow: 1;
   font-weight: bold;
 `;
 
 const SmallText = styled.p`
-  color: red;
   font-size: 1em;
 `;
 
 const SmallUnderlinedText = styled.p`
-  color: red;
   font-size: 1em;
   text-decoration: underline;
 `;
@@ -44,9 +40,12 @@ function Question({ question }) {
     <div>
       <QuestionRow>
         <LargeBoldText>{"Q: " + question.question_body}</LargeBoldText>
-        <SmallText>Helpful?</SmallText>
+        <SmallText>Helpful?&nbsp;&nbsp; </SmallText>
         <SmallUnderlinedText>Yes</SmallUnderlinedText>
-        <SmallText>{"(" + question.question_helpfulness + ")  |  "}</SmallText>
+        <SmallText>
+          &nbsp;{"(" + question.question_helpfulness + ")"}&nbsp;&nbsp;
+          {"|"}&nbsp;&nbsp;
+        </SmallText>
         <SmallUnderlinedText>Add Answer</SmallUnderlinedText>
       </QuestionRow>
       <div>
@@ -56,14 +55,18 @@ function Question({ question }) {
               <LargeText>{"A: " + entry[1].body}</LargeText>
               <AnswerRow>
                 <SmallText>
-                  {"by " +
-                    entry[1].answerer_name +
-                    ", " +
-                    entry[1].date +
-                    " | Helpful? "}
+                  {"by " + entry[1].answerer_name + ", " + entry[1].date}
+                  &nbsp;&nbsp;
+                  {"|"}
+                  &nbsp;&nbsp;
+                  {" Helpful? "}
+                  &nbsp;&nbsp;
                 </SmallText>
-                <SmallUnderlinedText>{" Yes "}</SmallUnderlinedText>
-                <SmallText>{"(" + entry[1].helpfulness + ")  |  "}</SmallText>
+                <SmallUnderlinedText>{"Yes"}</SmallUnderlinedText>
+                <SmallText>
+                  &nbsp;{"(" + entry[1].helpfulness + ")"}&nbsp;&nbsp;
+                  {"|"}&nbsp;&nbsp;&nbsp;
+                </SmallText>
                 <SmallUnderlinedText>Report</SmallUnderlinedText>
               </AnswerRow>
             </AnswerColumn>

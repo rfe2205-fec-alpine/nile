@@ -12,6 +12,8 @@ function App() {
   const [productId, setProductId] = useState('37314');
   const [colorScheme, setColorScheme] = useState(Themes.nile.light);
 
+  // document.body.style.backgroundColor = colorScheme.background;
+
   return (
     <ThemeContext.Provider value={[colorScheme, setColorScheme]}>
       <ProductContext.Provider value={[productId, setProductId]}>

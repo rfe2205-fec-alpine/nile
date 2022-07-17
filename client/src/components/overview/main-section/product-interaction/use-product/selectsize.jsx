@@ -4,7 +4,7 @@ import styled from 'styled-components';
 // const listOfSizes = ['Small', 'Medium', 'Large'];
 // 'Small', 'Medium', 'Large'
 
-function SelectSize({ container, sizeSelected, setSizeSelection, listOfSizes, stock }) {
+function SelectSize({ container, sizeSelected, setSizeSelection, listOfSizes, stock, colorScheme }) {
   const SelectSizeContainer = container;
   // console.log('size selected is', sizeSelected);
   function changeSizeSelection(event) {

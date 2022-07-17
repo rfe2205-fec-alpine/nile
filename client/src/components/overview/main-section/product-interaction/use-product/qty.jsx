@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Qty({ container, qtySelected, setQtySelected, qtyInStock }) {
+function Qty({ container, qtySelected, setQtySelected, qtyInStock, colorScheme }) {
   // console.log('quantity selected is', qtySelected);
   const QtyContainer = styled(container)`
     justify-content: center;

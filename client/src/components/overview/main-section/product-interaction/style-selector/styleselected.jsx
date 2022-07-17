@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function StyleSelected({ name }) {
+function StyleSelected({ name, colorScheme }) {
   return (
     <StyleSelectedContainer>
       <strong>Style {">"} </strong>

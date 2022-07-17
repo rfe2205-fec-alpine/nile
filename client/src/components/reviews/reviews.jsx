@@ -4,13 +4,16 @@ import RatingBreakdown from './ratingBreakdown/ratingBreakdown.jsx';
 import ReviewsList from './reviewsList/reviewsList.jsx';
 import ReviewButtons from './reviewsList/reviewButtons.jsx';
 import ReviewAmountContext from './reviewAmountContext.jsx';
+import ReviewQualitiesContext from './reviewQualities.jsx';
 
 function Reviews() {
   const [reviewAmount, changeReviewAmount] = useState(null);
+  const [reviewQualities, changeReviewQualities] = useState(null);
 
   return (
     <ReviewAmountContext.Provider value={[reviewAmount, changeReviewAmount]}>
-      <ReviewsWrapper>
+<<<<<<< HEAD
+      <ReviewsWrapper id="allReviews">
         <RatingBreakdownWrapper>
           <RatingBreakdown />
         </RatingBreakdownWrapper>
@@ -19,6 +22,19 @@ function Reviews() {
           <ReviewButtons />
         </ReviewsListWrapper>
       </ReviewsWrapper>
+=======
+      <ReviewQualitiesContext.Provider value={[reviewQualities, changeReviewQualities]}>
+        <ReviewsWrapper id="allReviews">
+          <RatingBreakdownWrapper>
+            <RatingBreakdown />
+          </RatingBreakdownWrapper>
+          <ReviewsListWrapper>
+            <ReviewsList />
+            <ReviewButtons />
+          </ReviewsListWrapper>
+        </ReviewsWrapper>
+      </ReviewQualitiesContext.Provider>
+>>>>>>> 41b0e832c38530a5d75a159ca2cc62c1e0a82bd1
     </ReviewAmountContext.Provider>
   );
 }
