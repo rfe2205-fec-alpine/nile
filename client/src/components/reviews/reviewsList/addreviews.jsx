@@ -21,7 +21,7 @@ function AddReviewsButton() {
       <ModalWrapper>
         <FormWrapper>
           <ExitButton toggleStatus={changeModalStatus} />
-          <AddReviewForm />
+          <AddReviewForm toggleStatus={changeModalStatus} />
         </FormWrapper>
       </ModalWrapper>
     );
@@ -43,7 +43,7 @@ function ExitButton({ toggleStatus }) {
   );
 }
 
-function AddReviewForm(props) {
+function AddReviewForm({ toggleStatus }) {
   const [productID] = useContext(ProductContext);
   const [overallRating, changeOverallRating] = useState(1);
   const [summary, changeSummary] = useState('');
@@ -79,8 +79,10 @@ function AddReviewForm(props) {
       },
     }).then((res) => {
       console.log('Add Review server request sent successfully: ', res);
+      toggleStatus(false);
     }).catch((err) => {
-      console.log(err);
+      console.log('There was an ERROR IN PUT request: ', err);
+      toggleStatus(false);
     });
   }
 

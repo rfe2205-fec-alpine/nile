@@ -36,8 +36,6 @@ function SortBar({ changeQuery, query }) {
   );
 }
 
-//onClick={changeQuery('helpful')}
-
 const SortReviewsWrapper = styled.div`
   border: 1px solid red;
   padding 20px;

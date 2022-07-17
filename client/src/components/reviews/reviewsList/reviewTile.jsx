@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { AiOutlineCheck } from 'react-icons/ai';
+import Axios from 'axios';
 import QuarterStars from '../../../starRatingFunction.jsx';
+import { GITHUB_API_KEY } from '../../../../../config.js';
 
 function ReviewTile({ reviewData }) {
   const topDiv = {
@@ -15,7 +17,6 @@ function ReviewTile({ reviewData }) {
     justifyContent: 'right',
     width: '100%',
   };
-
   return (
     <ReviewTileWrapper>
       <div style={topDiv}>
@@ -30,7 +31,8 @@ function ReviewTile({ reviewData }) {
       {reviewData.recommend ? <ReviewRecommend /> : <> </>}
       {reviewData.response ? <Response response={reviewData.response} /> : <> </>}
       <div>
-        <Helpful help={reviewData.helpfulness} />
+        <Helpful help={reviewData.helpfulness} id={reviewData.review_id}/>
+        <Report id={reviewData.review_id} />
       </div>
     </ReviewTileWrapper>
   );
@@ -86,16 +88,78 @@ function ReviewRecommend() {
   );
 }
 
-function ReviewBody(props) {
-
+function ReviewBody({ body }) {
+  return (
+    <p>{body}</p>
+  );
 }
 
-function Helpful(props) {
+function Helpful({ help, id }) {
+  const helpfulDiv = {
+    display: 'flex',
+  };
 
+  function sendHelpfulServerReq() {
+    Axios({
+      method: 'put',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${id}/helpful`,
+      headers: {
+        Authorization: GITHUB_API_KEY,
+      },
+      data: { review_id: parseInt(id, 10) },
+    }).then((res) => {
+      console.log('Helpful Request was accepted: ', res);
+    }).catch((err) => {
+      console.log('There was an error sending helpful request to server: ', err);
+    });
+  }
+
+  return (
+    <div style={helpfulDiv}>
+      <p>Helpful?</p>
+      <p onClick={(e) => {sendHelpfulServerReq(); }} >Yes</p>
+      <p>{`(${help})`}</p>
+    </div>
+  );
 }
 
-function Response(props) {
+function Report({ id }) {
+  function sendReportRequest() {
+    Axios({
+      method: 'put',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${id}/report`,
+      headers: {
+        Authorization: GITHUB_API_KEY,
+      },
+      data: { review_id: parseInt(id, 10) },
+    }).then((res) => {
+      console.log('Report Request was accepted: ', res);
+    }).catch((err) => {
+      console.log('There was an error sending report request to server: ', err);
+    });
+  }
 
+  return (
+    <div>
+      <p onClick={() => { sendReportRequest(); }}>Report</p>
+    </div>
+  );
+}
+
+function Response({ response }) {
+  const responseDiv = {
+    background: 'LightGray',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'left',
+    height: '40px',
+    width: '25%',
+  };
+  return (
+    <div style={responseDiv}>
+      <p>{response}</p>
+    </div>
+  );
 }
 
 const ReviewTileWrapper = styled.div`
