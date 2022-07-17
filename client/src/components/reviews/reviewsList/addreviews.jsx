@@ -228,7 +228,7 @@ function Body({ body, changeBody }) {
 
 function ReviewTitle({ summary, changeSummary }) {
   return (
-    <input placeholder="Best purchase ever!" value={summary} onChange={(e) => { changeSummary(e.target.value); }} />
+    <input maxLength="60" placeholder="Best purchase ever!" value={summary} onChange={(e) => { changeSummary(e.target.value); }} />
   );
 }
 

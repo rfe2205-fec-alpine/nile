@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
+import SelectRatingsContext from '../selectedRatingsContext.jsx'
 
 function ProductBreakdown({ ratings }) {
   const all = Object.values(ratings);
@@ -8,7 +9,7 @@ function ProductBreakdown({ ratings }) {
   function getPercentRating(amount, total) {
     return ((amount / total) * 100);
   }
-  console.log('Should be a number', ratings['1']);
+
   return (
     <ProductBreakdownWrapper>
       <ProgressBar progress={getPercentRating(ratings['5'], ratingsSum)} starRating="Five" amount={ratings['5']} />
@@ -21,11 +22,32 @@ function ProductBreakdown({ ratings }) {
 }
 
 function ProgressBar({ progress, starRating, amount }) {
-  const Wrapper = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+  const [selectedRatings, addSelectedRatings] = useContext(SelectRatingsContext);
+  const [selected, toggleSelected] = useState(false);
+  const [fresh, changeFresh] = useState(true);
+
+  useEffect(() => {
+    if (Object.values(selectedRatings).includes(true)) {
+      changeFresh(!fresh);
+    }
+  }, [selectedRatings]);
+
+  const refObj = {
+    Five: 5,
+    Four: 4,
+    Three: 3,
+    Two: 2,
+    One: 1,
   };
+
+  function handleClick() {
+    addSelectedRatings((current) => {
+      return {
+      ...current, [refObj[starRating]]: !current[refObj[starRating]], nonToggled: fresh,
+      }
+    });
+    toggleSelected(!selected);
+  }
 
   const Parentdiv = {
     marginLeft: '5px',
@@ -46,20 +68,55 @@ function ProgressBar({ progress, starRating, amount }) {
     paddingLeft: '3px',
   };
 
+  if (selected) {
+    return (
+      <SelectedWrapper onClick={() => { handleClick(); }}>
+        <p>{starRating}</p>
+        <div style={Parentdiv}>
+          <div style={Childdiv} />
+        </div>
+        <p style={amountStyle}>{amount} Ratings</p>
+      </SelectedWrapper>
+    );
+  }
   return (
-    <div style={Wrapper}>
+    <Wrapper onClick={() => { handleClick(); }}>
       <p>{starRating}</p>
       <div style={Parentdiv}>
         <div style={Childdiv} />
       </div>
       <p style={amountStyle}>{amount} Ratings</p>
-    </div>
+    </Wrapper>
   );
 }
 
 const ProductBreakdownWrapper = styled.div`
 padding 0px;
 margin 5px;
+`;
+
+const SelectedWrapper = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: lightgreen;
+&:hover {
+  border: 1px solid green;
+  border-radius: 5px;
+}
+padding-bottom: 10px;
+padding-top: 10px;
+`;
+
+const Wrapper = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+&:hover {
+  background-color: lightgreen;
+}
+padding-bottom: 10px;
+padding-top: 10px;
 `;
 
 export default ProductBreakdown;

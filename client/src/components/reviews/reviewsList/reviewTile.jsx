@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { AiOutlineCheck } from 'react-icons/ai';
 import Axios from 'axios';
+import moment from 'moment';
 import QuarterStars from '../../../starRatingFunction.jsx';
 import { GITHUB_API_KEY } from '../../../../../config.js';
 
@@ -57,7 +58,7 @@ function User({ username }) {
 function Date({ reviewDate }) {
   return (
     <p>
-      {reviewDate}
+      {`${reviewDate[5]}${reviewDate[6]}/${reviewDate[8]}${reviewDate[9]}/${reviewDate[0]}${reviewDate[1]}${reviewDate[2]}${reviewDate[3]}`}
     </p>
   );
 }
