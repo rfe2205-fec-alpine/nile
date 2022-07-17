@@ -66,7 +66,7 @@ function AddReviewForm(props) {
       headers: {
         Authorization: GITHUB_API_KEY,
       },
-      params: {
+      data: {
         product_id: parseInt(productID, 10),
         rating: parseInt(overallRating, 10),
         summary: summary,
@@ -74,7 +74,7 @@ function AddReviewForm(props) {
         recommend: recommend,
         name: name,
         email: email,
-        // photos: images,
+        photos: images,
         characteristics: characteristics,
       },
     }).then((res) => {

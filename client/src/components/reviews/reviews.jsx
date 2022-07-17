@@ -13,7 +13,7 @@ function Reviews() {
   return (
     <ReviewAmountContext.Provider value={[reviewAmount, changeReviewAmount]}>
       <ReviewQualitiesContext.Provider value={[reviewQualities, changeReviewQualities]}>
-        <ReviewsWrapper>
+        <ReviewsWrapper id="allReviews">
           <RatingBreakdownWrapper>
             <RatingBreakdown />
           </RatingBreakdownWrapper>
