@@ -6,6 +6,15 @@ const themes = {
       textColorForeground: 'black',
       textColorBackground: 'black',
       textColorTitle: 'white',
+      bodyColor: 'white',
+    },
+    dark: {
+      foreground: '#949494',
+      background: '#464D74',
+      textColorForeground: 'black',
+      textColorBackground: 'white',
+      textColorTitle: 'white',
+      bodyColor: 'black',
     },
   },
   modern: {
@@ -15,6 +24,7 @@ const themes = {
       textColorForeground: 'white',
       textColorBackground: 'black',
       textColorTitle: 'white',
+      bodyColor: 'white',
     },
     dark: {
       foreground: 'white',
@@ -22,6 +32,25 @@ const themes = {
       textColorForeground: 'black',
       textColorBackground: 'white',
       textColorTitle: 'black',
+      bodyColor: 'black',
+    },
+  },
+  forest: {
+    light: {
+      foreground: '#014421',
+      background: '#CCC',
+      textColorForeground: 'white',
+      textColorBackground: 'black',
+      textColorTitle: 'white',
+      bodyColor: 'white',
+    },
+    dark: {
+      foreground: 'white',
+      background: '#014421',
+      textColorForeground: 'black',
+      textColorBackground: 'white',
+      textColorTitle: '#014421',
+      bodyColor: 'black',
     },
   },
 };
