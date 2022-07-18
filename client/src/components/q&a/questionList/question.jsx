@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const QuestionRow = styled.div`
   display: flex;
@@ -35,43 +35,41 @@ const SmallUnderlinedText = styled.p`
   text-decoration: underline;
 `;
 
-function Question({ question }) {
+function Question({ question, handleAddAnswerClick }) {
   return (
     <div>
       <QuestionRow>
-        <LargeBoldText>{"Q: " + question.question_body}</LargeBoldText>
+        <LargeBoldText>{`Q: ${question.question_body}`}</LargeBoldText>
         <SmallText>Helpful?&nbsp;&nbsp; </SmallText>
         <SmallUnderlinedText>Yes</SmallUnderlinedText>
         <SmallText>
-          &nbsp;{"(" + question.question_helpfulness + ")"}&nbsp;&nbsp;
-          {"|"}&nbsp;&nbsp;
+          &nbsp;
+          {`(${question.question_helpfulness})`}
+          &nbsp;&nbsp; | &nbsp;&nbsp;
         </SmallText>
-        <SmallUnderlinedText>Add Answer</SmallUnderlinedText>
+        <SmallUnderlinedText onClick={handleAddAnswerClick}>Add Answer</SmallUnderlinedText>
       </QuestionRow>
       <div>
-        {Object.entries(question.answers).map(function (entry) {
-          return (
-            <AnswerColumn>
-              <LargeText>{"A: " + entry[1].body}</LargeText>
-              <AnswerRow>
-                <SmallText>
-                  {"by " + entry[1].answerer_name + ", " + entry[1].date}
-                  &nbsp;&nbsp;
-                  {"|"}
-                  &nbsp;&nbsp;
-                  {" Helpful? "}
-                  &nbsp;&nbsp;
-                </SmallText>
-                <SmallUnderlinedText>{"Yes"}</SmallUnderlinedText>
-                <SmallText>
-                  &nbsp;{"(" + entry[1].helpfulness + ")"}&nbsp;&nbsp;
-                  {"|"}&nbsp;&nbsp;&nbsp;
-                </SmallText>
-                <SmallUnderlinedText>Report</SmallUnderlinedText>
-              </AnswerRow>
-            </AnswerColumn>
-          );
-        })}
+        {Object.entries(question.answers).map((entry) => (
+          <AnswerColumn>
+            <LargeText>{`A: ${entry[1].body}`}</LargeText>
+            <AnswerRow>
+              <SmallText>
+                {`by ${entry[1].answerer_name}, ${entry[1].date}`}
+                &nbsp;&nbsp; | &nbsp;&nbsp;
+                {' Helpful? '}
+                &nbsp;&nbsp;
+              </SmallText>
+              <SmallUnderlinedText>Yes</SmallUnderlinedText>
+              <SmallText>
+                &nbsp;
+                {`(${entry[1].helpfulness})`}
+                &nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+              </SmallText>
+              <SmallUnderlinedText>Report</SmallUnderlinedText>
+            </AnswerRow>
+          </AnswerColumn>
+        ))}
       </div>
     </div>
   );
