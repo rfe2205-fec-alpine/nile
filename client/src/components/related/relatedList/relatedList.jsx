@@ -10,9 +10,11 @@ function RelatedList({productList, defaultData}) {
   return (
     <CardList>
       {index !== 0 ? <LeftArrow onClick={() => setIndex(index - 1)} /> : ''}
-      {newProductList.map((product) => {
-        return <RelatedCard
-        key={product.id} product={product} defaultData={defaultData} setIndex={setIndex} />})}
+      {newProductList.map((product) => (
+        <RelatedCard
+          key={product.id} product={product} defaultData={defaultData} setIndex={setIndex}
+        />
+      ))}
       {index + 3 !== productList.length ? <RightArrow onClick={() => setIndex(index + 1)} /> : ''}
     </CardList>
   );

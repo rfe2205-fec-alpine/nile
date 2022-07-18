@@ -11,7 +11,7 @@ function OutfitList({ defaultData }) {
   const [rating, setRating] = useState(null);
   const [index, setIndex] = useState(0);
   const [storageChange, setStorageChange] = useState(false);
-  let storedOutfits = Object.keys(localStorage);
+  const storedOutfits = Object.keys(localStorage);
   const displayedOutfits = storedOutfits.slice(index, index + 2);
 
   useEffect(() => {
@@ -27,9 +27,7 @@ function OutfitList({ defaultData }) {
     })
       .then((ratingData) => {
         let total = 0;
-        for (let each of ratingData.data.results) {
-          total += each.rating;
-        }
+        ratingData.data.results.filter((eachRating) => total += eachRating.rating);
         setRating(total / ratingData.data.results.length);
       })
       .catch((err) => console.log(err));
