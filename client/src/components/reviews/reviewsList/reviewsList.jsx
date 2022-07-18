@@ -7,6 +7,7 @@ import ProductContext from '../../../ProductContext.jsx';
 import { GITHUB_API_KEY } from '../../../../../config.js';
 import SelectRatingsContext from '../selectedRatingsContext.jsx';
 import CountContext from '../countContext.jsx';
+// import SelectRatingsContext from '../selectedRatingContext.jsx';
 
 function ReviewsList() {
   const [productID] = useContext(ProductContext);
@@ -30,7 +31,7 @@ function ReviewsList() {
     }).then((res) => {
       setReviews(res.data);
     }).catch((err) => { console.log(err); });
-  }, [productID, query, count]);
+  }, [productID, query, count, selectedRatings]);
 
   if (!reviews) {
     return null;
@@ -47,13 +48,13 @@ function ReviewsList() {
       </>
     );
   }
-  return (
-    <ReviewsListWrapper>
-      <SortReviews change={changeQuery} reviewQuery={query} />
-      {reviews.results.map((review) => {
+    return (
+      <ReviewsListWrapper>
+        <SortReviews change={changeQuery} reviewQuery={query} />
+        {reviews.results.map((review) => {
           if (selectedRatings[review.rating]) {
-          return <ReviewTile key={review.review_id} reviewData ={review} /> }})
-      }
+            return <ReviewTile key={review.review_id} reviewData ={review} /> }})
+        }
       </ReviewsListWrapper>
     );
 }
@@ -62,8 +63,8 @@ const ReviewsListWrapper = styled.div`
   border: 1px solid red;
   padding 2px;
   margin 5px;
-  height: auto;
-  overflow-y: initial;
+  height: 800px;
+  overflow-y: auto;
 `;
 
 const ReviewsListWrapperOver = styled.div`

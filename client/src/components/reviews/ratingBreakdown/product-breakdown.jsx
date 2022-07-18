@@ -11,13 +11,18 @@ function ProductBreakdown({ ratings }) {
   }
 
   return (
-    <ProductBreakdownWrapper>
-      <ProgressBar progress={getPercentRating(ratings['5'], ratingsSum)} starRating="Five" amount={ratings['5']} />
-      <ProgressBar progress={getPercentRating(ratings['4'], ratingsSum)} starRating="Four" amount={ratings['4']} />
-      <ProgressBar progress={getPercentRating(ratings['3'], ratingsSum)} starRating="Three" amount={ratings['3']} />
-      <ProgressBar progress={getPercentRating(ratings['2'], ratingsSum)} starRating="Two" amount={ratings['2']} />
-      <ProgressBar progress={getPercentRating(ratings['1'], ratingsSum)} starRating="One" amount={ratings['1']} />
-    </ProductBreakdownWrapper>
+    <>
+      <div>
+        <Filters />
+      </div>
+      <ProductBreakdownWrapper>
+        <ProgressBar progress={getPercentRating(ratings['5'], ratingsSum)} starRating="Five" amount={ratings['5']} />
+        <ProgressBar progress={getPercentRating(ratings['4'], ratingsSum)} starRating="Four" amount={ratings['4']} />
+        <ProgressBar progress={getPercentRating(ratings['3'], ratingsSum)} starRating="Three" amount={ratings['3']} />
+        <ProgressBar progress={getPercentRating(ratings['2'], ratingsSum)} starRating="Two" amount={ratings['2']} />
+        <ProgressBar progress={getPercentRating(ratings['1'], ratingsSum)} starRating="One" amount={ratings['1']} />
+      </ProductBreakdownWrapper>
+    </>
   );
 }
 
@@ -30,7 +35,7 @@ function ProgressBar({ progress, starRating, amount }) {
     if (Object.values(selectedRatings).includes(true)) {
       changeFresh(!fresh);
     }
-  }, [selectedRatings]);
+  }, [selectedRatings, selected]);
 
   const refObj = {
     Five: 5,
@@ -68,7 +73,7 @@ function ProgressBar({ progress, starRating, amount }) {
     paddingLeft: '3px',
   };
 
-  if (selected) {
+  if (selectedRatings[refObj[starRating]]) {
     return (
       <SelectedWrapper onClick={() => { handleClick(); }}>
         <p>{starRating}</p>
@@ -90,6 +95,49 @@ function ProgressBar({ progress, starRating, amount }) {
   );
 }
 
+function Filters() {
+  const [selectedRatings, addSelectedRatings] = useContext(SelectRatingsContext);
+  const [secondReq, setSecondReq] = useState(true);
+
+  useEffect(() => {
+    if (
+      selectedRatings['5'] ||
+      selectedRatings['4'] ||
+      selectedRatings['3'] ||
+      selectedRatings['2'] ||
+      selectedRatings['1']
+    ) {
+      setSecondReq(false);
+    }
+  }, [selectedRatings]);
+
+  const emptyObject = {
+    5: false,
+    4: false,
+    3: false,
+    2: false,
+    1: false,
+    nonToggled: true,
+  };
+
+  return (
+    <FilterWrapper>
+      <h4>Filters:</h4>
+      {selectedRatings['5'] ? <p>5 Stars</p> : <> </> }
+      {selectedRatings['4'] ? <p>4 Stars</p> : <> </> }
+      {selectedRatings['3'] ? <p>3 Stars</p> : <> </> }
+      {selectedRatings['2'] ? <p>2 Stars</p> : <> </> }
+      {selectedRatings['1'] ? <p>1 Star</p> : <> </> }
+      {(!selectedRatings.nonToggled && secondReq) ? <button type="submit" onClick={() => { addSelectedRatings(emptyObject); }}>x</button> : <> </>}
+    </FilterWrapper>
+  );
+}
+
+const FilterWrapper = styled.div`
+  display: flex;
+  margin: 10px;
+`;
+
 const ProductBreakdownWrapper = styled.div`
 padding 0px;
 margin 5px;
@@ -99,13 +147,15 @@ const SelectedWrapper = styled.div`
 display: flex;
 align-items: center;
 justify-content: center;
-background-color: lightgreen;
+background-color: lightblue;
+box-shadow: 3px 3px 15px lightgray;
 &:hover {
-  border: 1px solid green;
+  border: 1px solid blue;
   border-radius: 5px;
 }
 padding-bottom: 10px;
 padding-top: 10px;
+margin: 3px;
 `;
 
 const Wrapper = styled.div`
@@ -113,10 +163,11 @@ display: flex;
 align-items: center;
 justify-content: center;
 &:hover {
-  background-color: lightgreen;
+  background-color: lightblue;
 }
 padding-bottom: 10px;
 padding-top: 10px;
+margin: 3px;
 `;
 
 export default ProductBreakdown;
