@@ -1,5 +1,4 @@
 import React from 'react';
-import { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
 
 function Comparison({ product, defaultData, show, setShow}) {
@@ -26,13 +25,16 @@ function Comparison({ product, defaultData, show, setShow}) {
           </tr>
         </thead>
         <tbody>
-        {combineFeatures.map((feature) => {
-        return <tr>
-            <th>{defaultData.features.some((each) => {return each === feature} ) ? '✓' : ''}</th>
-            <th>{feature.feature}{feature.value ? `: ${feature.value}` : ''}</th>
-            <th>{product.features.some((each) => {return each === feature} ) ? '✓' : '𝗑'}</th>
+          {combineFeatures.map((feature) => (
+            <tr>
+              <th>{defaultData.features.some((each) => each === feature) ? '✓' : ''}</th>
+              <th>
+                {feature.feature}
+                {feature.value ? `: ${feature.value}` : ''}
+              </th>
+              <th>{product.features.some((each) => each === feature) ? '✓' : ''}</th>
             </tr>
-          })}
+          ))}
         </tbody>
       </table>
     </Model>

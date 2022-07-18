@@ -14,8 +14,9 @@ function ReviewButtons() {
 
 const ReviewButtonsWrapper = styled.div`
   border: 1px solid red;
-  padding 2px;
-  margin 5px;
+  padding: 2px;
+  margin: 5px;
+  align-content: left;
 `;
 
 export default ReviewButtons;
