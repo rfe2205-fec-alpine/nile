@@ -6,7 +6,7 @@ import NewTheme from './newtheme.jsx';
 function AnnouncementBar({ colorScheme }) {
   return (
     <Announcement colorScheme={colorScheme}>
-      SITE-WIDE ANNOUNCEMENT MESSAGE! SALE/DISCOUNT <strong>OFFER</strong> - <u>NEW PRODUCT HIGHLIGHT</u>
+      <span>SITE-WIDE ANNOUNCEMENT MESSAGE! SALE/DISCOUNT <strong>OFFER</strong> - <u>NEW PRODUCT HIGHLIGHT</u></span>
       <LightDarkButton />
       <NewTheme />
     </Announcement>
@@ -15,7 +15,7 @@ function AnnouncementBar({ colorScheme }) {
 
 const Announcement = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   color: ${(props) => props.colorScheme.foreground};
   height: 50px;

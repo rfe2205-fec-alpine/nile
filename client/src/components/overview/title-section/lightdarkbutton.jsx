@@ -7,7 +7,7 @@ function changeColorScheme(colorScheme, setColorScheme) {
   const name = colorScheme.name;
   let newColorScheme = Themes.nile.light;
 
-  switch(name) {
+  switch (name) {
     case 'nile light':
       newColorScheme = Themes.nile.dark;
       break;
@@ -45,7 +45,33 @@ function changeColorScheme(colorScheme, setColorScheme) {
 
 function LightDarkButton() {
   const [colorScheme, setColorScheme] = React.useContext(ThemeContext);
-  return <button onClick={() => changeColorScheme(colorScheme, setColorScheme)}>Dark</button>;
+  const lightOrDark = colorScheme.name.substring(colorScheme.name.length - 5) === 'light' ? 'Dark' : 'Light';
+  return (
+    <LightOrDarkButton
+      colorScheme={colorScheme}
+      onClick={() => changeColorScheme(colorScheme, setColorScheme)}
+    >
+      <ButtonText>{lightOrDark}</ButtonText>
+    </LightOrDarkButton>
+  );
 }
+
+const ButtonText = styled.div`
+  font-size: 16px;
+`;
+
+const LightOrDarkButton = styled(ButtonText)`
+  &:hover ${ButtonText} {
+    cursor: pointer;
+  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: ${(props) => props.colorScheme.foreground};
+  color: ${(props) => props.colorScheme.background};
+`;
 
 export default LightDarkButton;
