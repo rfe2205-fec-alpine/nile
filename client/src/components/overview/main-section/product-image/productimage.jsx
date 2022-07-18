@@ -5,8 +5,6 @@ import PreviousImageButton from './previousimagebutton.jsx';
 import NextImageButton from './nextimagebutton.jsx';
 import FullScreenButton from './fullscreenbutton.jsx';
 
-import minusSignIcon from '../../img/minus-sign-2-16.png';
-
 function enterFullScreenMode(callback) {
   window.scrollTo(0, 0);
   document.body.style.overflow = 'hidden';
@@ -72,7 +70,7 @@ function panImage(xDifference, yDifference, setZoomedIn, widthOfElement, heightO
   }
 }
 
-function ProductImage({ photos, selectionIndex, selection, setSelection }) {
+function ProductImage({ photos, selectionIndex, selection, setSelection, colorScheme }) {
   addIndexesToPhotos(photos);
   // console.log('indexed photos', photoList);
 
@@ -227,7 +225,7 @@ function ProductImage({ photos, selectionIndex, selection, setSelection }) {
   }
 
   return (
-    <DivContainer>
+    <DivContainer colorScheme={colorScheme}>
       <ProductImageContainer
         selectionImageUrl={finalSelection.thumbnail_url}
         id="productImage"
@@ -279,7 +277,7 @@ const FullScreenImageContainer = styled(ProductImageContainer)`
 `;
 
 const DivContainer = styled.div`
-  background-color: #5d6699;
+  background-color: ${(props) => props.colorScheme.foreground};
   &:hover ${ProductImageContainer} {
     cursor: crosshair;
   }

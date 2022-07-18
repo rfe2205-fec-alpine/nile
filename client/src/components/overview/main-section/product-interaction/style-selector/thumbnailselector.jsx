@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Thumbnail from './thumbnail.jsx';
 import SelectedThumbnail from './selectedthumbnail.jsx';
 
-function ThumbnailSelector({ styles, selectionId, setSelection, height }) {
+function ThumbnailSelector({ styles, selectionId, setSelection, height, colorScheme }) {
   let styleList = styles || [];
 
   // console.log('style list is', styleList);
@@ -14,9 +14,9 @@ function ThumbnailSelector({ styles, selectionId, setSelection, height }) {
     key++;
     let imgUrl = style.photos[0].thumbnail_url;
     if (style.style_id === selectionId) {
-      return <SelectedThumbnail key={key} imgUrl={imgUrl} />
+      return <SelectedThumbnail key={key} imgUrl={imgUrl} colorScheme={colorScheme}/>
     } else {
-      return <Thumbnail key={key} imgUrl={imgUrl} setSelection={() => setSelection(style)} />
+      return <Thumbnail key={key} imgUrl={imgUrl} colorScheme={colorScheme} setSelection={() => setSelection(style)} />
     }
   });
 

@@ -74,7 +74,7 @@ function MainSection({ data, height, colorScheme }) {
 const Main = styled.div`
   display: grid;
   grid-template-columns: 3.32fr 2fr;
-  background-color: ${(props) => props.colorScheme.secondaryColor};
+  background-color: ${(props) => props.colorScheme.background};
   height: ${(props) => props.height}px;
 `;
 
