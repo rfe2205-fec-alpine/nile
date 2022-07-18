@@ -5,9 +5,8 @@ import placeholder from './placeholder.jpg';
 const axios = require('axios');
 const { GITHUB_API_KEY } = require('../../../../../config.js');
 
-function GetStyles({product}) {
+function GetImage({product}) {
   const [productImage, useProductImage] = useState(null);
-
   useEffect(() => {
     axios({
       method: 'get',
@@ -20,7 +19,7 @@ function GetStyles({product}) {
         useProductImage(() => (data.data.results));
       })
       .catch();
-  }, []);
+  }, [product]);
 
   if (!productImage) {
     return null;
@@ -35,4 +34,4 @@ function GetStyles({product}) {
     </ul>
   );
 }
-export default GetStyles;
+export default GetImage;

@@ -2,9 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import { TbHeartPlus } from 'react-icons/tb';
 
-function AddCard() {
+function AddCard({
+  defaultData, rating, setStorageChange, storageChange, setIndex
+}) {
+  const savedData = [defaultData.category,defaultData.name, defaultData.default_price, rating];
   return (
-    <div onClick={() => {console.log('DO A POST'); } }>
+    <div onClick={() => {
+      localStorage.setItem(`${defaultData.id}`, JSON.stringify(savedData));
+      setStorageChange(() => (!storageChange));
+      setIndex(0);
+    }}>
       <AddCardStyle>
         <AddIcon />
         <Text>Add to Outfit</Text>

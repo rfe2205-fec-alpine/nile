@@ -12,7 +12,7 @@ const { GITHUB_API_KEY } = require('../../../../config.js');
 function RelatedItems() {
   const [productList, setProductList] = useState(null);
   const [defaultData, setDefaultData] = useState(null);
-  const [productId, setProductId] = useContext(ProductContext);
+  const [productId] = useContext(ProductContext);
 
   useEffect(() => {
     axios({
