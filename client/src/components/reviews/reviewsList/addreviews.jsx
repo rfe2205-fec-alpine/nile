@@ -60,6 +60,7 @@ function AddReviewForm({ toggleStatus }) {
   const [email, changeEmail] = useState('');
   const [images, addImage] = useState([]);
   const [characteristics, changeCharacteristics] = useState({});
+  const [finalImages, addFinalImages] = useState();
 
   const formStyle = {
     width: '50%',
@@ -107,7 +108,7 @@ function AddReviewForm({ toggleStatus }) {
       <InputTitle>Body</InputTitle>
       <Body body={body} changeBody={changeBody} />
       <InputTitle>Upload Your Photos</InputTitle>
-      <Images image={images} addImage={addImage} />
+      <Images images={images} addImage={addImage} finalImages={finalImages} addFinalImages={addFinalImages} />
       {/* {images ? <ImageDisplay images={images} /> : <> </> } */}
       <InputTitle>What is Your Nickname?</InputTitle>
       <NickName name={name} changeName={changeName} />
@@ -173,17 +174,43 @@ function Char({ characteristics, changeCharacteristics }) {
   );
 }
 
-function ImageDisplay({ images }) {
-  // console.log(URL.createObjectURL(images[0]));
-  return URL.createObjectURL(images);
-  // return images.map((image) => {
-  //   return <img src={URL.createObjectURL(image)} />
-  // });
-}
+function Images({ images, addImage, finalImages, addFinalImages }) {
+  useEffect(() => {
+    console.log('UseEffect invoked...', images);
+  }, [images]);
 
-function Images({ image, addImage }) {
+  const cloudName = 'alpinefec';
+
+  function handleClick(e) {
+    const img = URL.createObjectURL(e.target.files[0]);
+    const reader = new FileReader();
+
+    Axios({
+      method: 'post',
+      url: `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+      data: {
+        file: reader.readAsDataURL(e.target.files[0]),
+        upload_preset: 'lfcpuaaw',
+      },
+    }).then(() => {
+      console.log('success!');
+      addFinalImages([...finalImages /* Add the file from Cloudinary response here*/]);
+      addImage([...images, URL.createObjectURL(e.target.files[0])]);
+    }).catch((err) => console.log('There was an error uploading file to cloudinary: ', err));
+  }
+
+  if (images) {
+    return (
+      <>
+        <input type="file" onChange={(e) => { handleClick(e); }} />
+        {images.map((imageUrl) => {
+          return <img src={imageUrl} alt="test" width="10%" height="10%" />;
+        })}
+      </>
+    );
+  }
   return (
-    <input type="file" onChange={(e) => { addImage(...image, e.target.files); }} />
+    <input type="file" onChange={(e) => { handleClick(e); }} />
   );
 }
 

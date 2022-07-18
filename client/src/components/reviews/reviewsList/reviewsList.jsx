@@ -60,11 +60,12 @@ function ReviewsList() {
 }
 
 const ReviewsListWrapper = styled.div`
-  border: 1px solid red;
+  border: 1px solid blue;
   padding 2px;
   margin 5px;
   height: 800px;
   overflow-y: auto;
+  border-radius: 10px;
 `;
 
 const ReviewsListWrapperOver = styled.div`
