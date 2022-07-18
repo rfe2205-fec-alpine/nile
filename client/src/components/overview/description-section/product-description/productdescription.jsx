@@ -9,8 +9,8 @@ function ProductDescription({ data, colorScheme }) {
 
   return (
     <ProductDescriptionContainer background={colorScheme.background}>
-      <Slogan catchphrase={data.catchphrase} />
-      <Description description={data.description} />
+      <Slogan catchphrase={data.catchphrase} colorScheme={colorScheme} />
+      <Description description={data.description} colorScheme={colorScheme} />
     </ProductDescriptionContainer>
   );
 }

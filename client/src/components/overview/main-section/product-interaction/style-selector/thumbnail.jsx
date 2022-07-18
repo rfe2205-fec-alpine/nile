@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 const minSize = '66px';
 
-function Thumbnail({ size, imgUrl, setSelection }) {
+function Thumbnail({ size, imgUrl, setSelection, colorScheme }) {
   const selectedSize = size || minSize;
   return (
-    <ThumbnailItemContainer imgUrl={imgUrl} size={selectedSize} onClick={setSelection} />
+    <ThumbnailItemContainer imgUrl={imgUrl} size={selectedSize} colorScheme={colorScheme} onClick={setSelection} />
   );
 }
 
@@ -14,7 +14,6 @@ const ThumbnailItemContainer = styled.div`
   height: ${(props) => props.size};
   width: ${(props) => props.size};
   margin-right: 29px;
-  border: 1px solid black;
   margin-top: 14px;
   margin-bottom: 15px;
   border-radius: 100%;
@@ -22,6 +21,7 @@ const ThumbnailItemContainer = styled.div`
   background-size: cover;
   background-position: right center;
   background-repeat: no-repeat;
+  border: 1px solid black;
 `;
 
 export default Thumbnail;

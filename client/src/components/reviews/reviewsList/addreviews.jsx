@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import Axios from 'axios';
 import ProductContext from '../../../ProductContext.jsx';
@@ -21,7 +21,7 @@ function AddReviewsButton() {
       <ModalWrapper>
         <FormWrapper>
           <ExitButton toggleStatus={changeModalStatus} />
-          <AddReviewForm />
+          <AddReviewForm toggleStatus={changeModalStatus} />
         </FormWrapper>
       </ModalWrapper>
     );
@@ -32,8 +32,15 @@ function AddReviewsButton() {
 }
 
 function AddReview({ toggleStatus }) {
+  const buttonStyle = {
+    padding: '12px',
+    backgroundColor: 'white',
+    color: 'black',
+    border: '2px solid black',
+    margin: '0px 15px 15px 15px',
+  };
   return (
-    <button type="submit" onClick={() => { toggleStatus(true); }}>Add a Review</button>
+    <button style={buttonStyle} type="submit" onClick={() => { toggleStatus(true); }}>Add a Review</button>
   );
 }
 
@@ -43,7 +50,7 @@ function ExitButton({ toggleStatus }) {
   );
 }
 
-function AddReviewForm(props) {
+function AddReviewForm({ toggleStatus }) {
   const [productID] = useContext(ProductContext);
   const [overallRating, changeOverallRating] = useState(1);
   const [summary, changeSummary] = useState('');
@@ -53,6 +60,7 @@ function AddReviewForm(props) {
   const [email, changeEmail] = useState('');
   const [images, addImage] = useState([]);
   const [characteristics, changeCharacteristics] = useState({});
+  const [finalImages, addFinalImages] = useState();
 
   const formStyle = {
     width: '50%',
@@ -79,8 +87,10 @@ function AddReviewForm(props) {
       },
     }).then((res) => {
       console.log('Add Review server request sent successfully: ', res);
+      toggleStatus(false);
     }).catch((err) => {
-      console.log(err);
+      console.log('There was an ERROR IN PUT request: ', err);
+      toggleStatus(false);
     });
   }
 
@@ -98,7 +108,7 @@ function AddReviewForm(props) {
       <InputTitle>Body</InputTitle>
       <Body body={body} changeBody={changeBody} />
       <InputTitle>Upload Your Photos</InputTitle>
-      <Images image={images} addImage={addImage} />
+      <Images images={images} addImage={addImage} finalImages={finalImages} addFinalImages={addFinalImages} />
       {/* {images ? <ImageDisplay images={images} /> : <> </> } */}
       <InputTitle>What is Your Nickname?</InputTitle>
       <NickName name={name} changeName={changeName} />
@@ -164,41 +174,95 @@ function Char({ characteristics, changeCharacteristics }) {
   );
 }
 
-function ImageDisplay({ images }) {
-  // console.log(URL.createObjectURL(images[0]));
-  return URL.createObjectURL(images);
-  // return images.map((image) => {
-  //   return <img src={URL.createObjectURL(image)} />
-  // });
-}
+function Images({ images, addImage, finalImages, addFinalImages }) {
+  useEffect(() => {
+    console.log('UseEffect invoked...', images);
+  }, [images]);
 
-function Images({ image, addImage }) {
+  const cloudName = 'alpinefec';
+
+  function handleClick(e) {
+    const img = URL.createObjectURL(e.target.files[0]);
+    const reader = new FileReader();
+
+    Axios({
+      method: 'post',
+      url: `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+      data: {
+        file: reader.readAsDataURL(e.target.files[0]),
+        upload_preset: 'lfcpuaaw',
+      },
+    }).then(() => {
+      console.log('success!');
+      addFinalImages([...finalImages /* Add the file from Cloudinary response here*/]);
+      addImage([...images, URL.createObjectURL(e.target.files[0])]);
+    }).catch((err) => console.log('There was an error uploading file to cloudinary: ', err));
+  }
+
+  if (images) {
+    return (
+      <>
+        <input type="file" onChange={(e) => { handleClick(e); }} />
+        {images.map((imageUrl) => {
+          return <img src={imageUrl} alt="test" width="10%" height="10%" />;
+        })}
+      </>
+    );
+  }
   return (
-    <input type="file" onChange={(e) => { addImage(...image, e.target.files); }} />
+    <input type="file" onChange={(e) => { handleClick(e); }} />
   );
 }
 
 function Email({ email, changeEmail }) {
   return (
-    <input type="email" value={email} onChange={(e) => { changeEmail(e.target.value); }} />
+    <>
+      <input placeholder="Example: jackson11@email.com" type="email" value={email} onChange={(e) => { changeEmail(e.target.value); }} />
+      <p>For authentication reasons, you will not be emailed</p>
+    </>
   );
 }
 
 function NickName({ name, changeName }) {
   return (
-    <input value={name} onChange={(e) => { changeName(e.target.value); }} />
+    <>
+      <input placeholder="Example: jackson11!" value={name} onChange={(e) => { changeName(e.target.value); }} />
+      <p>For privacy reasons, do not use your full name or email address</p>
+    </>
   );
 }
 
 function Body({ body, changeBody }) {
+  const [aboveFifty, toggleState] = useState(body.length > 50);
+
+  useEffect(() => {
+    if (body.length > 50) {
+      toggleState(true);
+    }
+  }, [body]);
+
   return (
-    <input value={body} onChange={(e) => { changeBody(e.target.value); }} />
+    <>
+      <input placeholder="Why did you like the product or not?" value={body} onChange={(e) => { changeBody(e.target.value); }} />
+      {aboveFifty
+        ? (
+          <p>
+            Minimum Reached
+          </p>
+        )
+        : (
+          <p>
+            Minimum required Characters left:
+            { 50 - body.length }
+          </p>
+        )}
+    </>
   );
 }
 
 function ReviewTitle({ summary, changeSummary }) {
   return (
-    <input value={summary} onChange={(e) => { changeSummary(e.target.value); }} />
+    <input maxLength="60" placeholder="Best purchase ever!" value={summary} onChange={(e) => { changeSummary(e.target.value); }} />
   );
 }
 

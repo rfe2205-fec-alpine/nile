@@ -2,19 +2,21 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { AiOutlineTwitter } from 'react-icons/ai';
 
-function Twitter({ selectedPhoto, selectedStyle, productName }) {
+function Twitter({ selectedPhoto, selectedStyle, productName, colorScheme }) {
   const styleName = selectedStyle.name.replace('&', 'and');
 
   const [color, setColor] = useState('#1DA1F2');
 
+  const isOnSale = selectedStyle.sale_price ? ' ON SALE' : '';
+
   const tweetText = `Look what I just found!
-  ${styleName} ${productName} you can find here on Nile`;
+  ${styleName} ${productName}${isOnSale} you can find here on Nile`;
   const baseUrl = 'http://localhost:3000';
   const tweetMessage = `${tweetText} -> ${baseUrl}`;
   const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetMessage}`;
 
   return (
-    <TwitterIcon onMouseEnter={() => setColor('black')} onMouseLeave={() => setColor('#1DA1F2')}>
+    <TwitterIcon onMouseEnter={() => setColor(colorScheme.textColorBackground)} onMouseLeave={() => setColor('#1DA1F2')}>
       <a href={tweetUrl} className="twitter-share-button" data-show-count="false" target="_blank" rel="noreferrer">
         <AiOutlineTwitter size={35} color={color} />
       </a>

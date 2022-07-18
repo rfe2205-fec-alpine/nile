@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { RiPinterestFill, RiPinterestLine } from 'react-icons/ri';
 
-function Pinterest({ selectedPhoto }) {
+function Pinterest({ selectedPhoto, colorScheme }) {
   const [color, setColor] = useState('#E60023');
 
   const imageUrl = selectedPhoto.thumbnail_url;
@@ -15,7 +15,7 @@ function Pinterest({ selectedPhoto }) {
   const fullUrl = baseUrl + mediaUrl;
 
   return (
-    <PinterestIcon onMouseEnter={() => setColor('black')} onMouseLeave={() => setColor('#E60023')}>
+    <PinterestIcon onMouseEnter={() => setColor(colorScheme.textColorBackground)} onMouseLeave={() => setColor('#E60023')}>
       <a data-pin-do="buttonBookmark" href={fullUrl} target="_blank" rel="noreferrer">
         <RiPinterestLine size={30} color={color} />
       </a>

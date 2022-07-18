@@ -9,10 +9,11 @@ import ThemeContext from './ThemeContext.jsx';
 import Themes from './themes.js';
 
 function App() {
+  const selectedTheme = Themes.nile.light;
   const [productId, setProductId] = useState('37314');
-  const [colorScheme, setColorScheme] = useState(Themes.nile.light);
+  const [colorScheme, setColorScheme] = useState(selectedTheme);
 
-  // document.body.style.backgroundColor = colorScheme.background;
+  document.body.style.backgroundColor = selectedTheme.bodyColor;
 
   return (
     <ThemeContext.Provider value={[colorScheme, setColorScheme]}>

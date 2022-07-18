@@ -17,7 +17,7 @@ function ProductInteraction({ data, selectedStyle, setSelection, height, selecte
   };
 
   return (
-    <ProductInteractionContainer height={height}>
+    <ProductInteractionContainer height={height} colorScheme={colorScheme}>
       <ProductInfo
         data={productInfoData}
         salePrice={selectedStyle.sale_price}
@@ -44,7 +44,7 @@ function ProductInteraction({ data, selectedStyle, setSelection, height, selecte
 const ProductInteractionContainer = styled.div`
   display: grid;
   grid-template-rows: 243px, ${(props) => props.height}, 243px;
-  background-color: #CCC;
+  background-color: ${(props) => props.colorScheme.background};
 `;
 
 export default ProductInteraction;

@@ -1,15 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import LightDarkButton from './lightdarkbutton.jsx';
+import NewTheme from './newtheme.jsx';
 
-function AnnouncementBar() {
-  return <Announcement>SITE-WIDE ANNOUNCEMENT MESSAGE! SALE/DISCOUNT <strong>OFFER</strong> - <u>NEW PRODUCT HIGHLIGHT</u></Announcement>
+function AnnouncementBar({ colorScheme }) {
+  return (
+    <Announcement colorScheme={colorScheme}>
+      <span>SITE-WIDE ANNOUNCEMENT MESSAGE! SALE/DISCOUNT <strong>OFFER</strong> - <u>NEW PRODUCT HIGHLIGHT</u></span>
+      <LightDarkButton />
+      <NewTheme />
+    </Announcement>
+  );
 }
 
 const Announcement = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  color: #5d6699;
+  color: ${(props) => props.colorScheme.foreground};
   height: 50px;
 `;
 // color: #C8C3C2;

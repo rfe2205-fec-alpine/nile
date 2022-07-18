@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 function ProductName({ name, colorScheme }) {
   return (
-    <Name>
+    <Name colorScheme={colorScheme}>
       {name}
     </Name>
   );
@@ -12,6 +12,7 @@ function ProductName({ name, colorScheme }) {
 const Name = styled.div`
   font-size: 32px;
   font-weight: bolder;
+  color: ${(props) => props.colorScheme.textColorBackground}
 `;
 
 export default ProductName;
