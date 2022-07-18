@@ -1,13 +1,16 @@
-import React from "react";
-import Question from "./question.jsx";
+import React from 'react';
+import Question from './question';
 
-function QuestionList({ questions }) {
+function QuestionList({ questions, handleAddAnswerClick }) {
   console.log(questions);
   return (
     <div>
-      {questions.results.map(function (question) {
-        return <Question question={question} />;
-      })}
+      {questions.results.map((question) => (
+        <Question
+          question={question}
+          handleAddAnswerClick={handleAddAnswerClick}
+        />
+      ))}
     </div>
   );
 }

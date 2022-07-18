@@ -5,7 +5,7 @@ import ReviewsList from './reviewsList/reviewsList.jsx';
 import ReviewButtons from './reviewsList/reviewButtons.jsx';
 import ReviewAmountContext from './reviewAmountContext.jsx';
 import ReviewQualitiesContext from './reviewQualities.jsx';
-import SelectRatingsContext from './selectedRatingsContext.jsx'
+import SelectRatingsContext from './selectedRatingsContext.jsx';
 import CountContext from './countContext.jsx';
 
 function Reviews() {
