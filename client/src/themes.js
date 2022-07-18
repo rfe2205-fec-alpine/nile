@@ -1,10 +1,14 @@
 const themes = {
   nile: {
     light: {
-      foreground: '#5d6699',
-      background: '#CCC',
+      foreground: 'black',
+      background: 'white',
     },
   },
 };
 // '#5d6699'
 module.exports = themes;
+
+
+// #5d6699
+// #CCC

@@ -7,8 +7,10 @@ function Twitter({ selectedPhoto, selectedStyle, productName }) {
 
   const [color, setColor] = useState('#1DA1F2');
 
+  const isOnSale = selectedStyle.sale_price ? ' ON SALE' : '';
+
   const tweetText = `Look what I just found!
-  ${styleName} ${productName} you can find here on Nile`;
+  ${styleName} ${productName}${isOnSale} you can find here on Nile`;
   const baseUrl = 'http://localhost:3000';
   const tweetMessage = `${tweetText} -> ${baseUrl}`;
   const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetMessage}`;
