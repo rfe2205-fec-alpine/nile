@@ -46,8 +46,8 @@ function OutfitList({ defaultData }) {
         storageChange={storageChange}
         setIndex={setIndex}
       />
-      {index !== 0 ? <LeftArrow onClick={() => setIndex(index - 1)} /> : ''}
-      {displayedOutfits.map((eachOutfit) => (
+      {/* {index !== 0 ? <LeftArrow onClick={() => setIndex(index - 1)} /> : ''} */}
+      {storedOutfits.map((eachOutfit) => (
         <OutfitCard
           eachOutfit={eachOutfit}
           setStorageChange={setStorageChange}
@@ -55,7 +55,7 @@ function OutfitList({ defaultData }) {
           setIndex={setIndex}
         />
       ))}
-      {index + 2 !== storedOutfits.length ? <RightArrow onClick={() => setIndex(index + 1)} /> : ''}
+      {/* {index + 2 !== storedOutfits.length ? <RightArrow onClick={() => setIndex(index + 1)} /> : ''} */}
     </CardList>
   );
 }
@@ -67,6 +67,8 @@ const CardList = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
   padding: 0.25rem;
+  overflow-x: scroll;
+  max-width: 90%;
 `;
 
 const LeftArrow = styled(CgArrowLeftO)`

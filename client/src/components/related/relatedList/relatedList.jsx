@@ -10,7 +10,7 @@ function RelatedList({productList, defaultData}) {
   return (
     <CardList>
       {index !== 0 ? <LeftArrow onClick={() => setIndex(index - 1)} /> : ''}
-      {newProductList.map((product) => (
+      {productList.map((product) => (
         <RelatedCard
           key={product.id} product={product} defaultData={defaultData} setIndex={setIndex}
         />
@@ -21,9 +21,10 @@ function RelatedList({productList, defaultData}) {
 }
 const CardList = styled.div`
   display: flex;
-  flex-wrap: wrap;
   gap: 1rem;
   padding: 0.25rem;
+  overflow-x: scroll;
+  max-width: 90%;
 `;
 
 const LeftArrow = styled(CgArrowLeftO)`
