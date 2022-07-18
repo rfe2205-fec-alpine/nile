@@ -5,23 +5,38 @@ import ReviewsList from './reviewsList/reviewsList.jsx';
 import ReviewButtons from './reviewsList/reviewButtons.jsx';
 import ReviewAmountContext from './reviewAmountContext.jsx';
 import ReviewQualitiesContext from './reviewQualities.jsx';
+import SelectRatingsContext from './selectedRatingsContext.jsx'
+import CountContext from './countContext.jsx';
 
 function Reviews() {
   const [reviewAmount, changeReviewAmount] = useState(null);
   const [reviewQualities, changeReviewQualities] = useState(null);
+  const [count, changeCount] = useState(2);
+  const [selectedRatings, addSelectedRatings] = useState({
+    5: false,
+    4: false,
+    3: false,
+    2: false,
+    1: false,
+    nonToggled: true,
+  });
 
   return (
     <ReviewAmountContext.Provider value={[reviewAmount, changeReviewAmount]}>
       <ReviewQualitiesContext.Provider value={[reviewQualities, changeReviewQualities]}>
-        <ReviewsWrapper id="allReviews">
-          <RatingBreakdownWrapper>
-            <RatingBreakdown />
-          </RatingBreakdownWrapper>
-          <ReviewsListWrapper>
-            <ReviewsList />
-            <ReviewButtons />
-          </ReviewsListWrapper>
-        </ReviewsWrapper>
+        <SelectRatingsContext.Provider value={[selectedRatings, addSelectedRatings]}>
+          <CountContext.Provider value={[count, changeCount]}>
+            <ReviewsWrapper id="allReviews">
+              <RatingBreakdownWrapper>
+                <RatingBreakdown />
+              </RatingBreakdownWrapper>
+              <ReviewsListWrapper>
+                <ReviewsList />
+                <ReviewButtons />
+              </ReviewsListWrapper>
+            </ReviewsWrapper>
+          </CountContext.Provider>
+        </SelectRatingsContext.Provider>
       </ReviewQualitiesContext.Provider>
     </ReviewAmountContext.Provider>
   );
