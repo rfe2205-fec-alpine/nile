@@ -42,7 +42,7 @@ function changeTheme(newThemeName, colorScheme, setColorScheme) {
   // console.log('new color scheme is', newColorScheme);
   // console.log('new body color is', newColorScheme.bodyColor);
 
-  document.body.style.backgroundColor = newColorScheme.bodyColor;
+  // document.getElementById('theme').style.backgroundColor = newColorScheme.bodyColor;
 
   setColorScheme(newColorScheme);
 }
@@ -65,7 +65,7 @@ function NewThemeDropdown() {
 
 const NewTheme = styled.select`
   display: flex;
-  padding: 10px;
+  padding: 5px;
   align-items: center;
   border: 1px solid black;
   background-color: #E4E4E4;
