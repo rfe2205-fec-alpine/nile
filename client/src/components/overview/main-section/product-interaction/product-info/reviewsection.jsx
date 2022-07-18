@@ -12,19 +12,19 @@ function readReviews() {
 }
 
 function ReviewSection({ reviewScore, numberOfReviews, colorScheme }) {
-  let rating = ratingInStars(reviewScore);
+  let rating = ratingInStars(reviewScore, colorScheme);
   return (
     <span>
       {rating}
       &emsp;
-      <ReadAllReviews onClick={readReviews} primaryColor={colorScheme.primaryColor}>
+      <ReadAllReviews onClick={readReviews} colorScheme={colorScheme}>
         Read all {numberOfReviews} reviews
       </ReadAllReviews>
     </span>
   );
 }
 
-function ratingInStars(reviewScore) {
+function ratingInStars(reviewScore, colorScheme) {
   let remainingScore = reviewScore;
   let redBaron = [];
   let key = 200;
@@ -33,12 +33,12 @@ function ratingInStars(reviewScore) {
     key++;
 
     if (remainingScore < 0.5) {
-      redBaron.push(<BsStar key={key} />);
+      redBaron.push(<BsStar key={key} color={colorScheme.textColorBackground} />);
     } else if (remainingScore < 1) {
-      redBaron.push(<BsStarHalf key={key} />);
+      redBaron.push(<BsStarHalf key={key} color={colorScheme.textColorBackground} />);
       remainingScore -= 0.5;
     } else {
-      redBaron.push(<BsStarFill key={key} />);
+      redBaron.push(<BsStarFill key={key} color={colorScheme.textColorBackground} />);
       remainingScore -= 1;
     }
   }
@@ -48,15 +48,11 @@ function ratingInStars(reviewScore) {
 
 const ReadAllReviews = styled.span`
 &:hover {
-  color: ${(props) => props.primaryColor};
+  color: ${(props) => props.colorScheme.foreground};
   cursor: default;
 }
-  color: black;
+  color: ${(props) => props.colorScheme.textColorBackground};
   text-decoration: underline;
-`;
-
-const StarRating = styled(QuarterStars)`
-  background-color: ${(props) => props.colorScheme.secondaryColor}
 `;
 
 export default ReviewSection;

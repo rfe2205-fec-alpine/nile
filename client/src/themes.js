@@ -1,8 +1,10 @@
 const themes = {
   nile: {
     light: {
-      foreground: 'black',
-      background: 'white',
+      foreground: 'white',
+      background: 'black',
+      textColorForeground: 'black',
+      textColorBackground: 'white',
     },
   },
 };
