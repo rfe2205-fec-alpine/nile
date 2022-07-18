@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BsFacebook } from 'react-icons/bs';
 
-function Facebook({ selectedStyle, productName }) {
+function Facebook({ selectedStyle, productName, colorScheme }) {
   const styleName = selectedStyle.name.replace('&', 'and');
 
   const [color, setColor] = useState('#4267B2');
@@ -19,7 +19,7 @@ function Facebook({ selectedStyle, productName }) {
   const fullUrl = baseUrl + linkToShare;
 
   return (
-    <FacebookIcon onMouseEnter={() => setColor('black')} onMouseLeave={() => setColor('#4267B2')}>
+    <FacebookIcon onMouseEnter={() => setColor(colorScheme.textColorBackground)} onMouseLeave={() => setColor('#4267B2')}>
       <a href={fullUrl} target="_blank" rel="noreferrer">
         <BsFacebook size={25} color={color} />
       </a>

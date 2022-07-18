@@ -14,6 +14,7 @@ const checkMarkUrl = 'https://static.vecteezy.com/system/resources/previews/006/
 const CheckMarkContainer = styled.div`
   position: absolute;
   margin-top: 14px;
+  margin-left: 50px;
   z-index: 10;
   height: ${(props) => props.size}px;
   width: ${(props) => props.size}px;

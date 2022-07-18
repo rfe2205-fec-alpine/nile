@@ -17,7 +17,7 @@ function DescriptionSection({ data, colorScheme }) {
   return (
     <DescriptionSectionContainer primaryColor={colorScheme.foreground}>
       <ProductDescription data={descriptionData} colorScheme={colorScheme} />
-      <FeaturesList features={data.features} />
+      <FeaturesList features={data.features} colorScheme={colorScheme} />
     </DescriptionSectionContainer>
   );
 }

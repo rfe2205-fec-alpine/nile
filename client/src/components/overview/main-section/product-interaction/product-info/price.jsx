@@ -2,15 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 function Price({ price, salePrice, colorScheme }) {
+  console.log('color scheme in price is', colorScheme);
   if (salePrice) {
     return (
-      <PriceInDollars>
-        <SalePriceInDollars>${salePrice}</SalePriceInDollars> &nbsp; <OriginalPriceInDollars>${price}</OriginalPriceInDollars>
+      <PriceInDollars colorScheme={colorScheme}>
+        <SalePriceInDollars>${salePrice}</SalePriceInDollars> &nbsp; <OriginalPriceInDollars colorScheme={colorScheme}>${price}</OriginalPriceInDollars>
       </PriceInDollars>
     );
   }
   return (
-    <PriceInDollars>
+    <PriceInDollars colorScheme={colorScheme}>
       ${price}
     </PriceInDollars>
   );
@@ -19,6 +20,7 @@ function Price({ price, salePrice, colorScheme }) {
 const PriceInDollars = styled.span`
   font-size: 18px;
   margin-bottom: 20px;
+  color: ${(props) => props.colorScheme.textColorBackground}
 `;
 
 const SalePriceInDollars = styled.span`
@@ -27,6 +29,7 @@ const SalePriceInDollars = styled.span`
 
 const OriginalPriceInDollars = styled.span`
   text-decoration: line-through;
+  color: ${(props) => props.colorScheme.textColorBackground}
 `;
 
 export default Price;

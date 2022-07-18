@@ -6,7 +6,7 @@ function TitleSection({ colorScheme }) {
   return (
     <div>
       <TitleBar colorScheme={colorScheme} />
-      <AnnouncementBar />
+      <AnnouncementBar colorScheme={colorScheme} />
     </div>
   );
 }
