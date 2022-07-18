@@ -5,8 +5,6 @@ import PreviousImageButton from './previousimagebutton.jsx';
 import NextImageButton from './nextimagebutton.jsx';
 import FullScreenButton from './fullscreenbutton.jsx';
 
-import minusSignIcon from '../../img/minus-sign-2-16.png';
-
 function enterFullScreenMode(callback) {
   window.scrollTo(0, 0);
   document.body.style.overflow = 'hidden';

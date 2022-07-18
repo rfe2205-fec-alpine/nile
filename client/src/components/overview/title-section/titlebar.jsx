@@ -1,10 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from '../img/logo.jpg';
+import logoNileLight from '../img/logo_#5d6699.jpg';
+import logoNileDark from '../img/logo_#949494.jpg';
+import logoForestLight from '../img/logo_#014421.jpg';
+import logoWhite from '../img/logo_white.jpg';
+import logoBlack from '../img/logo_black.jpg';
 // import SearchBar from './searchbar.jsx';
+
+function chooseLogo(colorScheme) {
+  switch(colorScheme.foreground) {
+    case '#5d6699':
+      return logoNileLight;
+      break;
+    case '#949494':
+      return logoNileDark;
+      break;
+    case '#014421':
+      return logoForestLight;
+      break;
+    case 'black':
+      return logoBlack;
+      break;
+    default:
+      return logoWhite;
+  }
+}
 
 function TitleBar({ colorScheme }) {
   console.log('color scheme is', colorScheme);
+  const logo = chooseLogo(colorScheme);
   return (
     <TitleContainer bgColor={colorScheme.foreground}>
       <div></div>
