@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import logoNileLight from '../img/logo_#5d6699.jpg';
 import logoNileDark from '../img/logo_#949494.jpg';
 import logoForestLight from '../img/logo_#014421.jpg';
+import logoSkyLight from '../img/logo_#87CEEB.jpg';
 import logoWhite from '../img/logo_white.jpg';
 import logoBlack from '../img/logo_black.jpg';
 // import SearchBar from './searchbar.jsx';
@@ -20,6 +21,9 @@ function chooseLogo(colorScheme) {
       break;
     case 'black':
       return logoBlack;
+      break;
+    case '#87CEEB':
+      return logoSkyLight;
       break;
     default:
       return logoWhite;

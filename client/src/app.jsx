@@ -9,7 +9,7 @@ import ThemeContext from './ThemeContext.jsx';
 import Themes from './themes.js';
 
 function App() {
-  const selectedTheme = Themes.forest.dark;
+  const selectedTheme = Themes.sky.dark;
   const [productId, setProductId] = useState('37314');
   const [colorScheme, setColorScheme] = useState(selectedTheme);
 
