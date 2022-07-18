@@ -32,8 +32,15 @@ function AddReviewsButton() {
 }
 
 function AddReview({ toggleStatus }) {
+  const buttonStyle = {
+    padding: '12px',
+    backgroundColor: 'white',
+    color: 'black',
+    border: '2px solid black',
+    margin: '0px 15px 15px 15px',
+  };
   return (
-    <button type="submit" onClick={() => { toggleStatus(true); }}>Add a Review</button>
+    <button style={buttonStyle} type="submit" onClick={() => { toggleStatus(true); }}>Add a Review</button>
   );
 }
 

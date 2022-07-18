@@ -15,8 +15,17 @@ function MoreReviewsButton() {
   if (reviewAmount <= count) {
     return <> </>;
   }
+
+  const buttonStyle = {
+    padding: '12px',
+    backgroundColor: 'white',
+    color: 'black',
+    border: '2px solid black',
+    margin: '15px',
+  };
+
   return (
-    <button type="submit" onClick={() => clickHandler()}>Show More Reviews</button>
+    <button style={buttonStyle} type="submit" onClick={() => clickHandler()}>Show More Reviews</button>
   );
 }
 

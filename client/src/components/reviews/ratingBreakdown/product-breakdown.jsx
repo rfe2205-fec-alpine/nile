@@ -99,17 +99,17 @@ function Filters() {
   const [selectedRatings, addSelectedRatings] = useContext(SelectRatingsContext);
   const [secondReq, setSecondReq] = useState(true);
 
-  useEffect(() => {
-    if (
-      selectedRatings['5'] ||
-      selectedRatings['4'] ||
-      selectedRatings['3'] ||
-      selectedRatings['2'] ||
-      selectedRatings['1']
-    ) {
-      setSecondReq(false);
-    }
-  }, [selectedRatings]);
+  // useEffect(() => {
+  //   if (
+  //     selectedRatings['5'] ||
+  //     selectedRatings['4'] ||
+  //     selectedRatings['3'] ||
+  //     selectedRatings['2'] ||
+  //     selectedRatings['1']
+  //   ) {
+  //     setSecondReq(false);
+  //   }
+  // }, [selectedRatings]);
 
   const emptyObject = {
     5: false,
@@ -128,7 +128,7 @@ function Filters() {
       {selectedRatings['3'] ? <p>3 Stars</p> : <> </> }
       {selectedRatings['2'] ? <p>2 Stars</p> : <> </> }
       {selectedRatings['1'] ? <p>1 Star</p> : <> </> }
-      {(!selectedRatings.nonToggled && secondReq) ? <button type="submit" onClick={() => { addSelectedRatings(emptyObject); }}>x</button> : <> </>}
+      {(!selectedRatings.nonToggled) ? <button type="submit" onClick={() => { addSelectedRatings(emptyObject); }}>x</button> : <> </>}
     </FilterWrapper>
   );
 }
