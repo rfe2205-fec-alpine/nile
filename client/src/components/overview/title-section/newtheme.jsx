@@ -7,7 +7,7 @@ function changeTheme(newThemeName, colorScheme, setColorScheme) {
   const prefix = newThemeName;
   const suffix = colorScheme.name.substring(colorScheme.name.length - 5) === 'light' ? 'light' : 'dark';
   const name = `${prefix} ${suffix}`;
-  console.log('new theme name is', name);
+  // console.log('new theme name is', name);
 
   let newColorScheme = Themes.nile.light;
 
@@ -39,8 +39,9 @@ function changeTheme(newThemeName, colorScheme, setColorScheme) {
       newColorScheme = Themes.nile.light;
   }
 
-  console.log('new color scheme is', newColorScheme);
-  console.log('new body color is', newColorScheme.bodyColor);
+  // console.log('new color scheme is', newColorScheme);
+  // console.log('new body color is', newColorScheme.bodyColor);
+
   document.body.style.backgroundColor = newColorScheme.bodyColor;
 
   setColorScheme(newColorScheme);
