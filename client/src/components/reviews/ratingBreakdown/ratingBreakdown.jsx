@@ -46,7 +46,6 @@ function RatingBreakdown() {
           <Breakdown characteristics={reviewData.characteristics} />
         </>
       ) : <>Loading...</>}
-
     </RatingBreakdownWrapper>
   );
 }
