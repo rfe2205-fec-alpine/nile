@@ -54,12 +54,12 @@ function changeDropdown(event) {
 function NewThemeDropdown() {
   const [colorScheme, setColorScheme] = React.useContext(ThemeContext);
   return (
-    <NewTheme onChange={(event) => changeTheme(event.target.value, colorScheme, setColorScheme)}>
-      <option value={'nile'}>nile</option>
-      <option value={'modern'}>modern</option>
-      <option value={'forest'}>forest</option>
-      <option value={'sky'}>sky</option>
-    </NewTheme>
+      <NewTheme onChange={(event) => changeTheme(event.target.value, colorScheme, setColorScheme)}>
+        <option value={'nile'}>nile</option>
+        <option value={'modern'}>modern</option>
+        <option value={'forest'}>forest</option>
+        <option value={'sky'}>sky</option>
+      </NewTheme>
   );
 }
 
