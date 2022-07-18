@@ -31,6 +31,7 @@ function changeColorScheme(colorScheme, setColorScheme) {
       break;
     case 'sky dark':
       newColorScheme = Themes.sky.light;
+      break;
     default:
       newColorScheme = Themes.nile.light;
   }

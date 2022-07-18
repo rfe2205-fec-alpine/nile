@@ -7,7 +7,7 @@ function changeTheme(newThemeName, colorScheme, setColorScheme) {
   const prefix = newThemeName;
   const suffix = colorScheme.name.substring(colorScheme.name.length - 5) === 'light' ? 'light' : 'dark';
   const name = `${prefix} ${suffix}`;
-  // console.log('new theme name is', name);
+  console.log('new theme name is', name);
 
   let newColorScheme = Themes.nile.light;
 
