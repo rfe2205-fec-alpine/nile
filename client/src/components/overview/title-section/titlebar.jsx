@@ -34,13 +34,14 @@ function TitleBar({ colorScheme }) {
       <div></div>
       <img src={logo} height="75" />
       <Title colorScheme={colorScheme}>Nile</Title>
+      <Team colorScheme={colorScheme}>A Team Alpine product</Team>
     </TitleContainer>
   );
 }
 
 const TitleContainer = styled.div`
   display: grid;
-  grid-template-columns: 25px 5.6fr 5fr 2fr;
+  grid-template-columns: 25px 5.6fr 4.5fr 2.5fr;
   background-color: ${(props) => props.bgColor};
   align-self: stretch;
 `;
@@ -49,5 +50,14 @@ const Title = styled.div`
   color: ${(props) => props.colorScheme.textColorTitle};
   font-size: 64px;
 `;
+
+const Team = styled.div`
+  display: flex;
+  align-items: center;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  color: ${(props) => props.colorScheme.textColorTitle};
+  font-size: 24px;
+`
 
 export default TitleBar;
