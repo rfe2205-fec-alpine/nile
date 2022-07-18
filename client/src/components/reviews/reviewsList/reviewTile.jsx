@@ -10,13 +10,13 @@ function ReviewTile({ reviewData }) {
   const topDiv = {
     display: 'flex',
     alignItems: 'center',
-    width: '100%',
+    //width: '100%',
   };
   const usernameAndDateDiv = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'right',
-    width: '100%',
+    //width: '100%',
   };
   return (
     <ReviewTileWrapper>

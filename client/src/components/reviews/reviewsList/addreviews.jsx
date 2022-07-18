@@ -185,17 +185,27 @@ function Images({ images, addImage, finalImages, addFinalImages }) {
     const img = URL.createObjectURL(e.target.files[0]);
     const reader = new FileReader();
 
-    Axios({
-      method: 'post',
-      url: `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
-      data: {
-        file: reader.readAsDataURL(e.target.files[0]),
-        upload_preset: 'lfcpuaaw',
-      },
-    }).then(() => {
-      console.log('success!');
-      addFinalImages([...finalImages /* Add the file from Cloudinary response here*/]);
-      addImage([...images, URL.createObjectURL(e.target.files[0])]);
+    const toBase64 = (file) => new Promise((resolve, reject) => {
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+
+    toBase64(e.target.files[0]).then((converted) => {
+      Axios({
+        method: 'post',
+        url: `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        data: {
+          file: converted,
+          upload_preset: 'lfcpuaaw',
+        },
+      });
+    }).then((res) => {
+      console.log('success! YAY', res);
+      addFinalImages([...finalImages, res.data.secure_url]);
+      console.log('AddFinalImages worked...');
+      addImage([...images, img]);
+      console.log('addImage worked...');
     }).catch((err) => console.log('There was an error uploading file to cloudinary: ', err));
   }
 

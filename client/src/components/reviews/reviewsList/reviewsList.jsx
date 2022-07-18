@@ -48,15 +48,15 @@ function ReviewsList() {
       </>
     );
   }
-    return (
+  return (
       <ReviewsListWrapper>
         <SortReviews change={changeQuery} reviewQuery={query} />
         {reviews.results.map((review) => {
           if (selectedRatings[review.rating]) {
-            return <ReviewTile key={review.review_id} reviewData ={review} /> }})
-        }
+            return <ReviewTile key={review.review_id} reviewData={review} />;
+          }})}
       </ReviewsListWrapper>
-    );
+  );
 }
 
 const ReviewsListWrapper = styled.div`
