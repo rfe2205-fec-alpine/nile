@@ -8,11 +8,11 @@ function Summary( {ratings, recommended} ) {
   const scoresAdded = scores.map((item, index) => item *= (index + 1));
   const scoresReduced = scoresAdded.reduce((prev, current) => prev + current, 0);
   const amount = scores.reduce((prev, current) => parseInt(prev, 10) + parseInt(current, 10), 0);
-  const averageRating = (scoresReduced / amount).toFixed(2);
+  const averageRating = (scoresReduced / amount).toFixed(1);
 
   /* Calculates the percentage of recommended for this product */
   const totalRecommended = parseInt(recommended.false, 10) + parseInt(recommended.true, 10);
-  const percentRecommended = ((parseInt(recommended.true, 10) / totalRecommended) * 100).toFixed();
+  const percentRecommended = ((parseInt(recommended.true, 10) / totalRecommended) * 100).toFixed(1);
 
   return (
     <SummaryWrapper>

@@ -1,27 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import RelatedCard from './relatedCard.jsx';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { CgArrowLeftO, CgArrowRightO } from 'react-icons/cg';
+import RelatedCard from './relatedCard.jsx';
 
 function RelatedList({productList, defaultData}) {
   const [index, setIndex] = useState(0);
-  const [rating, useRating] = useState(null);
   const newProductList = productList.slice(index, index + 3);
 
   return (
     <CardList>
       {index !== 0 ? <LeftArrow onClick={() => setIndex(index - 1)} /> : ''}
-      {newProductList.map((product) => {
-      return <RelatedCard key={product.id} product={product} defaultData={defaultData} useRating={useRating} rating={rating} />})}
+      {productList.map((product) => (
+        <RelatedCard
+          key={product.id} product={product} defaultData={defaultData} setIndex={setIndex}
+        />
+      ))}
       {index + 3 !== productList.length ? <RightArrow onClick={() => setIndex(index + 1)} /> : ''}
     </CardList>
   );
 }
 const CardList = styled.div`
   display: flex;
-  flex-wrap: wrap;
   gap: 1rem;
   padding: 0.25rem;
+  overflow-x: scroll;
+  max-width: 90%;
 `;
 
 const LeftArrow = styled(CgArrowLeftO)`

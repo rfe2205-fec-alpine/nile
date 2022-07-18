@@ -12,7 +12,7 @@ const { GITHUB_API_KEY } = require('../../../../config.js');
 function RelatedItems() {
   const [productList, setProductList] = useState(null);
   const [defaultData, setDefaultData] = useState(null);
-  const [productId, setProductId] = useContext(ProductContext);
+  const [productId] = useContext(ProductContext);
 
   useEffect(() => {
     axios({
@@ -22,8 +22,8 @@ function RelatedItems() {
         Authorization: GITHUB_API_KEY,
       },
     })
-      .then((data) => {
-        setDefaultData(() => (data.data));
+      .then((overviewData) => {
+        setDefaultData(() => (overviewData.data));
         axios({
           method: 'get',
           url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}/related`,
@@ -33,18 +33,14 @@ function RelatedItems() {
         })
           .then((related) => {
             Promise.all(
-              related.data.map((relatedList) => {
-                return axios({
-                  method: 'get',
-                  url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${relatedList}`,
-                  headers: {
-                    Authorization: GITHUB_API_KEY,
-                  },
-                })
-                .then((data) => {
-                  return data.data;
-                })
-              }),
+              related.data.map((relatedList) => axios({
+                method: 'get',
+                url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${relatedList}`,
+                headers: {
+                  Authorization: GITHUB_API_KEY,
+                },
+              })
+                .then((relatedData) => relatedData.data)),
             )
               .then((data) => {
                 setProductList(() => (data));

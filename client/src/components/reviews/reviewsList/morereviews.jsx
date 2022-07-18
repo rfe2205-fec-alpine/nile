@@ -1,11 +1,31 @@
 import React, { useContext } from 'react';
-import ProductContext from '../../../ProductContext.jsx';
 // import styled from 'styled-components';
+import CountContext from '../countContext.jsx';
+import ReviewAmountContext from '../reviewAmountContext.jsx';
 
 function MoreReviewsButton() {
-  const [, setProductId] = useContext(ProductContext);
+  const [count, changeCount] = useContext(CountContext);
+  const [reviewAmount] = useContext(ReviewAmountContext);
+
+  function clickHandler() {
+    const updatedCount = count + 2;
+    changeCount(updatedCount);
+  }
+
+  if (reviewAmount <= count) {
+    return <> </>;
+  }
+
+  const buttonStyle = {
+    padding: '12px',
+    backgroundColor: 'white',
+    color: 'black',
+    border: '2px solid black',
+    margin: '15px',
+  };
+
   return (
-    <button type="submit" onClick={() => setProductId('37315')}>Change Context</button>
+    <button style={buttonStyle} type="submit" onClick={() => clickHandler()}>Show More Reviews</button>
   );
 }
 
