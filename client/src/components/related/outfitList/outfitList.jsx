@@ -64,7 +64,6 @@ export default OutfitList;
 
 const CardList = styled.div`
   display: flex;
-  flex-wrap: wrap;
   gap: 1rem;
   padding: 0.25rem;
   overflow-x: scroll;

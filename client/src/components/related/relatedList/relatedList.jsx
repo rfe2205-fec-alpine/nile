@@ -9,13 +9,13 @@ function RelatedList({productList, defaultData}) {
 
   return (
     <CardList>
-      {index !== 0 ? <LeftArrow onClick={() => setIndex(index - 1)} /> : ''}
+      {/* {index !== 0 ? <LeftArrow onClick={() => setIndex(index - 1)} /> : ''} */}
       {productList.map((product) => (
         <RelatedCard
           key={product.id} product={product} defaultData={defaultData} setIndex={setIndex}
         />
       ))}
-      {index + 3 !== productList.length ? <RightArrow onClick={() => setIndex(index + 1)} /> : ''}
+      {/* {index + 3 !== productList.length ? <RightArrow onClick={() => setIndex(index + 1)} /> : ''} */}
     </CardList>
   );
 }
@@ -24,7 +24,7 @@ const CardList = styled.div`
   gap: 1rem;
   padding: 0.25rem;
   overflow-x: scroll;
-  max-width: 90%;
+  max-width: 80%;
 `;
 
 const LeftArrow = styled(CgArrowLeftO)`
