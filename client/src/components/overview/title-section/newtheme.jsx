@@ -54,13 +54,21 @@ function changeDropdown(event) {
 function NewThemeDropdown() {
   const [colorScheme, setColorScheme] = React.useContext(ThemeContext);
   return (
-    <select onChange={(event) => changeTheme(event.target.value, colorScheme, setColorScheme)}>
+    <NewTheme onChange={(event) => changeTheme(event.target.value, colorScheme, setColorScheme)}>
       <option value={'nile'}>nile</option>
       <option value={'modern'}>modern</option>
       <option value={'forest'}>forest</option>
       <option value={'sky'}>sky</option>
-    </select>
+    </NewTheme>
   );
 }
+
+const NewTheme = styled.select`
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  border: 1px solid black;
+  background-color: #E4E4E4;
+`;
 
 export default NewThemeDropdown;
