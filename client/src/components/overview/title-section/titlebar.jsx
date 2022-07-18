@@ -9,7 +9,7 @@ function TitleBar({ colorScheme }) {
     <TitleContainer bgColor={colorScheme.foreground}>
       <div></div>
       <img src={logo} height="75" />
-      <Title>Nile</Title>
+      <Title colorScheme={colorScheme}>Nile</Title>
     </TitleContainer>
   );
 }
@@ -22,7 +22,7 @@ const TitleContainer = styled.div`
 `;
 
 const Title = styled.div`
-  color: #fff;
+  color: ${(props) => props.colorScheme.textColorTitle};
   font-size: 64px;
 `;
 

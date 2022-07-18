@@ -18,9 +18,9 @@ function Price({ price, salePrice, colorScheme }) {
 }
 
 const PriceInDollars = styled.span`
-  color: ${(props) => props.colorScheme.textColorBackground}
   font-size: 18px;
   margin-bottom: 20px;
+  color: ${(props) => props.colorScheme.textColorBackground}
 `;
 
 const SalePriceInDollars = styled.span`
@@ -28,8 +28,8 @@ const SalePriceInDollars = styled.span`
 `;
 
 const OriginalPriceInDollars = styled.span`
-  color: ${(props) => props.colorScheme.textColorBackground}
   text-decoration: line-through;
+  color: ${(props) => props.colorScheme.textColorBackground}
 `;
 
 export default Price;

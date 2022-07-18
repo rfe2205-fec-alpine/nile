@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Feature from './feature.jsx';
 
-function FeaturesList({ features }) {
+function FeaturesList({ features, colorScheme }) {
   // console.log('data in features list');
   // console.log(features);
 
@@ -15,7 +15,7 @@ function FeaturesList({ features }) {
   });
 
   return (
-    <FeatureListItems>
+    <FeatureListItems colorScheme={colorScheme}>
       {redBaron}
     </FeatureListItems>
   );
@@ -26,6 +26,7 @@ const FeatureListItems = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   padding-left: 25px;
+  color: ${(props) => props.colorScheme.textColorForeground}
 `;
 
 export default FeaturesList;
