@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List of Features renders to the page 1`] = `
+<div
+  className="sc-gsnTZi bsohHm"
+>
+  <div
+    className="sc-bczRLJ iKTmzu"
+  >
+    : 
+    on
+  </div>
+  <div
+    className="sc-bczRLJ iKTmzu"
+  >
+    : 
+    on
+  </div>
+  <div
+    className="sc-bczRLJ iKTmzu"
+  >
+    : 
+    on
+  </div>
+  <div
+    className="sc-bczRLJ iKTmzu"
+  >
+    : 
+    on
+  </div>
+</div>
+`;

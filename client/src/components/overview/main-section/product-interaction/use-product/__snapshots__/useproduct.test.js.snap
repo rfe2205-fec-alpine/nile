@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Use Product component renders to the page 1`] = `
+<div
+  className="sc-gKXOVf gaiTkr"
+>
+  <div
+    className="sc-dkzDqf jNClnl"
+  >
+    <div
+      className="sc-jSMfEi chQbUE"
+    >
+      OUT OF STOCK
+    </div>
+    <div
+      className="sc-jSMfEi sc-iBkjds chQbUE ewQnNH"
+    >
+      -
+    </div>
+  </div>
+  <div />
+</div>
+`;

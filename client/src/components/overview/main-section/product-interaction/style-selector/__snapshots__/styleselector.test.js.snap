@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Style Selector component renders to the page 1`] = `
+<div
+  className="sc-papXJ eeRjXO"
+  height={95}
+>
+  <div
+    className="sc-dkzDqf gUCSvl"
+  >
+    <span
+      className="sc-bczRLJ evRwiw"
+    >
+      Style 
+      &gt;
+       
+    </span>
+    <span
+      className="sc-gsnTZi iaCvAC"
+    />
+  </div>
+  <div
+    className="sc-ftvSup BOBrc"
+    height={95}
+  />
+</div>
+`;
