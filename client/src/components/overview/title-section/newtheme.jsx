@@ -53,8 +53,19 @@ function changeDropdown(event) {
 
 function NewThemeDropdown() {
   const [colorScheme, setColorScheme] = React.useContext(ThemeContext);
+
+  const lastFiveLetters = colorScheme.name.substring(colorScheme.name.length - 5);
+
+  let name;
+  if (lastFiveLetters === 'light') {
+    name = colorScheme.name.substring(0, colorScheme.name.length - 6);
+  } else {
+    name = colorScheme.name.substring(0, colorScheme.name.length - 5);
+  }
+
   return (
       <NewTheme onChange={(event) => changeTheme(event.target.value, colorScheme, setColorScheme)}>
+        <option selected value={name} hidden>{name}</option>
         <option value={'nile'}>nile</option>
         <option value={'modern'}>modern</option>
         <option value={'forest'}>forest</option>
