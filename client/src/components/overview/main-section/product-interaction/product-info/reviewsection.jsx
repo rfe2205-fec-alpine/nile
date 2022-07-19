@@ -13,6 +13,7 @@ function readReviews() {
 
 function ReviewSection({ reviewScore, numberOfReviews, colorScheme }) {
   let rating = ratingInStars(reviewScore, colorScheme);
+  console.log('rating in stars', reviewScore);
   return (
     <span>
       {rating}

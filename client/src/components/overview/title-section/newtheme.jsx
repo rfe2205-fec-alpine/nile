@@ -47,10 +47,6 @@ function changeTheme(newThemeName, colorScheme, setColorScheme) {
   setColorScheme(newColorScheme);
 }
 
-function changeDropdown(event) {
-  changeTheme(event.target.value);
-}
-
 function NewThemeDropdown() {
   const [colorScheme, setColorScheme] = React.useContext(ThemeContext);
 

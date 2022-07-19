@@ -6,9 +6,15 @@ function getAverageReviewFromData(data) {
   const numberOfReviews = data.count;
   const reviews = data.results;
 
+  console.log('number of reviews is', numberOfReviews);
+  console.log('reviews is', reviews);
+
   for (const review of reviews) {
+    console.log('reading review');
     totalReviewScore += review.rating;
   }
+
+  console.log('total review score', totalReviewScore);
 
   const averageReviewRating = totalReviewScore / numberOfReviews;
   return averageReviewRating;
@@ -17,7 +23,7 @@ function getAverageReviewFromData(data) {
 function getApiDataFromProductId(productId, setData) {
   const productUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/${CAMPUS_CODE}/products/${productId}`;
   const productStylesUrl = `${productUrl}/styles`;
-  const productReviewsUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/${CAMPUS_CODE}/reviews/`;
+  const productReviewsUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/${CAMPUS_CODE}/reviews/meta`;
 
   let mainSectionData = {};
   let descriptionSectionData = {};
