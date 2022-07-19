@@ -98,7 +98,7 @@ function AddReviewForm({ toggleStatus }) {
     <>
       <h4>Add a New Review</h4>
       <InputTitle>Overall Rating</InputTitle>
-      <OverallRating overallRating={overallRating} changeOverallRating={changeOverallRating} />
+      <DynamicStars changeOverallRating={changeOverallRating} />
       <InputTitle>Do You Recommend this Product?</InputTitle>
       <RecommendReview changeRecommend={changeRecommend} />
       <InputTitle>Characteristics</InputTitle>
@@ -275,7 +275,10 @@ function ReviewTitle({ summary, changeSummary }) {
 
 function OverallRating({ overallRating, changeOverallRating }) {
   return (
-    <input value={overallRating} onChange={(e) => { changeOverallRating(e.target.value); }} />
+    <>
+      <input value={overallRating} onChange={(e) => { changeOverallRating(e.target.value); }} />
+      <DynamicStars overallRating={overallRating} changeOverallRating={changeOverallRating} />
+    </>
   );
 }
 
@@ -290,6 +293,80 @@ function RecommendReview({ changeRecommend }) {
       <input name="recommend" type="radio" value="yes" onClick={() => { changeRecommend(true); }} />
       <p>No</p>
       <input name="recommend" type="radio" value="no" onClick={() => { changeRecommend(false); }} />
+    </div>
+  );
+}
+
+function DynamicStars({ changeOverallRating }) {
+  const [starsArr, addStarsArr] = useState([0, 0, 0, 0, 0]);
+  const [oldArr, addOldArr] = useState([0, 0, 0, 0, 0]);
+
+  useEffect(() => {
+    let count = 0;
+    for (let i = 0; i < oldArr.length; i++) {
+      if (oldArr[i] === 1) {
+        count++;
+      }
+    }
+    changeOverallRating(count);
+  }, [oldArr]);
+
+  const SingleStarContainer = {
+    height: '20px',
+    width: '18px',
+    display: 'inline-block',
+  };
+  const SingleStarOutline = {
+    height: '20px',
+    width: '18px',
+  };
+  const WrapperDiv = {
+    width: '100%',
+  };
+
+  function handleStarsHover(e) {
+    e.preventDefault();
+    let rating = parseInt(e.target.getAttribute('value'), 10) + 1;
+    let newArr = [];
+    while (newArr.length < 5) {
+      if (rating > 0) {
+        rating -= 1;
+        newArr.push(1);
+      } else {
+        newArr.push(0);
+      }
+    }
+    addStarsArr(newArr);
+  }
+
+  function handleStarsClick(e) {
+    e.preventDefault();
+    addOldArr(starsArr);
+  }
+
+  function handleStarsLeave(e) {
+    e.preventDefault();
+    addStarsArr(oldArr);
+  }
+
+  return (
+    <div style={WrapperDiv}>
+      {starsArr.map((item, i) => {
+        const SingleStarFill = {
+          position: 'relative',
+          display: 'inline-block',
+          height: '20px',
+          width: `${parseInt(item * 18, 10)}px`,
+          backgroundColor: 'black',
+        };
+        return (
+          <div style={SingleStarContainer} value={i} key={i} onMouseOver={handleStarsHover} onClick={handleStarsClick} onMouseLeave={handleStarsLeave}>
+            <div style={SingleStarFill}>
+              <img alt="starImage" style={SingleStarOutline} src="https://raw.githubusercontent.com/psfonseka/five-stars/master/dist/star.png" value={i} />
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
