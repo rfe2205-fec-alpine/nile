@@ -19,15 +19,36 @@ function ReviewCount({ amount }) {
 }
 
 function SortBar({ changeQuery, query }) {
-  const divWrapper = {
+  const dropDown = {
     position: 'relative',
     display: 'inline-block',
   };
 
+  const dropdownContent = {
+    display: 'none',
+    position: 'absolute',
+    backgroundColor: '#f9f9f9',
+    minWidth: '160px',
+    boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
+    zIndex: '1',
+  };
+
+  const dropButton = {
+    backgroundColor: 'white',
+    color: 'black',
+    padding: '16px',
+    fontSize: '16px',
+    borderBottom: '5px solid black',
+    cursor: 'pointer',
+    onHover: dropdownContent.display = 'block',
+  };
+
   return (
-    <div style={divWrapper}>
-      <button type="submit">{query}</button>
-      <div>
+    <div style={dropDown}>
+      <button style={dropButton} type="submit">
+        {query}
+      </button>
+      <div style={dropdownContent}>
         <div value="Helpful" onClick={() => {changeQuery('helpful')}}>Helpful</div>
         <div value="Newest" onClick={() => {changeQuery('newest')}}> Newest </div>
         <div value="Relevant" onClick={() => {changeQuery('relevant')}}>Relevant</div>
