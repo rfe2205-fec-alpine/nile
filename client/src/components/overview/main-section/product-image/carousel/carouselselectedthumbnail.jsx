@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import ThemeContext from '../../../../../ThemeContext.jsx';
 
 const swissAlpsUrl = "https://miro.medium.com/max/1400/1*yweiw7AyafIdk0YKt4G03Q.jpeg";
 
 function CarouselSelectedThumbnail({ imgUrl, isFullScreen }) {
+  const [colorScheme] = React.useContext(ThemeContext);
+
   if (isFullScreen) {
     return (
       <FullScreenThumbnailContainer>
@@ -14,7 +17,7 @@ function CarouselSelectedThumbnail({ imgUrl, isFullScreen }) {
   return (
     <SelectedThumbnailContainer>
       <CarouselThumbnailContainer imgUrl={imgUrl} />
-      <IsSelectedBar />
+      <IsSelectedBar colorScheme={colorScheme} />
     </SelectedThumbnailContainer>
   );
 }
@@ -47,7 +50,7 @@ const IsSelectedBar = styled.div`
   grid-row-end: row-end;
   width: 65px;
   height: 5px;
-  background-color: #5d6699;
+  background-color: ${(props) => props.colorScheme.foreground};
 `;
 
 export default CarouselSelectedThumbnail;

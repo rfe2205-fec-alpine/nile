@@ -273,7 +273,7 @@ const FullScreenImageContainer = styled(ProductImageContainer)`
   top: 0px;
   height: 100%;
   width: 100%;
-  transition: background-position 1s;
+  transition: background-position 0.5s;
 `;
 
 const DivContainer = styled.div`
