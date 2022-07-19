@@ -300,6 +300,8 @@ function RecommendReview({ changeRecommend }) {
 function DynamicStars({ changeOverallRating }) {
   const [starsArr, addStarsArr] = useState([0, 0, 0, 0, 0]);
   const [oldArr, addOldArr] = useState([0, 0, 0, 0, 0]);
+  const [title, changeTitle] = useState();
+  const titleForStar = ['Poor', 'Fair', 'Average', 'Good', 'Great'];
 
   useEffect(() => {
     let count = 0;
@@ -309,6 +311,7 @@ function DynamicStars({ changeOverallRating }) {
       }
     }
     changeOverallRating(count);
+    changeTitle(titleForStar[count - 1]);
   }, [oldArr]);
 
   const SingleStarContainer = {
@@ -351,6 +354,7 @@ function DynamicStars({ changeOverallRating }) {
 
   return (
     <div style={WrapperDiv}>
+      <p>{title}</p>
       {starsArr.map((item, i) => {
         const SingleStarFill = {
           position: 'relative',
