@@ -18,6 +18,10 @@ function ReviewTile({ reviewData }) {
     justifyContent: 'right',
     //width: '100%',
   };
+  const imageStyle = {
+    margin: '5px',
+    boxShadow: '3px 3px 15px lightgray',
+  };
   return (
     <ReviewTileWrapper>
       <div style={topDiv}>
@@ -31,8 +35,9 @@ function ReviewTile({ reviewData }) {
       <ReviewBody body={reviewData.body} />
       {reviewData.recommend ? <ReviewRecommend /> : <> </>}
       {reviewData.response ? <Response response={reviewData.response} /> : <> </>}
+      {reviewData.photos ? reviewData.photos.map((photo) => <img style={imageStyle} height="90px" width="auto" src={photo.url} alt="review Photos" />) : <> </>}
       <div>
-        <Helpful help={reviewData.helpfulness} id={reviewData.review_id}/>
+        <Helpful help={reviewData.helpfulness} id={reviewData.review_id} />
         <Report id={reviewData.review_id} />
       </div>
     </ReviewTileWrapper>
@@ -78,7 +83,9 @@ function ReviewRecommend() {
     alignItems: 'center',
     justifyContent: 'left',
     height: '40px',
-    width: '25%',
+    margin: '5px',
+    width: '50%',
+    padding: '6px',
   };
 
   return (
@@ -159,7 +166,9 @@ function Response({ response }) {
     alignItems: 'center',
     justifyContent: 'left',
     height: '40px',
-    width: '25%',
+    margin: '5px',
+    width: '50%',
+    padding: '6px',
   };
   return (
     <div style={responseDiv}>

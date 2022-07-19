@@ -15,12 +15,19 @@ function AddReviewsButton() {
     borderRadius: '5px',
     justifyContent: 'left',
   };
+  const ButtonDiv = {
+    justifyContent: 'right',
+    width: '100%',
+    display: 'flex',
+  };
 
   if (modalStatus) {
     return (
       <ModalWrapper>
         <FormWrapper>
-          <ExitButton toggleStatus={changeModalStatus} />
+          <div style={ButtonDiv}>
+            <ExitButton toggleStatus={changeModalStatus} />
+          </div>
           <AddReviewForm toggleStatus={changeModalStatus} />
         </FormWrapper>
       </ModalWrapper>
@@ -45,8 +52,17 @@ function AddReview({ toggleStatus }) {
 }
 
 function ExitButton({ toggleStatus }) {
+  const buttonStyle = {
+    padding: '12px',
+    backgroundColor: 'white',
+    color: 'black',
+    border: '2px solid black',
+    margin: '0px 15px 15px 15px',
+    alignContent: 'right',
+  };
+
   return (
-    <button type="submit" onClick={() => { toggleStatus(false); }}>X</button>
+    <button style={buttonStyle} type="submit" onClick={() => { toggleStatus(false); }}>X</button>
   );
 }
 
@@ -96,25 +112,28 @@ function AddReviewForm({ toggleStatus }) {
 
   return (
     <>
-      <h4>Add a New Review</h4>
-      <InputTitle>Overall Rating</InputTitle>
-      <DynamicStars changeOverallRating={changeOverallRating} />
-      <InputTitle>Do You Recommend this Product?</InputTitle>
-      <RecommendReview changeRecommend={changeRecommend} />
-      <InputTitle>Characteristics</InputTitle>
-      <Char characteristics={characteristics} changeCharacteristics={changeCharacteristics} />
-      <InputTitle>Review Title</InputTitle>
-      <ReviewTitle summary={summary} changeSummary={changeSummary} />
-      <InputTitle>Body</InputTitle>
-      <Body body={body} changeBody={changeBody} />
-      <InputTitle>Upload Your Photos</InputTitle>
-      <Images images={images} addImage={addImage} finalImages={finalImages} addFinalImages={addFinalImages} />
-      <InputTitle>What is Your Nickname?</InputTitle>
-      <NickName name={name} changeName={changeName} />
-      <InputTitle>Your Email</InputTitle>
-      <Email email={email} changeEmail={changeEmail} />
-      <InputTitle>Submit Your Review</InputTitle>
-      <button type="submit" onClick={() => { sendDataToServer(); }}>Submit</button>
+      <form>
+        <h4>Add a New Review</h4>
+        <InputTitle>Overall Rating</InputTitle>
+        <DynamicStars changeOverallRating={changeOverallRating} />
+        <InputTitle>Do You Recommend this Product?</InputTitle>
+        <RecommendReview changeRecommend={changeRecommend} />
+        <InputTitle>Characteristics</InputTitle>
+        <Char characteristics={characteristics} changeCharacteristics={changeCharacteristics} />
+        <InputTitle>Review Title</InputTitle>
+        <ReviewTitle summary={summary} changeSummary={changeSummary} />
+        <InputTitle>Body</InputTitle>
+        <Body body={body} changeBody={changeBody} />
+        <InputTitle>Upload Your Photos</InputTitle>
+        <Images images={images} addImage={addImage} finalImages={finalImages} addFinalImages={addFinalImages} />
+        <InputTitle>What is Your Nickname?</InputTitle>
+        <NickName name={name} changeName={changeName} />
+        <InputTitle>Your Email</InputTitle>
+        <Email email={email} changeEmail={changeEmail} />
+        <InputTitle>Submit Your Review</InputTitle>
+        <button type="submit" onClick={() => { sendDataToServer(); }}>Submit</button>
+      </form>
+        <></>
     </>
   );
 }
@@ -129,7 +148,6 @@ function Char({ characteristics, changeCharacteristics }) {
     Length: ['Runs Short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
     Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'],
   };
-
   const radioButtonStyle = {
     display: 'flex',
   };
@@ -174,9 +192,13 @@ function Char({ characteristics, changeCharacteristics }) {
 }
 
 function Images({ images, addImage, finalImages, addFinalImages }) {
+  const [max, changeMax] = useState(false);
+
   useEffect(() => {
-    console.log('UseEffect invoked...', images);
-  }, [images]);
+    if (finalImages.length >= 5) {
+      changeMax(true);
+    }
+  }, [finalImages]);
 
   const cloudName = 'alpinefec';
 
@@ -211,7 +233,7 @@ function Images({ images, addImage, finalImages, addFinalImages }) {
   if (images) {
     return (
       <>
-        <input type="file" onChange={(e) => { handleClick(e); }} />
+        { !max ? <input type="file" onChange={(e) => { handleClick(e); }} /> : <> </> }
         {images.map((imageUrl) => {
           return <img src={imageUrl} alt="test" width="auto" height="60px" />;
         })}
@@ -224,7 +246,7 @@ function Images({ images, addImage, finalImages, addFinalImages }) {
 function Email({ email, changeEmail }) {
   return (
     <>
-      <input placeholder="Example: jackson11@email.com" type="email" value={email} onChange={(e) => { changeEmail(e.target.value); }} />
+      <input placeholder="Example: jackson11@email.com" type="email" value={email} onChange={(e) => { changeEmail(e.target.value); }} required />
       <p>For authentication reasons, you will not be emailed</p>
     </>
   );
@@ -290,9 +312,9 @@ function RecommendReview({ changeRecommend }) {
   return (
     <div style={radioButtons}>
       <p>Yes</p>
-      <input name="recommend" type="radio" value="yes" onClick={() => { changeRecommend(true); }} />
+      <input name="recommend" type="radio" value="yes" onClick={() => { changeRecommend(true); }} required />
       <p>No</p>
-      <input name="recommend" type="radio" value="no" onClick={() => { changeRecommend(false); }} />
+      <input name="recommend" type="radio" value="no" onClick={() => { changeRecommend(false); }} required />
     </div>
   );
 }
@@ -382,9 +404,11 @@ left: 0;
 width 100%;
 height: 100vh;
 background-color: black;
-display: flex;
+display: flex-box;
 align-items: center,
 justify-content: center;
+margin: auto;
+z-index: 3;
 `;
 
 const InputTitle = styled.h6`
@@ -400,6 +424,7 @@ display: flex-box;
 opacity: 1.0;
 align-items: center,
 justify-content: center;
+margin: auto;
 `;
 
 export default AddReviewsButton;
