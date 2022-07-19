@@ -49,7 +49,7 @@ function ratingInStars(reviewScore, colorScheme) {
 const ReadAllReviews = styled.span`
 &:hover {
   color: ${(props) => props.colorScheme.foreground};
-  cursor: default;
+  cursor: pointer;
 }
   color: ${(props) => props.colorScheme.textColorBackground};
   text-decoration: underline;
