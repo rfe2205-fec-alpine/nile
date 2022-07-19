@@ -38,6 +38,7 @@ function AddQuestion({ closeQuestionPopUp, productName, productId }) {
       console.log(err);
     });
   }
+
   console.log(questionBody, questionName, questionEmail, productId);
   return (
     <Modal

@@ -1,7 +1,10 @@
 import React from 'react';
 import Question from './question';
 
-function QuestionList({ questions, handleAddAnswerClick }) {
+function QuestionList({
+  questions, handleAddAnswerClick, markQuestionHelpful,
+  reportQuestion, markAnswerHelpful, reportAnswer,
+}) {
   console.log(questions);
   return (
     <div>
@@ -9,6 +12,10 @@ function QuestionList({ questions, handleAddAnswerClick }) {
         <Question
           question={question}
           handleAddAnswerClick={handleAddAnswerClick}
+          markQuestionHelpful={markQuestionHelpful}
+          reportQuestion={reportQuestion}
+          markAnswerHelpful={markAnswerHelpful}
+          reportAnswer={reportAnswer}
         />
       ))}
     </div>
