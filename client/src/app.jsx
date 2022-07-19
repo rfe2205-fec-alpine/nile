@@ -51,6 +51,9 @@ function App() {
   document.body.style.backgroundColor = selectedTheme.bodyColor;
 
   const ClickerOverview = ComponentWithClickTracker(Overview, 'Overview');
+  const ClickerRelatedItems = ComponentWithClickTracker(RelatedItems, 'Related Items');
+  const ClickerReviews = ComponentWithClickTracker(Reviews, 'Reviews');
+  const ClickerQAndA = ComponentWithClickTracker(QAndA, 'Q&A');
 
   return (
     <ThemeContext.Provider value={[colorScheme, setColorScheme]}>
@@ -58,9 +61,9 @@ function App() {
         <PageContainer>
           <AppContainer>
             <ClickerOverview />
-            <RelatedItems />
-            <Reviews />
-            <QAndA />
+            <ClickerRelatedItems />
+            <ClickerReviews />
+            <ClickerQAndA />
           </AppContainer>
         </PageContainer>
       </ProductContext.Provider>
