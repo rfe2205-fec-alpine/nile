@@ -15,12 +15,19 @@ function AddReviewsButton() {
     borderRadius: '5px',
     justifyContent: 'left',
   };
+  const ButtonDiv = {
+    justifyContent: 'right',
+    width: '100%',
+    display: 'flex',
+  };
 
   if (modalStatus) {
     return (
       <ModalWrapper>
         <FormWrapper>
-          <ExitButton toggleStatus={changeModalStatus} />
+          <div style={ButtonDiv}>
+            <ExitButton toggleStatus={changeModalStatus} />
+          </div>
           <AddReviewForm toggleStatus={changeModalStatus} />
         </FormWrapper>
       </ModalWrapper>
@@ -45,8 +52,17 @@ function AddReview({ toggleStatus }) {
 }
 
 function ExitButton({ toggleStatus }) {
+  const buttonStyle = {
+    padding: '12px',
+    backgroundColor: 'white',
+    color: 'black',
+    border: '2px solid black',
+    margin: '0px 15px 15px 15px',
+    alignContent: 'right',
+  };
+
   return (
-    <button type="submit" onClick={() => { toggleStatus(false); }}>X</button>
+    <button style={buttonStyle} type="submit" onClick={() => { toggleStatus(false); }}>X</button>
   );
 }
 
@@ -60,7 +76,7 @@ function AddReviewForm({ toggleStatus }) {
   const [email, changeEmail] = useState('');
   const [images, addImage] = useState([]);
   const [characteristics, changeCharacteristics] = useState({});
-  const [finalImages, addFinalImages] = useState();
+  const [finalImages, addFinalImages] = useState([]);
 
   const formStyle = {
     width: '50%',
@@ -82,7 +98,7 @@ function AddReviewForm({ toggleStatus }) {
         recommend: recommend,
         name: name,
         email: email,
-        photos: images,
+        photos: finalImages,
         characteristics: characteristics,
       },
     }).then((res) => {
@@ -96,26 +112,28 @@ function AddReviewForm({ toggleStatus }) {
 
   return (
     <>
-      <h4>Add a New Review</h4>
-      <InputTitle>Overall Rating</InputTitle>
-      <OverallRating overallRating={overallRating} changeOverallRating={changeOverallRating} />
-      <InputTitle>Do You Recommend this Product?</InputTitle>
-      <RecommendReview changeRecommend={changeRecommend} />
-      <InputTitle>Characteristics</InputTitle>
-      <Char characteristics={characteristics} changeCharacteristics={changeCharacteristics} />
-      <InputTitle>Review Title</InputTitle>
-      <ReviewTitle summary={summary} changeSummary={changeSummary} />
-      <InputTitle>Body</InputTitle>
-      <Body body={body} changeBody={changeBody} />
-      <InputTitle>Upload Your Photos</InputTitle>
-      <Images images={images} addImage={addImage} finalImages={finalImages} addFinalImages={addFinalImages} />
-      {/* {images ? <ImageDisplay images={images} /> : <> </> } */}
-      <InputTitle>What is Your Nickname?</InputTitle>
-      <NickName name={name} changeName={changeName} />
-      <InputTitle>Your Email</InputTitle>
-      <Email email={email} changeEmail={changeEmail} />
-      <InputTitle>Submit Your Review</InputTitle>
-      <button type="submit" onClick={() => { sendDataToServer(); }}>Submit</button>
+      <form>
+        <h4>Add a New Review</h4>
+        <InputTitle>Overall Rating</InputTitle>
+        <DynamicStars changeOverallRating={changeOverallRating} />
+        <InputTitle>Do You Recommend this Product?</InputTitle>
+        <RecommendReview changeRecommend={changeRecommend} />
+        <InputTitle>Characteristics</InputTitle>
+        <Char characteristics={characteristics} changeCharacteristics={changeCharacteristics} />
+        <InputTitle>Review Title</InputTitle>
+        <ReviewTitle summary={summary} changeSummary={changeSummary} />
+        <InputTitle>Body</InputTitle>
+        <Body body={body} changeBody={changeBody} />
+        <InputTitle>Upload Your Photos</InputTitle>
+        <Images images={images} addImage={addImage} finalImages={finalImages} addFinalImages={addFinalImages} />
+        <InputTitle>What is Your Nickname?</InputTitle>
+        <NickName name={name} changeName={changeName} />
+        <InputTitle>Your Email</InputTitle>
+        <Email email={email} changeEmail={changeEmail} />
+        <InputTitle>Submit Your Review</InputTitle>
+        <button type="submit" onClick={() => { sendDataToServer(); }}>Submit</button>
+      </form>
+        <></>
     </>
   );
 }
@@ -130,7 +148,6 @@ function Char({ characteristics, changeCharacteristics }) {
     Length: ['Runs Short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
     Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'],
   };
-
   const radioButtonStyle = {
     display: 'flex',
   };
@@ -175,9 +192,13 @@ function Char({ characteristics, changeCharacteristics }) {
 }
 
 function Images({ images, addImage, finalImages, addFinalImages }) {
+  const [max, changeMax] = useState(false);
+
   useEffect(() => {
-    console.log('UseEffect invoked...', images);
-  }, [images]);
+    if (finalImages.length >= 5) {
+      changeMax(true);
+    }
+  }, [finalImages]);
 
   const cloudName = 'alpinefec';
 
@@ -185,39 +206,47 @@ function Images({ images, addImage, finalImages, addFinalImages }) {
     const img = URL.createObjectURL(e.target.files[0]);
     const reader = new FileReader();
 
-    Axios({
-      method: 'post',
-      url: `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
-      data: {
-        file: reader.readAsDataURL(e.target.files[0]),
-        upload_preset: 'lfcpuaaw',
-      },
-    }).then(() => {
-      console.log('success!');
-      addFinalImages([...finalImages /* Add the file from Cloudinary response here*/]);
-      addImage([...images, URL.createObjectURL(e.target.files[0])]);
-    }).catch((err) => console.log('There was an error uploading file to cloudinary: ', err));
+    const toBase64 = (file) => new Promise((resolve, reject) => {
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+
+    toBase64(e.target.files[0]).then((converted) => {
+      Axios({
+        method: 'post',
+        url: `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        data: {
+          file: converted,
+          upload_preset: 'lfcpuaaw',
+        },
+      }).then((res) => {
+        addFinalImages([...finalImages, res.data.secure_url]);
+        addImage([...images, img]);
+      }).catch((err) => {
+        console.log('There was an error with Axios Request: ', err);
+      });
+    })
+      .catch((err) => { console.log('There was an error uploading file to cloudinary: ', err); });
   }
 
   if (images) {
     return (
       <>
-        <input type="file" onChange={(e) => { handleClick(e); }} />
+        { !max ? <input type="file" onChange={(e) => { handleClick(e); }} /> : <> </> }
         {images.map((imageUrl) => {
-          return <img src={imageUrl} alt="test" width="10%" height="10%" />;
+          return <img src={imageUrl} alt="test" width="auto" height="60px" />;
         })}
       </>
-    );
-  }
-  return (
-    <input type="file" onChange={(e) => { handleClick(e); }} />
-  );
+    )};
+
+  return (<input type="file" onChange={(e) => { handleClick(e); }} />);
 }
 
 function Email({ email, changeEmail }) {
   return (
     <>
-      <input placeholder="Example: jackson11@email.com" type="email" value={email} onChange={(e) => { changeEmail(e.target.value); }} />
+      <input placeholder="Example: jackson11@email.com" type="email" value={email} onChange={(e) => { changeEmail(e.target.value); }} required />
       <p>For authentication reasons, you will not be emailed</p>
     </>
   );
@@ -266,9 +295,12 @@ function ReviewTitle({ summary, changeSummary }) {
   );
 }
 
-function OverallRating( {overallRating, changeOverallRating} ) {
+function OverallRating({ overallRating, changeOverallRating }) {
   return (
-    <input value={overallRating} onChange={(e) => { changeOverallRating(e.target.value); }} />
+    <>
+      <input value={overallRating} onChange={(e) => { changeOverallRating(e.target.value); }} />
+      <DynamicStars overallRating={overallRating} changeOverallRating={changeOverallRating} />
+    </>
   );
 }
 
@@ -280,9 +312,87 @@ function RecommendReview({ changeRecommend }) {
   return (
     <div style={radioButtons}>
       <p>Yes</p>
-      <input name="recommend" type="radio" value="yes" onClick={() => { changeRecommend(true); }} />
+      <input name="recommend" type="radio" value="yes" onClick={() => { changeRecommend(true); }} required />
       <p>No</p>
-      <input name="recommend" type="radio" value="no" onClick={() => { changeRecommend(false); }} />
+      <input name="recommend" type="radio" value="no" onClick={() => { changeRecommend(false); }} required />
+    </div>
+  );
+}
+
+function DynamicStars({ changeOverallRating }) {
+  const [starsArr, addStarsArr] = useState([0, 0, 0, 0, 0]);
+  const [oldArr, addOldArr] = useState([0, 0, 0, 0, 0]);
+  const [title, changeTitle] = useState();
+  const titleForStar = ['Poor', 'Fair', 'Average', 'Good', 'Great'];
+
+  useEffect(() => {
+    let count = 0;
+    for (let i = 0; i < oldArr.length; i++) {
+      if (oldArr[i] === 1) {
+        count++;
+      }
+    }
+    changeOverallRating(count);
+    changeTitle(titleForStar[count - 1]);
+  }, [oldArr]);
+
+  const SingleStarContainer = {
+    height: '20px',
+    width: '18px',
+    display: 'inline-block',
+  };
+  const SingleStarOutline = {
+    height: '20px',
+    width: '18px',
+  };
+  const WrapperDiv = {
+    width: '100%',
+  };
+
+  function handleStarsHover(e) {
+    e.preventDefault();
+    let rating = parseInt(e.target.getAttribute('value'), 10) + 1;
+    let newArr = [];
+    while (newArr.length < 5) {
+      if (rating > 0) {
+        rating -= 1;
+        newArr.push(1);
+      } else {
+        newArr.push(0);
+      }
+    }
+    addStarsArr(newArr);
+  }
+
+  function handleStarsClick(e) {
+    e.preventDefault();
+    addOldArr(starsArr);
+  }
+
+  function handleStarsLeave(e) {
+    e.preventDefault();
+    addStarsArr(oldArr);
+  }
+
+  return (
+    <div style={WrapperDiv}>
+      <p>{title}</p>
+      {starsArr.map((item, i) => {
+        const SingleStarFill = {
+          position: 'relative',
+          display: 'inline-block',
+          height: '20px',
+          width: `${parseInt(item * 18, 10)}px`,
+          backgroundColor: 'black',
+        };
+        return (
+          <div style={SingleStarContainer} value={i} key={i} onMouseOver={handleStarsHover} onClick={handleStarsClick} onMouseLeave={handleStarsLeave}>
+            <div style={SingleStarFill}>
+              <img alt="starImage" style={SingleStarOutline} src="https://raw.githubusercontent.com/psfonseka/five-stars/master/dist/star.png" value={i} />
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -294,9 +404,11 @@ left: 0;
 width 100%;
 height: 100vh;
 background-color: black;
-display: flex;
+display: flex-box;
 align-items: center,
 justify-content: center;
+margin: auto;
+z-index: 3;
 `;
 
 const InputTitle = styled.h6`
@@ -312,6 +424,7 @@ display: flex-box;
 opacity: 1.0;
 align-items: center,
 justify-content: center;
+margin: auto;
 `;
 
 export default AddReviewsButton;

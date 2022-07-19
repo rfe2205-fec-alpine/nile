@@ -59,7 +59,7 @@ function ProgressBar({ progress, starRating, amount }) {
     height: 7,
     width: '65%',
     backgroundColor: 'lightgray',
-    // borderRadius: 40,
+    borderRadius: 40,
   };
 
   const Childdiv = {
@@ -73,9 +73,13 @@ function ProgressBar({ progress, starRating, amount }) {
     paddingLeft: '3px',
   };
 
+  const wrapperStyle = {
+    alignContent: 'left',
+  };
+
   if (selectedRatings[refObj[starRating]]) {
     return (
-      <SelectedWrapper onClick={() => { handleClick(); }}>
+      <SelectedWrapper style={wrapperStyle} onClick={() => { handleClick(); }}>
         <p>{starRating}</p>
         <div style={Parentdiv}>
           <div style={Childdiv} />
@@ -146,7 +150,7 @@ margin 5px;
 const SelectedWrapper = styled.div`
 display: flex;
 align-items: center;
-justify-content: center;
+justify-content: left;
 background-color: lightblue;
 box-shadow: 3px 3px 15px lightgray;
 &:hover {
@@ -161,12 +165,12 @@ margin: 3px;
 const Wrapper = styled.div`
 display: flex;
 align-items: center;
-justify-content: center;
+justify-content: left;
 &:hover {
   background-color: lightblue;
 }
-padding-bottom: 10px;
-padding-top: 10px;
+padding-bottom: 15px;
+padding-top: 15px;
 margin: 3px;
 `;
 

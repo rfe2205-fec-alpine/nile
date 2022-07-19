@@ -7,9 +7,11 @@ import ReviewAmountContext from './reviewAmountContext.jsx';
 import ReviewQualitiesContext from './reviewQualities.jsx';
 import SelectRatingsContext from './selectedRatingsContext.jsx';
 import CountContext from './countContext.jsx';
+import ProductNameContext from './productNameContext.jsx';
 
 function Reviews() {
   const [reviewAmount, changeReviewAmount] = useState(null);
+  const [productName, changeProductName] = useState(null);
   const [reviewQualities, changeReviewQualities] = useState(null);
   const [count, changeCount] = useState(2);
   const [selectedRatings, addSelectedRatings] = useState({
@@ -26,15 +28,17 @@ function Reviews() {
       <ReviewQualitiesContext.Provider value={[reviewQualities, changeReviewQualities]}>
         <SelectRatingsContext.Provider value={[selectedRatings, addSelectedRatings]}>
           <CountContext.Provider value={[count, changeCount]}>
-            <ReviewsWrapper id="allReviews">
-              <RatingBreakdownWrapper>
-                <RatingBreakdown />
-              </RatingBreakdownWrapper>
-              <ReviewsListWrapper>
-                <ReviewsList />
-                <ReviewButtons />
-              </ReviewsListWrapper>
-            </ReviewsWrapper>
+            <ProductNameContext.Provider value={[productName, changeProductName]}>
+              <ReviewsWrapper id="allReviews">
+                <RatingBreakdownWrapper>
+                  <RatingBreakdown />
+                </RatingBreakdownWrapper>
+                <ReviewsListWrapper>
+                  <ReviewsList />
+                  <ReviewButtons />
+                </ReviewsListWrapper>
+              </ReviewsWrapper>
+            </ProductNameContext.Provider>
           </CountContext.Provider>
         </SelectRatingsContext.Provider>
       </ReviewQualitiesContext.Provider>
@@ -50,6 +54,8 @@ const ReviewsWrapper = styled.div`
 
 const RatingBreakdownWrapper = styled.div`
   grid-column-start: 1fr;
+  background-color: #5D6699;
+  border-radius: 10px;
 `;
 
 const ReviewsListWrapper = styled.div`

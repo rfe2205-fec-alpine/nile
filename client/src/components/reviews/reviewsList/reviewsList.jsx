@@ -7,11 +7,12 @@ import ProductContext from '../../../ProductContext.jsx';
 import { GITHUB_API_KEY } from '../../../../../config.js';
 import SelectRatingsContext from '../selectedRatingsContext.jsx';
 import CountContext from '../countContext.jsx';
-// import SelectRatingsContext from '../selectedRatingContext.jsx';
+import ProductNameContext from '../productNameContext.jsx';
 
 function ReviewsList() {
   const [productID] = useContext(ProductContext);
   const [reviews, setReviews] = useState(null);
+  const [productName, changeProductName] = useContext(ProductNameContext);
   const [query, changeQuery] = useState('relevant');
   const [selectedRatings, addSelectedRatings] = useContext(SelectRatingsContext);
   const [count, changeCount] = useContext(CountContext);
@@ -30,6 +31,7 @@ function ReviewsList() {
       },
     }).then((res) => {
       setReviews(res.data);
+      // changeProductName()
     }).catch((err) => { console.log(err); });
   }, [productID, query, count, selectedRatings]);
 
@@ -48,15 +50,15 @@ function ReviewsList() {
       </>
     );
   }
-    return (
+  return (
       <ReviewsListWrapper>
         <SortReviews change={changeQuery} reviewQuery={query} />
         {reviews.results.map((review) => {
           if (selectedRatings[review.rating]) {
-            return <ReviewTile key={review.review_id} reviewData ={review} /> }})
-        }
+            return <ReviewTile key={review.review_id} reviewData={review} />;
+          }})}
       </ReviewsListWrapper>
-    );
+  );
 }
 
 const ReviewsListWrapper = styled.div`
