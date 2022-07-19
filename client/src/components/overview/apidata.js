@@ -3,21 +3,21 @@ const { GITHUB_API_KEY, CAMPUS_CODE } = require('../../../../config.js');
 
 function getAverageReviewFromData(data) {
   let totalReviewScore = 0;
-  const numberOfReviews = data.count;
-  const reviews = data.results;
+  let numberOfReviews = 0;
+  const reviews = data;
+
+  for (let currentIndex = 1; currentIndex <= 5; currentIndex++) {
+    let numberOfRatings = parseInt(reviews[currentIndex]);
+    numberOfReviews += numberOfRatings;
+    totalReviewScore += numberOfRatings * currentIndex;
+  }
 
   console.log('number of reviews is', numberOfReviews);
   console.log('reviews is', reviews);
-
-  for (const review of reviews) {
-    console.log('reading review');
-    totalReviewScore += review.rating;
-  }
-
   console.log('total review score', totalReviewScore);
 
   const averageReviewRating = totalReviewScore / numberOfReviews;
-  return averageReviewRating;
+  return [averageReviewRating, numberOfReviews];
 }
 
 function getApiDataFromProductId(productId, setData) {
@@ -77,12 +77,12 @@ function getApiDataFromProductId(productId, setData) {
           })
             .then((data) => {
               let innerData = data.data;
-              // console.log('review data:', innerData);
+              console.log('review data:', innerData);
 
-              let averageReview = getAverageReviewFromData(innerData);
+              let averageReviewData = getAverageReviewFromData(innerData.ratings);
               // console.log(averageReview);
-              mainSectionData.averageReview = averageReview;
-              mainSectionData.numberOfReviews = innerData.results.length;
+              mainSectionData.averageReview = averageReviewData[0];
+              mainSectionData.numberOfReviews = averageReviewData[1];
               setData([mainSectionData, descriptionSectionData]);
             })
             .catch(error => {

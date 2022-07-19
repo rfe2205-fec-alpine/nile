@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1658258293981" clover="3.2.0">
-  <project timestamp="1658258293981" name="All files">
-    <metrics statements="484" coveredstatements="203" conditionals="187" coveredconditionals="43" methods="121" coveredmethods="48" elements="792" coveredelements="294" complexity="0" loc="484" ncloc="484" packages="11" files="39" classes="39"/>
+<coverage generated="1658274111168" clover="3.2.0">
+  <project timestamp="1658274111168" name="All files">
+    <metrics statements="488" coveredstatements="203" conditionals="189" coveredconditionals="43" methods="120" coveredmethods="48" elements="797" coveredelements="294" complexity="0" loc="488" ncloc="488" packages="11" files="39" classes="39"/>
     <package name="nile">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="config.js" path="/Users/anthonycella/HackReactor/nile/config.js">
@@ -319,7 +319,7 @@
       </file>
     </package>
     <package name="nile.client.src.components.overview.main-section.product-interaction.product-info">
-      <metrics statements="37" coveredstatements="23" conditionals="6" coveredconditionals="3" methods="12" coveredmethods="8"/>
+      <metrics statements="38" coveredstatements="23" conditionals="6" coveredconditionals="3" methods="12" coveredmethods="8"/>
       <file name="category.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/product-info/category.jsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="5" count="1" type="stmt"/>
@@ -345,29 +345,30 @@
         <line num="15" count="1" type="stmt"/>
       </file>
       <file name="reviewsection.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/main-section/product-interaction/product-info/reviewsection.jsx">
-        <metrics statements="22" coveredstatements="10" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="2"/>
+        <metrics statements="23" coveredstatements="10" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="2"/>
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
-        <line num="28" count="1" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
         <line num="29" count="1" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
         <line num="33" count="1" type="stmt"/>
-        <line num="35" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="37" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="38" count="0" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="36" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="39" count="0" type="stmt"/>
-        <line num="41" count="1" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="49" count="1" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="54" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
       </file>
     </package>
     <package name="nile.client.src.components.overview.main-section.product-interaction.style-selector">
@@ -556,7 +557,7 @@
       </file>
     </package>
     <package name="nile.client.src.components.overview.title-section">
-      <metrics statements="66" coveredstatements="11" conditionals="22" coveredconditionals="0" methods="13" coveredmethods="6"/>
+      <metrics statements="69" coveredstatements="11" conditionals="24" coveredconditionals="0" methods="12" coveredmethods="6"/>
       <file name="announcementbar.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/title-section/announcementbar.jsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="7" count="1" type="stmt"/>
@@ -599,7 +600,7 @@
         <line num="74" count="0" type="stmt"/>
       </file>
       <file name="newtheme.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/title-section/newtheme.jsx">
-        <metrics statements="28" coveredstatements="2" conditionals="11" coveredconditionals="0" methods="4" coveredmethods="1"/>
+        <metrics statements="31" coveredstatements="2" conditionals="13" coveredconditionals="0" methods="3" coveredmethods="1"/>
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="9" count="0" type="stmt"/>
@@ -623,11 +624,14 @@
         <line num="37" count="0" type="stmt"/>
         <line num="39" count="0" type="stmt"/>
         <line num="47" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="55" count="2" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
+        <line num="51" count="2" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="56" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="57" count="0" type="stmt"/>
-        <line num="66" count="1" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
       </file>
       <file name="searchbar.jsx" path="/Users/anthonycella/HackReactor/nile/client/src/components/overview/title-section/searchbar.jsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
