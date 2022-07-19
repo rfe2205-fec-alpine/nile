@@ -60,7 +60,7 @@ function AddReviewForm({ toggleStatus }) {
   const [email, changeEmail] = useState('');
   const [images, addImage] = useState([]);
   const [characteristics, changeCharacteristics] = useState({});
-  const [finalImages, addFinalImages] = useState();
+  const [finalImages, addFinalImages] = useState([]);
 
   const formStyle = {
     width: '50%',
@@ -82,7 +82,7 @@ function AddReviewForm({ toggleStatus }) {
         recommend: recommend,
         name: name,
         email: email,
-        photos: images,
+        photos: finalImages,
         characteristics: characteristics,
       },
     }).then((res) => {
@@ -109,7 +109,6 @@ function AddReviewForm({ toggleStatus }) {
       <Body body={body} changeBody={changeBody} />
       <InputTitle>Upload Your Photos</InputTitle>
       <Images images={images} addImage={addImage} finalImages={finalImages} addFinalImages={addFinalImages} />
-      {/* {images ? <ImageDisplay images={images} /> : <> </> } */}
       <InputTitle>What is Your Nickname?</InputTitle>
       <NickName name={name} changeName={changeName} />
       <InputTitle>Your Email</InputTitle>
@@ -199,14 +198,14 @@ function Images({ images, addImage, finalImages, addFinalImages }) {
           file: converted,
           upload_preset: 'lfcpuaaw',
         },
+      }).then((res) => {
+        addFinalImages([...finalImages, res.data.secure_url]);
+        addImage([...images, img]);
+      }).catch((err) => {
+        console.log('There was an error with Axios Request: ', err);
       });
-    }).then((res) => {
-      console.log('success! YAY', res);
-      addFinalImages([...finalImages, res.data.secure_url]);
-      console.log('AddFinalImages worked...');
-      addImage([...images, img]);
-      console.log('addImage worked...');
-    }).catch((err) => console.log('There was an error uploading file to cloudinary: ', err));
+    })
+      .catch((err) => { console.log('There was an error uploading file to cloudinary: ', err); });
   }
 
   if (images) {
@@ -214,14 +213,12 @@ function Images({ images, addImage, finalImages, addFinalImages }) {
       <>
         <input type="file" onChange={(e) => { handleClick(e); }} />
         {images.map((imageUrl) => {
-          return <img src={imageUrl} alt="test" width="10%" height="10%" />;
+          return <img src={imageUrl} alt="test" width="auto" height="60px" />;
         })}
       </>
-    );
-  }
-  return (
-    <input type="file" onChange={(e) => { handleClick(e); }} />
-  );
+    )};
+
+  return (<input type="file" onChange={(e) => { handleClick(e); }} />);
 }
 
 function Email({ email, changeEmail }) {
@@ -276,7 +273,7 @@ function ReviewTitle({ summary, changeSummary }) {
   );
 }
 
-function OverallRating( {overallRating, changeOverallRating} ) {
+function OverallRating({ overallRating, changeOverallRating }) {
   return (
     <input value={overallRating} onChange={(e) => { changeOverallRating(e.target.value); }} />
   );
