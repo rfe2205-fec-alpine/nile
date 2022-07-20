@@ -79,10 +79,8 @@ const Card = styled.div`
   height: 450px;
 `;
 
-// add click to StarButton
 const StarButton = styled(FaStar)`
-  color: #5d6699;
+  color: #CCC;
   font-size: 25px;
   float: right;
 `;
-
