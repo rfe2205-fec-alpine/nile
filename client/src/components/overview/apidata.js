@@ -12,9 +12,9 @@ function getAverageReviewFromData(data) {
     totalReviewScore += numberOfRatings * currentIndex;
   }
 
-  console.log('number of reviews is', numberOfReviews);
-  console.log('reviews is', reviews);
-  console.log('total review score', totalReviewScore);
+  // console.log('number of reviews is', numberOfReviews);
+  // console.log('reviews is', reviews);
+  // console.log('total review score', totalReviewScore);
 
   const averageReviewRating = totalReviewScore / numberOfReviews;
   return [averageReviewRating, numberOfReviews];
