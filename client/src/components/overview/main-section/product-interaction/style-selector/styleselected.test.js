@@ -1,10 +1,12 @@
 import renderer from 'react-test-renderer';
-import Category from './category.jsx';
+import StyleSelected from './styleselected.jsx';
 
-it('Category renders to the page', () => {
+it('Style Selected renders to the page', () => {
+  const name = 'larry';
   const colorScheme = { textColorBackground: 'black' };
+
   const component = renderer.create(
-    <Category colorScheme={colorScheme} />
+    <StyleSelected name={name} colorScheme={colorScheme} />
   );
   let tree = component.toJSON();
   expect(tree).toMatchSnapshot();
