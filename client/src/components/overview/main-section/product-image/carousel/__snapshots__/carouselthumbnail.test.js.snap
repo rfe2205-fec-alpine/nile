@@ -11,3 +11,15 @@ exports[`Carousel Thumbnail renders to the page 1`] = `
   />
 </div>
 `;
+
+exports[`Carousel Thumbnail works for fullscreen too 1`] = `
+<div
+  className="sc-gsnTZi dEGviv"
+>
+  <div
+    className="sc-bczRLJ cIQPcm"
+    height={60}
+    width={65}
+  />
+</div>
+`;

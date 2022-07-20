@@ -8,3 +8,11 @@ it('Carousel Thumbnail renders to the page', () => {
   let tree = component.toJSON();
   expect(tree).toMatchSnapshot();
 });
+
+it('Carousel Thumbnail works for fullscreen too', () => {
+  const component = renderer.create(
+    <CarouselThumbnail fullScreen={true} />
+  );
+  let tree = component.toJSON();
+  expect(tree).toMatchSnapshot();
+});

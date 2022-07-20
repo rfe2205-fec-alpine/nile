@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.57% </span>
+                <span class="strong">78.94% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/19</span>
+                <span class='fraction'>15/19</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/6</span>
+                <span class='fraction'>3/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">77.77% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/18</span>
+                <span class='fraction'>14/18</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -144,31 +144,31 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -206,39 +206,39 @@ function SelectSize({ container, sizeSelected, setSizeSelection, listOfSizes, st
 &nbsp;
   let key = 300;
 &nbsp;
-  let options = listOfSizes.map(<span class="fstat-no" title="function not covered" >fu</span>nction(item) {
-<span class="cstat-no" title="statement not covered" >    key++;</span>
-    let size = <span class="cstat-no" title="statement not covered" >item.size;</span>
+  let options = listOfSizes.map(function(item) {
+    key++;
+    let size = item.size;
     // console.log('size is', size);
     // console.log('selected is', sizeSelected);
-    let id = <span class="cstat-no" title="statement not covered" >item.id;</span>
+    let id = item.id;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (size !== sizeSelected.size) {</span>
-<span class="cstat-no" title="statement not covered" >      return &lt;option key={key} value={id}&gt;{size}&lt;/option&gt;;</span>
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (size !== sizeSelected.size) {
+      return &lt;option key={key} value={id}&gt;{size}&lt;/option&gt;;
     }
   });
 &nbsp;
-  <span class="missing-if-branch" title="else path not taken" >E</span>if (options.length === 0) {
-    return (
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (options.length === 0) {
+<span class="cstat-no" title="statement not covered" >    return (</span>
       &lt;SelectSizeContainer&gt;OUT OF STOCK&lt;/SelectSizeContainer&gt;
     );
   }
 &nbsp;
   let selectedOption;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (sizeSelected.size === 'Select Size') {</span>
-<span class="cstat-no" title="statement not covered" >    selectedOption = &lt;option selected value={sizeSelected.id} hidden&gt;{sizeSelected.size}&lt;/option&gt;;</span>
-<span class="cstat-no" title="statement not covered" >    options = [selectedOption].concat(options);</span>
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (sizeSelected.size === 'Select Size') {
+    selectedOption = &lt;option selected value={sizeSelected.id} hidden&gt;{sizeSelected.size}&lt;/option&gt;;
+    options = [selectedOption].concat(options);
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
       &lt;SelectSizeMenu defaultValue={'Select Size'} onChange={changeSizeSelection}&gt;
         {options}
       &lt;/SelectSizeMenu&gt;
   );
 }
 &nbsp;
-const SelectSizeMenu = styled.select.attrs(<span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+const SelectSizeMenu = styled.select.attrs((props) =&gt; ({
   defaultValue: props.defaultValue,
   onChange: props.onChange,
 }))`
@@ -259,7 +259,7 @@ export default SelectSize;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Wed Jul 20 2022 16:28:16 GMT-0400 (Eastern Daylight Time)
+                at Wed Jul 20 2022 17:22:42 GMT-0400 (Eastern Daylight Time)
             </div>
         <script src="../../../../../../../../prettify.js"></script>
         <script>
