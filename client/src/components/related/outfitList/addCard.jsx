@@ -3,15 +3,28 @@ import styled from 'styled-components';
 import { TbHeartPlus } from 'react-icons/tb';
 
 function AddCard({
-  defaultData, rating, setStorageChange, storageChange, setIndex, productImage
+  defaultData,
+  rating,
+  setStorageChange,
+  storageChange,
+  setIndex,
+  productImage,
 }) {
-  const savedData = [defaultData.category, defaultData.name, defaultData.default_price, rating, productImage];
+  const savedData = [
+    defaultData.category,
+    defaultData.name,
+    defaultData.default_price,
+    rating,
+    productImage,
+  ];
   return (
-    <div onClick={() => {
-      localStorage.setItem(`${defaultData.id}`, JSON.stringify(savedData));
-      setStorageChange(() => (!storageChange));
-      setIndex(0);
-    }}>
+    <div
+      onClick={() => {
+        localStorage.setItem(`${defaultData.id}`, JSON.stringify(savedData));
+        setStorageChange(() => !storageChange);
+        setIndex(0);
+      }}
+    >
       <AddCardStyle>
         <AddIcon />
         <Text>Add to Outfit</Text>

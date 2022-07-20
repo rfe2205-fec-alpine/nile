@@ -1,21 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { BsXCircle } from 'react-icons/bs';
-import GetImage from '../relatedList/relatedImage.jsx';
-import QuarterStars from '../../../starRatingFunction.jsx';
+import GetImage from '../relatedList/relatedImage';
+import QuarterStars from '../../../starRatingFunction';
 
-function OutfitCard({ eachOutfit, setStorageChange, storageChange, setIndex }) {
+function OutfitCard({
+  eachOutfit,
+  setStorageChange,
+  storageChange,
+  setIndex,
+}) {
   const storageOutfit = JSON.parse(localStorage.getItem(eachOutfit));
-  useEffect(() => {
-  }, [eachOutfit, storageChange]);
+  useEffect(() => {}, [eachOutfit, storageChange]);
   return (
     <div>
       <Card>
-        <DeleteButton onClick={() => {
-          setStorageChange(() => !storageChange);
-          localStorage.removeItem(eachOutfit);
-          setIndex(0);
-        }}
+        <DeleteButton
+          onClick={() => {
+            setStorageChange(() => !storageChange);
+            localStorage.removeItem(eachOutfit);
+            setIndex(0);
+          }}
         />
         <GetImage productImage={storageOutfit[4]} />
         <ul>{storageOutfit[0]}</ul>
@@ -39,5 +44,5 @@ const Card = styled.div`
 const DeleteButton = styled(BsXCircle)`
   float: right;
   font-size: 24px;
-  color: red;
+  color: #CCC;
 `;

@@ -38,7 +38,7 @@ function RelatedCard({ product, defaultData, setIndex }) {
         },
       }))
       .then((imageData) => {
-        useProductImage(() => (imageData.data.results[0].photos));
+        useProductImage(() => imageData.data.results[0].photos);
       })
       .catch((err) => {
         console.log(err);
@@ -53,17 +53,32 @@ function RelatedCard({ product, defaultData, setIndex }) {
     <div>
       <Card>
         <div>
-          <StarButton onClick={() => { setShow(!show); }}>Comparison</StarButton>
-          <Comparison product={product} defaultData={defaultData} show={show} setShow={setShow} />
+          <StarButton
+            onClick={() => {
+              setShow(!show);
+            }}
+          >
+            Comparison
+          </StarButton>
+          <Comparison
+            product={product}
+            defaultData={defaultData}
+            show={show}
+            setShow={setShow}
+          />
         </div>
-      <div onClick={() => { setProductId(product.id)
-        setIndex(0)}}>
-        <GetImage productImage={productImage} />
-        <ul>{product.category}</ul>
-        <ul>{product.name}</ul>
-        <ul>{product.default_price}</ul>
-        <QuarterStars rating={Number.parseFloat(rating).toFixed(2)} />
-      </div>
+        <div
+          onClick={() => {
+            setProductId(product.id);
+            setIndex(0);
+          }}
+        >
+          <GetImage productImage={productImage} />
+          <ul>{product.category}</ul>
+          <ul>{product.name}</ul>
+          <ul>{product.default_price}</ul>
+          <QuarterStars rating={Number.parseFloat(rating).toFixed(2)} />
+        </div>
       </Card>
     </div>
   );
@@ -79,7 +94,7 @@ const Card = styled.div`
 `;
 
 const StarButton = styled(FaStar)`
-  color: #CCC;
+  color: #ccc;
   font-size: 25px;
   float: right;
 `;
