@@ -1,9 +1,9 @@
 import renderer from 'react-test-renderer';
-import AddToBag from './addtobag.jsx';
+import QuarterStars from './starRatingFunction.jsx';
 
-it('Add To Bag renders to the page', () => {
+it('Quarter star function renders to the page', () => {
   const component = renderer.create(
-    <AddToBag />
+    <QuarterStars rating={3.7} />
   );
   let tree = component.toJSON();
   expect(tree).toMatchSnapshot();

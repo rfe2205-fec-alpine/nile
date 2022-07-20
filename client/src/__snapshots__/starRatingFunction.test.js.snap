@@ -1,0 +1,172 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Quarter star function renders to the page 1`] = `
+<div
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "display": "inline-block",
+        "height": "20px",
+        "width": "18px",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "backgroundColor": "black",
+          "display": "inline-block",
+          "height": "20px",
+          "position": "relative",
+          "width": "18px",
+        }
+      }
+    >
+      <img
+        alt="Star Icon"
+        src="https://raw.githubusercontent.com/psfonseka/five-stars/master/dist/star.png"
+        style={
+          Object {
+            "height": "20px",
+            "width": "18px",
+          }
+        }
+      />
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "display": "inline-block",
+        "height": "20px",
+        "width": "18px",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "backgroundColor": "black",
+          "display": "inline-block",
+          "height": "20px",
+          "position": "relative",
+          "width": "18px",
+        }
+      }
+    >
+      <img
+        alt="Star Icon"
+        src="https://raw.githubusercontent.com/psfonseka/five-stars/master/dist/star.png"
+        style={
+          Object {
+            "height": "20px",
+            "width": "18px",
+          }
+        }
+      />
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "display": "inline-block",
+        "height": "20px",
+        "width": "18px",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "backgroundColor": "black",
+          "display": "inline-block",
+          "height": "20px",
+          "position": "relative",
+          "width": "18px",
+        }
+      }
+    >
+      <img
+        alt="Star Icon"
+        src="https://raw.githubusercontent.com/psfonseka/five-stars/master/dist/star.png"
+        style={
+          Object {
+            "height": "20px",
+            "width": "18px",
+          }
+        }
+      />
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "display": "inline-block",
+        "height": "20px",
+        "width": "18px",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "backgroundColor": "black",
+          "display": "inline-block",
+          "height": "20px",
+          "position": "relative",
+          "width": "12px",
+        }
+      }
+    >
+      <img
+        alt="Star Icon"
+        src="https://raw.githubusercontent.com/psfonseka/five-stars/master/dist/star.png"
+        style={
+          Object {
+            "height": "20px",
+            "width": "18px",
+          }
+        }
+      />
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "display": "inline-block",
+        "height": "20px",
+        "width": "18px",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "backgroundColor": "black",
+          "display": "inline-block",
+          "height": "20px",
+          "position": "relative",
+          "width": "0px",
+        }
+      }
+    >
+      <img
+        alt="Star Icon"
+        src="https://raw.githubusercontent.com/psfonseka/five-stars/master/dist/star.png"
+        style={
+          Object {
+            "height": "20px",
+            "width": "18px",
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;

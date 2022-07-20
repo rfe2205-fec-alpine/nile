@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add To Bag renders to the page 1`] = `
+<div
+  className="sc-bczRLJ bvsNxk"
+  onClick={[Function]}
+>
+  ADD TO CART
+</div>
+`;
