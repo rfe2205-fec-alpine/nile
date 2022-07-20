@@ -14,6 +14,7 @@ function RelatedCard({product, defaultData, setIndex }) {
   const [productId, setProductId] = useContext(ProductContext);
   const [rating, setRating] = useState(null);
   const [show, setShow] = useState(false);
+  const [productImage, useProductImage] = useState(null);
 
   useEffect(() => {
     axios({
@@ -23,19 +24,29 @@ function RelatedCard({product, defaultData, setIndex }) {
         Authorization: GITHUB_API_KEY,
       },
     })
-    .then((ratingData) => {
-      let total = 0;
-      for (let each of ratingData.data.results) {
-        total += each.rating;
-      }
-      setRating(total / ratingData.data.results.length);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      .then((ratingData) => {
+        let total = 0;
+        ratingData.data.results.forEach((eachRating) => {
+          total += eachRating.rating;
+        });
+        setRating(total / ratingData.data.results.length);
+      })
+      .then(() => axios({
+        method: 'get',
+        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/styles`,
+        headers: {
+          Authorization: GITHUB_API_KEY,
+        },
+      }))
+      .then((data) => {
+        useProductImage(() => (data.data.results));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
-  if (!rating) {
+  if (!rating || !productImage) {
     return null;
   }
 
@@ -48,7 +59,7 @@ function RelatedCard({product, defaultData, setIndex }) {
         </div>
       <div onClick={() => { setProductId(product.id)
         setIndex(0)}}>
-        <GetImage product={product} />
+        <GetImage productImage={productImage} />
         <ul>{product.category}</ul>
         <ul>{product.name}</ul>
         <ul>{product.default_price}</ul>
@@ -74,3 +85,4 @@ const StarButton = styled(FaStar)`
   font-size: 25px;
   float: right;
 `;
+

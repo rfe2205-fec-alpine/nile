@@ -18,7 +18,7 @@ function OutfitCard({ eachOutfit, setStorageChange, storageChange, setIndex }) {
           setIndex(0);
         }}
         />
-        <GetImage product={newEachOutfit} />
+        {/* <GetImage product={newEachOutfit} /> */}
         <ul>{storageOutfit[0]}</ul>
         <ul>{storageOutfit[1]}</ul>
         <ul>{storageOutfit[2]}</ul>
