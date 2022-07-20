@@ -2,20 +2,25 @@
 
 exports[`Style Selector component renders to the page 1`] = `
 <div
-  className="sc-iBkjds hnPkKY"
+  className="sc-papXJ eeRjXO"
   height={95}
 >
   <div
-    className="sc-bczRLJ iNXLB"
+    className="sc-dkzDqf gUCSvl"
   >
-    <strong>
+    <span
+      className="sc-bczRLJ evRwiw"
+    >
       Style 
       &gt;
        
-    </strong>
+    </span>
+    <span
+      className="sc-gsnTZi iaCvAC"
+    />
   </div>
   <div
-    className="sc-gKXOVf ehZmGF"
+    className="sc-ftvSup BOBrc"
     height={95}
   />
 </div>

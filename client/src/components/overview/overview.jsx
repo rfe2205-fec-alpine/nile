@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
 import getApiDataFromProductId from './apidata.js';
 import ProductContext from '../../ProductContext.jsx';
 import ThemeContext from '../../ThemeContext.jsx';
@@ -9,7 +8,7 @@ import TitleSection from './title-section/titlesection.jsx';
 import MainSection from './main-section/mainsection.jsx';
 import DescriptionSection from './description-section/descriptionsection.jsx';
 
-function Overview() {
+function Overview({ onClick }) {
   window.scrollTo(0, 0);
   const [productId] = React.useContext(ProductContext);
   const [colorScheme] = React.useContext(ThemeContext);
@@ -33,7 +32,7 @@ function Overview() {
   }
 
   return (
-    <OverviewComponent title={heightOfTitle} main={heightOfMain} description={heightOfDescription}>
+    <OverviewComponent title={heightOfTitle} main={heightOfMain} description={heightOfDescription} onClick={onClick}>
       <TitleSection colorScheme={colorScheme} />
       <MainSection data={mainSectionData} height={heightOfMain} colorScheme={colorScheme} />
       <DescriptionSection data={descriptionSectionData} colorScheme={colorScheme} />

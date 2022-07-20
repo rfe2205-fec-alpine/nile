@@ -2,30 +2,22 @@
 
 exports[`Use Product component renders to the page 1`] = `
 <div
-  className="sc-hKMtZM fXFFEN"
+  className="sc-gKXOVf gaiTkr"
 >
   <div
-    className="sc-bczRLJ ixnobc"
+    className="sc-dkzDqf jNClnl"
   >
     <div
-      className="sc-dkzDqf biAELA"
+      className="sc-jSMfEi chQbUE"
     >
-      SELECT SIZE
+      OUT OF STOCK
     </div>
     <div
-      className="sc-dkzDqf biAELA"
+      className="sc-jSMfEi sc-iBkjds chQbUE ewQnNH"
     >
-      Qty
+      -
     </div>
   </div>
-  <div
-    className="sc-gsnTZi cwWRZv"
-  >
-    <div
-      className="sc-dkzDqf biAELA"
-    >
-      ADD TO BAG
-    </div>
-  </div>
+  <div />
 </div>
 `;

@@ -24,7 +24,7 @@ const CardList = styled.div`
   gap: 1rem;
   padding: 0.25rem;
   overflow-x: scroll;
-  max-width: 90%;
+  max-width: 1000px;
 `;
 
 const LeftArrow = styled(CgArrowLeftO)`

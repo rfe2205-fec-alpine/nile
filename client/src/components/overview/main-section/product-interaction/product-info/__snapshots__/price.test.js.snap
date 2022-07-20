@@ -2,7 +2,7 @@
 
 exports[`price renders to the page 1`] = `
 <span
-  className="sc-bczRLJ dBgitw"
+  className="sc-bczRLJ bBzYPN"
 >
   $
 </span>
