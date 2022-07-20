@@ -2,7 +2,12 @@ import React from 'react';
 import placeholder from './placeholder.jpg';
 
 function GetImage({ productImage }) {
-  let image = productImage[0].photos[0].thumbnail_url;
+  let image;
+  if (productImage.length > 0) {
+    image = productImage[0].thumbnail_url;
+  } else {
+    image = productImage;
+  }
 
   if (image === null) {
     image = placeholder;

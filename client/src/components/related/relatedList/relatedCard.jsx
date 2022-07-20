@@ -10,12 +10,11 @@ import Comparison from './comparison.jsx';
 const axios = require('axios');
 const { GITHUB_API_KEY } = require('../../../../../config.js');
 
-function RelatedCard({product, defaultData, setIndex }) {
+function RelatedCard({ product, defaultData, setIndex }) {
   const [productId, setProductId] = useContext(ProductContext);
   const [rating, setRating] = useState(null);
   const [show, setShow] = useState(false);
   const [productImage, useProductImage] = useState(null);
-
   useEffect(() => {
     axios({
       method: 'get',
@@ -38,8 +37,8 @@ function RelatedCard({product, defaultData, setIndex }) {
           Authorization: GITHUB_API_KEY,
         },
       }))
-      .then((data) => {
-        useProductImage(() => (data.data.results));
+      .then((imageData) => {
+        useProductImage(() => (imageData.data.results[0].photos));
       })
       .catch((err) => {
         console.log(err);

@@ -6,7 +6,6 @@ import QuarterStars from '../../../starRatingFunction.jsx';
 
 function OutfitCard({ eachOutfit, setStorageChange, storageChange, setIndex }) {
   const storageOutfit = JSON.parse(localStorage.getItem(eachOutfit));
-  const newEachOutfit = {'id': eachOutfit};
   useEffect(() => {
   }, [eachOutfit, storageChange]);
   return (
@@ -18,7 +17,7 @@ function OutfitCard({ eachOutfit, setStorageChange, storageChange, setIndex }) {
           setIndex(0);
         }}
         />
-        {/* <GetImage product={newEachOutfit} /> */}
+        <GetImage productImage={storageOutfit[4]} />
         <ul>{storageOutfit[0]}</ul>
         <ul>{storageOutfit[1]}</ul>
         <ul>{storageOutfit[2]}</ul>
