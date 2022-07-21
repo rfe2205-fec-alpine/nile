@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
 import styled from 'styled-components';
 import Axios from 'axios';
 import { GITHUB_API_KEY } from '../../../../config.js';
@@ -28,6 +28,8 @@ function Reviews() {
     nonToggled: true,
   });
 
+  const saved = [];
+
   useEffect(() => {
     Axios({
       method: 'get',
@@ -55,6 +57,7 @@ function Reviews() {
         },
       }).then((response) => {
         setReviews(response.data.results);
+        // saved = useMemo(() => changeMemoizedRel(response.data.results));
       }).catch((err) => console.log(err));
     }).catch((err) => {
       console.log('There was an error sending your request. Sorry!', err);
@@ -71,7 +74,7 @@ function Reviews() {
                 <RatingBreakdown reviewData={reviewData} setReviewData={setReviewData} />
               </RatingBreakdownWrapper>
               <ReviewsListWrapper>
-                <ReviewsList mem={memoizedRelevant} reviews={reviews} setReviews={setReviews} />
+                <ReviewsList mem={saved} reviews={reviews} setReviews={setReviews} />
                 <ReviewButtons />
               </ReviewsListWrapper>
             </ReviewsWrapper>

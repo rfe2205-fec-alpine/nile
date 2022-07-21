@@ -28,7 +28,7 @@ function ReviewTile({ reviewData }) {
         <QuarterStars rating={reviewData.rating} />
         <div style={usernameAndDateDiv}>
           <User username={reviewData.reviewer_name} />
-          <Date reviewDate={reviewData.date} />
+          <Day reviewDate={reviewData.date} />
         </div>
       </div>
       <Summary title={reviewData.summary} />
@@ -60,7 +60,7 @@ function User({ username }) {
   );
 }
 
-function Date({ reviewDate }) {
+function Day({ reviewDate }) {
   return (
     <p>
       {`${reviewDate[5]}${reviewDate[6]}/${reviewDate[8]}${reviewDate[9]}/${reviewDate[0]}${reviewDate[1]}${reviewDate[2]}${reviewDate[3]}`}

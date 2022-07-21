@@ -13,10 +13,12 @@ function ReviewButtons() {
 }
 
 const ReviewButtonsWrapper = styled.div`
-  border: 1px solid red;
-  padding: 2px;
+  padding: 15px;
   margin: 5px;
   align-content: left;
+  display: flex;
+  align-content: center;
+  justify-content: right;
 `;
 
 export default ReviewButtons;

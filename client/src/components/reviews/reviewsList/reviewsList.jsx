@@ -8,7 +8,7 @@ import { GITHUB_API_KEY } from '../../../../../config.js';
 import SelectRatingsContext from '../selectedRatingsContext.jsx';
 import CountContext from '../countContext.jsx';
 
-function ReviewsList({ reviews, setReviews }) {
+function ReviewsList({ reviews, setReviews, mem }) {
   // const [productID] = useContext(ProductContext);
   // const [reviews, setReviews] = useState(null);
   const [query, changeQuery] = useState('relevant');
@@ -21,7 +21,7 @@ function ReviewsList({ reviews, setReviews }) {
       setReviews((current) => current.sort((a, b) => b.helpfulness - a.helpfulness));
       triggerRender('yo');
     } else if (query === 'relevant') {
-      setReviews(mem);
+      // setReviews(mem);
       triggerRender('yoo');
     } else if (query === 'newest') {
       setReviews(reviews.sort((a, b) => new Date(b.date) - new Date(a.date)));
@@ -60,7 +60,7 @@ function ReviewsList({ reviews, setReviews }) {
 }
 
 const ReviewsListWrapper = styled.div`
-  border: 1px solid blue;
+  border: 1px solid #5D6699;
   padding 2px;
   margin 5px;
   height: 800px;
