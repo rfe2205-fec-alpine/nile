@@ -5,10 +5,9 @@ function QuestionList({
   questions, handleAddAnswerClick, markQuestionHelpful,
   reportQuestion, markAnswerHelpful, reportAnswer, searchString,
 }) {
-  console.log(questions);
   return (
     <div>
-      {questions.results.filter((question) => question.question_body.toLowerCase()
+      {questions.filter((question) => question.question_body.toLowerCase()
         .includes(searchString.toLowerCase())).map((question) => (
           <Question
             question={question}
