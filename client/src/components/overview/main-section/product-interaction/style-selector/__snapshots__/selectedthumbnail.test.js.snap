@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Selected Thumbnail renders to the page 1`] = `
+<div
+  className="sc-hKMtZM ccUele"
+>
+  <div
+    className="sc-dkzDqf sc-eCYdqJ kYACU ikgmjV"
+    size="5px"
+  />
+  <div
+    className="sc-gsnTZi bGFrnh"
+    size={NaN}
+  />
+</div>
+`;

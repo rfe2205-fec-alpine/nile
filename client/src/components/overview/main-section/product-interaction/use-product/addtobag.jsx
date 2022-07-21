@@ -14,7 +14,7 @@ function AddToBag({ sizeSelected, qtySelected, selectedStyle, nameOfProduct, col
     } else {
       // console.log('Adding to cart!');
       // console.log('id being submitted', sizeSelected.id);
-      console.log('quantity being submitted', qtySelected);
+      // console.log('quantity being submitted', qtySelected);
 
       const quantityToAdd = parseInt(qtySelected);
 
@@ -33,7 +33,7 @@ function AddToBag({ sizeSelected, qtySelected, selectedStyle, nameOfProduct, col
         },
       });
 
-      console.log('length of requests', requests.length);
+      // console.log('length of requests', requests.length);
 
       Promise.all(requests.map((request) => axios(request)
         .then((response) => response)

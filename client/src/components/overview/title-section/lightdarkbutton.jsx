@@ -36,8 +36,8 @@ function changeColorScheme(colorScheme, setColorScheme) {
       newColorScheme = Themes.nile.light;
   }
 
-  console.log('new color scheme is', newColorScheme);
-  console.log('new body color is', newColorScheme.bodyColor);
+  // console.log('new color scheme is', newColorScheme);
+  // console.log('new body color is', newColorScheme.bodyColor);
   document.body.style.backgroundColor = newColorScheme.bodyColor;
 
   setColorScheme(newColorScheme);

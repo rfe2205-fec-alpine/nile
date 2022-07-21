@@ -7,7 +7,7 @@ function DescriptionSection({ data, colorScheme }) {
   // console.log('description section data');
   // console.log(data);
 
-  console.log('color scheme in description section is', colorScheme);
+  // console.log('color scheme in description section is', colorScheme);
 
   const descriptionData = {
     catchphrase: data.slogan,
