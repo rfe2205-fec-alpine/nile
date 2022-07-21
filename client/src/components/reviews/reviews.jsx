@@ -11,6 +11,7 @@ import ReviewAmountContext from './reviewAmountContext.jsx';
 import ReviewQualitiesContext from './reviewQualities.jsx';
 import SelectRatingsContext from './selectedRatingsContext.jsx';
 import CountContext from './countContext.jsx';
+import ProductContext from '../../ProductContext.jsx';
 
 function Reviews() {
   const [reviewQualities, changeReviewQualities] = useState(null);
@@ -19,6 +20,7 @@ function Reviews() {
   const [reviews, setReviews] = useState(null);
   const [reviewData, setReviewData] = useState(null);
   const [memoizedRelevant, changeMemoizedRel] = useState();
+  const [reviewAmount, changeReviewAmount] = useState(null);
   const [selectedRatings, addSelectedRatings] = useState({
     5: false,
     4: false,
