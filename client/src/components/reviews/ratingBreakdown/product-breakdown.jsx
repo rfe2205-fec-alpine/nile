@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import SelectRatingsContext from '../selectedRatingsContext.jsx'
 
 function ProductBreakdown({ ratings }) {
+  const [selectedRatings, addSelectedRatings] = useContext(SelectRatingsContext);
+
   const all = Object.values(ratings);
   const ratingsSum = all.reduce((prev, current) => parseInt(prev, 10) + parseInt(current, 10), 0);
 
@@ -31,9 +33,20 @@ function ProgressBar({ progress, starRating, amount }) {
   const [selected, toggleSelected] = useState(false);
   const [fresh, changeFresh] = useState(true);
 
+  const emptyObject = {
+    5: false,
+    4: false,
+    3: false,
+    2: false,
+    1: false,
+    nonToggled: true,
+  };
+
   useEffect(() => {
     if (Object.values(selectedRatings).includes(true)) {
-      changeFresh(!fresh);
+      changeFresh(false);
+    } else {
+      addSelectedRatings(emptyObject);
     }
   }, [selectedRatings, selected]);
 
@@ -47,9 +60,7 @@ function ProgressBar({ progress, starRating, amount }) {
 
   function handleClick() {
     addSelectedRatings((current) => {
-      return {
-      ...current, [refObj[starRating]]: !current[refObj[starRating]], nonToggled: fresh,
-      }
+      return ({...current, [refObj[starRating]]: !current[refObj[starRating]], nonToggled: fresh,})
     });
     toggleSelected(!selected);
   }
@@ -101,19 +112,6 @@ function ProgressBar({ progress, starRating, amount }) {
 
 function Filters() {
   const [selectedRatings, addSelectedRatings] = useContext(SelectRatingsContext);
-  const [secondReq, setSecondReq] = useState(true);
-
-  // useEffect(() => {
-  //   if (
-  //     selectedRatings['5'] ||
-  //     selectedRatings['4'] ||
-  //     selectedRatings['3'] ||
-  //     selectedRatings['2'] ||
-  //     selectedRatings['1']
-  //   ) {
-  //     setSecondReq(false);
-  //   }
-  // }, [selectedRatings]);
 
   const emptyObject = {
     5: false,
