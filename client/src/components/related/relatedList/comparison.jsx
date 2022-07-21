@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Comparison({ product, defaultData, show, setShow}) {
+function Comparison({
+  product,
+  defaultData,
+  show,
+  setShow,
+}) {
   const combineFeatures = product.features.concat(defaultData.features);
 
   if (!show) {
@@ -9,36 +14,46 @@ function Comparison({ product, defaultData, show, setShow}) {
   }
 
   return (
-  <div onClick={() => { setShow(!show)}}>
-    <Model show={show}>
-      <table>
-        <thead>
-          <tr>
-            <th>Comparison</th>
-          </tr>
-        </thead>
-        <thead>
-          <tr>
-            <th>{defaultData.name}</th>
-            <th>Features</th>
-            <th>{product.name}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {combineFeatures.map((feature) => (
+    <div
+      onClick={() => {
+        setShow(!show);
+      }}
+    >
+      <Model show={show}>
+        <table>
+          <thead>
             <tr>
-              <th>{defaultData.features.some((each) => each === feature) ? '✓' : ''}</th>
-              <th>
-                {feature.feature}
-                {feature.value ? `: ${feature.value}` : ''}
-              </th>
-              <th>{product.features.some((each) => each === feature) ? '✓' : ''}</th>
+              <th>Comparison</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </Model>
-  </div>
+          </thead>
+          <thead>
+            <tr>
+              <th>{defaultData.name}</th>
+              <th>Features</th>
+              <th>{product.name}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {combineFeatures.map((feature) => (
+              <tr>
+                <th>
+                  {defaultData.features.some((each) => each === feature)
+                    ? '✓'
+                    : ''}
+                </th>
+                <th>
+                  {feature.feature}
+                  {feature.value ? `: ${feature.value}` : ''}
+                </th>
+                <th>
+                  {product.features.some((each) => each === feature) ? '✓' : ''}
+                </th>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Model>
+    </div>
   );
 }
 

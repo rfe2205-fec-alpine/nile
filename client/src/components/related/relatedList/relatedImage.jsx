@@ -1,40 +1,32 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
 import placeholder from './placeholder.jpg';
 
-const axios = require('axios');
-const { GITHUB_API_KEY } = require('../../../../../config.js');
-
-function GetImage({ product }) {
-  const [productImage, useProductImage] = useState(null);
-
-  useEffect(() => {
-    axios({
-      method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/styles`,
-      headers: {
-        Authorization: GITHUB_API_KEY,
-      },
-    })
-      .then((data) => {
-        useProductImage(() => (data.data.results));
-      })
-      .catch();
-  }, [product]);
-
-  if (!productImage) {
-    return null;
+function GetImage({ productImage }) {
+  let image;
+  if (productImage.length > 0) {
+    image = productImage[0].thumbnail_url;
+  } else {
+    image = productImage;
   }
-
-  let image = productImage[0].photos[0].thumbnail_url;
 
   if (image === null) {
     image = placeholder;
   }
   return (
-    <ul>
-      <img src={image} width="250" height="250" alt="product" />
-    </ul>
+    <div>
+      <img
+        src={image}
+        style={{
+          display: 'block',
+          height: '300px',
+          objectFit: 'cover',
+          overflow: 'hidden',
+          width: '100%',
+          aspectRation: '16 / 9',
+        }}
+        alt="product"
+      />
+    </div>
   );
 }
 export default GetImage;
