@@ -10,7 +10,6 @@ function RelatedList({ productList, defaultData }) {
   const [slideLeft, setSlideLeft] = useState(0);
   const [showRight, setShowRight] = useState(true);
   const scrollRef = useRef();
-  // const scrollbarWidth = scrollRef.current.offsetWidth - scrollRef.current.clientWidth;
 
   return (
     <CardContainer>
@@ -66,14 +65,10 @@ const CardList = styled.div`
   padding: 0.25rem;
   max-width: 100%;
   overflow-x: scroll;
-<<<<<<< HEAD
   scroll-behavior: smooth;
   &::-webkit-scrollbar {
   display: none;
 }
-=======
-  max-width: 1000px;
->>>>>>> 23b791b4a32c46b969dbbbf8b3b273750578a166
 `;
 
 const LeftArrow = styled(CgArrowLeftO)`
