@@ -41,7 +41,6 @@ function OutfitList({ defaultData }) {
         },
       }))
       .then((imageData) => {
-        console.log(imageData.data.results[0].photos);
         useProductImage(() => (imageData.data.results[0].photos));
       })
       .catch((err) => console.log(err));
@@ -50,7 +49,6 @@ function OutfitList({ defaultData }) {
   if (!rating || !productImage) {
     return null;
   }
-
   return (
     <CardList>
       <AddCard
@@ -64,6 +62,7 @@ function OutfitList({ defaultData }) {
       {/* {index !== 0 ? <LeftArrow onClick={() => setIndex(index - 1)} /> : ''} */}
       {storedOutfits.map((eachOutfit) => (
         <OutfitCard
+          key={eachOutfit}
           eachOutfit={eachOutfit}
           setStorageChange={setStorageChange}
           storageChange={storageChange}

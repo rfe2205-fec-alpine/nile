@@ -30,13 +30,15 @@ function RelatedCard({ product, defaultData, setIndex }) {
         });
         setRating(total / ratingData.data.results.length);
       })
-      .then(() => axios({
-        method: 'get',
-        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/styles`,
-        headers: {
-          Authorization: GITHUB_API_KEY,
-        },
-      }))
+      .then(() =>
+        axios({
+          method: 'get',
+          url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/styles`,
+          headers: {
+            Authorization: GITHUB_API_KEY,
+          },
+        })
+      )
       .then((imageData) => {
         useProductImage(() => imageData.data.results[0].photos);
       })
@@ -58,7 +60,6 @@ function RelatedCard({ product, defaultData, setIndex }) {
               setShow(!show);
             }}
           >
-            Comparison
           </StarButton>
           <Comparison
             product={product}
@@ -74,10 +75,12 @@ function RelatedCard({ product, defaultData, setIndex }) {
           }}
         >
           <GetImage productImage={productImage} />
-          <ul>{product.category}</ul>
-          <ul>{product.name}</ul>
-          <ul>{product.default_price}</ul>
-          <QuarterStars rating={Number.parseFloat(rating).toFixed(2)} />
+          <StyledCategory>{product.category}</StyledCategory>
+          <StyledName>{product.name}</StyledName>
+          <StyledPrice>{product.default_price}</StyledPrice>
+          <StyledRating>
+            <QuarterStars rating={Number.parseFloat(rating).toFixed(2)} />
+          </StyledRating>
         </div>
       </Card>
     </div>
@@ -85,16 +88,52 @@ function RelatedCard({ product, defaultData, setIndex }) {
 }
 
 export default RelatedCard;
-
 const Card = styled.div`
+  position: relative;
+  border-radius: .25rem;
+  box-shadow: 0 2px 5px 0 rgba(0 0 0 .2);
   background: #5d6699;
   padding: 0.25rem;
   width: 300px;
   height: 450px;
 `;
 
-const StarButton = styled(FaStar)`
+const StyledCategory = styled.div`
+  text-align: left;
+  font-size: 1em;
+  font-family: Arial;
   color: #ccc;
-  font-size: 25px;
-  float: right;
+  padding: 10px 0 10px 10px;
+`;
+
+const StyledName = styled.div`
+  padding: 0 0 10px 10px;
+  color: #ccc;
+  font-size: 1.1em;
+  font-family: Arial;
+  font-weight: bold;
+`;
+
+const StyledPrice = styled.div`
+  padding: 0 0 10px 10px;
+  color: #ccc;
+  font-size: 0.75em;
+  font-family: Arial;
+`;
+
+const StyledRating = styled.div`
+  padding-left: 10px;
+  position: absolute;
+  bottom: 10px;
+`;
+
+const StarButton = styled(FaStar)`
+  position: absolute;
+  color: #ccc;
+  font-size: 1.5em;
+  top: 10px;
+  right: 10px;
+  &:hover {
+    font-size: 2em;
+  }
 `;
