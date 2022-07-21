@@ -11,8 +11,9 @@ function OutfitList({ defaultData }) {
   const [rating, setRating] = useState(null);
   const [index, setIndex] = useState(0);
   const [storageChange, setStorageChange] = useState(false);
+  const [productImage, useProductImage] = useState(null);
   const storedOutfits = Object.keys(localStorage);
-  const displayedOutfits = storedOutfits.slice(index, index + 2);
+  // const displayedOutfits = storedOutfits.slice(index, index + 2);
 
   useEffect(() => {
   }, [storageChange]);
@@ -25,18 +26,29 @@ function OutfitList({ defaultData }) {
         Authorization: GITHUB_API_KEY,
       },
     })
-      .then((ratingData) => {
+      .then((defaultRating) => {
         let total = 0;
-        ratingData.data.results.filter((eachRating) => total += eachRating.rating);
-        setRating(total / ratingData.data.results.length);
+        defaultRating.data.results.forEach((eachRating) => {
+          total += eachRating.rating;
+        });
+        setRating(total / defaultRating.data.results.length);
+      })
+      .then(() => axios({
+        method: 'get',
+        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${defaultData.id}/styles`,
+        headers: {
+          Authorization: GITHUB_API_KEY,
+        },
+      }))
+      .then((imageData) => {
+        useProductImage(() => (imageData.data.results[0].photos));
       })
       .catch((err) => console.log(err));
   }, [defaultData]);
 
-  if (!rating) {
+  if (!rating || !productImage) {
     return null;
   }
-
   return (
     <CardList>
       <AddCard
@@ -45,10 +57,12 @@ function OutfitList({ defaultData }) {
         setStorageChange={setStorageChange}
         storageChange={storageChange}
         setIndex={setIndex}
+        productImage={productImage}
       />
       {/* {index !== 0 ? <LeftArrow onClick={() => setIndex(index - 1)} /> : ''} */}
       {storedOutfits.map((eachOutfit) => (
         <OutfitCard
+          key={eachOutfit}
           eachOutfit={eachOutfit}
           setStorageChange={setStorageChange}
           storageChange={storageChange}
@@ -64,7 +78,6 @@ export default OutfitList;
 
 const CardList = styled.div`
   display: flex;
-  flex-wrap: wrap;
   gap: 1rem;
   padding: 0.25rem;
   overflow-x: scroll;

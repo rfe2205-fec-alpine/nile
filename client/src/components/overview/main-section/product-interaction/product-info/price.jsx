@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 function Price({ price, salePrice, colorScheme }) {
-  console.log('color scheme in price is', colorScheme);
+  // console.log('color scheme in price is', colorScheme);
   if (salePrice) {
     return (
       <PriceInDollars colorScheme={colorScheme}>

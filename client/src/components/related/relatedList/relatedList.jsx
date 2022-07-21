@@ -1,41 +1,93 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { CgArrowLeftO, CgArrowRightO } from 'react-icons/cg';
 import RelatedCard from './relatedCard.jsx';
 
-function RelatedList({productList, defaultData}) {
+function RelatedList({ productList, defaultData }) {
   const [index, setIndex] = useState(0);
-  const newProductList = productList.slice(index, index + 3);
+  // console.log('this is product list: ', productList);
+  // const newProductList = productList.slice(index, index + 3);
+  const [slideLeft, setSlideLeft] = useState(0);
+  const [showRight, setShowRight] = useState(true);
+  const scrollRef = useRef();
 
   return (
-    <CardList>
-      {index !== 0 ? <LeftArrow onClick={() => setIndex(index - 1)} /> : ''}
-      {productList.map((product) => (
-        <RelatedCard
-          key={product.id} product={product} defaultData={defaultData} setIndex={setIndex}
+    <CardContainer>
+      {slideLeft - 200 > 0 ? (
+        <LeftArrow
+          onClick={() => {
+            setShowRight(true);
+            scrollRef.current.scrollLeft -= 200;
+            setSlideLeft((scrollRef.current.scrollLeft -= 200));
+          }}
         />
-      ))}
-      {index + 3 !== productList.length ? <RightArrow onClick={() => setIndex(index + 1)} /> : ''}
-    </CardList>
+      ) : (
+        ''
+      )}
+      <CardList ref={scrollRef}>
+        {productList.map((product) => (
+          <RelatedCard
+            key={product.id}
+            product={product}
+            defaultData={defaultData}
+            setIndex={setIndex}
+          />
+        ))}
+      </CardList>
+      {showRight ? (
+        <RightArrow
+          onClick={() => {
+            slideLeft + 200 >=
+            scrollRef.current.scrollWidth - scrollRef.current.clientWidth
+              ? setShowRight(false)
+              : '';
+            scrollRef.current.scrollLeft += 200;
+            setSlideLeft((scrollRef.current.scrollLeft += 200));
+          }}
+        />
+      ) : (
+        ''
+      )}
+    </CardContainer>
   );
 }
+const CardContainer = styled.div`
+  position: relative;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+`;
+
 const CardList = styled.div`
+  position: relative;
   display: flex;
   gap: 1rem;
   padding: 0.25rem;
+  max-width: 100%;
   overflow-x: scroll;
-  max-width: 90%;
+  scroll-behavior: smooth;
+  &::-webkit-scrollbar {
+  display: none;
+}
 `;
 
 const LeftArrow = styled(CgArrowLeftO)`
-  height: -100px;
-  color: #5d6699;
+  display: inline-block;
+  position: absolute;
+  top: 40%;
+  left: 0;
+  color: #CCC;
   font-size: 80px;
+  z-index: 5;
 `;
 
 const RightArrow = styled(CgArrowRightO)`
-  align: center;
-  color: #5d6699;
+  display: inline-block;
+  position: absolute;
+  top: 40%;
+  right: 0;
+  color: #CCC;
   font-size: 80px;
+  z-index: 5;
 `;
 export default RelatedList;

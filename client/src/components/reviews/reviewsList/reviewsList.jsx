@@ -7,60 +7,59 @@ import ProductContext from '../../../ProductContext.jsx';
 import { GITHUB_API_KEY } from '../../../../../config.js';
 import SelectRatingsContext from '../selectedRatingsContext.jsx';
 import CountContext from '../countContext.jsx';
-// import SelectRatingsContext from '../selectedRatingContext.jsx';
 
-function ReviewsList() {
-  const [productID] = useContext(ProductContext);
-  const [reviews, setReviews] = useState(null);
+function ReviewsList({ reviews, setReviews, mem }) {
+  // const [productID] = useContext(ProductContext);
+  // const [reviews, setReviews] = useState(null);
   const [query, changeQuery] = useState('relevant');
   const [selectedRatings, addSelectedRatings] = useContext(SelectRatingsContext);
   const [count, changeCount] = useContext(CountContext);
+  const [, triggerRender] = useState();
 
   useEffect(() => {
-    Axios({
-      method: 'get',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews',
-      headers: {
-        Authorization: GITHUB_API_KEY,
-      },
-      params: {
-        product_id: productID,
-        sort: query,
-        count: count,
-      },
-    }).then((res) => {
-      setReviews(res.data);
-    }).catch((err) => { console.log(err); });
-  }, [productID, query, count, selectedRatings]);
+    if (query === 'helpful') {
+      setReviews((current) => current.sort((a, b) => b.helpfulness - a.helpfulness));
+      triggerRender('yo');
+    } else if (query === 'relevant') {
+      // setReviews(mem);
+      triggerRender('yoo');
+    } else if (query === 'newest') {
+      setReviews(reviews.sort((a, b) => new Date(b.date) - new Date(a.date)));
+      triggerRender('yooo');
+    } else {
+      console.log('There was an error with sorting reviews...');
+    }
+  }, [query]);
 
   if (!reviews) {
     return null;
   }
 
-  if (selectedRatings.nonToggled) {
-    return (
-      <>
-        <SortReviews change={changeQuery} reviewQuery={query} />
+  return (
+    <div>
+      {selectedRatings.nonToggled ? (
+        <>
+          <SortReviews change={changeQuery} reviewQuery={query} />
+          <ReviewsListWrapper>
+            {reviews.slice(0, count).map((review) => <ReviewTile key={review.review_id} reviewData={review} />)}
+          </ReviewsListWrapper>
+        </>
+      ) : (
         <ReviewsListWrapper>
-          {reviews.results.map((review) => {
-            return <ReviewTile key={review.review_id} reviewData={review} /> })}
+          <SortReviews change={changeQuery} reviewQuery={query} />
+          {reviews.slice(0, count).map((review) => {
+            if (selectedRatings[review.rating]) {
+              return <ReviewTile key={review.review_id} reviewData={review} />;
+            }
+          })}
         </ReviewsListWrapper>
-      </>
-    );
-  }
-    return (
-      <ReviewsListWrapper>
-        <SortReviews change={changeQuery} reviewQuery={query} />
-        {reviews.results.map((review) => {
-          if (selectedRatings[review.rating]) {
-            return <ReviewTile key={review.review_id} reviewData ={review} /> }})
-        }
-      </ReviewsListWrapper>
-    );
+      )}
+    </div>
+  );
 }
 
 const ReviewsListWrapper = styled.div`
-  border: 1px solid blue;
+  border: 1px solid #5D6699;
   padding 2px;
   margin 5px;
   height: 800px;

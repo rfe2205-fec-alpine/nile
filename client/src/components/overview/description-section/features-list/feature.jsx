@@ -11,6 +11,7 @@ function Feature({ feature, value }) {
 
 const FeatureItem = styled.div`
   font-weight: bolder;
+  padding-bottom: 10px;
 `;
 
 export default Feature;

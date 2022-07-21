@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Product Description renders to the page 1`] = `
+<div
+  className="sc-dkzDqf jGAVXb"
+>
+  <div
+    className="sc-bczRLJ dqmtFn"
+  >
+    catchphrase
+  </div>
+  <div
+    className="sc-gsnTZi dSBnGn"
+  >
+    one ring to rule them all
+  </div>
+</div>
+`;

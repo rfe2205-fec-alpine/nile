@@ -10,13 +10,17 @@ function ReviewTile({ reviewData }) {
   const topDiv = {
     display: 'flex',
     alignItems: 'center',
-    width: '100%',
+    //width: '100%',
   };
   const usernameAndDateDiv = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'right',
-    width: '100%',
+    //width: '100%',
+  };
+  const imageStyle = {
+    margin: '5px',
+    boxShadow: '3px 3px 15px lightgray',
   };
   return (
     <ReviewTileWrapper>
@@ -24,15 +28,16 @@ function ReviewTile({ reviewData }) {
         <QuarterStars rating={reviewData.rating} />
         <div style={usernameAndDateDiv}>
           <User username={reviewData.reviewer_name} />
-          <Date reviewDate={reviewData.date} />
+          <Day reviewDate={reviewData.date} />
         </div>
       </div>
       <Summary title={reviewData.summary} />
       <ReviewBody body={reviewData.body} />
       {reviewData.recommend ? <ReviewRecommend /> : <> </>}
       {reviewData.response ? <Response response={reviewData.response} /> : <> </>}
+      {reviewData.photos ? reviewData.photos.map((photo) => <img style={imageStyle} height="90px" width="auto" src={photo.url} alt="review Photos" />) : <> </>}
       <div>
-        <Helpful help={reviewData.helpfulness} id={reviewData.review_id}/>
+        <Helpful help={reviewData.helpfulness} id={reviewData.review_id} />
         <Report id={reviewData.review_id} />
       </div>
     </ReviewTileWrapper>
@@ -55,7 +60,7 @@ function User({ username }) {
   );
 }
 
-function Date({ reviewDate }) {
+function Day({ reviewDate }) {
   return (
     <p>
       {`${reviewDate[5]}${reviewDate[6]}/${reviewDate[8]}${reviewDate[9]}/${reviewDate[0]}${reviewDate[1]}${reviewDate[2]}${reviewDate[3]}`}
@@ -78,7 +83,9 @@ function ReviewRecommend() {
     alignItems: 'center',
     justifyContent: 'left',
     height: '40px',
-    width: '25%',
+    margin: '5px',
+    width: '50%',
+    padding: '6px',
   };
 
   return (
@@ -159,7 +166,9 @@ function Response({ response }) {
     alignItems: 'center',
     justifyContent: 'left',
     height: '40px',
-    width: '25%',
+    margin: '5px',
+    width: '50%',
+    padding: '6px',
   };
   return (
     <div style={responseDiv}>

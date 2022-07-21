@@ -7,7 +7,7 @@ function DescriptionSection({ data, colorScheme }) {
   // console.log('description section data');
   // console.log(data);
 
-  console.log('color scheme in description section is', colorScheme);
+  // console.log('color scheme in description section is', colorScheme);
 
   const descriptionData = {
     catchphrase: data.slogan,
@@ -15,7 +15,7 @@ function DescriptionSection({ data, colorScheme }) {
   };
 
   return (
-    <DescriptionSectionContainer primaryColor={colorScheme.foreground}>
+    <DescriptionSectionContainer colorScheme={colorScheme}>
       <ProductDescription data={descriptionData} colorScheme={colorScheme} />
       <FeaturesList features={data.features} colorScheme={colorScheme} />
     </DescriptionSectionContainer>
@@ -25,8 +25,7 @@ function DescriptionSection({ data, colorScheme }) {
 const DescriptionSectionContainer = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;
-  background-color: ${(props) => props.primaryColor};
-  border-top: 0px solid ${(props) => props.primaryColor};
+  background-color: ${(props) => props.colorScheme.foreground};
   height: 300px;
 `;
 

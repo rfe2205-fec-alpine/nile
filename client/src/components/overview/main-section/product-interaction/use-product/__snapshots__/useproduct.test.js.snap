@@ -2,29 +2,53 @@
 
 exports[`Use Product component renders to the page 1`] = `
 <div
-  className="sc-hKMtZM fXFFEN"
+  className="sc-gKXOVf gaiTkr"
 >
   <div
-    className="sc-bczRLJ ixnobc"
+    className="sc-dkzDqf jNClnl"
   >
-    <div
-      className="sc-dkzDqf biAELA"
+    <select
+      className="sc-bczRLJ bvsNxk"
+      defaultValue="Select Size"
+      onChange={[Function]}
     >
-      SELECT SIZE
-    </div>
+      <option
+        hidden={true}
+        selected={true}
+        value={0}
+      >
+        Select Size
+      </option>
+      <option
+        value="12345"
+      >
+        M
+      </option>
+      <option
+        value="90345"
+      >
+        M
+      </option>
+      <option
+        value="145645"
+      >
+        M
+      </option>
+    </select>
     <div
-      className="sc-dkzDqf biAELA"
+      className="sc-jSMfEi sc-iBkjds chQbUE ewQnNH"
     >
-      Qty
+      -
     </div>
   </div>
   <div
-    className="sc-gsnTZi cwWRZv"
+    className="sc-eCYdqJ cBRphG"
   >
     <div
-      className="sc-dkzDqf biAELA"
+      className="sc-hKMtZM dwHzza"
+      onClick={[Function]}
     >
-      ADD TO BAG
+      ADD TO CART
     </div>
   </div>
 </div>
