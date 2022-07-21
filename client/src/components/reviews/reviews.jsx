@@ -18,6 +18,7 @@ function Reviews() {
   const [productId, setProductId] = useContext(ProductContext);
   const [reviews, setReviews] = useState(null);
   const [reviewData, setReviewData] = useState(null);
+  const [memoizedRelevant, changeMemoizedRel] = useState();
   const [selectedRatings, addSelectedRatings] = useState({
     5: false,
     4: false,
@@ -70,7 +71,7 @@ function Reviews() {
                 <RatingBreakdown reviewData={reviewData} setReviewData={setReviewData} />
               </RatingBreakdownWrapper>
               <ReviewsListWrapper>
-                <ReviewsList reviews={reviews} setReviews={setReviews} />
+                <ReviewsList mem={memoizedRelevant} reviews={reviews} setReviews={setReviews} />
                 <ReviewButtons />
               </ReviewsListWrapper>
             </ReviewsWrapper>

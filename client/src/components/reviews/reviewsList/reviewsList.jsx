@@ -14,17 +14,18 @@ function ReviewsList({ reviews, setReviews }) {
   const [query, changeQuery] = useState('relevant');
   const [selectedRatings, addSelectedRatings] = useContext(SelectRatingsContext);
   const [count, changeCount] = useContext(CountContext);
+  const [, triggerRender] = useState();
 
   useEffect(() => {
-    console.log('USe Effetc:', query);
     if (query === 'helpful') {
-      console.log('helpful was selected');
       setReviews((current) => current.sort((a, b) => b.helpfulness - a.helpfulness));
+      triggerRender('yo');
     } else if (query === 'relevant') {
-      console.log('relevant was selected');
+      setReviews(mem);
+      triggerRender('yoo');
     } else if (query === 'newest') {
-      console.log('hello, newest was selected');
       setReviews(reviews.sort((a, b) => new Date(b.date) - new Date(a.date)));
+      triggerRender('yooo');
     } else {
       console.log('There was an error with sorting reviews...');
     }

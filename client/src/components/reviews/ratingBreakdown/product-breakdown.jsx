@@ -95,7 +95,10 @@ function ProgressBar({ progress, starRating, amount }) {
         <div style={Parentdiv}>
           <div style={Childdiv} />
         </div>
-        <p style={amountStyle}>{amount} Ratings</p>
+        <p style={amountStyle}>
+          {amount}
+          Ratings
+        </p>
       </SelectedWrapper>
     );
   }
