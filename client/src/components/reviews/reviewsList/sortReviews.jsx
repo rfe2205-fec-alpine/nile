@@ -13,8 +13,11 @@ function SortReviews({ change, reviewQuery }) {
 
 function ReviewCount({ amount }) {
   const [reviewAmount] = useContext(ReviewAmountContext);
+  const amountStyle = {
+    padding: '5px',
+  };
   return (
-    <h5>Total reviews: {reviewAmount}</h5>
+    <h5 style={amountStyle}>Total reviews: {reviewAmount}</h5>
   );
 }
 
@@ -22,13 +25,14 @@ function SortBar({ changeQuery, query }) {
   const dropDown = {
     position: 'relative',
     display: 'inline-block',
+    borderBottom: '2px solid black',
+    padding: '5px',
   };
 
   const dropdownContent = {
     display: 'none',
     position: 'absolute',
     backgroundColor: '#f9f9f9',
-    minWidth: '160px',
     boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
     zIndex: '1',
   };
@@ -44,24 +48,21 @@ function SortBar({ changeQuery, query }) {
   };
 
   return (
-    <div style={dropDown}>
-      <button style={dropButton} type="submit">
-        {query}
-      </button>
-      <div style={dropdownContent}>
-        <div value="Helpful" onClick={() => {changeQuery('helpful')}}>Helpful</div>
-        <div value="Newest" onClick={() => {changeQuery('newest')}}> Newest </div>
-        <div value="Relevant" onClick={() => {changeQuery('relevant')}}>Relevant</div>
-      </div>
-    </div>
+    <select style={dropDown} onChange={((e) => { changeQuery(e.target.value); })}>
+      <option value="relevant">Relevant</option>
+      <option value="helpful">Helpful</option>
+      <option value="newest"> Newest</option>
+    </select>
   );
 }
 
 const SortReviewsWrapper = styled.div`
-  border: 1px solid red;
   padding 20px;
   margin 5px;
   background: white;
+  display: flex;
+  align-content: right;
+  justify-content: right;
 `;
 
 export default SortReviews;
