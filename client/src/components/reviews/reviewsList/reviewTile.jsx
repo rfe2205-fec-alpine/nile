@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { AiOutlineCheck } from 'react-icons/ai';
 import Axios from 'axios';
-import moment from 'moment';
+// import moment from 'moment';
 import QuarterStars from '../../../starRatingFunction.jsx';
 import { GITHUB_API_KEY } from '../../../../../config.js';
 
