@@ -15,27 +15,6 @@ function RatingBreakdown({ reviewData, setReviewData }) {
   // const [reviewData, setReviewData] = useState(null);
   const [, changeReviewQualities] = useContext(ReviewQualitiesContext);
 
-  // useEffect(() => {
-  //   Axios({
-  //     method: 'get',
-  //     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta',
-  //     headers: {
-  //       Authorization: GITHUB_API_KEY,
-  //     },
-  //     params: {
-  //       product_id: productID,
-  //     },
-  //   }).then((res) => {
-  //     setReviewData(res.data);
-  //     changeReviewAmount(parseInt(res.data.recommended.true, 10) + parseInt(res.data.recommended.false, 10));
-  //     changeReviewQualities(res.data.characteristics);
-  //   }).catch((err) => { console.log(err); });
-  // }, [productID]);
-
-  // if (!reviewData) {
-  //   return null;
-  // }
-
   return (
     <RatingBreakdownWrapper>
       {reviewData ? (
