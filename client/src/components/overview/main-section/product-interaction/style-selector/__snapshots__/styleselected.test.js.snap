@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Style Selected renders to the page 1`] = `
+<div
+  className="sc-dkzDqf gUCSvl"
+>
+  <span
+    className="sc-bczRLJ evRwiw"
+  >
+    Style 
+    &gt;
+     
+  </span>
+  <span
+    className="sc-gsnTZi iaCvAC"
+  >
+    larry
+  </span>
+</div>
+`;

@@ -7,12 +7,10 @@ import ProductContext from '../../../ProductContext.jsx';
 import { GITHUB_API_KEY } from '../../../../../config.js';
 import SelectRatingsContext from '../selectedRatingsContext.jsx';
 import CountContext from '../countContext.jsx';
-import ProductNameContext from '../productNameContext.jsx';
 
 function ReviewsList() {
   const [productID] = useContext(ProductContext);
   const [reviews, setReviews] = useState(null);
-  const [productName, changeProductName] = useContext(ProductNameContext);
   const [query, changeQuery] = useState('relevant');
   const [selectedRatings, addSelectedRatings] = useContext(SelectRatingsContext);
   const [count, changeCount] = useContext(CountContext);

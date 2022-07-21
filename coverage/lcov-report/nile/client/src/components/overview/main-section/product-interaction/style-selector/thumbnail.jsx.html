@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">28.57% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/7</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">28.57% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/7</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -93,23 +93,23 @@
 <a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -122,21 +122,21 @@ import styled from 'styled-components';
 &nbsp;
 const minSize = '66px';
 &nbsp;
-function <span class="fstat-no" title="function not covered" >Thumbnail(</span>{ size, imgUrl, setSelection, colorScheme }) {
-  const selectedSize = <span class="cstat-no" title="statement not covered" >size || minSize;</span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
+function Thumbnail({ size, imgUrl, setSelection, colorScheme }) {
+  const selectedSize = size || <span class="branch-1 cbranch-no" title="branch not covered" >minSize;</span>
+  return (
     &lt;ThumbnailItemContainer imgUrl={imgUrl} size={selectedSize} colorScheme={colorScheme} onClick={setSelection} /&gt;
   );
 }
 &nbsp;
 const ThumbnailItemContainer = styled.div`
-  height: ${<span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; <span class="cstat-no" title="statement not covered" >props.size}</span>;
-  width: ${<span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; <span class="cstat-no" title="statement not covered" >props.size}</span>;
+  height: ${(props) =&gt; props.size};
+  width: ${(props) =&gt; props.size};
   margin-right: 29px;
   margin-top: 14px;
   margin-bottom: 15px;
   border-radius: 100%;
-  background-image: url("${<span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; <span class="cstat-no" title="statement not covered" >props.imgUrl}</span>");
+  background-image: url("${(props) =&gt; props.imgUrl}");
   background-size: cover;
   background-position: right center;
   background-repeat: no-repeat;
@@ -151,7 +151,7 @@ export default Thumbnail;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue Jul 19 2022 19:41:51 GMT-0400 (Eastern Daylight Time)
+                at Wed Jul 20 2022 19:34:25 GMT-0400 (Eastern Daylight Time)
             </div>
         <script src="../../../../../../../../prettify.js"></script>
         <script>

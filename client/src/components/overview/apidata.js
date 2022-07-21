@@ -12,9 +12,9 @@ function getAverageReviewFromData(data) {
     totalReviewScore += numberOfRatings * currentIndex;
   }
 
-  console.log('number of reviews is', numberOfReviews);
-  console.log('reviews is', reviews);
-  console.log('total review score', totalReviewScore);
+  // console.log('number of reviews is', numberOfReviews);
+  // console.log('reviews is', reviews);
+  // console.log('total review score', totalReviewScore);
 
   const averageReviewRating = totalReviewScore / numberOfReviews;
   return [averageReviewRating, numberOfReviews];
@@ -77,7 +77,7 @@ function getApiDataFromProductId(productId, setData) {
           })
             .then((data) => {
               let innerData = data.data;
-              console.log('review data:', innerData);
+              // console.log('review data:', innerData);
 
               let averageReviewData = getAverageReviewFromData(innerData.ratings);
               // console.log(averageReview);

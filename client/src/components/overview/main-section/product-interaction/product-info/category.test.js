@@ -1,6 +1,5 @@
 import renderer from 'react-test-renderer';
 import Category from './category.jsx';
-import ThemeContext from '../../../../../ThemeContext.jsx';
 
 it('Category renders to the page', () => {
   const colorScheme = { textColorBackground: 'black' };
