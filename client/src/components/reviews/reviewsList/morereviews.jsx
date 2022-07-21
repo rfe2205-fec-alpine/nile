@@ -12,9 +12,9 @@ function MoreReviewsButton() {
     changeCount(updatedCount);
   }
 
-  if (reviewAmount <= count) {
-    return <> </>;
-  }
+  // if (reviewAmount <= count) {
+  //   return <> </>;
+  // }
 
   const buttonStyle = {
     padding: '12px',
@@ -25,7 +25,10 @@ function MoreReviewsButton() {
   };
 
   return (
-    <button style={buttonStyle} type="submit" onClick={() => clickHandler()}>Show More Reviews</button>
+    <div>
+      {reviewAmount <= count ? <> </>
+        : <button style={buttonStyle} type="submit" onClick={() => clickHandler()}>Show More Reviews</button>}
+    </div>
   );
 }
 

@@ -14,9 +14,10 @@ function QAndA() {
   const [questions, setQuestions] = useState(null);
   const [showQuestionPopUp, setShowQuestionPopUp] = useState(false);
   const [showAnswerPopUp, setShowAnswerPopUp] = useState(false);
+  const [searchString, setSearchString] = useState('');
   const [apiProductData, setApiProductData] = useState(null);
 
-  useEffect(() => {
+  const refresh = () => {
     getApiDataFromProductId(productID, setApiProductData);
     Axios({
       method: 'get',
@@ -26,16 +27,19 @@ function QAndA() {
       },
       params: {
         product_id: productID,
-        count: 2,
+        count: 5,
       },
     })
       .then((res) => {
+        console.log(res.data);
         setQuestions(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [productID]);
+  };
+
+  useEffect(refresh, [productID]);
 
   if (!questions) {
     return null;
@@ -45,8 +49,8 @@ function QAndA() {
     setShowQuestionPopUp(true);
   };
 
-  const handleAddAnswerClick = () => {
-    setShowAnswerPopUp(true);
+  const handleAddAnswerClick = (questionId) => {
+    setShowAnswerPopUp(questionId);
   };
 
   const handleMoreQuestionsClick = () => {
@@ -59,26 +63,106 @@ function QAndA() {
   const closeAnswerPopUp = () => {
     setShowAnswerPopUp(false);
   };
+
+  const markQuestionHelpful = (questionId) => {
+    Axios({
+      method: 'PUT',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionId}/helpful`,
+      headers: {
+        Authorization: GITHUB_API_KEY,
+      },
+    }).then((res) => {
+      console.log('Mark question helpful server request sent successfully: ', res);
+      refresh();
+    }).catch((err) => {
+      console.log(err);
+    });
+  };
+
+  const reportQuestion = (questionId) => {
+    Axios({
+      method: 'PUT',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionId}/report`,
+      headers: {
+        Authorization: GITHUB_API_KEY,
+      },
+    }).then((res) => {
+      console.log('Report question server request sent successfully: ', res);
+      refresh();
+    }).catch((err) => {
+      console.log(err);
+    });
+  };
+
+  const markAnswerHelpful = (answerId) => {
+    Axios({
+      method: 'PUT',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${answerId}/helpful`,
+      headers: {
+        Authorization: GITHUB_API_KEY,
+      },
+    }).then((res) => {
+      console.log('Mark answer helpful request sent successfully: ', res);
+      refresh();
+    }).catch((err) => {
+      console.log(err);
+    });
+  };
+
+  const reportAnswer = (answerId) => {
+    Axios({
+      method: 'PUT',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${answerId}/report`,
+      headers: {
+        Authorization: GITHUB_API_KEY,
+      },
+    }).then((res) => {
+      console.log('Report answer server request sent successfully: ', res);
+      refresh();
+    }).catch((err) => {
+      console.log(err);
+    });
+  };
+
   return (
     <div>
       <h2>QUESTIONS & ANSWERS</h2>
-      <SearchQuestions />
+      <SearchQuestions
+        searchString={searchString}
+        setSearchString={setSearchString}
+      />
       <QuestionList
         questions={questions}
         handleAddAnswerClick={handleAddAnswerClick}
+        markQuestionHelpful={markQuestionHelpful}
+        reportQuestion={reportQuestion}
+        markAnswerHelpful={markAnswerHelpful}
+        reportAnswer={reportAnswer}
+        searchString={searchString}
+        refresh={refresh}
       />
       <Buttons
         handleAddQuestionClick={handleAddQuestionClick}
         handleMoreQuestionsClick={handleMoreQuestionsClick}
+        refresh={refresh}
       />
       {showQuestionPopUp ? (
         <AddQuestion
           closeQuestionPopUp={closeQuestionPopUp}
           productName={apiProductData[0].name}
           productId={productID}
+          setShowQuestionPopUp={setShowQuestionPopUp}
+          refresh={refresh}
         />
       ) : null}
-      {showAnswerPopUp ? (<AddAnswer closeAnswerPopUp={closeAnswerPopUp} />) : null}
+      {showAnswerPopUp ? (
+        <AddAnswer
+          closeAnswerPopUp={closeAnswerPopUp}
+          questionId={showAnswerPopUp}
+          setShowAnswerPopUp={setShowAnswerPopUp}
+          refresh={refresh}
+        />
+      ) : null}
     </div>
   );
 }

@@ -14,13 +14,16 @@ const customStyles = {
   },
 };
 
-function AddQuestion({ closeQuestionPopUp, productName, productId }) {
+function AddQuestion({
+  closeQuestionPopUp, productName, productId, setShowQuestionPopUp, refresh,
+}) {
   const [questionBody, setQuestionBody] = useState('');
   const [questionName, setQuestionName] = useState('');
   const [questionEmail, setQuestionEmail] = useState('');
+  console.log(`product id for post request is: ${Number(productId)}`);
 
   function onClickSubmit() {
-    Axios({
+    return Axios({
       method: 'post',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions',
       headers: {
@@ -38,7 +41,6 @@ function AddQuestion({ closeQuestionPopUp, productName, productId }) {
       console.log(err);
     });
   }
-  console.log(questionBody, questionName, questionEmail, productId);
   return (
     <Modal
       isOpen
@@ -69,7 +71,18 @@ function AddQuestion({ closeQuestionPopUp, productName, productId }) {
       </div>
       <div>
         <p>
-          <button type="button" onClick={onClickSubmit}>Submit Question</button>
+          <button
+            type="button"
+            onClick={() => {
+              onClickSubmit().then(() => {
+                setShowQuestionPopUp(false);
+                refresh();
+              });
+            }}
+          >
+            Submit Question
+
+          </button>
         </p>
       </div>
     </Modal>

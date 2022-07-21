@@ -24,8 +24,8 @@ function FeaturesList({ features, colorScheme }) {
 const FeatureListItems = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   padding-left: 25px;
+  padding-top: 60px;
   color: ${(props) => props.colorScheme.textColorForeground}
 `;
 

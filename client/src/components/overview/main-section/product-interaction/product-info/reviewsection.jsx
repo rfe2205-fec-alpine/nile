@@ -13,6 +13,7 @@ function readReviews() {
 
 function ReviewSection({ reviewScore, numberOfReviews, colorScheme }) {
   let rating = ratingInStars(reviewScore, colorScheme);
+  // console.log('rating in stars', reviewScore);
   return (
     <span>
       {rating}
@@ -49,7 +50,7 @@ function ratingInStars(reviewScore, colorScheme) {
 const ReadAllReviews = styled.span`
 &:hover {
   color: ${(props) => props.colorScheme.foreground};
-  cursor: default;
+  cursor: pointer;
 }
   color: ${(props) => props.colorScheme.textColorBackground};
   text-decoration: underline;

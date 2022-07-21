@@ -31,7 +31,7 @@ function chooseLogo(colorScheme) {
 }
 
 function TitleBar({ colorScheme }) {
-  console.log('color scheme is', colorScheme);
+  // console.log('color scheme is', colorScheme);
   const logo = chooseLogo(colorScheme);
   return (
     <TitleContainer bgColor={colorScheme.foreground}>

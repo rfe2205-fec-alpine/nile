@@ -7,7 +7,7 @@ function changeTheme(newThemeName, colorScheme, setColorScheme) {
   const prefix = newThemeName;
   const suffix = colorScheme.name.substring(colorScheme.name.length - 5) === 'light' ? 'light' : 'dark';
   const name = `${prefix} ${suffix}`;
-  console.log('new theme name is', name);
+  // console.log('new theme name is', name);
 
   let newColorScheme = Themes.nile.light;
 
@@ -47,14 +47,21 @@ function changeTheme(newThemeName, colorScheme, setColorScheme) {
   setColorScheme(newColorScheme);
 }
 
-function changeDropdown(event) {
-  changeTheme(event.target.value);
-}
-
 function NewThemeDropdown() {
   const [colorScheme, setColorScheme] = React.useContext(ThemeContext);
+
+  const lastFiveLetters = colorScheme.name.substring(colorScheme.name.length - 5);
+
+  let name;
+  if (lastFiveLetters === 'light') {
+    name = colorScheme.name.substring(0, colorScheme.name.length - 6);
+  } else {
+    name = colorScheme.name.substring(0, colorScheme.name.length - 5);
+  }
+
   return (
       <NewTheme onChange={(event) => changeTheme(event.target.value, colorScheme, setColorScheme)}>
+        <option selected value={name} hidden>{name}</option>
         <option value={'nile'}>nile</option>
         <option value={'modern'}>modern</option>
         <option value={'forest'}>forest</option>

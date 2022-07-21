@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { AiOutlineUp } from 'react-icons/ai';
+import ThemeContext from '../../../../../ThemeContext.jsx';
 
 function PreviousButton({ setSelection }) {
+  const [colorScheme] = React.useContext(ThemeContext);
   return (
     <PreviousButtonContainer>
-      <ActualPreviousButton onClick={setSelection}>
-        <AiOutlineUp color="#5d6699" />
+      <ActualPreviousButton onClick={setSelection} colorScheme={colorScheme}>
+        <AiOutlineUp color={colorScheme.foreground} />
       </ActualPreviousButton>
     </PreviousButtonContainer>
   );
@@ -14,7 +16,7 @@ function PreviousButton({ setSelection }) {
 
 const ActualPreviousButton = styled.div`
   text-align: center;
-  color: #5d6699;
+  color: ${(props) => props.colorScheme.foreground};
   font-size: 24px;
   font-weight: bolder;
 `;

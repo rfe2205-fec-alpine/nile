@@ -1,8 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`price renders sale price properly 1`] = `
+<span
+  className="sc-bczRLJ bBzYPN"
+>
+  <span
+    className="sc-gsnTZi fZzjcr"
+  >
+    $
+    80
+  </span>
+     
+  <span
+    className="sc-dkzDqf iYlgkx"
+  >
+    $
+    90
+  </span>
+</span>
+`;
+
 exports[`price renders to the page 1`] = `
 <span
-  className="sc-bczRLJ dBgitw"
+  className="sc-bczRLJ bBzYPN"
 >
   $
 </span>

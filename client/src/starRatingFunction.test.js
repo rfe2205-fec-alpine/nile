@@ -1,9 +1,9 @@
 import renderer from 'react-test-renderer';
-import ProductImage from './productimage.jsx';
+import QuarterStars from './starRatingFunction.jsx';
 
-it('Product Image component renders to the page', () => {
+it('Quarter star function renders to the page', () => {
   const component = renderer.create(
-    <ProductImage />
+    <QuarterStars rating={3.7} />
   );
   let tree = component.toJSON();
   expect(tree).toMatchSnapshot();
