@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">45.83% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/24</span>
+                <span class='fraction'>20/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/5</span>
+                <span class='fraction'>4/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">43.47% </span>
+                <span class="strong">82.6% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/23</span>
+                <span class='fraction'>19/23</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -137,8 +137,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -155,28 +155,28 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -196,8 +196,8 @@ function <span class="fstat-no" title="function not covered" >readReviews(</span
 &nbsp;
 function ReviewSection({ reviewScore, numberOfReviews, colorScheme }) {
   let rating = ratingInStars(reviewScore, colorScheme);
-<span class="cstat-no" title="statement not covered" >  console.log('rating in stars', reviewScore);</span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  console.log('rating in stars', reviewScore);
+  return (
     &lt;span&gt;
       {rating}
       &amp;emsp;
@@ -216,26 +216,26 @@ function ratingInStars(reviewScore, colorScheme) {
   for (let currentIndex = 0; currentIndex &lt; 5; currentIndex++) {
     key++;
 &nbsp;
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (remainingScore &lt; 0.5) {
-<span class="cstat-no" title="statement not covered" >      redBaron.push(&lt;BsStar key={key} color={colorScheme.textColorBackground} /&gt;);</span>
-    } else <span class="missing-if-branch" title="if path not taken" >I</span>if (remainingScore &lt; 1) {
-<span class="cstat-no" title="statement not covered" >      redBaron.push(&lt;BsStarHalf key={key} color={colorScheme.textColorBackground} /&gt;);</span>
-<span class="cstat-no" title="statement not covered" >      remainingScore -= 0.5;</span>
+    if (remainingScore &lt; 0.5) {
+      redBaron.push(&lt;BsStar key={key} color={colorScheme.textColorBackground} /&gt;);
+    } else if (remainingScore &lt; 1) {
+      redBaron.push(&lt;BsStarHalf key={key} color={colorScheme.textColorBackground} /&gt;);
+      remainingScore -= 0.5;
     } else {
       redBaron.push(&lt;BsStarFill key={key} color={colorScheme.textColorBackground} /&gt;);
-<span class="cstat-no" title="statement not covered" >      remainingScore -= 1;</span>
+      remainingScore -= 1;
     }
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return redBaron;</span>
+  return redBaron;
 }
 &nbsp;
 const ReadAllReviews = styled.span`
 &amp;:hover {
-  color: ${<span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; <span class="cstat-no" title="statement not covered" >props.colorScheme.foreground}</span>;
+  color: ${(props) =&gt; props.colorScheme.foreground};
   cursor: pointer;
 }
-  color: ${<span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; <span class="cstat-no" title="statement not covered" >props.colorScheme.textColorBackground}</span>;
+  color: ${(props) =&gt; props.colorScheme.textColorBackground};
   text-decoration: underline;
 `;
 &nbsp;
@@ -247,7 +247,7 @@ export default ReviewSection;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue Jul 19 2022 19:41:51 GMT-0400 (Eastern Daylight Time)
+                at Wed Jul 20 2022 19:34:25 GMT-0400 (Eastern Daylight Time)
             </div>
         <script src="../../../../../../../../prettify.js"></script>
         <script>

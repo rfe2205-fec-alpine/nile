@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import React, {
+  useState, useEffect, useContext, useMemo,
+} from 'react';
 import styled from 'styled-components';
+import Axios from 'axios';
+import { GITHUB_API_KEY } from '../../../../config.js';
 import RatingBreakdown from './ratingBreakdown/ratingBreakdown.jsx';
 import ReviewsList from './reviewsList/reviewsList.jsx';
 import ReviewButtons from './reviewsList/reviewButtons.jsx';
@@ -9,9 +13,12 @@ import SelectRatingsContext from './selectedRatingsContext.jsx';
 import CountContext from './countContext.jsx';
 
 function Reviews() {
-  const [reviewAmount, changeReviewAmount] = useState(null);
   const [reviewQualities, changeReviewQualities] = useState(null);
   const [count, changeCount] = useState(2);
+  const [productId, setProductId] = useContext(ProductContext);
+  const [reviews, setReviews] = useState(null);
+  const [reviewData, setReviewData] = useState(null);
+  const [memoizedRelevant, changeMemoizedRel] = useState();
   const [selectedRatings, addSelectedRatings] = useState({
     5: false,
     4: false,
@@ -21,6 +28,42 @@ function Reviews() {
     nonToggled: true,
   });
 
+  const saved = [];
+
+  useEffect(() => {
+    Axios({
+      method: 'get',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta',
+      headers: {
+        Authorization: GITHUB_API_KEY,
+      },
+      params: {
+        product_id: productId,
+      },
+    }).then((res) => {
+      const countVar = (parseInt(res.data.recommended.true, 10) + parseInt(res.data.recommended.false, 10));
+      setReviewData(res.data);
+      changeReviewAmount(countVar);
+      changeReviewQualities(res.data.characteristics);
+      Axios({
+        method: 'get',
+        url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews',
+        headers: {
+          Authorization: GITHUB_API_KEY,
+        },
+        params: {
+          product_id: productId,
+          count: countVar,
+        },
+      }).then((response) => {
+        setReviews(response.data.results);
+        // saved = useMemo(() => changeMemoizedRel(response.data.results));
+      }).catch((err) => console.log(err));
+    }).catch((err) => {
+      console.log('There was an error sending your request. Sorry!', err);
+    });
+  }, [productId]);
+
   return (
     <ReviewAmountContext.Provider value={[reviewAmount, changeReviewAmount]}>
       <ReviewQualitiesContext.Provider value={[reviewQualities, changeReviewQualities]}>
@@ -28,10 +71,10 @@ function Reviews() {
           <CountContext.Provider value={[count, changeCount]}>
             <ReviewsWrapper id="allReviews">
               <RatingBreakdownWrapper>
-                <RatingBreakdown />
+                <RatingBreakdown reviewData={reviewData} setReviewData={setReviewData} />
               </RatingBreakdownWrapper>
               <ReviewsListWrapper>
-                <ReviewsList />
+                <ReviewsList mem={saved} reviews={reviews} setReviews={setReviews} />
                 <ReviewButtons />
               </ReviewsListWrapper>
             </ReviewsWrapper>

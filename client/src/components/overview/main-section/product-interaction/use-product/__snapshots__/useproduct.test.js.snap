@@ -7,17 +7,49 @@ exports[`Use Product component renders to the page 1`] = `
   <div
     className="sc-dkzDqf jNClnl"
   >
-    <div
-      className="sc-jSMfEi chQbUE"
+    <select
+      className="sc-bczRLJ bvsNxk"
+      defaultValue="Select Size"
+      onChange={[Function]}
     >
-      OUT OF STOCK
-    </div>
+      <option
+        hidden={true}
+        selected={true}
+        value={0}
+      >
+        Select Size
+      </option>
+      <option
+        value="12345"
+      >
+        M
+      </option>
+      <option
+        value="90345"
+      >
+        M
+      </option>
+      <option
+        value="145645"
+      >
+        M
+      </option>
+    </select>
     <div
       className="sc-jSMfEi sc-iBkjds chQbUE ewQnNH"
     >
       -
     </div>
   </div>
-  <div />
+  <div
+    className="sc-eCYdqJ cBRphG"
+  >
+    <div
+      className="sc-hKMtZM dwHzza"
+      onClick={[Function]}
+    >
+      ADD TO CART
+    </div>
+  </div>
 </div>
 `;
