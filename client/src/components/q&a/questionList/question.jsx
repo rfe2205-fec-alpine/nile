@@ -12,8 +12,8 @@ const ImageRow = styled.div`
 `;
 
 const Image = styled.img`
-width: 100px;
-height: 100px;
+width: auto;
+height: 60px;
 `;
 
 const AnswerColumn = styled.div`
