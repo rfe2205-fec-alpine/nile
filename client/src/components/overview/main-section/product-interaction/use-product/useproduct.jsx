@@ -34,7 +34,7 @@ function sizeIsInNewStock(itemsInStock, sizeSelected) {
   // console.log('items in stock are', itemsInStock);
   // console.log('size selected is', sizeSelected);
   for (const item of itemsInStock) {
-    console.log('item size is', item.size);
+    // console.log('item size is', item.size);
     if (item.size === sizeSelected.size) {
       return true;
     }

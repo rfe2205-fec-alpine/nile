@@ -77,7 +77,7 @@ function getApiDataFromProductId(productId, setData) {
           })
             .then((data) => {
               let innerData = data.data;
-              console.log('review data:', innerData);
+              // console.log('review data:', innerData);
 
               let averageReviewData = getAverageReviewFromData(innerData.ratings);
               // console.log(averageReview);
