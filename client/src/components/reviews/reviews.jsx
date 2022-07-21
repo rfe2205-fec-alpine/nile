@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useContext, useMemo } from 'react';
+import React, {
+  useState, useEffect, useContext, useMemo,
+} from 'react';
 import styled from 'styled-components';
 import Axios from 'axios';
 import { GITHUB_API_KEY } from '../../../../config.js';
@@ -12,13 +14,13 @@ import CountContext from './countContext.jsx';
 import ProductContext from '../../ProductContext.jsx';
 
 function Reviews() {
-  const [reviewAmount, changeReviewAmount] = useState(null);
   const [reviewQualities, changeReviewQualities] = useState(null);
   const [count, changeCount] = useState(2);
   const [productId, setProductId] = useContext(ProductContext);
   const [reviews, setReviews] = useState(null);
   const [reviewData, setReviewData] = useState(null);
   const [memoizedRelevant, changeMemoizedRel] = useState();
+  const [reviewAmount, changeReviewAmount] = useState(null);
   const [selectedRatings, addSelectedRatings] = useState({
     5: false,
     4: false,

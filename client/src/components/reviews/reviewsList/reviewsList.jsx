@@ -36,26 +36,25 @@ function ReviewsList({ reviews, setReviews, mem }) {
   }
 
   return (
-    <>
-      <div>
-        {selectedRatings.nonToggled ? (
-          <>
-            <SortReviews change={changeQuery} reviewQuery={query} />
-            <ReviewsListWrapper>
-              {reviews.slice(0, count).map((review) => <ReviewTile key={review.review_id} reviewData={review} /> )}
-            </ReviewsListWrapper>
-          </>
-          ):(
-            <ReviewsListWrapper>
+    <div>
+      {selectedRatings.nonToggled ? (
+        <>
+          <SortReviews change={changeQuery} reviewQuery={query} />
+          <ReviewsListWrapper>
+            {reviews.slice(0, count).map((review) => <ReviewTile key={review.review_id} reviewData={review} />)}
+          </ReviewsListWrapper>
+        </>
+      ) : (
+        <ReviewsListWrapper>
           <SortReviews change={changeQuery} reviewQuery={query} />
           {reviews.slice(0, count).map((review) => {
             if (selectedRatings[review.rating]) {
               return <ReviewTile key={review.review_id} reviewData={review} />;
-            }})}
-          </ReviewsListWrapper>)
-          }
-      </div>
-    </>
+            }
+          })}
+        </ReviewsListWrapper>
+      )}
+    </div>
   );
 }
 

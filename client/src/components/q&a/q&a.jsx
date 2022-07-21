@@ -13,10 +13,11 @@ function QAndA() {
   const [productID] = useContext(ProductContext);
   const [questions, setQuestions] = useState(null);
   const [showQuestionPopUp, setShowQuestionPopUp] = useState(false);
-  const [showAnswerPopUp, setShowAnswerPopUp] = useState(null);
+  const [showAnswerPopUp, setShowAnswerPopUp] = useState(false);
+  const [searchString, setSearchString] = useState('');
   const [apiProductData, setApiProductData] = useState(null);
 
-  useEffect(() => {
+  const refresh = () => {
     getApiDataFromProductId(productID, setApiProductData);
     Axios({
       method: 'get',
@@ -26,7 +27,7 @@ function QAndA() {
       },
       params: {
         product_id: productID,
-        count: 3,
+        count: 5,
       },
     })
       .then((res) => {
@@ -36,7 +37,9 @@ function QAndA() {
       .catch((err) => {
         console.log(err);
       });
-  }, [productID]);
+  };
+
+  useEffect(refresh, [productID]);
 
   if (!questions) {
     return null;
@@ -70,6 +73,7 @@ function QAndA() {
       },
     }).then((res) => {
       console.log('Mark question helpful server request sent successfully: ', res);
+      refresh();
     }).catch((err) => {
       console.log(err);
     });
@@ -84,6 +88,7 @@ function QAndA() {
       },
     }).then((res) => {
       console.log('Report question server request sent successfully: ', res);
+      refresh();
     }).catch((err) => {
       console.log(err);
     });
@@ -98,6 +103,7 @@ function QAndA() {
       },
     }).then((res) => {
       console.log('Mark answer helpful request sent successfully: ', res);
+      refresh();
     }).catch((err) => {
       console.log(err);
     });
@@ -112,6 +118,7 @@ function QAndA() {
       },
     }).then((res) => {
       console.log('Report answer server request sent successfully: ', res);
+      refresh();
     }).catch((err) => {
       console.log(err);
     });
@@ -120,7 +127,10 @@ function QAndA() {
   return (
     <div>
       <h2>QUESTIONS & ANSWERS</h2>
-      <SearchQuestions />
+      <SearchQuestions
+        searchString={searchString}
+        setSearchString={setSearchString}
+      />
       <QuestionList
         questions={questions}
         handleAddAnswerClick={handleAddAnswerClick}
@@ -128,22 +138,29 @@ function QAndA() {
         reportQuestion={reportQuestion}
         markAnswerHelpful={markAnswerHelpful}
         reportAnswer={reportAnswer}
+        searchString={searchString}
+        refresh={refresh}
       />
       <Buttons
         handleAddQuestionClick={handleAddQuestionClick}
         handleMoreQuestionsClick={handleMoreQuestionsClick}
+        refresh={refresh}
       />
       {showQuestionPopUp ? (
         <AddQuestion
           closeQuestionPopUp={closeQuestionPopUp}
           productName={apiProductData[0].name}
           productId={productID}
+          setShowQuestionPopUp={setShowQuestionPopUp}
+          refresh={refresh}
         />
       ) : null}
       {showAnswerPopUp ? (
         <AddAnswer
           closeAnswerPopUp={closeAnswerPopUp}
           questionId={showAnswerPopUp}
+          setShowAnswerPopUp={setShowAnswerPopUp}
+          refresh={refresh}
         />
       ) : null}
     </div>
