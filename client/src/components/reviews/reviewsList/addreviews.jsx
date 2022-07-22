@@ -4,6 +4,7 @@ import Axios from 'axios';
 import ProductContext from '../../../ProductContext.jsx';
 import ReviewQualitiesContext from '../reviewQualities.jsx';
 import { GITHUB_API_KEY } from '../../../../../config.js';
+import ThemeContext from '../../../ThemeContext.jsx';
 
 function AddReviewsButton() {
   const [productID] = useContext(ProductContext);
@@ -77,6 +78,7 @@ function AddReviewForm({ toggleStatus }) {
   const [images, addImage] = useState([]);
   const [characteristics, changeCharacteristics] = useState({});
   const [finalImages, addFinalImages] = useState([]);
+  const [colorScheme] = useContext(ThemeContext);
 
   const formStyle = {
     width: '50%',
@@ -114,23 +116,23 @@ function AddReviewForm({ toggleStatus }) {
     <>
       <form>
         <h4>Add a New Review</h4>
-        <InputTitle>Overall Rating</InputTitle>
+        <InputTitle colorScheme={colorScheme}>Overall Rating</InputTitle>
         <DynamicStars changeOverallRating={changeOverallRating} />
-        <InputTitle>Do You Recommend this Product?</InputTitle>
+        <InputTitle colorScheme={colorScheme}>Do You Recommend this Product?</InputTitle>
         <RecommendReview changeRecommend={changeRecommend} />
-        <InputTitle>Characteristics</InputTitle>
+        <InputTitle colorScheme={colorScheme}>Characteristics</InputTitle>
         <Char characteristics={characteristics} changeCharacteristics={changeCharacteristics} />
-        <InputTitle>Review Title</InputTitle>
+        <InputTitle colorScheme={colorScheme}>Review Title</InputTitle>
         <ReviewTitle summary={summary} changeSummary={changeSummary} />
-        <InputTitle>Body</InputTitle>
+        <InputTitle colorScheme={colorScheme}>Body</InputTitle>
         <Body body={body} changeBody={changeBody} />
-        <InputTitle>Upload Your Photos</InputTitle>
+        <InputTitle colorScheme={colorScheme}>Upload Your Photos</InputTitle>
         <Images images={images} addImage={addImage} finalImages={finalImages} addFinalImages={addFinalImages} />
-        <InputTitle>What is Your Nickname?</InputTitle>
+        <InputTitle colorScheme={colorScheme}>What is Your Nickname?</InputTitle>
         <NickName name={name} changeName={changeName} />
-        <InputTitle>Your Email</InputTitle>
+        <InputTitle colorScheme={colorScheme}>Your Email</InputTitle>
         <Email email={email} changeEmail={changeEmail} />
-        <InputTitle>Submit Your Review</InputTitle>
+        <InputTitle colorScheme={colorScheme}>Submit Your Review</InputTitle>
         <button type="submit" onClick={() => { sendDataToServer(); }}>Submit</button>
       </form>
         <></>
@@ -150,9 +152,21 @@ function Char({ characteristics, changeCharacteristics }) {
   };
   const radioButtonStyle = {
     display: 'flex',
+    width: '100%',
+    alignContent: 'left',
+    justifyContent: 'space-evenly',
   };
   const radioItemStyle = {
     display: 'flex',
+    margin: '5px',
+    alignContent: 'center',
+    justifyContent: 'center',
+  };
+
+  const clicker = {
+    display: 'flex-box',
+    alignContent: 'center',
+    justifyContent: 'center',
   };
 
   return (
@@ -162,9 +176,9 @@ function Char({ characteristics, changeCharacteristics }) {
           const newKey = reviewQualities[quality].id.toString();
           return (
             <div style={radioButtonStyle}>
-              <p>{quality}</p>
+              <p><b>{quality}</b></p>
               <div style={radioItemStyle}>
-                <input name={quality} type="radio" value={charRef[quality][0]} onClick={() => { changeCharacteristics({ ...characteristics, [newKey]: 1 }); }} />
+                <input style={clicker} name={quality} type="radio" value={charRef[quality][0]} onClick={() => { changeCharacteristics({ ...characteristics, [newKey]: 1 }); }} />
                 <p>{charRef[quality][0]}</p>
               </div>
               <div style={radioItemStyle}>
@@ -202,6 +216,11 @@ function Images({ images, addImage, finalImages, addFinalImages }) {
 
   const cloudName = 'alpinefec';
 
+  const imageStyle = {
+    margin: '5px',
+    boxShadow: '3px 3px 15px lightgray',
+  };
+
   function handleClick(e) {
     const img = URL.createObjectURL(e.target.files[0]);
     const reader = new FileReader();
@@ -235,7 +254,7 @@ function Images({ images, addImage, finalImages, addFinalImages }) {
       <>
         { !max ? <input type="file" onChange={(e) => { handleClick(e); }} /> : <> </> }
         {images.map((imageUrl) => {
-          return <img src={imageUrl} alt="test" width="auto" height="60px" />;
+          return <img style={imageStyle} src={imageUrl} alt="test" width="auto" height="60px" />;
         })}
       </>
     )};
@@ -405,14 +424,14 @@ width 100%;
 height: 100vh;
 background-color: black;
 display: flex-box;
-align-items: center,
+align-items: center;
 justify-content: center;
 margin: auto;
 z-index: 3;
 `;
 
-const InputTitle = styled.h6`
-  color: blue;
+const InputTitle = styled.h3`
+  color: ${(props) => props.colorScheme};
 `;
 
 const FormWrapper = styled.div`
@@ -422,9 +441,10 @@ height: 100%;
 background-color: white;
 display: flex-box;
 opacity: 1.0;
-align-items: center,
+align-items: center;
 justify-content: center;
 margin: auto;
+padding-left: 100px;
 `;
 
 export default AddReviewsButton;
