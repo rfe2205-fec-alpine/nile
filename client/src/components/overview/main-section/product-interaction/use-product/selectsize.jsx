@@ -75,6 +75,7 @@ const SelectSizeMenu = styled.select.attrs((props) => ({
   margin-left: 25px;
   margin-right: 25px;
   font-size: 18px;
+  color: ${(props) => props.borderColor};
 `;
 
 const PleaseSelectSize = styled.div`
