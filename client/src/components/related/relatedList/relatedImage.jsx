@@ -1,9 +1,10 @@
 import React from 'react';
+import { MdArrowLeft, MdArrowRight } from 'react-icons/md';
 import placeholder from './placeholder.jpg';
 
 function GetImage({ productImage }) {
   let image;
-  if (productImage.length > 0) {
+  if (productImage) {
     image = productImage[0].thumbnail_url;
   } else {
     image = productImage;
