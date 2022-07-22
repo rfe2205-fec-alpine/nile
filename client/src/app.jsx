@@ -45,7 +45,7 @@ import Themes from './themes.js';
 
 function App() {
   const selectedTheme = Themes.nile.light;
-  const [productId, setProductId] = useState('37314');
+  const [productId, setProductId] = useState('37311');
   const [colorScheme, setColorScheme] = useState(selectedTheme);
 
   document.body.style.backgroundColor = selectedTheme.bodyColor;
