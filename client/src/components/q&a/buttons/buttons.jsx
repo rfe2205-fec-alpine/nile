@@ -6,10 +6,10 @@ const ButtonRow = styled.div`
   flex-direction: row;
 `;
 
-function Buttons({ handleMoreQuestionsClick, handleAddQuestionClick }) {
+function Buttons({ handleMoreQuestionsClick, handleAddQuestionClick, showMoreQuestions }) {
   return (
     <ButtonRow>
-      <button type="button" onClick={handleMoreQuestionsClick}>More Answered Questions</button>
+      <button type="button" onClick={handleMoreQuestionsClick}>{!showMoreQuestions ? 'More Answered Questions' : 'Show Less Answered Answered Question'}</button>
       <button type="button" onClick={handleAddQuestionClick}> Add a question</button>
     </ButtonRow>
   );
