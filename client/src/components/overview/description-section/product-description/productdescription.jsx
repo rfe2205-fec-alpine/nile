@@ -17,7 +17,7 @@ function ProductDescription({ data, colorScheme }) {
 
 const ProductDescriptionContainer = styled.div`
   display: grid;
-  grid-template-rows: 1fr 2fr;
+  grid-template-rows: 50px 1fr;
   background-color: ${(props) => props.background};
   background-size: contain;
   background-repeat: no-repeat;
