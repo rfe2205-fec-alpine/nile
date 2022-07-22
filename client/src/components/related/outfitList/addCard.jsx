@@ -36,8 +36,9 @@ function AddCard({
 export default AddCard;
 
 const AddCardStyle = styled.div`
-  border-radius: .25rem;
-  box-shadow: 0 2px 5px 0 rgba(0 0 0 .2);
+  position: relative;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 5px 0 rgba(0 0 0 0.2);
   background: #5d6699;
   padding: 0.25rem;
   width: 300px;

@@ -1,19 +1,15 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { MdArrowLeft, MdArrowRight } from 'react-icons/md';
-import RelatedCard from './relatedCard.jsx';
+import RelatedCard from './relatedCard';
 
 function RelatedList({ productList, defaultData }) {
-  const [index, setIndex] = useState(0);
-  // console.log('this is product list: ', productList);
-  // const newProductList = productList.slice(index, index + 3);
   const [slideLeft, setSlideLeft] = useState(0);
   const [showRight, setShowRight] = useState(true);
   const scrollRef = useRef();
 
   function handleLeft() {
     setShowRight(true);
-    // const width = (scrollRef.current.scrollWidth - scrollRef.current.clientWidth);
     let remainder;
     if (slideLeft - 200 < 0) {
       remainder = 200 - slideLeft;
@@ -54,7 +50,6 @@ function RelatedList({ productList, defaultData }) {
             key={product.id}
             product={product}
             defaultData={defaultData}
-            setIndex={setIndex}
           />
         ))}
       </CardList>
@@ -93,9 +88,9 @@ const CardList = styled.div`
 const LeftArrow = styled(MdArrowLeft)`
   display: inline-block;
   position: absolute;
-  top: 40%;
+  bottom: 20%;
   left: 0;
-  color: #black;
+  color: white;
   font-size: 80px;
   opacity: 0.4;
   z-index: 2;
@@ -109,9 +104,9 @@ const LeftArrow = styled(MdArrowLeft)`
 const RightArrow = styled(MdArrowRight)`
   display: inline-block;
   position: absolute;
-  top: 40%;
+  bottom: 20%;
   right: 0;
-  color: #black;
+  color: white;
   opacity: 0.4;
   font-size: 80px;
   z-index: 2;

@@ -2,19 +2,20 @@ import React from 'react';
 import { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
-import QuarterStars from '../../../starRatingFunction.jsx';
-import GetImage from './relatedImage.jsx';
-import ProductContext from '../../../ProductContext.jsx';
-import Comparison from './comparison.jsx';
+import QuarterStars from '../../../starRatingFunction';
+import GetImage from './relatedImage';
+import ProductContext from '../../../ProductContext';
+import Comparison from './comparison';
 
 const axios = require('axios');
-const { GITHUB_API_KEY } = require('../../../../../config.js');
+const { GITHUB_API_KEY } = require('../../../../../config');
 
 function RelatedCard({ product, defaultData, setIndex }) {
   const [productId, setProductId] = useContext(ProductContext);
   const [rating, setRating] = useState(null);
   const [show, setShow] = useState(false);
   const [productImage, useProductImage] = useState(null);
+
   useEffect(() => {
     axios({
       method: 'get',
@@ -30,15 +31,13 @@ function RelatedCard({ product, defaultData, setIndex }) {
         });
         setRating(total / ratingData.data.results.length);
       })
-      .then(() =>
-        axios({
-          method: 'get',
-          url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/styles`,
-          headers: {
-            Authorization: GITHUB_API_KEY,
-          },
-        })
-      )
+      .then(() => axios({
+        method: 'get',
+        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/styles`,
+        headers: {
+          Authorization: GITHUB_API_KEY,
+        },
+      }))
       .then((imageData) => {
         useProductImage(() => imageData.data.results[0].photos);
       })
@@ -59,8 +58,7 @@ function RelatedCard({ product, defaultData, setIndex }) {
             onClick={() => {
               setShow(!show);
             }}
-          >
-          </StarButton>
+          />
           <Comparison
             product={product}
             defaultData={defaultData}
@@ -90,8 +88,8 @@ function RelatedCard({ product, defaultData, setIndex }) {
 export default RelatedCard;
 const Card = styled.div`
   position: relative;
-  border-radius: .25rem;
-  box-shadow: 0 2px 5px 0 rgba(0 0 0 .2);
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 5px 0 rgba(0 0 0 0.2);
   background: #5d6699;
   padding: 0.25rem;
   width: 300px;
