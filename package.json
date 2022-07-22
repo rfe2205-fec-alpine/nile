@@ -26,7 +26,6 @@
     "image-webpack-loader": "^8.1.0",
     "jest": "^28.1.2",
     "jest-enzyme": "^7.1.2",
-    "moment": "^2.29.4",
     "nodemon": "^2.0.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

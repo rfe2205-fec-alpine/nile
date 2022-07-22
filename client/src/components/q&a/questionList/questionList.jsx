@@ -3,20 +3,20 @@ import Question from './question';
 
 function QuestionList({
   questions, handleAddAnswerClick, markQuestionHelpful,
-  reportQuestion, markAnswerHelpful, reportAnswer,
+  reportQuestion, markAnswerHelpful, reportAnswer, searchString,
 }) {
-  console.log(questions);
   return (
     <div>
-      {questions.results.map((question) => (
-        <Question
-          question={question}
-          handleAddAnswerClick={handleAddAnswerClick}
-          markQuestionHelpful={markQuestionHelpful}
-          reportQuestion={reportQuestion}
-          markAnswerHelpful={markAnswerHelpful}
-          reportAnswer={reportAnswer}
-        />
+      {questions.filter((question) => question.question_body.toLowerCase()
+        .includes(searchString.toLowerCase())).map((question) => (
+          <Question
+            question={question}
+            handleAddAnswerClick={handleAddAnswerClick}
+            markQuestionHelpful={markQuestionHelpful}
+            reportQuestion={reportQuestion}
+            markAnswerHelpful={markAnswerHelpful}
+            reportAnswer={reportAnswer}
+          />
       ))}
     </div>
   );
