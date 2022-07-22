@@ -33,15 +33,13 @@ function OutfitList({ defaultData }) {
         });
         setRating(total / defaultRating.data.results.length);
       })
-      .then(() =>
-        axios({
-          method: 'get',
-          url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${defaultData.id}/styles`,
-          headers: {
-            Authorization: GITHUB_API_KEY,
-          },
-        })
-      )
+      .then(() => axios({
+        method: 'get',
+        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${defaultData.id}/styles`,
+        headers: {
+          Authorization: GITHUB_API_KEY,
+        },
+      }))
       .then((imageData) => {
         useProductImage(() => imageData.data.results[0].photos);
       })
@@ -61,11 +59,11 @@ function OutfitList({ defaultData }) {
   }
 
   function handleRight() {
-    const width = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
+    const width = scrollRef.current.scrollWidth - scrollRef.current.clientWidth
     let remainder;
     if (slideLeft + 200 > width) {
       setShowRight(false);
-      remainder = slideLeft + 200 - width;
+      remainder = slideLeft + 300 - width;
     } else {
       remainder = 200;
     }
@@ -134,13 +132,12 @@ const Container = styled.div`
 
 const CardContainer = styled.div`
   position: relative;
-  max-width: 800px;
+  max-width: 73%;
 `;
 
 const AddCardContainer = styled.div`
   position: relative;
   padding: 0.25rem;
-  max-width: 100%;
 
 `;
 

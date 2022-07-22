@@ -25,7 +25,7 @@ function RelatedList({ productList, defaultData }) {
     let remainder;
     if (slideLeft + 200 > width) {
       setShowRight(false);
-      remainder = slideLeft + 200 - width;
+      remainder = slideLeft + 300 - width;
     } else {
       remainder = 200;
     }
@@ -68,8 +68,6 @@ function RelatedList({ productList, defaultData }) {
 const CardContainer = styled.div`
   position: relative;
   max-width: 1200px;
-  display: flex;
-  flex-direction: row;
 `;
 
 const CardList = styled.div`
