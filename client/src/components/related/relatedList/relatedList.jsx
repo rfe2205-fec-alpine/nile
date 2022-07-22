@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
-import { CgArrowLeftO, CgArrowRightO } from 'react-icons/cg';
+import { MdArrowLeft, MdArrowRight } from 'react-icons/md';
 import RelatedCard from './relatedCard.jsx';
 
 function RelatedList({ productList, defaultData }) {
@@ -11,14 +11,38 @@ function RelatedList({ productList, defaultData }) {
   const [showRight, setShowRight] = useState(true);
   const scrollRef = useRef();
 
+  function handleLeft() {
+    setShowRight(true);
+    // const width = (scrollRef.current.scrollWidth - scrollRef.current.clientWidth);
+    let remainder;
+    if (slideLeft - 200 < 0) {
+      remainder = 200 - slideLeft;
+    } else {
+      remainder = 200;
+    }
+    scrollRef.current.scrollLeft -= remainder;
+    setSlideLeft((scrollRef.current.scrollLeft -= remainder));
+  }
+
+  function handleRight() {
+    const width = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
+    let remainder;
+    if (slideLeft + 200 > width) {
+      setShowRight(false);
+      remainder = slideLeft + 200 - width;
+    } else {
+      remainder = 200;
+    }
+    scrollRef.current.scrollLeft += remainder;
+    setSlideLeft((scrollRef.current.scrollLeft += remainder));
+  }
+
   return (
     <CardContainer>
-      {slideLeft - 200 > 0 ? (
+      {slideLeft > 0 ? (
         <LeftArrow
           onClick={() => {
-            setShowRight(true);
-            scrollRef.current.scrollLeft -= 200;
-            setSlideLeft((scrollRef.current.scrollLeft -= 200));
+            handleLeft();
           }}
         />
       ) : (
@@ -37,12 +61,7 @@ function RelatedList({ productList, defaultData }) {
       {showRight ? (
         <RightArrow
           onClick={() => {
-            slideLeft + 200 >=
-            scrollRef.current.scrollWidth - scrollRef.current.clientWidth
-              ? setShowRight(false)
-              : '';
-            scrollRef.current.scrollLeft += 200;
-            setSlideLeft((scrollRef.current.scrollLeft += 200));
+            handleRight();
           }}
         />
       ) : (
@@ -67,27 +86,39 @@ const CardList = styled.div`
   overflow-x: scroll;
   scroll-behavior: smooth;
   &::-webkit-scrollbar {
-  display: none;
-}
+    display: none;
+  }
 `;
 
-const LeftArrow = styled(CgArrowLeftO)`
+const LeftArrow = styled(MdArrowLeft)`
   display: inline-block;
   position: absolute;
   top: 40%;
   left: 0;
-  color: #CCC;
+  color: #black;
   font-size: 80px;
-  z-index: 5;
+  opacity: 0.4;
+  z-index: 2;
+  &:hover {
+    opacity: 1;
+    font-size: 85px;
+    transition: 0.2s;
+  }
 `;
 
-const RightArrow = styled(CgArrowRightO)`
+const RightArrow = styled(MdArrowRight)`
   display: inline-block;
   position: absolute;
   top: 40%;
   right: 0;
-  color: #CCC;
+  color: #black;
+  opacity: 0.4;
   font-size: 80px;
-  z-index: 5;
+  z-index: 2;
+  &:hover {
+    opacity: 1;
+    font-size: 85px;
+    transition: 0.2s;
+  }
 `;
 export default RelatedList;

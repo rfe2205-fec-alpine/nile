@@ -102,13 +102,13 @@ const StyledCategory = styled.div`
   text-align: left;
   font-size: 1em;
   font-family: Arial;
-  color: #ccc;
+  color: #black;
   padding: 10px 0 10px 10px;
 `;
 
 const StyledName = styled.div`
   padding: 0 0 10px 10px;
-  color: #ccc;
+  color: #black;
   font-size: 1.1em;
   font-family: Arial;
   font-weight: bold;
@@ -116,7 +116,7 @@ const StyledName = styled.div`
 
 const StyledPrice = styled.div`
   padding: 0 0 10px 10px;
-  color: #ccc;
+  color: #black;
   font-size: 0.75em;
   font-family: Arial;
 `;
