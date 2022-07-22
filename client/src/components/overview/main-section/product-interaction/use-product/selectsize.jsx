@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { AiOutlineExclamationCircle } from 'react-icons/ai';
 
 // const listOfSizes = ['Small', 'Medium', 'Large'];
 // 'Small', 'Medium', 'Large'
@@ -10,12 +11,12 @@ function SelectSize({ container, sizeSelected, setSizeSelection, listOfSizes, st
   function changeSizeSelection(event) {
     let newSelectionId = event.target.value;
     let newSelectionSize = stock[newSelectionId];
-    setSizeSelection([newSelectionId, newSelectionSize]);
+    setSizeSelection([newSelectionId, newSelectionSize, false]);
   }
 
   let key = 300;
 
-  let options = listOfSizes.map(function(item) {
+  let options = listOfSizes.map(function (item) {
     key++;
     let size = item.size;
     // console.log('size is', size);
@@ -40,10 +41,23 @@ function SelectSize({ container, sizeSelected, setSizeSelection, listOfSizes, st
     options = [selectedOption].concat(options);
   }
 
+  const borderColor = sizeSelected.needsSizeSelection ? 'red' : 'black';
+
+  if (sizeSelected.needsSizeSelection) {
+    return (
+      <NeedsSizeSelection>
+        <PleaseSelectSize>Please Select Size &nbsp;<AiOutlineExclamationCircle color="red" /></PleaseSelectSize>
+        <SelectSizeMenu defaultValue={'Select Size'} onChange={changeSizeSelection} borderColor={borderColor} margin="10px">
+          {options}
+        </SelectSizeMenu>
+      </NeedsSizeSelection>
+    );
+  }
+
   return (
-      <SelectSizeMenu defaultValue={'Select Size'} onChange={changeSizeSelection}>
-        {options}
-      </SelectSizeMenu>
+    <SelectSizeMenu defaultValue={'Select Size'} onChange={changeSizeSelection} borderColor={borderColor} margin="25px">
+      {options}
+    </SelectSizeMenu>
   );
 }
 
@@ -54,10 +68,28 @@ const SelectSizeMenu = styled.select.attrs((props) => ({
   display: flex;
   padding: 20px;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid ${(props) => props.borderColor};
   background-color: #E4E4E4;
-  margin: 25px;
+  margin-top: ${(props) => props.margin};
+  margin-bottom: 25px;
+  margin-left: 25px;
+  margin-right: 25px;
   font-size: 18px;
+  color: ${(props) => props.borderColor};
+`;
+
+const PleaseSelectSize = styled.div`
+  display: flex;
+  justify-content: center;
+  color: red;
+  margin-left: 50px;
+  margin-right: 50px;
+  border-radius: 10px;
+`;
+
+const NeedsSizeSelection = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export default SelectSize;

@@ -199,7 +199,7 @@ function ProductImage({ photos, selectionIndex, selection, setSelection, colorSc
           position="center"
           onClick={(event) => {
             if (event.target.id === 'fullScreenImage') {
-              // console.log(event.target);
+              //console.log(event.target);
               setZoomedIn([true, '50%', '50%', event.target.clientWidth,
                 event.target.clientHeight, event.nativeEvent.offsetX, event.nativeEvent.offsetY]);
             }
