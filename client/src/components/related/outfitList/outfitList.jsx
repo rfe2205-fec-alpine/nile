@@ -76,8 +76,9 @@ function OutfitList({ defaultData }) {
   if (!rating || !productImage) {
     return null;
   }
+
   return (
-    <div>
+    <Container>
       <AddCardContainer>
         <AddCard
           defaultData={defaultData}
@@ -117,25 +118,32 @@ function OutfitList({ defaultData }) {
           ''
         )}
       </CardContainer>
-    </div>
+    </Container>
   );
 }
 
 export default OutfitList;
 
-const CardContainer = styled.div`
-  position: relative;
+const Container = styled.div`
   max-width: 1200px;
   display: flex;
-  background: red;
-  flex-direction: row;
+  position: relative;
+  gap: .5rem;
+  align-content: flex-start;
+`;
+
+const CardContainer = styled.div`
+  position: relative;
+  max-width: 800px;
 `;
 
 const AddCardContainer = styled.div`
-  display: inline-block;
-  flex-direction: row;
-  /* background: yellow; */
+  position: relative;
+  padding: 0.25rem;
+  max-width: 100%;
+
 `;
+
 const CardList = styled.div`
   position: relative;
   display: flex;
@@ -152,9 +160,9 @@ const CardList = styled.div`
 const LeftArrow = styled(MdArrowLeft)`
   display: inline-block;
   position: absolute;
-  top: 40%;
+  bottom: 20%;
   left: 0;
-  color: #black;
+  color: white;
   font-size: 80px;
   opacity: 0.4;
   z-index: 2;
@@ -168,9 +176,9 @@ const LeftArrow = styled(MdArrowLeft)`
 const RightArrow = styled(MdArrowRight)`
   display: inline-block;
   position: absolute;
-  top: 40%;
+  bottom: 20%;
   right: 0;
-  color: #black;
+  color: white;
   opacity: 0.4;
   font-size: 80px;
   z-index: 2;
