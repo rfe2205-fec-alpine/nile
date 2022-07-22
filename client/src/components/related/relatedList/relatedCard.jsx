@@ -127,7 +127,7 @@ const StyledRating = styled.div`
 
 const StarButton = styled(FaStar)`
   position: absolute;
-  color: #ccc;
+  color: #5d6699;
   font-size: 1.5em;
   top: 10px;
   right: 10px;

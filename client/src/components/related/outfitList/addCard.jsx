@@ -45,11 +45,13 @@ const AddCardStyle = styled.div`
   height: 450px;
 `;
 
-const Text = styled.text`
+const Text = styled.div`
   font-size: 40px;
   margin: 1em;
 `;
 
 const AddIcon = styled(TbHeartPlus)`
+  padding-top: 15%;
+  padding-left: 15%;
   font-size: 200px;
 `;

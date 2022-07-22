@@ -65,7 +65,7 @@ export default Comparison;
 
 const BackGroundModal = styled.div`
   display: flex;
-  background: grey;
+  background: #ccc;
   position: fixed;
   left: 40%;
   top: 40%;

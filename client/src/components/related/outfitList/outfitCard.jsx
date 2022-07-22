@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { BsXCircle } from 'react-icons/bs';
+import { TiDelete } from 'react-icons/ti';
 import GetImage from '../relatedList/relatedImage';
 import QuarterStars from '../../../starRatingFunction';
 
@@ -75,13 +75,13 @@ const StyledRating = styled.div`
   bottom: 10px;
 `;
 
-const DeleteButton = styled(BsXCircle)`
+const DeleteButton = styled(TiDelete)`
   position: absolute;
-  color: #ccc;
-  font-size: 1.5em;
+  color: #5d6699;
+  font-size: 2em;
   top: 10px;
   right: 10px;
   &:hover {
-    font-size: 2em;
+    font-size: 2.5em;
   }
 `;
