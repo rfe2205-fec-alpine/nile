@@ -47,7 +47,7 @@ const AddCardStyle = styled.div`
 `;
 
 const Text = styled.div`
-  font-size: 40px;
+  font-size: 40px;r
   color: ${(props) => props.colorScheme.textColorForeground}
   margin: 1em;
 `;
