@@ -4,7 +4,7 @@ const themes = {
       name: 'nile light',
       foreground: '#5d6699',
       background: '#CCC',
-      textColorForeground: 'black',
+      textColorForeground: '#CCC',
       textColorBackground: 'black',
       textColorTitle: 'white',
       bodyColor: 'white',

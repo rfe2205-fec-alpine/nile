@@ -7,10 +7,11 @@ import { GITHUB_API_KEY, CAMPUS_CODE } from '../../../../../../../config.js';
 
 const cartUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/${CAMPUS_CODE}/cart`;
 
-function AddToBag({ sizeSelected, qtySelected, selectedStyle, nameOfProduct, colorScheme }) {
+function AddToBag({ sizeSelected, qtySelected, selectedStyle, nameOfProduct, colorScheme, setSizeSelection }) {
   function addToCart() {
     if (sizeSelected.size === 'Select Size') {
       alert('Please select size');
+      setSizeSelection([0, 'Select Size', true]);
     } else {
       // console.log('Adding to cart!');
       // console.log('id being submitted', sizeSelected.id);
