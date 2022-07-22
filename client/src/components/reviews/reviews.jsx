@@ -1,6 +1,4 @@
-import React, {
-  useState, useEffect, useContext, useMemo,
-} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Axios from 'axios';
 import { GITHUB_API_KEY } from '../../../../config.js';
@@ -12,6 +10,7 @@ import ReviewQualitiesContext from './reviewQualities.jsx';
 import SelectRatingsContext from './selectedRatingsContext.jsx';
 import CountContext from './countContext.jsx';
 import ProductContext from '../../ProductContext.jsx';
+import ThemeContext from '../../ThemeContext.jsx';
 
 function Reviews() {
   const [reviewQualities, changeReviewQualities] = useState(null);
@@ -19,8 +18,8 @@ function Reviews() {
   const [productId, setProductId] = useContext(ProductContext);
   const [reviews, setReviews] = useState(null);
   const [reviewData, setReviewData] = useState(null);
-  const [memoizedRelevant, changeMemoizedRel] = useState();
   const [reviewAmount, changeReviewAmount] = useState(null);
+  const [colorScheme, setColorScheme] = useContext(ThemeContext);
   const [selectedRatings, addSelectedRatings] = useState({
     5: false,
     4: false,
@@ -59,7 +58,6 @@ function Reviews() {
         },
       }).then((response) => {
         setReviews(response.data.results);
-        // saved = useMemo(() => changeMemoizedRel(response.data.results));
       }).catch((err) => console.log(err));
     }).catch((err) => {
       console.log('There was an error sending your request. Sorry!', err);
@@ -71,8 +69,8 @@ function Reviews() {
       <ReviewQualitiesContext.Provider value={[reviewQualities, changeReviewQualities]}>
         <SelectRatingsContext.Provider value={[selectedRatings, addSelectedRatings]}>
           <CountContext.Provider value={[count, changeCount]}>
-            <ReviewsWrapper id="allReviews">
-              <RatingBreakdownWrapper>
+            <ReviewsWrapper colorScheme={colorScheme} id="allReviews">
+              <RatingBreakdownWrapper colorScheme={colorScheme}>
                 <RatingBreakdown reviewData={reviewData} setReviewData={setReviewData} />
               </RatingBreakdownWrapper>
               <ReviewsListWrapper>
@@ -91,11 +89,12 @@ const ReviewsWrapper = styled.div`
   display: grid;
   margin-top: 30px;
   grid-template-columns: 1fr 2fr;
+  background-color: white;
 `;
 
 const RatingBreakdownWrapper = styled.div`
   grid-column-start: 1fr;
-  background-color: #5D6699;
+  background-color: ${(props) => props.colorScheme};
   border-radius: 10px;
 `;
 

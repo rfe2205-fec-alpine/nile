@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Feature from './feature.jsx';
+import Value from './value.jsx';
 
 function FeaturesList({ features, colorScheme }) {
   // console.log('data in features list');
@@ -11,7 +12,7 @@ function FeaturesList({ features, colorScheme }) {
   let key = 0;
   let redBaron = featuresList.map(function(entry) {
     key++;
-    return <Feature feature={entry.feature} key={key} value={entry.value} />
+    return <Feature feature={entry.feature} key={key} value={entry.value} colorScheme={colorScheme} />
   });
 
   return (
@@ -24,9 +25,10 @@ function FeaturesList({ features, colorScheme }) {
 const FeatureListItems = styled.div`
   display: flex;
   flex-direction: column;
-  padding-left: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
   padding-top: 60px;
-  color: ${(props) => props.colorScheme.textColorForeground}
+  color: ${(props) => props.colorScheme.background}
 `;
 
 export default FeaturesList;

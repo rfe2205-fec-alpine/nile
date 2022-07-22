@@ -9,6 +9,7 @@ function AddCard({
   storageChange,
   setIndex,
   productImage,
+  colorScheme,
 }) {
   const savedData = [
     defaultData.category,
@@ -25,9 +26,9 @@ function AddCard({
         setIndex(0);
       }}
     >
-      <AddCardStyle>
-        <AddIcon />
-        <Text>Add to Outfit</Text>
+      <AddCardStyle colorScheme={colorScheme}>
+        <AddIcon colorScheme={colorScheme} />
+        <Text colorScheme={colorScheme}>Add to Outfit</Text>
       </AddCardStyle>
     </div>
   );
@@ -36,19 +37,24 @@ function AddCard({
 export default AddCard;
 
 const AddCardStyle = styled.div`
-  border-radius: .25rem;
-  box-shadow: 0 2px 5px 0 rgba(0 0 0 .2);
-  background: #5d6699;
+  position: relative;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 5px 0 rgba(0 0 0 0.2);
+  background: ${(props) => props.colorScheme.foreground};
   padding: 0.25rem;
   width: 300px;
   height: 450px;
 `;
 
-const Text = styled.text`
-  font-size: 40px;
+const Text = styled.div`
+  font-size: 40px;r
+  color: ${(props) => props.colorScheme.textColorForeground}
   margin: 1em;
 `;
 
 const AddIcon = styled(TbHeartPlus)`
+  padding-top: 15%;
+  padding-left: 15%;
   font-size: 200px;
+  color: ${(props) => props.colorScheme.textColorForeground}
 `;

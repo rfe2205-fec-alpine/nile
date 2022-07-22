@@ -39,6 +39,7 @@ function CharacterBar({ wide, quality }) {
     marginLeft: `${(wide / 5) * 100}%`,
     marginRight: 'auto',
     marginBottom: '-6px',
+    zIndex: '5',
   };
 
   const labelDiv = {

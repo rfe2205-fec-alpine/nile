@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { BsXCircle } from 'react-icons/bs';
+import { TiDelete } from 'react-icons/ti';
 import GetImage from '../relatedList/relatedImage';
 import QuarterStars from '../../../starRatingFunction';
 
@@ -9,13 +9,15 @@ function OutfitCard({
   setStorageChange,
   storageChange,
   setIndex,
+  colorScheme,
 }) {
   const storageOutfit = JSON.parse(localStorage.getItem(eachOutfit));
   useEffect(() => {}, [eachOutfit, storageChange]);
   return (
     <div>
-      <Card>
+      <Card colorScheme={colorScheme}>
         <DeleteButton
+          colorScheme={colorScheme}
           onClick={() => {
             setStorageChange(() => !storageChange);
             localStorage.removeItem(eachOutfit);
@@ -23,9 +25,9 @@ function OutfitCard({
           }}
         />
         <GetImage productImage={storageOutfit[4]} />
-        <StyledCategory>{storageOutfit[0]}</StyledCategory>
-        <StyledName>{storageOutfit[1]}</StyledName>
-        <StyledPrice>{storageOutfit[2]}</StyledPrice>
+        <StyledCategory colorScheme={colorScheme}>{storageOutfit[0]}</StyledCategory>
+        <StyledName colorScheme={colorScheme}>{storageOutfit[1]}</StyledName>
+        <StyledPrice colorScheme={colorScheme}>{storageOutfit[2]}</StyledPrice>
         <StyledRating>
           <QuarterStars rating={Number.parseFloat(storageOutfit[3]).toFixed(2)} />
         </StyledRating>
@@ -40,7 +42,7 @@ const Card = styled.div`
   position: relative;
   border-radius: .25rem;
   box-shadow: 0 2px 5px 0 rgba(0 0 0 .2);
-  background: #5d6699;
+  background: ${(props) => props.colorScheme.foreground};
   padding: 0.25rem;
   width: 300px;
   height: 450px;
@@ -50,13 +52,13 @@ const StyledCategory = styled.div`
   text-align: left;
   font-size: 1em;
   font-family: Arial;
-  color: #ccc;
+  color: ${(props) => props.colorScheme.textColorForeground};
   padding: 10px 0 10px 10px;
 `;
 
 const StyledName = styled.div`
   padding: 0 0 10px 10px;
-  color: #ccc;
+  color: ${(props) => props.colorScheme.textColorForeground}
   font-size: 1.1em;
   font-family: Arial;
   font-weight: bold;
@@ -64,7 +66,7 @@ const StyledName = styled.div`
 
 const StyledPrice = styled.div`
   padding: 0 0 10px 10px;
-  color: #ccc;
+  color: ${(props) => props.colorScheme.textColorForeground};
   font-size: 0.75em;
   font-family: Arial;
 `;
@@ -75,13 +77,13 @@ const StyledRating = styled.div`
   bottom: 10px;
 `;
 
-const DeleteButton = styled(BsXCircle)`
+const DeleteButton = styled(TiDelete)`
   position: absolute;
-  color: #ccc;
-  font-size: 1.5em;
+  color: ${(props) => props.colorScheme.foreground};
+  font-size: 2em;
   top: 10px;
   right: 10px;
   &:hover {
-    font-size: 2em;
+    font-size: 2.5em;
   }
 `;

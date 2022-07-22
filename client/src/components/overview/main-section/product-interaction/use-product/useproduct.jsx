@@ -49,7 +49,7 @@ function UseProduct({ stock, selectedStyle, nameOfProduct, colorScheme }) {
   const sizesInStock = getSizesInStock(stock);
   // console.log('sizes in stock are', sizesInStock);
 
-  const [[selectionId, sizeSelection], setSizeSelection] = useState([0, 'Select Size']);
+  const [[selectionId, sizeSelection, needsSizeSelection], setSizeSelection] = useState([0, 'Select Size', false]);
 
   const sizeHasBeenSelected = selectionId !== 0;
   const defaultQtySelection = sizeHasBeenSelected ? 1 : '-';
@@ -62,7 +62,7 @@ function UseProduct({ stock, selectedStyle, nameOfProduct, colorScheme }) {
   }
 
   if (needsSizeReset) {
-    setSizeSelection([0, 'Select Size']);
+    setSizeSelection([0, 'Select Size', false]);
   }
 
   const [qtySelected, setQtySelected] = useState(defaultQtySelection);
@@ -82,7 +82,7 @@ function UseProduct({ stock, selectedStyle, nameOfProduct, colorScheme }) {
     <UseProductContainer>
       <SelectionRow
         container={ItemContainer}
-        sizeSelected={{ id: selectionId, size: sizeSelection }}
+        sizeSelected={{ id: selectionId, size: sizeSelection, needsSizeSelection: needsSizeSelection }}
         setSizeSelection={setSizeSelection}
         listOfSizes={sizesInStock}
         stock={stock}
@@ -94,11 +94,12 @@ function UseProduct({ stock, selectedStyle, nameOfProduct, colorScheme }) {
       <AddToBagRow
         container={ItemContainer}
         sizesInStock={sizesInStock}
-        sizeSelected={{ id: selectionId, size: sizeSelection }}
         qtySelected={qtySelected}
         selectedStyle={selectedStyle}
         nameOfProduct={nameOfProduct}
         colorScheme={colorScheme}
+        sizeSelected={{ id: selectionId, size: sizeSelection, needsSizeSelection: needsSizeSelection }}
+        setSizeSelection={setSizeSelection}
       />
     </UseProductContainer>
   );
