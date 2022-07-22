@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { AiOutlineCheck } from 'react-icons/ai';
 import Axios from 'axios';
 // import moment from 'moment';
 import QuarterStars from '../../../starRatingFunction.jsx';
 import { GITHUB_API_KEY } from '../../../../../config.js';
+import ThemeContext from '../../../ThemeContext.jsx';
 
 function ReviewTile({ reviewData }) {
+  const [colorScheme] = useContext(ThemeContext);
+  console.log('COLOR SHCEME', colorScheme);
   const topDiv = {
     display: 'flex',
     alignItems: 'center',
@@ -33,7 +36,7 @@ function ReviewTile({ reviewData }) {
       </div>
       <Summary title={reviewData.summary} />
       <ReviewBody body={reviewData.body} />
-      {reviewData.recommend ? <ReviewRecommend /> : <> </>}
+      {reviewData.recommend ? <ReviewRecommend colorScheme={colorScheme} /> : <> </>}
       {reviewData.response ? <Response response={reviewData.response} /> : <> </>}
       {reviewData.photos ? reviewData.photos.map((photo) => <img style={imageStyle} height="90px" width="auto" src={photo.url} alt="review Photos" />) : <> </>}
       <div>
@@ -76,15 +79,15 @@ function Summary({ title }) {
   );
 }
 
-function ReviewRecommend() {
+function ReviewRecommend({ colorScheme }) {
   const recommendDiv = {
-    background: 'LightGray',
+    backgroundColor: colorScheme.foreground,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'left',
     height: '40px',
     margin: '5px',
-    width: '50%',
+    width: '20%',
     padding: '6px',
   };
 
