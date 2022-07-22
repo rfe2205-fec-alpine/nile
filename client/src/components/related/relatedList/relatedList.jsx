@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { MdArrowLeft, MdArrowRight } from 'react-icons/md';
 import RelatedCard from './relatedCard';
 
-function RelatedList({ productList, defaultData }) {
+function RelatedList({ productList, defaultData, colorScheme }) {
   const [slideLeft, setSlideLeft] = useState(0);
   const [showRight, setShowRight] = useState(true);
   const scrollRef = useRef();
-
+  console.log(colorScheme.foreground);
   function handleLeft() {
     setShowRight(true);
     let remainder;
@@ -37,6 +37,7 @@ function RelatedList({ productList, defaultData }) {
     <CardContainer>
       {slideLeft > 0 ? (
         <LeftArrow
+          colorScheme={colorScheme}
           onClick={() => {
             handleLeft();
           }}
@@ -50,11 +51,13 @@ function RelatedList({ productList, defaultData }) {
             key={product.id}
             product={product}
             defaultData={defaultData}
+            colorScheme={colorScheme}
           />
         ))}
       </CardList>
       {showRight ? (
         <RightArrow
+          colorScheme={colorScheme}
           onClick={() => {
             handleRight();
           }}
@@ -88,7 +91,7 @@ const LeftArrow = styled(MdArrowLeft)`
   position: absolute;
   bottom: 20%;
   left: 0;
-  color: white;
+  color: ${(props) => props.colorScheme.textColorForeground};
   font-size: 80px;
   opacity: 0.4;
   z-index: 2;
@@ -104,7 +107,7 @@ const RightArrow = styled(MdArrowRight)`
   position: absolute;
   bottom: 20%;
   right: 0;
-  color: white;
+  color:  ${(props) => props.colorScheme.textColorForeground};
   opacity: 0.4;
   font-size: 80px;
   z-index: 2;

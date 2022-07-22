@@ -6,6 +6,7 @@ function Comparison({
   defaultData,
   show,
   setShow,
+  colorScheme,
 }) {
   const combineFeatures = product.features.concat(defaultData.features);
 
@@ -19,7 +20,7 @@ function Comparison({
         setShow(!show);
       }}
     >
-      <BackGroundModal show={show}>
+      <BackGroundModal colorScheme={colorScheme} show={show}>
         <Modal>
           <table>
             <thead>
@@ -65,7 +66,8 @@ export default Comparison;
 
 const BackGroundModal = styled.div`
   display: flex;
-  background: #ccc;
+  background: ${(props) => props.colorScheme.foreground};
+  color: ${(props) => props.colorScheme.textColorTitle};
   position: fixed;
   left: 40%;
   top: 40%;

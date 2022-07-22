@@ -10,7 +10,12 @@ import Comparison from './comparison';
 const axios = require('axios');
 const { GITHUB_API_KEY } = require('../../../../../config');
 
-function RelatedCard({ product, defaultData, setIndex }) {
+function RelatedCard({
+  product,
+  defaultData,
+  setIndex,
+  colorScheme,
+}) {
   const [productId, setProductId] = useContext(ProductContext);
   const [rating, setRating] = useState(null);
   const [show, setShow] = useState(false);
@@ -52,14 +57,16 @@ function RelatedCard({ product, defaultData, setIndex }) {
 
   return (
     <div>
-      <Card>
+      <Card colorScheme={colorScheme}>
         <div>
           <StarButton
+            colorScheme={colorScheme}
             onClick={() => {
               setShow(!show);
             }}
           />
           <Comparison
+            colorScheme={colorScheme}
             product={product}
             defaultData={defaultData}
             show={show}
@@ -72,10 +79,10 @@ function RelatedCard({ product, defaultData, setIndex }) {
             setIndex(0);
           }}
         >
-          <GetImage productImage={productImage} />
-          <StyledCategory>{product.category}</StyledCategory>
-          <StyledName>{product.name}</StyledName>
-          <StyledPrice>{product.default_price}</StyledPrice>
+          <GetImage productImage={productImage} colorScheme={colorScheme} />
+          <StyledCategory colorScheme={colorScheme}>{product.category}</StyledCategory>
+          <StyledName colorScheme={colorScheme}>{product.name}</StyledName>
+          <StyledPrice colorScheme={colorScheme}>{product.default_price}</StyledPrice>
           <StyledRating>
             <QuarterStars rating={Number.parseFloat(rating).toFixed(2)} />
           </StyledRating>
@@ -90,7 +97,7 @@ const Card = styled.div`
   position: relative;
   border-radius: 0.25rem;
   box-shadow: 0 2px 5px 0 rgba(0 0 0 0.2);
-  background: #5d6699;
+  background: ${(props) => props.colorScheme.foreground};
   padding: 0.25rem;
   width: 300px;
   height: 450px;
@@ -100,13 +107,13 @@ const StyledCategory = styled.div`
   text-align: left;
   font-size: 1em;
   font-family: Arial;
-  color: #black;
+  color: ${(props) => props.colorScheme.textColorForeground};
   padding: 10px 0 10px 10px;
 `;
 
 const StyledName = styled.div`
   padding: 0 0 10px 10px;
-  color: #black;
+  color: ${(props) => props.colorScheme.textColorForeground};
   font-size: 1.1em;
   font-family: Arial;
   font-weight: bold;
@@ -114,7 +121,7 @@ const StyledName = styled.div`
 
 const StyledPrice = styled.div`
   padding: 0 0 10px 10px;
-  color: #black;
+  color: ${(props) => props.colorScheme.textColorForeground};
   font-size: 0.75em;
   font-family: Arial;
 `;
@@ -127,7 +134,7 @@ const StyledRating = styled.div`
 
 const StarButton = styled(FaStar)`
   position: absolute;
-  color: #5d6699;
+  color: ${(props) => props.colorScheme.foreground};
   font-size: 1.5em;
   top: 10px;
   right: 10px;

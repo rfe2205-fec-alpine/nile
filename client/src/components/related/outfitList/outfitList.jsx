@@ -7,7 +7,7 @@ import AddCard from './addCard';
 const axios = require('axios');
 const { GITHUB_API_KEY } = require('../../../../../config');
 
-function OutfitList({ defaultData }) {
+function OutfitList({ defaultData, colorScheme }) {
   const [rating, setRating] = useState(null);
   const [storageChange, setStorageChange] = useState(false);
   const [productImage, useProductImage] = useState(null);
@@ -59,7 +59,7 @@ function OutfitList({ defaultData }) {
   }
 
   function handleRight() {
-    const width = scrollRef.current.scrollWidth - scrollRef.current.clientWidth
+    const width = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
     let remainder;
     if (slideLeft + 200 > width) {
       setShowRight(false);
@@ -79,6 +79,7 @@ function OutfitList({ defaultData }) {
     <Container>
       <AddCardContainer>
         <AddCard
+          colorScheme={colorScheme}
           defaultData={defaultData}
           rating={rating}
           setStorageChange={setStorageChange}
@@ -89,6 +90,7 @@ function OutfitList({ defaultData }) {
       <CardContainer>
         {slideLeft > 0 ? (
           <LeftArrow
+            colorScheme={colorScheme}
             onClick={() => {
               handleLeft();
             }}
@@ -99,6 +101,7 @@ function OutfitList({ defaultData }) {
         <CardList ref={scrollRef}>
           {storedOutfits.map((eachOutfit) => (
             <OutfitCard
+              colorScheme={colorScheme}
               key={eachOutfit}
               eachOutfit={eachOutfit}
               setStorageChange={setStorageChange}
@@ -108,6 +111,7 @@ function OutfitList({ defaultData }) {
         </CardList>
         {showRight ? (
           <RightArrow
+            colorScheme={colorScheme}
             onClick={() => {
               handleRight();
             }}
@@ -159,7 +163,7 @@ const LeftArrow = styled(MdArrowLeft)`
   position: absolute;
   bottom: 20%;
   left: 0;
-  color: white;
+  color: ${(props) => props.colorScheme.textColorForeground};
   font-size: 80px;
   opacity: 0.4;
   z-index: 2;
@@ -175,7 +179,7 @@ const RightArrow = styled(MdArrowRight)`
   position: absolute;
   bottom: 20%;
   right: 0;
-  color: white;
+  color: ${(props) => props.colorScheme.textColorForeground};
   opacity: 0.4;
   font-size: 80px;
   z-index: 2;

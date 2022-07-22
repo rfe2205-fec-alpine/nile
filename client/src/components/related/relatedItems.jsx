@@ -5,6 +5,7 @@ import Outfit from './outfitList/outfit.jsx';
 import OutfitList from './outfitList/outfitList.jsx';
 import RelatedList from './relatedList/relatedList.jsx';
 import ProductContext from '../../ProductContext.jsx';
+import ThemeContext from '../../ThemeContext';
 
 const axios = require('axios');
 const { GITHUB_API_KEY } = require('../../../../config.js');
@@ -13,6 +14,7 @@ function RelatedItems() {
   const [productList, setProductList] = useState(null);
   const [defaultData, setDefaultData] = useState(null);
   const [productId] = useContext(ProductContext);
+  const [colorScheme] = React.useContext(ThemeContext);
 
   useEffect(() => {
     axios({
@@ -67,9 +69,9 @@ function RelatedItems() {
   return (
     <div>
       <RelatedProducts />
-      <RelatedList productList={productList} defaultData={defaultData} />
+      <RelatedList colorScheme={colorScheme} productList={productList} defaultData={defaultData} />
       <Outfit />
-      <OutfitList defaultData={defaultData} />
+      <OutfitList colorScheme={colorScheme} defaultData={defaultData} />
     </div>
   );
 }
