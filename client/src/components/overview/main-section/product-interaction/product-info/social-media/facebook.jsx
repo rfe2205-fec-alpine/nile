@@ -14,7 +14,7 @@ function Facebook({ selectedStyle, productName, colorScheme }) {
   and any others like it if/when I run more tests. Have a great day!`;
 
   const baseUrl = 'http://www.facebook.com/sharer/sharer.php';
-  const linkToShare = '?u=http://52.15.135.202/';
+  const linkToShare = '?u=localhost:3000';
 
   const fullUrl = baseUrl + linkToShare;
 
